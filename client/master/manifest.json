@@ -1,0 +1,29 @@
+{
+	"initial": [
+		"libs/modules/egret/egret.js",
+		"libs/modules/egret/egret.web.js",
+		"libs/modules/res/res.js",
+		"libs/modules/eui/eui.js",
+		"libs/modules/tween/tween.js",
+		"libs/modules/socket/socket.js",
+		"promise/bin/promise.js",
+		"libs/modules/jszip/jszip.js"
+	],
+	"game": [
+		"bin-debug/UI/ui_base.js",
+		"bin-debug/Logic/MessageManager.js",
+		"bin-debug/Main.js",
+		"bin-debug/ThemeAdapter.js",
+		"bin-debug/Basic/constant.js",
+		"bin-debug/Logic/GameManager.js",
+		"bin-debug/Logic/HttpDownloadManager.js",
+		"bin-debug/LoadingUI.js",
+		"bin-debug/Logic/NetworkManager.js",
+		"bin-debug/Logic/UIManager.js",
+		"bin-debug/AssetAdapter.js",
+		"bin-debug/UI/ui_game_class_item.js",
+		"bin-debug/UI/ui_game_item.js",
+		"bin-debug/UI/ui_home.js",
+		"bin-debug/UI/ui_login.js"
+	]
+}
