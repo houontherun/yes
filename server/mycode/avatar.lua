@@ -95,7 +95,7 @@ function Avatar:on_wait_auction(pos)
     elseif pos == self.pos and self.is_managed then
         -- TODO 托管叫地主
     else
-        -- 通知玩家出牌
+        -- 通知玩家斗地主
         local info = {c = "sc_ddz_aution", pos = pos}
         self:call_client_method(info)
     end
@@ -114,10 +114,32 @@ function Avatar:on_wait_double()
     end
 end
 
+-- 等待玩家出牌
 function Avatar:on_wait_play_card(pos)
     if pos == self.pos and self.is_robot then
         -- TODO AI出牌
-
+        --[[GameAI. GetAIPutWays获取AI的一次出牌
+            GameAI. GetAIPutWays : 返回类型  [table – AI出牌数组 , int 牌类型 , int 牌值]
+            参数（
+            table upcards //上家牌，
+            table mycards //自己牌，
+            table downcards //下家牌，
+            int land_index //地主位置（0上家，1自己，2下家）
+            int presstype //压牌类型，
+            int pressval //压牌牌值，
+            int presslen //压牌的牌长度，
+            int pressindex //压牌的位置（0上家，1没压牌自己先出（此时压牌为空），2下家），
+            int thinktime //搜索时间（单位毫秒）
+            ）--]]
+            local msgTable = GameAI.GetAIPutWays(upCards , myCards , downCards , lordIndex , pressType , pressValue , pressLength , pressIndex , think_time)
+            cards = msgTable[1]
+            cardType = msgTable[2]
+            cardValue = msgTable[3]
+        --local up_cards, down_cards = self.game.get_other_player_cards(pos)
+        --landlord_index = 0 if p3 == self._lordPlayer else (1 if p1 == self._lordPlayer else 2)
+        --press_cards = self._lastCards or []
+        --press_index = 1 if not self._lastCards else (0 if p3 == self._lastCardsPlayer else (1 if p1 == self._lastCardsPlayer else 2))
+        --think_time = 1000
     else
         -- 通知玩家出牌
         local info = {c = "sc_ddz_wait_play", pos = pos}

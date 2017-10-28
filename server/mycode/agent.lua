@@ -117,7 +117,7 @@ function CLIENT.cs_prepare(msg)
 	end
 end
 
-function CLIENT.cs_aution(msg)  -- 抢地主
+function CLIENT.cs_auction(msg)  -- 抢地主
 	assert(Room)
 	local score = assert(msg.score)
 	local ret = skynet.call(Room, "lua", "auction", UserID, score)
@@ -138,10 +138,22 @@ function CLIENT.cs_play(msg)
 	end
 end
 
-function CLIENT.cs_trusteeship(msg)
+function CLIENT.cs_pass(msg)
 	assert(Room)
-	local is_trusteeship = assert(msg.is_trusteeship)
-	local ret = skynet.call(Room, "lua", "trusteeship", UserID, is_trusteeship)
+	local ret = skynet.call(Room, "lua", "play", UserID)
+	if ret then
+		send_message(ret)
+	end
+end
+
+function CLIENT.cs_mandate(msg)
+	assert(Room)
+	local ret = skynet.call(Room, "lua", "mandate", UserID)
+end
+
+function CLIENT.cs_cancel_mandate(msg)
+	assert(Room)
+	local ret = skynet.call(Room, "lua", "cancel_mandate", UserID)
 end
 
 function CLIENT:save_money(msg)
