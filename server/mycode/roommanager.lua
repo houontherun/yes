@@ -5,35 +5,63 @@
 
 local skynet = require "skynet"
 local const = require "const"
+local math = require "math"
+local os = require "os"
+require "bjx_table"
 
-local rooms = {}
-local max_room_count = 9999
+local RoomManager = {}
 local CMD = {}
 
-local idpoll = {}
-local nextroomid = 0
+local IDPoll = {}
+local NextRoomID = 0
+
+local function shuffle()
+	math.randomseed(os.time())
+    math.random(1,10000) -- 防止后面随机的数都一样
+	local index = 1
+	for v = 1111, 9999 do
+		IDPoll[index] = v
+		index = index + 1
+	end
+    local cnt = #IDPoll
+	print ("cnt is " .. cnt)
+
+    for i=1,cnt do
+        local j = math.random(i,cnt)
+        IDPoll[i],IDPoll[j] = IDPoll[j],IDPoll[i]
+    end
+	print("hahaha " .. IDPoll[894])
+	print("haha--------------------- " .. IDPoll[7894])
+	print("shuffle" .. table.serialize(IDPoll))
+end
 
 local function generate_room_id()
-	local count;
-	while count < max_room_count do
-		if not rooms[(nextroomid + count) % 10000] then
-			nextroomid = (nextroomid + count)%10000
-			return nextroomid;
+	local count = 1
+	local length = #IDPoll
+	while count < length do  -- 最多循环一遍
+		local roomid = (NextRoomID + count) % length
+		if not RoomManager[roomid] then
+			NextRoomID = roomid
+			return NextRoomID
 		end
 	end
 end
 
-function CMD:create_room(msg)
-	if not const.game_type[msg.gametype] then
-		msg.c = "sc_create_room_failed"
-		msg.reason = "unknown game type"
-		return msg
+function CMD.create_room(msg)
+	local gametype = assert(msg.gametype)
+	print("gametype" .. gametype)
+	if not const.game_type[gametype] then
+		local back = {}
+		back.c = "sc_create_room_failed"
+		back.reason = "unknown game type"
+		return back
 	end
 	local roomid = generate_room_id()
+	print("roomid" .. roomid)
 	if roomid then
 		local room = skynet.newservice("room")
-		skynet.call(room, "lua", "open", roomid, msg)
-		rooms[roomid] = room
+		local ret = skynet.call(room, "lua", "open", roomid, gametype)
+		RoomManager[roomid] = room
 		msg.c = "sc_create_room_succ"
 		msg.roomid = roomid
 		msg.room = room
@@ -44,22 +72,17 @@ function CMD:create_room(msg)
 	return msg
 end
 
-local function _destory_room(id)
-	local r = rooms[id]
-	if r then
-		skynet.send(r, "lua", "destory", id)
-		rooms[r] = nil
-	end
+function CMD.on_destory_room(roomid)
+	RoomManager[roomid] = nil
 end
 
-function CMD:destory_room(msg)
-	_destory_room(msg.roomid)
-	return {c = "sc_leave_room_ret "}
+function CMD.get_room(roomid)
+	return RoomManager[roomid]
 end
 
-function CMD:enter_room(msg)
+function CMD.enter_room(msg)
 	local roomid = msg.roomid
-	local room = rooms[roomid]
+	local room = RoomManager[roomid]
 	if not room then
 		msg.c = "sc_enter_room_failed"
 		return msg
@@ -69,14 +92,7 @@ function CMD:enter_room(msg)
 	return ret
 end
 
-function CMD:exit_room(msg)
-	local roomid = msg.roomid
-	local room = rooms[roomid]
-	if room then
-		local ret = skynet.call(room, "lua", "exit_room", msg)
-	end
-	return {c="sc_leave_room_ret"}
-end
+shuffle()
 
 skynet.start(function()
 	skynet.dispatch("lua", function(_,_, command, ...)

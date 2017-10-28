@@ -2,11 +2,15 @@ local skynet = require "skynet"
 local json = require "json"
 local socket = require "skynet.socket"
 local netpack = require "websocketnetpack"
+dbg = require("debugger")
+dbg()
+
 local CMD = {}
 local SOCKET = {}
 local gate
-local fd2agent = {}
 local dbproxy
+
+local fd2agent = {}
 local fd2addr = {} -- bind fd to ip
 local rollcenter = {} -- 记录登录成功之后的uid 和 agent 的关系，可用来做断线重连
 
@@ -26,12 +30,12 @@ end
 
 -- 断线重连需要考虑不一样的处理
 local function close_agent(fd)
-	local a = fd2agent[fd]
+	local agent = fd2agent[fd]
 	fd2agent[fd] = nil
-	if a then
+	if agent then
 		skynet.call(gate, "lua", "kick", fd)
 		-- disconnect never return
-		skynet.send(a, "lua", "disconnect")
+		skynet.send(agent, "lua", "disconnect")
 	end
 end
 
@@ -53,9 +57,10 @@ function SOCKET.warning(fd, size)
 end
 
 local function login(fd, addr, data)
-	local sdkid = data.openid -- TODO:skdid 是可以唯一的，但要注意不同的渠道，最好前面添加渠道的标志
+	print("login ")
+	local sdkid = assert(data.openid) -- TODO:skdid 是可以唯一的，但要注意不同的渠道，最好前面添加渠道的标志
 	local token = data.accesstoken -- TODO:token 需要验证
-	if ~skdid then
+	if not sdkid then
 		return
 	end
 
@@ -63,30 +68,44 @@ local function login(fd, addr, data)
 		dbproxy = skynet.uniqueservice("dbproxy")
 	end
 	local userdata = skynet.call(dbproxy, "lua", "get", sdkid)
-	if ~userdata then
+	if not userdata then
 		print("new register")
 		local userid = sdkid
 		userdata = {userid = userid, entityid=userid, name=("random"..sdkid), gold = 10000, diamond = 100, card = 10}
 		skynet.call(dbproxy, "lua", "set", sdkid, userdata)
 	end
 	print("userdata login and will detect onlineinfo")
-	-- if rollcenter[sdkid]
-	fd2agent[fd] = skynet.newservice("agent")
-	skynet.call(fd2agent[fd], "lua", "start", { gate = gate, client = fd, ip = addr, watchdog = skynet.self(), userdata = userdata})
+	if rollcenter[sdkid] then
+		-- 有相同玩家在线，开始顶号流程
+		print("process repeat login 处理顶号")
+		local agent = rollcenter[sdkid]
+		skynet.call(agent, "lua", "on_other_login", fd, addr)
+	end
+	local agent = skynet.newservice("agent")
+	fd2agent[fd] = agent
+	skynet.call(agent, "lua", "start", { gate = gate, client = fd, ip = addr, watchdog = skynet.self(), userdata = userdata})
 end
 
 function SOCKET.data(fd, msg)
-	print("process login "..msg)
-	socket.write(fd, netpack.pack(msg))
-	local ok, m = pcall(json.decode, msg)
-	if ok then
-		if m.c == "cs_login" then
-			skynet.fork(login, fd, fd2addr[fd], m)
-		end
+	print("process login1 "..msg)
+	local ss = json.encode({c="cs_login", openid=9999})
+	print("process login2 "..ss)
+	if ss ~= msg then
+		print("1 != 2 " .. string.len(ss) .. "  " .. string.len(msg))
 	end
+
+	m = json.decode(msg)
+		print ("decode yes")
+		if m.c == "cs_login" then
+			print("cs_login")
+			--TODO fork for muti login
+			--skynet.fork(login, fd, fd2addr[fd], m)
+			login(fd, fd2addr[fd], m)
+		end
 end
 
 function CMD.start(conf)
+	dbg()
 	skynet.error("fuck the skynet")
 	skynet.call(gate, "lua", "open" , conf)
 end

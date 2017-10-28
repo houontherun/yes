@@ -1,4 +1,5 @@
 local skynet = require "skynet"
+dbg = require("debugger")
 
 local max_client = 1000
 
@@ -9,6 +10,8 @@ skynet.start(function()
 	end
 	skynet.newservice("debug_console",8000)
 	skynet.uniqueservice("dbproxy")
+	skynet.uniqueservice("roommanager")
+	dbg()
 	local watchdog = skynet.newservice("watchdog")
 	skynet.call(watchdog, "lua", "start", {
 		port = 8888,
