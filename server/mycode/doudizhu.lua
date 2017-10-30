@@ -6,7 +6,7 @@
 local skynet = require "skynet"
 local math = require "math"
 local class = require "lua_object".class
-local ai = require "ddzAI"
+local GameAI = require "ddzAI"
 
 -- 出牌类型
 ERROR_TYPE = 0
@@ -95,14 +95,6 @@ end
 5 结算
 --]]
 
-local Score = class()
-function Score:ctor()
-    self.bomb = 0
-    self.spring = false
-end
-
-
-
 local DDZ = class()
 
 function DDZ:ctor()
@@ -118,10 +110,9 @@ function DDZ:init()
     self.turn = 0 --当前出牌次序
     self.last_post = 0 --上一位出牌的(而不是要不起的)
     self.last_cards = nil
-    self.next = {}
-    self.next[1] = 2
-    self.next[2] = 3
-    self.next[3] = 1
+    self.hold = {cards = nil , player = nil , cardType = nil , cardValue = nil}    --当前牌桌上的牌以及出牌人
+    self.nextposindex = {[1] = 2, [2] = 3, [3] =1}
+    self.nowpos = nil
 end
 
 function DDZ:shuffle()
@@ -161,7 +152,8 @@ function DDZ:shuffle()
 
     --self.turn = math.random(1,3)
     --TODO 真正的玩家的是地主，为了测试
-    self.turn = 3
+    --self.turn = 3
+    self.nowpos = 3
 end
 
 function DDZ:_can_play_card()
@@ -195,6 +187,14 @@ function DDZ:get_player_by_uid(uid)
         end
     end
     assert(false)
+end
+
+function DDZ:get_other_player_cards(pos)
+    local down_player = self.players[self.next[pos]]
+    local down_cards = down_player.cards
+    local up_player = self.players[self.next[down_player.pos]]
+    local up_cards = up_player.cards
+    return up_cards, down_cards
 end
 
 function DDZ:send_all_player(msg)
@@ -314,11 +314,24 @@ end
 function DDZ:process_play_cards(pos, cards, card_type, card_value)
     local player = self.players[pos]
 
+    --设置当前压牌人，压牌牌型及牌值
+    self.hold.cards = cards
+    self.hold.player = pos
+    self.hold.cardType = card_type
+    self.hold.cardValue = card_value
+
+    player:remove_cards(cards)
+
     -- TODO 需要记录炸弹和春天的情况
     local info = {c = "sc_play", pos = pos, cards = cards}
     self:send_all_player(info)
 
-    player:remove_cards(cards)
+    --分数统计相关
+    if card_type == CARDSTYPE.BOMB_TYPE then
+        --self.score:bomb(self.currentPlayer.name)
+    elseif card_type == CARDSTYPE.NUKE_TYPE then
+        --self.score:nuke(self.currentPlayer.name)
+    end
 
     if table.is_empty_or_nil(player.cards) then
         self:on_user_win(pos)
@@ -332,6 +345,8 @@ function DDZ:on_user_play(uid, cards)
     assert(self._game_status == 4)
     local pos = self:get_active_pos()
     local player = self.players[pos]
+    assert(player.uid == uid)
+    assert(table.getnum(cards) ~= 0)
     if player.uid ~= uid then
         -- 有人作弊
         return {c = "sc_play_failed", reason = "not this uid"}
@@ -360,15 +375,22 @@ function DDZ:on_user_play(uid, cards)
     self:process_play_cards(pos, cards, gotType, gotValue)
 end
 
-function DDZ:on_user_pass(uid)
+--function DDZ:next()
+--    self.turn = self.turn + 1
+--    self.active_pos = self.
+--end
 
+function DDZ:on_user_pass(uid)
+    self:_tick_timer()
+    self.turn = self.turn + 1
+    self:send_turn_to_play()
 end
 
 function DDZ:on_user_play_timeout(pos)
     assert(pos == self:get_active_pos())
     --local player = self.players[pos]
     if pos == self.last_post then
-        -- TODO 必须出牌进入托管状态
+        -- TODO 必须出牌且进入托管状态
         local player = self.players[pos]
         player:set_managed(true)
         player:on_wait_play_card(pos)
@@ -428,6 +450,10 @@ function DDZ:notify_ask_land_lord()
     -- 通知玩家叫地主
     local p = self.player[self._current_idx]
     p.notify_ask_land_lord()
+end
+
+function DDZ:test_ai()
+    ai.getTips()
 end
 
 return DDZ

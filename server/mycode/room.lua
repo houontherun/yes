@@ -121,9 +121,10 @@ end
 function CMD.prepare(uid)
     -- 检查如果游戏已经开启，返回失败
     local player = get_player(uid)
-    if not player then
-        return {c = "sc_prepare_failed", reason = "failed find player"}
-    end
+    assert(player)
+    --if not player then
+    --    return {c = "sc_prepare_failed", reason = "failed find player"}
+    --end
     player:prepare()
     for _, p in pairs(Players) do
         p:on_other_prepare(player.pos)
@@ -145,9 +146,18 @@ function CMD.play(uid, cards)
     Game:on_user_play(uid, cards)
 end
 
-function CMD.trusteeship(uid, is_trusteeship)
+function CMD.pass(uid)
+    Game:on_user_pass(uid)
+end
+
+function CMD.mandate(uid)
     local player = get_player(uid)
-    player.set_trusteeship(is_trusteeship)
+    player.set_trusteeship(ture)
+end
+
+function CMD.cancel_mandate(uid)
+    local player = get_player(uid)
+    player.set_trusteeship(false)
 end
 
 function CMD.game_result(result)
