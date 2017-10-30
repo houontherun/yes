@@ -156,7 +156,7 @@ class Main extends eui.UILayer {
 
 
         UIManager.Instance.Init(this);
-        UIManager.Instance.LoadLogin();
+        UIManager.Instance.LoadUI(UI.login);
     }
 
     private createBitmapByName(name: string): egret.Bitmap {

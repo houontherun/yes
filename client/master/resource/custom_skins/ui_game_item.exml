@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="game_item" width="400" height="460" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="ui_game_item" width="400" height="460" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="imgIcon" width="398" height="459" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="bg_jpg"/>
 	<e:Label id="lblName" text="name" x="3" y="41" anchorOffsetX="0" width="394" textAlign="center"/>
 </e:Skin>

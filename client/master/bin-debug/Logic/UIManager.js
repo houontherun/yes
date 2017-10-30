@@ -1,4 +1,3 @@
-// TypeScript file
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
@@ -12,6 +11,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var UI = {
+    "login": { name: "login", cls: gameUI.login, skin: "resource/custom_skins/ui_login.exml" },
+    "home": { name: "home", cls: gameUI.home, skin: "resource/custom_skins/ui_home.exml" },
+    "create_room": { name: "create_roon", cls: gameUI.create_room, skin: "resource/custom_skins/ui_create_room.exml" },
+    "enter_room": { name: "enter_room", cls: gameUI.enter_room, skin: "resource/custom_skins/ui_enter_room.exml" },
+};
 var UIManager = (function (_super) {
     __extends(UIManager, _super);
     function UIManager() {
@@ -22,23 +27,21 @@ var UIManager = (function (_super) {
     UIManager.prototype.Init = function (stage) {
         this.stage = stage;
     };
-    UIManager.prototype.Unload = function (view) {
-        this.stage.removeChild(view);
+    UIManager.prototype.LoadUI = function (ui, data) {
+        var view = new ui.cls(ui, data);
+        view.name = ui.name;
+        view.horizontalCenter = 0;
+        view.verticalCenter = 0;
+        this.stage.addChild(view);
     };
-    UIManager.prototype.LoadHome = function (data) {
-        // this.stage.removeChildren();
-        var home = new ui_home(data);
-        home.horizontalCenter = 0;
-        home.verticalCenter = 0;
-        this.stage.addChild(home);
-    };
-    UIManager.prototype.LoadLogin = function () {
-        var login = new ui_login();
-        login.horizontalCenter = 0;
-        login.verticalCenter = 0;
-        this.stage.addChild(login);
+    UIManager.prototype.UnloadUI = function (ui) {
+        var child = this.stage.getChildByName(ui.name);
+        if (child != null) {
+            this.stage.removeChild(child);
+        }
     };
     UIManager.Instance = new UIManager();
     return UIManager;
 }(egret.EventDispatcher));
 __reflect(UIManager.prototype, "UIManager");
+//# sourceMappingURL=UIManager.js.map

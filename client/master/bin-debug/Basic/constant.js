@@ -15,6 +15,12 @@ var constant = {
         sc_destory_player: "sc_destory_player",
         cs_leave_room: "cs_leave_room",
         sc_leave_room_ret: "sc_leave_room_ret",
+        cs_prepare: "cs_prepare",
+        cs_auction: "cs_auction",
+        cs_double: "cs_double",
+        cs_play: "cs_play",
+        cs_pass: "cs_pass",
+        cs_mandate: "cs_mandate",
     },
     event: {
         network: {
@@ -22,6 +28,10 @@ var constant = {
             on_connect_failed: "on_connect_failed",
             on_socket_error: "on_socket_error",
             on_connect_close: "on_server_close"
+        },
+        doudizhu: {
+            on_rec: "onrec",
         }
     }
 };
+//# sourceMappingURL=constant.js.map

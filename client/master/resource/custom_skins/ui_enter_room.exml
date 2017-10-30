@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ui_enter_room" width="1730" height="566" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="1730" height="566" x="2" anchorOffsetX="0" anchorOffsetY="0" source="resource/assets/com_bg.png"/>
+	<e:TextInput id="txtRoomId" width="600" height="130" x="565" y="114" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Button id="btnEnterRoom" label="进入" x="699" y="366" anchorOffsetX="0" width="322" anchorOffsetY="0" height="128"/>
+	<e:Label id="lblRoomId" text="room" x="350" y="136" anchorOffsetX="0" width="174" anchorOffsetY="0" height="86" textAlign="center" verticalAlign="middle"/>
+	<e:Button id="btnClose" label="" x="1556" y="-4" anchorOffsetY="0" height="110" anchorOffsetX="0" width="124">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="resource/assets/com_btnclose.png" source.down="resource/assets/com_btnclose.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

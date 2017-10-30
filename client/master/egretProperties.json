@@ -1,7 +1,7 @@
 {
 	"native": {
 		"path_ignore": [],
-		"android_as_path": "../masterAndroid"
+		"android_as_path": "../masterAndroid2"
 	},
 	"publish": {
 		"web": 0,

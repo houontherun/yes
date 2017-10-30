@@ -7,7 +7,7 @@ class HttpDownloadManager extends egret.EventDispatcher {
         super();
     }   
 
-    public downloadGame(_url:string){
+    private downloadGame(_url:string){
         var url = "http://sdfdssa2221.info/patch/getpatch.php"
         var request = new egret.HttpRequest();
         request.responseType = egret.HttpResponseType.ARRAY_BUFFER;

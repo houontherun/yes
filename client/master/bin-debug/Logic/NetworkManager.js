@@ -78,3 +78,4 @@ var NetworkManager = (function (_super) {
     return NetworkManager;
 }(egret.EventDispatcher));
 __reflect(NetworkManager.prototype, "NetworkManager");
+//# sourceMappingURL=NetworkManager.js.map

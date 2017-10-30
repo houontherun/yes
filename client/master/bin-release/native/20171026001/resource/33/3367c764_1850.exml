@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="home" width="1920" height="1080" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="groupUserinfo" width="696" height="182" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="imgHeadIcon" width="152" height="170" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="egret_icon_png"/>
+		<e:Label id="lblUserName" text="咸鸭蛋" x="182" y="16" anchorOffsetX="0" width="226" anchorOffsetY="0" height="52" size="40"/>
+		<e:Label id="lblGoldNum" text="金币：0" x="180" y="98" anchorOffsetX="0" width="168" anchorOffsetY="0" height="46" size="40"/>
+		<e:Label id="lblID" text="ID:10001" x="458" y="14" anchorOffsetX="0" width="226" anchorOffsetY="0" height="52" size="40"/>
+		<e:Label id="lblFCoinNum" text="F币：0" x="462" y="90" anchorOffsetX="0" width="226" anchorOffsetY="0" height="52" size="40"/>
+	</e:Group>
+	<e:Label id="lblName" text="游戏大厅" x="778" y="0" anchorOffsetX="0" width="352" anchorOffsetY="0" height="180" textAlign="center" verticalAlign="middle" size="80"/>
+	<e:Scroller id="svGame" width="1718" height="566" x="194" y="264" anchorOffsetX="0" anchorOffsetY="0">
+        <e:viewport>
+            <e:List id="listGames" height="566" anchorOffsetX="0" width="1730" x="178" y="0">
+                <e:layout>
+                    <e:HorizontalLayout />
+                </e:layout>
+            </e:List>
+        </e:viewport>
+	</e:Scroller>
+	<e:Scroller id="svGameType" width="158" height="560" x="12" y="270" anchorOffsetX="0" anchorOffsetY="0">
+		<e:viewport>
+            <e:List id="listGameTypes" height="560" anchorOffsetX="0" width="158" x="12" y="270">
+                <e:layout>
+                    <e:VerticalLayout />
+                </e:layout>
+            </e:List>
+        </e:viewport>
+	</e:Scroller>
+</e:Skin>

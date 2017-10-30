@@ -30,3 +30,4 @@ var MessageManager = (function (_super) {
     return MessageManager;
 }(egret.EventDispatcher));
 __reflect(MessageManager.prototype, "MessageManager");
+//# sourceMappingURL=MessageManager.js.map

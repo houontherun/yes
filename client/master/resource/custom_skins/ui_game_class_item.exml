@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="game_class_item" width="150" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="ui_game_class_item" width="150" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:ToggleButton id="btnToggle" label="ToggleButton" x="1.5" y="14" anchorOffsetY="0" height="77" anchorOffsetX="0" width="148"/>
 </e:Skin>

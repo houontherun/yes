@@ -15,9 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 var GameManager = (function (_super) {
     __extends(GameManager, _super);
     function GameManager() {
-        var _this = _super.call(this) || this;
-        _this.url = null;
-        return _this;
+        return _super.call(this) || this;
     }
     GameManager.prototype.downloadGame = function (game_id) {
         // this.url = "http://192.168.12.5:8080/test.png";
@@ -43,3 +41,4 @@ var GameManager = (function (_super) {
     return GameManager;
 }(egret.EventDispatcher));
 __reflect(GameManager.prototype, "GameManager");
+//# sourceMappingURL=GameManager.js.map

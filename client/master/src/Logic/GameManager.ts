@@ -27,6 +27,4 @@ class GameManager extends egret.EventDispatcher {
         // request.addEventListener(egret.IOErrorEvent.IO_ERROR,this.onGetIOError,this);
         // request.addEventListener(egret.ProgressEvent.PROGRESS,this.onGetProgress,this);
     }
-
-    private url:string = null;
 }

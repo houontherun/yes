@@ -160,7 +160,7 @@ var Main = (function (_super) {
         shp.graphics.endFill();
         this.addChild(shp);
         UIManager.Instance.Init(this);
-        UIManager.Instance.LoadLogin();
+        UIManager.Instance.LoadUI(UI.login);
     };
     Main.prototype.createBitmapByName = function (name) {
         var result = new egret.Bitmap();
@@ -171,3 +171,4 @@ var Main = (function (_super) {
     return Main;
 }(eui.UILayer));
 __reflect(Main.prototype, "Main");
+//# sourceMappingURL=Main.js.map
