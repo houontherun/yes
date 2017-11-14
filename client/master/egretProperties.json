@@ -1,7 +1,7 @@
 {
 	"native": {
 		"path_ignore": [],
-		"android_as_path": "../masterAndroid2"
+		"android_as_path": "../../../yes_android/test_bat_package"
 	},
 	"publish": {
 		"web": 0,
