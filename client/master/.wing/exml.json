@@ -9,5 +9,8 @@
     "useBgImage": true,
     "useBgColor": true,
     "backgroundAlpha": 100
+  },
+  "global": {
+    "globalAutoLayerMarkEnable": false
   }
 }

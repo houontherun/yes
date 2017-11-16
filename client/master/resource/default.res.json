@@ -1,8 +1,12 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,bg_png,com_bg_png,com_btnclose_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,com_bg_png,qilei_png,jieji_png,majiang_png,puke_png,QI_png,ZITI_png,mj_png,pk_name_png,mj_name_png,ql_name_png,lobby_bg_png,touxiang_png,headbg_png,fuzhibeijing_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,gengduo_png,goldbg_png,gonggao_png,GUANG_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,majiangkk_png,OO_png,paihangbang_png,paopao_png,pukeitem_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiangbeiban_png,yinhang_png,background_png",
 			"name": "preload"
+		},
+		{
+			"keys": "jieji_png,majiang_png,puke_png,qilei_png,ZITI_png,QI_png,GUANG_png,OO_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,fuzhibeijing_png,gengduo_png,goldbg_png,gonggao_png,headbg_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,lobby_bg_png,majiangkk_png,mj_png,mj_name_png,paihangbang_png,paopao_png,pk_name_png,pukeitem_png,ql_name_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiang_png,touxiangbeiban_png,yinhang_png,background_png",
+			"name": "lobby"
 		}
 	],
 	"resources": [
@@ -127,24 +131,224 @@
 			"name": "egret_icon_png"
 		},
 		{
-			"name": "description_json",
+			"url": "config/description.json",
 			"type": "json",
-			"url": "config/description.json"
+			"name": "description_json"
 		},
 		{
-			"name": "bg_png",
+			"url": "assets/com_bg.png",
 			"type": "image",
-			"url": "assets/bg.png"
+			"name": "com_bg_png"
 		},
 		{
-			"name": "com_bg_png",
+			"url": "assets/lobby/qilei.png",
 			"type": "image",
-			"url": "assets/com_bg.png"
+			"name": "qilei_png"
 		},
 		{
-			"name": "com_btnclose_png",
+			"url": "assets/lobby/jieji.png",
 			"type": "image",
-			"url": "assets/com_btnclose.png"
+			"name": "jieji_png"
+		},
+		{
+			"url": "assets/lobby/majiang.png",
+			"type": "image",
+			"name": "majiang_png"
+		},
+		{
+			"url": "assets/lobby/puke.png",
+			"type": "image",
+			"name": "puke_png"
+		},
+		{
+			"url": "assets/lobby/QI.png",
+			"type": "image",
+			"name": "QI_png"
+		},
+		{
+			"url": "assets/lobby/ZITI.png",
+			"type": "image",
+			"name": "ZITI_png"
+		},
+		{
+			"url": "assets/lobby/mj.png",
+			"type": "image",
+			"name": "mj_png"
+		},
+		{
+			"url": "assets/lobby/pk_name.png",
+			"type": "image",
+			"name": "pk_name_png"
+		},
+		{
+			"url": "assets/lobby/mj_name.png",
+			"type": "image",
+			"name": "mj_name_png"
+		},
+		{
+			"url": "assets/lobby/ql_name.png",
+			"type": "image",
+			"name": "ql_name_png"
+		},
+		{
+			"url": "assets/lobby/lobby_bg.png",
+			"type": "image",
+			"name": "lobby_bg_png"
+		},
+		{
+			"url": "assets/lobby/touxiang.png",
+			"type": "image",
+			"name": "touxiang_png"
+		},
+		{
+			"url": "assets/lobby/headbg.png",
+			"type": "image",
+			"name": "headbg_png"
+		},
+		{
+			"url": "assets/lobby/fuzhibeijing.png",
+			"type": "image",
+			"name": "fuzhibeijing_png"
+		},
+		{
+			"url": "assets/lobby/beibansan.png",
+			"type": "image",
+			"name": "beibansan_png"
+		},
+		{
+			"url": "assets/lobby/dibu.png",
+			"type": "image",
+			"name": "dibu_png"
+		},
+		{
+			"url": "assets/lobby/fangka.png",
+			"type": "image",
+			"name": "fangka_png"
+		},
+		{
+			"url": "assets/lobby/fenxiang.png",
+			"type": "image",
+			"name": "fenxiang_png"
+		},
+		{
+			"url": "assets/lobby/gengduo.png",
+			"type": "image",
+			"name": "gengduo_png"
+		},
+		{
+			"url": "assets/lobby/goldbg.png",
+			"type": "image",
+			"name": "goldbg_png"
+		},
+		{
+			"url": "assets/lobby/gonggao.png",
+			"type": "image",
+			"name": "gonggao_png"
+		},
+		{
+			"url": "assets/lobby/GUANG.png",
+			"type": "image",
+			"name": "GUANG_png"
+		},
+		{
+			"url": "assets/lobby/jia.png",
+			"type": "image",
+			"name": "jia_png"
+		},
+		{
+			"url": "assets/lobby/jiarufangjian.png",
+			"type": "image",
+			"name": "jiarufangjian_png"
+		},
+		{
+			"url": "assets/lobby/jinbi.png",
+			"type": "image",
+			"name": "jinbi_png"
+		},
+		{
+			"url": "assets/lobby/kefu.png",
+			"type": "image",
+			"name": "kefu_png"
+		},
+		{
+			"url": "assets/lobby/liaotian.png",
+			"type": "image",
+			"name": "liaotian_png"
+		},
+		{
+			"url": "assets/lobby/liwu.png",
+			"type": "image",
+			"name": "liwu_png"
+		},
+		{
+			"url": "assets/lobby/majiangkk.png",
+			"type": "image",
+			"name": "majiangkk_png"
+		},
+		{
+			"url": "assets/lobby/OO.png",
+			"type": "image",
+			"name": "OO_png"
+		},
+		{
+			"url": "assets/lobby/paihangbang.png",
+			"type": "image",
+			"name": "paihangbang_png"
+		},
+		{
+			"url": "assets/lobby/paopao.png",
+			"type": "image",
+			"name": "paopao_png"
+		},
+		{
+			"url": "assets/lobby/pukeitem.png",
+			"type": "image",
+			"name": "pukeitem_png"
+		},
+		{
+			"url": "assets/lobby/shangdian.png",
+			"type": "image",
+			"name": "shangdian_png"
+		},
+		{
+			"url": "assets/lobby/shequ.png",
+			"type": "image",
+			"name": "shequ_png"
+		},
+		{
+			"url": "assets/lobby/shezi.png",
+			"type": "image",
+			"name": "shezi_png"
+		},
+		{
+			"url": "assets/lobby/shuxian.png",
+			"type": "image",
+			"name": "shuxian_png"
+		},
+		{
+			"url": "assets/lobby/tixing.png",
+			"type": "image",
+			"name": "tixing_png"
+		},
+		{
+			"url": "assets/lobby/tonggaobeijing.png",
+			"type": "image",
+			"name": "tonggaobeijing_png"
+		},
+		{
+			"url": "assets/lobby/touxiangbeiban.png",
+			"type": "image",
+			"name": "touxiangbeiban_png"
+		},
+		{
+			"url": "assets/lobby/yinhang.png",
+			"type": "image",
+			"name": "yinhang_png"
+		},
+		{
+			"url": "assets/lobby/background.png",
+			"type": "image",
+			"name": "background_png"
 		}
 	]
 }

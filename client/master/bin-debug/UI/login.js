@@ -124,7 +124,7 @@ var gameUI;
         };
         login.prototype.onLoginSucceed = function (data) {
             this.Close();
-            UIManager.Instance.LoadUI(UI.home, data);
+            UIManager.Instance.LoadUI(UI.lobby, data);
         };
         login.prototype.onLoginFailed = function (data) {
             console.log("login failed");

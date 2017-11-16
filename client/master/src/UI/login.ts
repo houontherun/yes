@@ -111,7 +111,7 @@ namespace gameUI{
         
         private onLoginSucceed(data):void{
             this.Close();
-            UIManager.Instance.LoadUI(UI.home, data);
+            UIManager.Instance.LoadUI(UI.lobby, data);
         }
         
         private onLoginFailed(data):void{

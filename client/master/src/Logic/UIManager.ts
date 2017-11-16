@@ -2,10 +2,10 @@
 
 
 var UI = {
-    "login":{name:"login", cls:gameUI.login, skin:"resource/custom_skins/ui_login.exml"},
-    "home":{name:"home", cls:gameUI.home, skin:"resource/custom_skins/ui_home.exml"},
-    "create_room":{name:"create_roon", cls:gameUI.create_room, skin:"resource/custom_skins/ui_create_room.exml"},
-    "enter_room":{name:"enter_room", cls:gameUI.enter_room, skin:"resource/custom_skins/ui_enter_room.exml"},
+    "login":{name:"gameUI.login", skin:"resource/custom_skins/ui_login.exml"},
+    "lobby":{name:"gameUI.lobby", skin:"resource/custom_skins/ui_lobby.exml"},
+    "create_room":{name:"gameUI.create_room", skin:"resource/custom_skins/ui_create_room.exml"},
+    "enter_room":{name:"gameUI.enter_room", skin:"resource/custom_skins/ui_enter_room.exml"},
 }
 
 class UIManager extends egret.EventDispatcher {
@@ -21,10 +21,12 @@ class UIManager extends egret.EventDispatcher {
     }
 
     public LoadUI(ui:any, data?:any){
-        var view = new ui.cls(ui, data)
-        view.name = ui.name;
-        view.horizontalCenter = 0;
-        view.verticalCenter = 0;
+        if(!egret.hasDefinition(ui.name)){
+            console.error('not found ui name:' + ui.name)
+            return
+        }
+        var cls = egret.getDefinitionByName(ui.name)
+        var view = new cls(ui, data)
         this.stage.addChild(view);
     }
 
