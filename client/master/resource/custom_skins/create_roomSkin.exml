@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="ui_create_room" width="1730" height="566" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="create_roomSkin" width="1730" height="566" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="imgBg" width="1722" height="558" x="4" y="2" anchorOffsetX="0" anchorOffsetY="0" source="resource/assets/com_bg.png"/>
 	<e:Button id="btnCreateRoom" label="create room" x="710" y="260" anchorOffsetX="0" width="310" anchorOffsetY="0" height="158"/>
 	<e:Label id="lblGame" text="Label" x="763" y="168" anchorOffsetX="0" width="204" anchorOffsetY="0" height="64" verticalAlign="middle" textAlign="center"/>

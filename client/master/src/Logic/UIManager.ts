@@ -2,10 +2,13 @@
 
 
 var UI = {
-    "login":{name:"gameUI.login", skin:"resource/custom_skins/ui_login.exml"},
-    "lobby":{name:"gameUI.lobby", skin:"resource/custom_skins/ui_lobby.exml"},
-    "create_room":{name:"gameUI.create_room", skin:"resource/custom_skins/ui_create_room.exml"},
-    "enter_room":{name:"gameUI.enter_room", skin:"resource/custom_skins/ui_enter_room.exml"},
+    "login":{name:"gameUI.login", skin:"resource/custom_skins/loginSkin.exml"},
+    "lobby":{name:"gameUI.lobby", skin:"resource/custom_skins/lobbySkin.exml"},
+    "setting":{name:"gameUI.setting", skin:"resource/custom_skins/settingSkin.exml"},
+    "bank":{name:"gameUI.bank", skin:"resource/custom_skins/bankSkin.exml"},
+    "rank":{name:"gameUI.rank", skin:"resource/custom_skins/rankSkin.exml"},
+    "create_room":{name:"gameUI.create_room", skin:"resource/custom_skins/create_roomSkin.exml"},
+    "enter_room":{name:"gameUI.enter_room", skin:"resource/custom_skins/enter_roomSkin.exml"},    
 }
 
 class UIManager extends egret.EventDispatcher {
@@ -35,5 +38,9 @@ class UIManager extends egret.EventDispatcher {
         if(child != null){
             this.stage.removeChild(child);
         }
+    }
+
+    public GetChild(ui:any):any{
+        return this.stage.getChildByName(ui.name)
     }
 }

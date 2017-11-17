@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="bankSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+    <e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
+	<e:Image source="bg_png" x="81.51" y="90.35" anchorOffsetX="0" width="1168.34" anchorOffsetY="0" height="615" scale9Grid="23,4,676,511"/>
+	<e:Label id="txtCurrent" text="17,222" x="344.36" y="377.85" fontFamily="SimHei" size="40" textColor="0xf2941a"/>
+	<e:Label id="txtTotel" text="20,000" x="872.95" y="377.85" fontFamily="SimHei" size="40" textColor="0xf2941a"/>
+	<e:Label id="txtNum" text="存取金额" x="324.36" y="442.89" fontFamily="SimHei" size="40" textColor="0x604524"/>
+	<e:Label id="txtPwd" text="银行密码" x="324.36" y="516.18" fontFamily="SimHei" size="40" textColor="0x604524"/>
+	<e:Image source="frame2_png" x="88.12" y="103.33" fillMode="repeat" anchorOffsetX="0" width="1152.33"/>
+	<e:Image source="frame_png" x="66" y="51" scale9Grid="73,7,713,46" anchorOffsetX="0" width="1202"/>
+	<e:Image source="titleBg_png" x="477.5" y="47.05"/>
+	<e:Image id="btnClose" source="close_png" x="1210.67" y="49.83"/>
+	<e:Image source="btnbg2_png" x="672.31" y="582.67" fillMode="clip"/>
+	<e:Image x="565" y="65.34" source="bank_bank_png"/>
+	<e:Image source="btnQuit_png" x="391.86" y="582.67"/>
+	<e:Image source="bank_icon_png" x="360.36" y="293"/>
+	<e:Image source="bank_icon2_png" x="885.31" y="293"/>
+	<e:Image source="bank_tab_png" x="312.33" y="180.53"/>
+	<e:Image source="bank_tab2_png" x="549" y="183.19"/>
+	<e:Image source="bank_tab2_png" x="785.63" y="183.19"/>
+	<e:Image source="bank_cunqu_png" x="343.33" y="201.19"/>
+	<e:Image source="bank_cuozuo_png" x="816.95" y="202.32"/>
+	<e:Image source="bank_zen_png" x="584.27" y="198.33"/>
+	<e:Image source="bank_txtBg_png" x="494.95" y="438.9"/>
+	<e:Image source="bank_txtBg_png" x="494.95" y="512.19"/>
+	<e:EditableText width="461.34" height="34.66" text="" x="518.33" y="445.67" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:EditableText width="461.34" height="34.66" text="" x="518.33" y="518.84" anchorOffsetX="0" anchorOffsetY="0"/>
+</e:Skin>

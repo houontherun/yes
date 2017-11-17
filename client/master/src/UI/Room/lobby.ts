@@ -1,12 +1,51 @@
 // 游戏大厅主UI
 
 namespace gameUI{
+	class game_item extends eui.ItemRenderer{
+		constructor() {
+			super();
+			this.skinName = "resource/custom_skins/game_itemSkin.exml";
+			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+		}
+
+		private onload():void {
+			this.updateUI();
+		}
+
+		private onClick():void{
+			if(this.data != null && this.data != undefined){
+				UIManager.Instance.LoadUI(UI.create_room, this.data)
+			}
+		}
+
+		public get isLoaded():boolean{
+			return this.lblName != null && this.imgIcon != null;
+		}
+
+		private updateUI():void{
+			if(!this.isLoaded){
+				return;
+			}
+			this.imgIcon.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+			this.imgIcon.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+			this.lblName.text = this.data.name;
+			this.imgIcon.source = this.data.icon;
+		}
+
+		protected dataChanged():void {
+			this.updateUI();
+		}
+
+		private imgIcon:eui.Image;
+		private lblName:eui.Label;
+	}
 
 	export class lobby extends gameUI.base{
 
 		public onload():void {
 			this.svGame.horizontalScrollBar	= null;
-			this.listGames.itemRenderer = gameUI.game_item;
+			this.listGames.itemRenderer = game_item;
 			this.listGames.dataProvider = new eui.ArrayCollection(this.Data[0].childs);
 
 			this.AddClick(this.btnPuke, ()=>{
@@ -34,20 +73,24 @@ namespace gameUI{
             }, this );
 
 			// bottom menu
-			this.AddClick(this.imgBank, ()=>{            
+			this.AddClick(this.imgBank, ()=>{       
+				UIManager.Instance.LoadUI(UI.bank)     
             }, this );
-			this.AddClick(this.imgRank, ()=>{           
+			this.AddClick(this.imgRank, ()=>{     
+				UIManager.Instance.LoadUI(UI.rank)
             }, this );
 			this.AddClick(this.imgCommunity, ()=>{            
             }, this );
 			this.AddClick(this.imgShare, ()=>{           
             }, this );
-			this.AddClick(this.imgShop, ()=>{            
+			this.AddClick(this.imgShop, ()=>{           
+				// this.imgShop.source = "logout_png" 
             }, this );
-			this.AddClick(this.imgSetting, ()=>{           
+			this.AddClick(this.imgSetting, ()=>{    
+				UIManager.Instance.LoadUI(UI.setting)       
             }, this );
             this.AddClick(this.btnEnter, ()=>{
-                // UIManager.Instance.LoadUI(UI.enter_room)
+                UIManager.Instance.LoadUI(UI.enter_room)				
             }, this );
 
 			// 个人信息
@@ -55,7 +98,7 @@ namespace gameUI{
                 
             }, this)
 			this.AddClick(this.imgCoypBg, ()=>{
-				
+
 			}, this)
 
 			// this.svGame.addEventListener(egret.Event.CHANGE, (event:Event)=>{

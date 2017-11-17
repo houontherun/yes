@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="ui_lobby" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="lobbySkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="imgBg" width="1334" height="750" x="0" y="0" source="background_png"/>
 	<e:Group id="groupUserinfo" width="811.67" height="105" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="imgFbBg" source="goldbg_png" x="330" y="30"/>
@@ -18,8 +18,8 @@
 		<e:Label id="txtCopyId" text="复制ID" x="222.29" y="65.79" size="15" anchorOffsetY="0" height="16" scaleX="1" scaleY="1" touchEnabled="false"/>
 		<e:Label id="txtUsrId" text="ID:10001" x="125.96" y="60.79" anchorOffsetX="0" width="71" anchorOffsetY="0" height="26" size="15" verticalAlign="middle" textAlign="left"/>
 	</e:Group>
-	<e:Scroller id="svGame" width="994.21" anchorOffsetX="0" anchorOffsetY="0" left="327" height="403.39" y="181.82">
-	 	<e:List id="listGames" height="566" anchorOffsetX="0" width="1730" x="178" y="0">
+	<e:Scroller id="svGame" width="994.21" anchorOffsetX="0" anchorOffsetY="0" left="327" height="374.06" y="211.15">
+	 	<e:List id="listGames" height="380.72" anchorOffsetX="0" width="1730" x="0" y="32" anchorOffsetY="0">
 			<e:layout>
 				<e:HorizontalLayout />
 			</e:layout>
