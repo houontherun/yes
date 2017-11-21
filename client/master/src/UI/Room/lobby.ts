@@ -44,6 +44,7 @@ namespace gameUI{
 	export class lobby extends gameUI.base{
 
 		public onload():void {
+			super.onload()
 			this.svGame.horizontalScrollBar	= null;
 			this.listGames.itemRenderer = game_item;
 			this.listGames.dataProvider = new eui.ArrayCollection(this.Data[0].childs);

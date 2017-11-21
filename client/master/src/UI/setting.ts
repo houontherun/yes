@@ -12,6 +12,7 @@ namespace gameUI{
 		}
 
 		private onload():void {
+            console.log("onload")
             this.txtLan.text = this.data.text
             this.txtLan.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 var settingUI = UIManager.Instance.GetChild(UI.setting)
@@ -21,6 +22,7 @@ namespace gameUI{
             }, this)
 		}
 		protected dataChanged():void {
+            console.log("dataChanged")
             if(this.txtLan != undefined && this.txtLan != null){
                 this.txtLan.text = this.data.text
             }
@@ -30,13 +32,16 @@ namespace gameUI{
     export class setting extends gameUI.base {
 
         public onload():void {
+            super.onload();
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
 
             this.svData.visible = false
-            this.svData.initItemRenderer(settingLanguageItemRander)
-            this.svData.initItemSkin("resource/custom_skins/settingLanguageItem.exml")
+            // this.svData.initItemRenderer(settingLanguageItemRander)
+            // this.svData.initItemSkin("resource/custom_skins/settingLanguageItem.exml")
+            this.dataList.itemRenderer = settingLanguageItemRander
+            this.dataList.itemRendererSkinName = "resource/custom_skins/settingLanguageItem.exml"
             var languages:Array<Object> = [
                 {text : "中文"},
                 {text : "英文"},
@@ -44,7 +49,8 @@ namespace gameUI{
                 {text : "鸟语"},
                 {text : "兽语"},
             ]
-            this.svData.bindData(languages)
+            this.dataList.dataProvider = new eui.ArrayCollection(languages) 
+            // this.svData.bindData(languages)
             
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.svData.visible = !this.svData.visible
@@ -56,7 +62,11 @@ namespace gameUI{
             this.svData.visible = false
         }
         public btnClose:eui.Image;
-        public svData:gameUI.Scrollview;
+        // public svData:gameUI.Scrollview;
+        public svData:eui.Scroller;
+
+        public dataList:eui.List;
+
 
         public imgSelect:eui.Image;
         public txtLang:eui.Label;

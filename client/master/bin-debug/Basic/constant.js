@@ -1,7 +1,7 @@
 // TypeScript file
 var constant = {
-    connect_ip: "192.168.5.88",
-    connect_port: 8888,
+    connect_ip: "192.168.12.3",
+    connect_port: 4567,
     msg: {
         cs_login: "cs_login",
         sc_login_succ: "sc_login_succ",

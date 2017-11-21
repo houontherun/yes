@@ -21,6 +21,7 @@ var gameUI;
         }
         create_room.prototype.onload = function () {
             var _this = this;
+            _super.prototype.onload.call(this);
             this.lblGame.text = this.Data.name;
             this.btnCreateRoom.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 console.log("请求创建房间");

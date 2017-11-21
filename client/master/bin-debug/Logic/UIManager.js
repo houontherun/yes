@@ -35,14 +35,24 @@ var UIManager = (function (_super) {
             console.error('not found ui name:' + ui.name);
             return;
         }
+        // var child = this.stage.getChildByName(ui.name)
+        // if(child != null){
+        //     child.visible = true
+        //     // this.stage.removeChild(child)
+        //     // this.stage.addChild(child)
+        // }
+        // else{
         var cls = egret.getDefinitionByName(ui.name);
         var view = new cls(ui, data);
         this.stage.addChild(view);
+        // }
     };
     UIManager.prototype.UnloadUI = function (ui) {
         var child = this.stage.getChildByName(ui.name);
         if (child != null) {
-            this.stage.removeChild(child);
+            child = this.stage.removeChild(child);
+            child = null;
+            // child.visible = false
         }
     };
     UIManager.prototype.GetChild = function (ui) {

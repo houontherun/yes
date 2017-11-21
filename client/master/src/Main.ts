@@ -157,6 +157,89 @@ class Main extends eui.UILayer {
 
         UIManager.Instance.Init(this);
         UIManager.Instance.LoadUI(UI.login);
+
+        // var game_data:Array<Object> = [
+        //     {
+        //         type_name:"0扑克",
+        //         icon:"default.png",
+        //         childs:[
+        //             {
+        //                 id:100,
+        //                 name:"0斗地主",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:101,
+        //                 name:"斗牛",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:102,
+        //                 name:"炸金花",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:103,
+        //                 name:"21点",
+        //                 icon:"resource/assets/bg.png"
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         type_name:"1麻将",
+        //         icon:"default.png",
+        //         childs:[
+        //             {
+        //                 id:104,
+        //                 name:"1江西麻将",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:105,
+        //                 name:"湖南麻将",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:106,
+        //                 name:"四川麻将",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:107,
+        //                 name:"福建麻将",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:108,
+        //                 name:"上海麻将",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:109,
+        //                 name:"杭州麻将",
+        //                 icon:"resource/assets/bg.png"
+        //             },
+        //             {
+        //                 id:110,
+        //                 name:"火星麻将",
+        //                 icon:"resource/assets/bg.png"
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         type_name:"2棋类",
+        //         icon:"default.png",
+        //         childs:[
+        //             {
+        //                 id:111,
+        //                 name:"2开心消消乐",
+        //                 icon:"resource/assets/bg.png"
+        //             }
+        //         ]
+        //     }
+        // ];
+        
+        // UIManager.Instance.LoadUI(UI.lobby, game_data);
     }
 
     private createBitmapByName(name: string): egret.Bitmap {

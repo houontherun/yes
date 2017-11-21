@@ -24,7 +24,7 @@ var gameUI;
             _this.itemSkinName = null;
             _this.skinName = "resource/custom_skins/controls/ScrollviewSkin.exml";
             _this.viewport = _this.dataList;
-            _this.once(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
             return _this;
         }
         Scrollview.prototype.onload = function () {
@@ -32,16 +32,23 @@ var gameUI;
             this.dataList.itemRendererSkinName = this.itemSkinName;
             this.dataList.itemRenderer = this.itemRenderer;
             this.dataList.dataProvider = new eui.ArrayCollection(this.data);
+            console.log('bind dataProvider0');
         };
         Scrollview.prototype.initItemSkin = function (itemSkin) {
             this.itemSkinName = itemSkin;
+            if (this.dataList != null && this.dataList != undefined) {
+                this.dataList.itemRendererSkinName = this.itemSkinName;
+            }
         };
         Scrollview.prototype.initItemRenderer = function (itemRenderer) {
             this.itemRenderer = itemRenderer;
+            if (this.dataList != null && this.dataList != undefined) {
+                this.dataList.itemRenderer = this.itemRenderer;
+            }
         };
         Scrollview.prototype.bindData = function (data) {
             this.data = data;
-            if (this.isLoaded) {
+            if (this.dataList != null && this.dataList != undefined) {
                 this.dataList.dataProvider = new eui.ArrayCollection(this.data);
             }
         };

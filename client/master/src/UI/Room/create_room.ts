@@ -4,6 +4,7 @@ namespace gameUI{
     export class create_room extends gameUI.base{
 
         public onload():void {	
+            super.onload()
             this.lblGame.text = this.Data.name
             this.btnCreateRoom.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 console.log("请求创建房间")

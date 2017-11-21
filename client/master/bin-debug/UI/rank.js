@@ -23,7 +23,6 @@ var gameUI;
             return _this;
         }
         rankItemRander.prototype.onload = function () {
-            this.isLoaded = true;
             this.updateUI();
         };
         rankItemRander.prototype.updateUI = function () {
@@ -52,7 +51,7 @@ var gameUI;
             this.txtIndex.text = this.data.index;
         };
         rankItemRander.prototype.dataChanged = function () {
-            if (this.isLoaded) {
+            if (this.imgBg != undefined && this.imgBg != null) {
                 this.updateUI();
             }
         };
@@ -66,11 +65,14 @@ var gameUI;
         }
         rank.prototype.onload = function () {
             var _this = this;
+            _super.prototype.onload.call(this);
             this.AddClick(this.btnClose, function () {
                 _this.Close();
             }, this);
-            this.svData.initItemRenderer(rankItemRander);
-            this.svData.initItemSkin("resource/custom_skins/rankItemSkin.exml");
+            // this.svData.initItemRenderer(rankItemRander)
+            // this.svData.initItemSkin("resource/custom_skins/rankItemSkin.exml")
+            this.dataList.itemRenderer = rankItemRander;
+            this.dataList.itemRendererSkinName = "resource/custom_skins/rankItemSkin.exml";
             var rankData = [
                 { index: 1, name: "张三", value: 50000 },
                 { index: 2, name: "李四", value: 40000 },
@@ -86,7 +88,8 @@ var gameUI;
                 { index: 12, name: "擤", value: 400 },
                 { index: 13, name: "夺一的", value: 300 },
             ];
-            this.svData.bindData(rankData);
+            // this.svData.bindData(rankData)   
+            this.dataList.dataProvider = new eui.ArrayCollection(rankData);
         };
         return rank;
     }(gameUI.base));

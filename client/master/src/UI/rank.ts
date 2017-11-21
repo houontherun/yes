@@ -10,7 +10,6 @@ namespace gameUI{
         public txtValue:eui.Label;
         public txtIndex:eui.Label;
 
-        private isLoaded:boolean;
         constructor() {
 			super();
 			this.skinName = "resource/custom_skins/rankItemSkin.exml";
@@ -18,7 +17,6 @@ namespace gameUI{
 		}
 
 		private onload():void {
-            this.isLoaded = true;
             this.updateUI()
 		}
 
@@ -46,7 +44,7 @@ namespace gameUI{
         }
 
 		protected dataChanged():void {
-            if(this.isLoaded){
+            if(this.imgBg != undefined && this.imgBg != null){
                 this.updateUI()
             }
 		}
@@ -55,12 +53,15 @@ namespace gameUI{
     export class rank extends gameUI.base {
 
         public onload():void {
+            super.onload();
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
 
-            this.svData.initItemRenderer(rankItemRander)
-            this.svData.initItemSkin("resource/custom_skins/rankItemSkin.exml")
+            // this.svData.initItemRenderer(rankItemRander)
+            // this.svData.initItemSkin("resource/custom_skins/rankItemSkin.exml")
+            this.dataList.itemRenderer = rankItemRander
+            this.dataList.itemRendererSkinName = "resource/custom_skins/rankItemSkin.exml"
             var rankData:Array<Object> = [
                 {index:1, name: "张三", value:50000},
                 {index:2, name: "李四", value:40000},
@@ -76,11 +77,15 @@ namespace gameUI{
                 {index:12, name: "擤", value:400},
                 {index:13, name: "夺一的", value:300},
             ]
-            this.svData.bindData(rankData)            
+            // this.svData.bindData(rankData)   
+            this.dataList.dataProvider = new eui.ArrayCollection(rankData)          
         }
 
         public btnClose:eui.Image;
-        public svData:gameUI.Scrollview;
+        // public svData:gameUI.Scrollview;
+        public svData:eui.Scroller;
+        public dataList:eui.List;
+
     }
 
 }
