@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ui_lobbySkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
+	<w:Config id="15fd7d8e423" ></w:Config>
+	<e:Image left="0" top="0" right="0" bottom="0" source="bkddz_bg_day_jpg"/>
+	<e:Group width="566" height="116" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="46" horizontalCenter="0">
+		<e:Button id="prepareBtn" label="" anchorOffsetX="5985" anchorOffsetY="1290" width="112" height="50" horizontalCenter="68" verticalCenter="0">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="lobby_commonbtn_png" source.down="lobby_commonbtn1_png" scale9Grid="10,7,12,44"/>
+				<e:Label text="准备" fontFamily="SimHei" size="24" textAlign="center" id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="prepareBtn0" label="" anchorOffsetX="5985" anchorOffsetY="1290" width="112" height="50" horizontalCenter="-118" verticalCenter="0">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="lobby_commonbtn_png" source.down="lobby_commonbtn1_png" scale9Grid="10,7,12,44"/>
+				<e:Label text="准备" fontFamily="SimHei" size="24" textAlign="center" id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label text="准备" fontFamily="SimHei" size="24" textAlign="center" verticalCenter="1" horizontalCenter="67.5" textColor="0xaf3131" rotation="359.76" bold="true"/>
+		<e:Label text="离开" fontFamily="SimHei" size="24" textAlign="center" verticalCenter="0" horizontalCenter="-118.5" textColor="0xAF3131" rotation="359.76" bold="true"/>
+	</e:Group>
+	<e:Label id="LeftPlayerPos" text="" verticalCenter="-80" left="144"/>
+	<e:Label id="RightPlayerPos" text="" anchorOffsetX="984" anchorOffsetY="-23" verticalCenter="-80" right="198"/>
+	<e:Image width="129" height="134" x="92.5" y="502" anchorOffsetX="0" anchorOffsetY="0" source="face_12_png"/>
+	<e:Rect width="146" height="31" x="224" y="710" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image height="45" bottom="0" right="167" left="157" anchorOffsetY="0" source="score_bg0_png" scale9Grid="47,3,29,18"/>
+	<e:Label id="txt_PlayerGold" text="1000" x="260" y="718" anchorOffsetX="0" width="101" anchorOffsetY="0" height="21" size="20" fontFamily="SimHei" textColor="0xe2a92b"/>
+	<e:Rect width="146" height="31" x="776" y="710" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.44"/>
+	<e:Image width="24" height="24" x="228" y="717" source="gold0_png"/>
+	<e:Label id="txt_gamedouble" text="1000" x="841" y="717" anchorOffsetX="0" width="80" anchorOffsetY="0" height="23" size="20" fontFamily="SimHei" textColor="0xe2a92b"/>
+	<e:Label text="倍数" x="789.5" y="717" anchorOffsetX="0" width="43" anchorOffsetY="0" height="24" size="20" fontFamily="SimHei"/>
+	<e:Rect width="118" height="28" x="133" y="643" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.48"/>
+	<e:Label id="txt_playername" text="小宇宙" x="152" y="646" anchorOffsetX="0" width="85" anchorOffsetY="0" height="22" size="16" fontFamily="SimHei" verticalAlign="middle"/>
+	<e:Image id="btn_tuoguan" width="69" height="66" right="98" top="25" source="face_robot_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Group id="group_tuoguan" height="277" bottom="0" left="0" right="0" anchorOffsetY="0" visible="false">
+		<e:Rect anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.64" left="0" right="0" bottom="0" top="0"/>
+		<e:Image width="86" height="30" anchorOffsetX="0" anchorOffsetY="0" source="Type_trust_png" horizontalCenter="0" x="263" scaleX="1" scaleY="1" verticalCenter="0"/>
+	</e:Group>
+	<e:Group width="1021" height="200" x="267" y="502" anchorOffsetX="0">
+		<e:Image width="139" top="0" x="47" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="200"/>
+		<e:Image width="139" top="0" x="57" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="40"/>
+		<e:Image width="139" top="0" x="67" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="50"/>
+		<e:Image width="139" top="0" x="77" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="60"/>
+		<e:Image width="139" top="0" x="87" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="70"/>
+		<e:Image width="139" top="0" x="97" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="80"/>
+		<e:Image width="139" top="0" x="107" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="90"/>
+		<e:Image width="139" top="0" x="117" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="100"/>
+		<e:Image width="139" top="0" x="127" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="110"/>
+		<e:Image width="139" top="0" x="137" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="120"/>
+		<e:Image width="139" top="0" x="147" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="130"/>
+		<e:Image width="139" top="0" x="157" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="140"/>
+		<e:Image width="139" top="0" x="167" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="150"/>
+		<e:Image width="139" top="0" x="177" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="160"/>
+		<e:Image width="139" top="0" x="187" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="170"/>
+		<e:Image width="139" top="0" x="197" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="180"/>
+		<e:Image width="139" top="0" x="207" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="190"/>
+		<e:layout>
+			<e:HorizontalLayout gap="-93"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

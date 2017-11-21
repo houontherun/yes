@@ -1,0 +1,385 @@
+{
+	"groups": [
+		{
+			"keys": "description_json,card_0_1_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_1_1_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_2_1_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_3_1_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_back_png,Card_5_1_png,Card_5_2_png,face_1_png,face_2_png,face_4_png,face_6_png,face_12_png,face_16_png,face_15_png,bkddz_bg_day_jpg,game_clock_png,face_robot_png,userface_field_png,lobby_commonbtn_png,gold0_png,lobby_commonbtn1_png,Type_Land_png,score_bg0_png,Type_trust_png,win_png,lose_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "description_json",
+			"type": "json",
+			"url": "config/description.json"
+		},
+		{
+			"name": "card_0_1_png",
+			"type": "image",
+			"url": "assets/poke/card_0_1.png"
+		},
+		{
+			"name": "card_0_2_png",
+			"type": "image",
+			"url": "assets/poke/card_0_2.png"
+		},
+		{
+			"name": "card_0_3_png",
+			"type": "image",
+			"url": "assets/poke/card_0_3.png"
+		},
+		{
+			"name": "card_0_4_png",
+			"type": "image",
+			"url": "assets/poke/card_0_4.png"
+		},
+		{
+			"name": "card_0_5_png",
+			"type": "image",
+			"url": "assets/poke/card_0_5.png"
+		},
+		{
+			"name": "card_0_6_png",
+			"type": "image",
+			"url": "assets/poke/card_0_6.png"
+		},
+		{
+			"name": "card_0_7_png",
+			"type": "image",
+			"url": "assets/poke/card_0_7.png"
+		},
+		{
+			"name": "card_0_8_png",
+			"type": "image",
+			"url": "assets/poke/card_0_8.png"
+		},
+		{
+			"name": "card_0_9_png",
+			"type": "image",
+			"url": "assets/poke/card_0_9.png"
+		},
+		{
+			"name": "card_0_10_png",
+			"type": "image",
+			"url": "assets/poke/card_0_10.png"
+		},
+		{
+			"name": "card_0_11_png",
+			"type": "image",
+			"url": "assets/poke/card_0_11.png"
+		},
+		{
+			"name": "card_0_12_png",
+			"type": "image",
+			"url": "assets/poke/card_0_12.png"
+		},
+		{
+			"name": "card_0_13_png",
+			"type": "image",
+			"url": "assets/poke/card_0_13.png"
+		},
+		{
+			"name": "card_1_1_png",
+			"type": "image",
+			"url": "assets/poke/card_1_1.png"
+		},
+		{
+			"name": "card_1_2_png",
+			"type": "image",
+			"url": "assets/poke/card_1_2.png"
+		},
+		{
+			"name": "card_1_3_png",
+			"type": "image",
+			"url": "assets/poke/card_1_3.png"
+		},
+		{
+			"name": "card_1_4_png",
+			"type": "image",
+			"url": "assets/poke/card_1_4.png"
+		},
+		{
+			"name": "card_1_5_png",
+			"type": "image",
+			"url": "assets/poke/card_1_5.png"
+		},
+		{
+			"name": "card_1_6_png",
+			"type": "image",
+			"url": "assets/poke/card_1_6.png"
+		},
+		{
+			"name": "card_1_7_png",
+			"type": "image",
+			"url": "assets/poke/card_1_7.png"
+		},
+		{
+			"name": "card_1_8_png",
+			"type": "image",
+			"url": "assets/poke/card_1_8.png"
+		},
+		{
+			"name": "card_1_9_png",
+			"type": "image",
+			"url": "assets/poke/card_1_9.png"
+		},
+		{
+			"name": "card_1_10_png",
+			"type": "image",
+			"url": "assets/poke/card_1_10.png"
+		},
+		{
+			"name": "card_1_11_png",
+			"type": "image",
+			"url": "assets/poke/card_1_11.png"
+		},
+		{
+			"name": "card_1_12_png",
+			"type": "image",
+			"url": "assets/poke/card_1_12.png"
+		},
+		{
+			"name": "card_1_13_png",
+			"type": "image",
+			"url": "assets/poke/card_1_13.png"
+		},
+		{
+			"name": "card_2_1_png",
+			"type": "image",
+			"url": "assets/poke/card_2_1.png"
+		},
+		{
+			"name": "card_2_2_png",
+			"type": "image",
+			"url": "assets/poke/card_2_2.png"
+		},
+		{
+			"name": "card_2_3_png",
+			"type": "image",
+			"url": "assets/poke/card_2_3.png"
+		},
+		{
+			"name": "card_2_4_png",
+			"type": "image",
+			"url": "assets/poke/card_2_4.png"
+		},
+		{
+			"name": "card_2_5_png",
+			"type": "image",
+			"url": "assets/poke/card_2_5.png"
+		},
+		{
+			"name": "card_2_6_png",
+			"type": "image",
+			"url": "assets/poke/card_2_6.png"
+		},
+		{
+			"name": "card_2_7_png",
+			"type": "image",
+			"url": "assets/poke/card_2_7.png"
+		},
+		{
+			"name": "card_2_8_png",
+			"type": "image",
+			"url": "assets/poke/card_2_8.png"
+		},
+		{
+			"name": "card_2_9_png",
+			"type": "image",
+			"url": "assets/poke/card_2_9.png"
+		},
+		{
+			"name": "card_2_10_png",
+			"type": "image",
+			"url": "assets/poke/card_2_10.png"
+		},
+		{
+			"name": "card_2_11_png",
+			"type": "image",
+			"url": "assets/poke/card_2_11.png"
+		},
+		{
+			"name": "card_2_12_png",
+			"type": "image",
+			"url": "assets/poke/card_2_12.png"
+		},
+		{
+			"name": "card_2_13_png",
+			"type": "image",
+			"url": "assets/poke/card_2_13.png"
+		},
+		{
+			"name": "card_3_1_png",
+			"type": "image",
+			"url": "assets/poke/card_3_1.png"
+		},
+		{
+			"name": "card_3_2_png",
+			"type": "image",
+			"url": "assets/poke/card_3_2.png"
+		},
+		{
+			"name": "card_3_3_png",
+			"type": "image",
+			"url": "assets/poke/card_3_3.png"
+		},
+		{
+			"name": "card_3_4_png",
+			"type": "image",
+			"url": "assets/poke/card_3_4.png"
+		},
+		{
+			"name": "card_3_5_png",
+			"type": "image",
+			"url": "assets/poke/card_3_5.png"
+		},
+		{
+			"name": "card_3_6_png",
+			"type": "image",
+			"url": "assets/poke/card_3_6.png"
+		},
+		{
+			"name": "card_3_7_png",
+			"type": "image",
+			"url": "assets/poke/card_3_7.png"
+		},
+		{
+			"name": "card_3_8_png",
+			"type": "image",
+			"url": "assets/poke/card_3_8.png"
+		},
+		{
+			"name": "card_3_9_png",
+			"type": "image",
+			"url": "assets/poke/card_3_9.png"
+		},
+		{
+			"name": "card_3_10_png",
+			"type": "image",
+			"url": "assets/poke/card_3_10.png"
+		},
+		{
+			"name": "card_3_11_png",
+			"type": "image",
+			"url": "assets/poke/card_3_11.png"
+		},
+		{
+			"name": "card_3_12_png",
+			"type": "image",
+			"url": "assets/poke/card_3_12.png"
+		},
+		{
+			"name": "card_3_13_png",
+			"type": "image",
+			"url": "assets/poke/card_3_13.png"
+		},
+		{
+			"name": "card_back_png",
+			"type": "image",
+			"url": "assets/poke/card_back.png"
+		},
+		{
+			"name": "Card_5_1_png",
+			"type": "image",
+			"url": "assets/poke/Card_5_1.png"
+		},
+		{
+			"name": "Card_5_2_png",
+			"type": "image",
+			"url": "assets/poke/Card_5_2.png"
+		},
+		{
+			"name": "face_1_png",
+			"type": "image",
+			"url": "assets/face/face_1.png"
+		},
+		{
+			"name": "face_2_png",
+			"type": "image",
+			"url": "assets/face/face_2.png"
+		},
+		{
+			"name": "face_4_png",
+			"type": "image",
+			"url": "assets/face/face_4.png"
+		},
+		{
+			"name": "face_6_png",
+			"type": "image",
+			"url": "assets/face/face_6.png"
+		},
+		{
+			"name": "face_12_png",
+			"type": "image",
+			"url": "assets/face/face_12.png"
+		},
+		{
+			"name": "face_16_png",
+			"type": "image",
+			"url": "assets/face/face_16.png"
+		},
+		{
+			"name": "face_15_png",
+			"type": "image",
+			"url": "assets/face/face_15.png"
+		},
+		{
+			"name": "bkddz_bg_day_jpg",
+			"type": "image",
+			"url": "assets/Res/bkddz_bg_day.jpg"
+		},
+		{
+			"name": "game_clock_png",
+			"type": "image",
+			"url": "assets/Res/game_clock.png"
+		},
+		{
+			"name": "face_robot_png",
+			"type": "image",
+			"url": "assets/Res/face_robot.png"
+		},
+		{
+			"name": "userface_field_png",
+			"type": "image",
+			"url": "assets/Res/userface_field.png"
+		},
+		{
+			"name": "lobby_commonbtn_png",
+			"type": "image",
+			"url": "assets/Res/lobby_commonbtn.png"
+		},
+		{
+			"name": "gold0_png",
+			"type": "image",
+			"url": "assets/Res/gold0.png"
+		},
+		{
+			"name": "lobby_commonbtn1_png",
+			"type": "image",
+			"url": "assets/Res/lobby_commonbtn1.png"
+		},
+		{
+			"name": "Type_Land_png",
+			"type": "image",
+			"url": "assets/Res/Type_Land.png"
+		},
+		{
+			"name": "score_bg0_png",
+			"type": "image",
+			"url": "assets/Res/score_bg0.png"
+		},
+		{
+			"name": "Type_trust_png",
+			"type": "image",
+			"url": "assets/Res/Type_trust.png"
+		},
+		{
+			"name": "win_png",
+			"type": "image",
+			"url": "assets/Res/win.png"
+		},
+		{
+			"name": "lose_png",
+			"type": "image",
+			"url": "assets/Res/lose.png"
+		}
+	]
+}

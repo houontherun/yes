@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ui_playerItemSkin" width="124" height="191" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15fd7ee3737" ></w:Config>
+	<e:Image id="sp_face" height="124" left="0" top="0" right="0" anchorOffsetY="0" source="face_1_png"/>
+	<e:Image height="54" left="0" right="0" anchorOffsetY="0" scale9Grid="15,6,17,40" y="137" source="userface_field_png"/>
+	<e:Image width="20" height="20" left="7" top="167" source="gold0_png"/>
+	<e:Label id="sp_id" text="" x="13.5" y="141" anchorOffsetX="0" width="99" anchorOffsetY="0" height="17" size="20" fontFamily="SimHei"/>
+	<e:Label id="sp_money" text="" x="34.5" y="167" anchorOffsetX="0" width="64" anchorOffsetY="0" height="17" size="20" fontFamily="SimHei"/>
+</e:Skin>

@@ -1,0 +1,15 @@
+{
+  "15fd7d8e423": {
+    "path": "..\\resource\\eui_skins\\ui_lobby.ts",
+    "class": "ui_lobby",
+    "parentPath": ""
+  },
+  "15fd7ee3737": {
+    "path": "..\\resource\\eui_skins\\ui_playerItem.ts",
+    "class": "ui_playerItem",
+    "parentPath": ""
+  },
+  "global": {
+    "globalAutoLayerMarkEnable": false
+  }
+}
