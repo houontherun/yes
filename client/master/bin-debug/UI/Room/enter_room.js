@@ -20,6 +20,7 @@ var gameUI;
         }
         enter_room.prototype.onload = function () {
             var _this = this;
+            _super.prototype.onload.call(this);
             this.btnEnterRoom.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
             }, this);
             this.btnClose.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {

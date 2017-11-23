@@ -9,14 +9,14 @@ namespace gameUI{
             this.data = data;
             this.name = uidata.name;
 
-            this.once( eui.UIEvent.COMPLETE, this.onload, this);
+            this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
             this.skinName = uidata.skin;
             
             this.horizontalCenter = 0;
             this.verticalCenter = 0;
         }
         public onload():void {
-
+            console.log("onload " + this.uidata.name)
         }
 
         public Close():void{

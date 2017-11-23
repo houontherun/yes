@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="gameUI.SliderSkin" width="400" height="52" xmlns:e="http://ns.egret.com/eui">
+	<e:Image id="bg" source="sliderbg_png" left="0" right="-1" verticalCenter="0" touchEnabled="true" anchorOffsetX="0" scale9Grid="8,3,360,24"/>
+	<e:Image id="fg" source="sliderfg_png" fillMode="clip" anchorOffsetX="0" width="225.8" touchEnabled="false"   verticalCenter="0" left="10"/>
+	<e:Image id="thumb" source="slider_png" x="235.8"  touchEnabled="false" anchorOffsetX="24" anchorOffsetY="26" verticalCenter="0"/>
+</e:Skin>

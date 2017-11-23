@@ -59,6 +59,7 @@ var gameUI;
         }
         lobby.prototype.onload = function () {
             var _this = this;
+            _super.prototype.onload.call(this);
             this.svGame.horizontalScrollBar = null;
             this.listGames.itemRenderer = game_item;
             this.listGames.dataProvider = new eui.ArrayCollection(this.Data[0].childs);

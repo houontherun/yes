@@ -1,7 +1,7 @@
 {
 	"native": {
 		"path_ignore": [],
-		"android_as_path": "../../../yes_android/test_bat_package"
+		"android_as_path": "../../../yes_android/android_20171117"
 	},
 	"publish": {
 		"web": 0,

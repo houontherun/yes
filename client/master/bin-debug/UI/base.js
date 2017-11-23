@@ -21,13 +21,14 @@ var gameUI;
             _this.uidata = uidata;
             _this.data = data;
             _this.name = uidata.name;
-            _this.once(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
             _this.skinName = uidata.skin;
             _this.horizontalCenter = 0;
             _this.verticalCenter = 0;
             return _this;
         }
         base.prototype.onload = function () {
+            console.log("onload " + this.uidata.name);
         };
         base.prototype.Close = function () {
             UIManager.Instance.UnloadUI(this.uidata);

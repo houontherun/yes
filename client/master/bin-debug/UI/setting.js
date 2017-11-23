@@ -24,6 +24,7 @@ var gameUI;
         }
         settingLanguageItemRander.prototype.onload = function () {
             var _this = this;
+            console.log("onload");
             this.txtLan.text = this.data.text;
             this.txtLan.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 var settingUI = UIManager.Instance.GetChild(UI.setting);
@@ -33,6 +34,7 @@ var gameUI;
             }, this);
         };
         settingLanguageItemRander.prototype.dataChanged = function () {
+            console.log("dataChanged");
             if (this.txtLan != undefined && this.txtLan != null) {
                 this.txtLan.text = this.data.text;
             }
@@ -47,12 +49,15 @@ var gameUI;
         }
         setting.prototype.onload = function () {
             var _this = this;
+            _super.prototype.onload.call(this);
             this.AddClick(this.btnClose, function () {
                 _this.Close();
             }, this);
             this.svData.visible = false;
-            this.svData.initItemRenderer(settingLanguageItemRander);
-            this.svData.initItemSkin("resource/custom_skins/settingLanguageItem.exml");
+            // this.svData.initItemRenderer(settingLanguageItemRander)
+            // this.svData.initItemSkin("resource/custom_skins/settingLanguageItem.exml")
+            this.dataList.itemRenderer = settingLanguageItemRander;
+            this.dataList.itemRendererSkinName = "resource/custom_skins/settingLanguageItem.exml";
             var languages = [
                 { text: "中文" },
                 { text: "英文" },
@@ -60,7 +65,8 @@ var gameUI;
                 { text: "鸟语" },
                 { text: "兽语" },
             ];
-            this.svData.bindData(languages);
+            this.dataList.dataProvider = new eui.ArrayCollection(languages);
+            // this.svData.bindData(languages)
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 _this.svData.visible = !_this.svData.visible;
             }, this);

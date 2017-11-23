@@ -4,6 +4,7 @@ namespace gameUI{
     export class enter_room extends gameUI.base {
         
         public onload():void {
+            super.onload()
             this.btnEnterRoom.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 
             }, this );

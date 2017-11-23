@@ -21,6 +21,7 @@ var gameUI;
         }
         bank.prototype.onload = function () {
             var _this = this;
+            _super.prototype.onload.call(this);
             this.AddClick(this.btnClose, function () {
                 _this.Close();
             }, this);
