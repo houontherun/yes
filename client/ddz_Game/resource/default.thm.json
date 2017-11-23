@@ -3,7 +3,8 @@
   "exmls": [
     "resource/eui_skins/ui_game.exml",
     "resource/eui_skins/ui_gameSettle.exml",
-    "resource/eui_skins/ui_playerItem.exml"
+    "resource/eui_skins/ui_playerItem.exml",
+    "resource/eui_skins/ui_pokerCard.exml"
   ],
   "skins": {
     "ui_lobby": "resource/eui_skins/ui_lobby.exml",

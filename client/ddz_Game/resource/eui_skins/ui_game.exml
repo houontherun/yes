@@ -39,26 +39,9 @@
 		<e:Rect anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.64" left="0" right="0" bottom="0" top="0"/>
 		<e:Image width="86" height="30" anchorOffsetX="0" anchorOffsetY="0" source="Type_trust_png" horizontalCenter="0" x="263" scaleX="1" scaleY="1" verticalCenter="0"/>
 	</e:Group>
-	<e:Group width="1021" height="200" x="267" y="502" anchorOffsetX="0">
-		<e:Image width="139" top="0" x="47" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="200"/>
-		<e:Image width="139" top="0" x="57" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="40"/>
-		<e:Image width="139" top="0" x="67" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="50"/>
-		<e:Image width="139" top="0" x="77" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="60"/>
-		<e:Image width="139" top="0" x="87" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="70"/>
-		<e:Image width="139" top="0" x="97" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="80"/>
-		<e:Image width="139" top="0" x="107" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="90"/>
-		<e:Image width="139" top="0" x="117" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="100"/>
-		<e:Image width="139" top="0" x="127" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="110"/>
-		<e:Image width="139" top="0" x="137" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="120"/>
-		<e:Image width="139" top="0" x="147" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="130"/>
-		<e:Image width="139" top="0" x="157" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="140"/>
-		<e:Image width="139" top="0" x="167" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="150"/>
-		<e:Image width="139" top="0" x="177" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="160"/>
-		<e:Image width="139" top="0" x="187" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="170"/>
-		<e:Image width="139" top="0" x="197" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="180"/>
-		<e:Image width="139" top="0" x="207" bottom="0" anchorOffsetX="0" source="card_0_1_png" y="190"/>
+	<e:Group id="group_handcards" width="1021" height="220" x="267" anchorOffsetX="0" bottom="48">
 		<e:layout>
-			<e:HorizontalLayout gap="-93"/>
+			<e:HorizontalLayout gap="-90"/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

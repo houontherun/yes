@@ -11,10 +11,14 @@
 	"game": [
 		"bin-debug/base.js",
 		"bin-debug/AssetAdapter.js",
+		"bin-debug/ddzGameController.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
-		"bin-debug/ThemeAdapter.js",
-		"bin-debug/ui_game.js",
-		"bin-debug/ui_playerItem.js"
+		"bin-debug/UI/ui_pokerCardItem.js",
+		"bin-debug/common/CardRule.js",
+		"bin-debug/common/PokerCard.js",
+		"bin-debug/UI/ui_game.js",
+		"bin-debug/UI/ui_playerItem.js",
+		"bin-debug/ThemeAdapter.js"
 	]
 }

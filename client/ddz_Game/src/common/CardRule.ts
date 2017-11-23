@@ -1,24 +1,28 @@
 // TypeScript file
 
 namespace Card {
-
-   export var CardNames:Array<any> = [
-        {index:1, name:"3"},
-        {index:2, name:"4"},
-        {index:3, name:"5"},
-        {index:4, name:"6"},
-        {index:5, name:"7"},
-        {index:6, name:"8"},
-        {index:7, name:"9"},
-        {index:8, name:"10"},
-        {index:9, name:"J"},
-        {index:10, name:"Q"},
-        {index:11, name:"K"},
-        {index:12, name:"A"},
-        {index:13, name:"2"},
-        {index:14, name:"SK"},
-        {index:15, name:"BK"}
-    ]
+   
+   export interface Carddata {
+       weight:number;  //权值
+       name?:string     //名字
+   }
+   export var PackCards:{ [key: number]: Carddata; } = {
+        1: {weight:12,name:"A"},
+        2: {weight:13,name:"2"},
+        3: {weight:1,name:"3"},
+        4: {weight:2,name:"4"},
+        5: {weight:3,name:"5"},
+        6: {weight:4,name:"6"},
+        7: {weight:5,name:"7"},
+        8: {weight:6,name:"8"},
+        9: {weight:7,name:"9"},
+        10: {weight:8,name:"10"},
+        11: {weight:9,name:"J"},
+        12: {weight:10,name:"Q"},
+        13: {weight:11,name:"K"},
+        14: {weight:14,name:"SK"},
+        15: {weight:15,name:"BK"}
+   };
 
     export enum CardTypes{
         PASS_TYPE = -1,     // 过
@@ -47,28 +51,16 @@ namespace Card {
      }
 
     export class Util {
-        private static getCardIndex(e:number):number{ // return [1, 15]。1~13表示3,4.5..K,A,2； 14,15表示小王,大王
-            if(e < 53){
-                return (e - 1) % 13 + 1
-            }else{
-                return e - (53 - 14)
-            }
-        }
-        private static getCardColor(e:number):CardColor{
-            if(e < 53){
-                return ((e - 1)/13 + 1) as CardColor
-            }else{
-                return e - (53 - 5) as CardColor
-            }
-        }
-        public static createPokerCard(e:number):PokerCard{
-            var index = Util.getCardIndex(e);
-            var color = Util.getCardColor(e);
-            var name = CardNames[index].name
-            var card = new PokerCard(color, index, name)
+
+        public static createPokerCard(e:number,c?:CardColor):PokerCard{
+            var index = e;
+            var color = c;
+            var data = PackCards[e];
+            var card = new PokerCard(color, index, data)
             return card;
         }
-        private static groupCards(cards:Array<PokerCard>){
+
+        public static groupCards(cards:Array<PokerCard>){
             var group = []
             for(var i = 0; i < cards.length; i++){
                 var exist = false
@@ -88,9 +80,9 @@ namespace Card {
             }
             return group
         }
-        private static sortCards(cards:Array<PokerCard>){
+        public static sortCards(cards:Array<PokerCard>){
             return cards.sort(function(a, b):number{
-                return a.Index - b.Index;
+                return  b.Weight -a.Weight;
             })
         }
         private static isPAIR_TYPE(cards:Array<PokerCard>){ // 是否是对子

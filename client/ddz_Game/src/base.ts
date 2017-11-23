@@ -16,7 +16,7 @@ namespace gameUI{
         }
 
 
-        public AddClick(img:eui.Image, onClick:Function, thisObject:any):void{
+        public AddClick(img:eui.UIComponent, onClick:Function, thisObject:any):void{
             var scaX = img.scaleX
             var scaY = img.scaleY
             img.x += img.width/2
