@@ -33,7 +33,6 @@ var ui_pokerCardItem = (function (_super) {
             else {
                 _source = "card_back";
             }
-            console.log(_source);
             this.img_card.source = _source;
         },
         enumerable: true,

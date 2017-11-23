@@ -3,21 +3,15 @@ class ui_game extends gameUI.base {
    private hardCardsArray:ui_pokerCardItem[] = [];
    private prepareBtn:eui.Button;
    private  btn_tuoguan : eui.Image;
-   private static shared: ui_game;
    private bStart:boolean;
    private group_handcards:eui.Group;
    private cardsArray: ui_pokerCardItem[] = [];
 
-   public static Shared() {
-        if(ui_game.shared == null) {
-            ui_game.shared = new ui_game();
-        }
-        return ui_game.shared;
-    }
 
 	public constructor() {
 		super("resource/eui_skins/ui_game.exml");
-		this.AddClick(this.btn_tuoguan, ()=>{ 
+        Logic.CardEventDispatcher.Instance.addEventListener(Logic.CardEvent.AddHard,this.AddhardCard,this)
+ 		this.AddClick(this.btn_tuoguan, ()=>{ 
                  
             }, this );
 
@@ -28,8 +22,10 @@ class ui_game extends gameUI.base {
 	}
 
    ///添加手牌
-    public AddhardCard(cards:Array<PokerCard>)
+    public AddhardCard(e:Logic.CardEvent)
     {
+        var cards:Array<PokerCard> = e.paramObj;
+
         if(this.cardsArray.length > 0) 
         {
            this.removehardCard();
@@ -43,6 +39,17 @@ class ui_game extends gameUI.base {
            this.cardsArray.push(_card);
         }
         this.group_handcards.cacheAsBitmap = true;
+    }
+
+
+    public AppendCard()
+    {
+
+    }
+
+    public AddotherCard()
+    {
+         
     }
 
     public removehardCard()

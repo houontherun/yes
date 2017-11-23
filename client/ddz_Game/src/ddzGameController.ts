@@ -88,8 +88,10 @@ class DDZGameController {
        this.bStartgame = true;
        this.StartgameTick = egret.getTimer();
 
-        ui_game.Shared().AddhardCard(this.allCardList.slice(0,17));
-
+        //ui_game.Shared().AddhardCard(this.allCardList.slice(0,17));
+         var addHardEvent:Logic.CardEvent = new Logic.CardEvent(Logic.CardEvent.AddHard);
+         addHardEvent.paramObj = this.allCardList.slice(0,17);
+         Logic.CardEventDispatcher.Instance.dispatchEvent(addHardEvent);
    }
 
 

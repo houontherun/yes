@@ -17,6 +17,7 @@ var ui_game = (function (_super) {
         var _this = _super.call(this, "resource/eui_skins/ui_game.exml") || this;
         _this.hardCardsArray = [];
         _this.cardsArray = [];
+        Logic.CardEventDispatcher.Instance.addEventListener(Logic.CardEvent.AddHard, _this.AddhardCard, _this);
         _this.AddClick(_this.btn_tuoguan, function () {
         }, _this);
         _this.AddClick(_this.prepareBtn, function () {
@@ -25,14 +26,9 @@ var ui_game = (function (_super) {
         }, _this);
         return _this;
     }
-    ui_game.Shared = function () {
-        if (ui_game.shared == null) {
-            ui_game.shared = new ui_game();
-        }
-        return ui_game.shared;
-    };
     ///添加手牌
-    ui_game.prototype.AddhardCard = function (cards) {
+    ui_game.prototype.AddhardCard = function (e) {
+        var cards = e.paramObj;
         if (this.cardsArray.length > 0) {
             this.removehardCard();
         }
@@ -44,6 +40,10 @@ var ui_game = (function (_super) {
             this.cardsArray.push(_card);
         }
         this.group_handcards.cacheAsBitmap = true;
+    };
+    ui_game.prototype.AppendCard = function () {
+    };
+    ui_game.prototype.AddotherCard = function () {
     };
     ui_game.prototype.removehardCard = function () {
         for (var i = 0; i < this.cardsArray.length; i++) {

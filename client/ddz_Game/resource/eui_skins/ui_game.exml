@@ -2,7 +2,7 @@
 <e:Skin class="ui_lobbySkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
 	<w:Config id="15fd7d8e423" ></w:Config>
 	<e:Image left="0" top="0" right="0" bottom="0" source="bkddz_bg_day_jpg"/>
-	<e:Group width="566" height="116" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="46" horizontalCenter="0">
+	<e:Group width="566" height="116" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="111" horizontalCenter="-14">
 		<e:Button id="prepareBtn" label="" anchorOffsetX="5985" anchorOffsetY="1290" width="112" height="50" horizontalCenter="68" verticalCenter="0">
 			<e:skinName>
 			<e:Skin states="up,down,disabled">
@@ -39,9 +39,14 @@
 		<e:Rect anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.64" left="0" right="0" bottom="0" top="0"/>
 		<e:Image width="86" height="30" anchorOffsetX="0" anchorOffsetY="0" source="Type_trust_png" horizontalCenter="0" x="263" scaleX="1" scaleY="1" verticalCenter="0"/>
 	</e:Group>
-	<e:Group id="group_handcards" width="1021" height="220" x="267" anchorOffsetX="0" bottom="48">
+	<e:Group id="group_handcards" width="858" height="158" x="267" anchorOffsetX="0" bottom="48">
 		<e:layout>
-			<e:HorizontalLayout gap="-90"/>
+			<e:HorizontalLayout gap="-65"/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="group_backcards" width="178.08" height="142.91" y="10" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" rotation="359.84">
+		<e:layout>
+			<e:HorizontalLayout gap="-65"/>
 		</e:layout>
 	</e:Group>
 </e:Skin>

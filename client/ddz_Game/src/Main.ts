@@ -116,7 +116,7 @@ class Main extends eui.UILayer {
     protected startCreateScene(): void {
        
         RES.getResAsync("description_json", this.startAnimation, this);
-          this.addChild(ui_game.Shared());
+        this.addChild(new ui_game());
 
      }
     /**

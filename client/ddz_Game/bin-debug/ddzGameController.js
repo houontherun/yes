@@ -66,7 +66,10 @@ var DDZGameController = (function () {
     DDZGameController.prototype.DispatchCardStart = function () {
         this.bStartgame = true;
         this.StartgameTick = egret.getTimer();
-        ui_game.Shared().AddhardCard(this.allCardList.slice(0, 17));
+        //ui_game.Shared().AddhardCard(this.allCardList.slice(0,17));
+        var addHardEvent = new Logic.CardEvent(Logic.CardEvent.AddHard);
+        addHardEvent.paramObj = this.allCardList.slice(0, 17);
+        Logic.CardEventDispatcher.Instance.dispatchEvent(addHardEvent);
     };
     return DDZGameController;
 }());
