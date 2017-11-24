@@ -12,22 +12,17 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 // TypeScript file
-var gameUI;
-(function (gameUI) {
+var gameUIControl;
+(function (gameUIControl) {
     var Slider = (function (_super) {
         __extends(Slider, _super);
         function Slider() {
             var _this = _super.call(this) || this;
-            _this.bg = null;
-            _this.fg = null;
-            _this.thumb = null;
-            _this.bgSrc = "sliderbg_png";
-            _this.fgSrc = "sliderfg_png";
-            _this.thumbSrc = "slider_png";
             _this._value = 0;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onLoad, _this);
-            _this.skinName = "resource/custom_skins/controls/sliderSkin.exml";
             return _this;
+            // this.skinName = "resource/custom_skins/controls/SliderSkin.exml";
+            // this.skinName = "gameUIControl.SliderSkin"
         }
         Object.defineProperty(Slider.prototype, "value", {
             get: function () {
@@ -45,24 +40,19 @@ var gameUI;
         };
         Slider.prototype.onLoad = function () {
             var _this = this;
-            if (this.thumb != undefined && this.fg != undefined && this.bg != undefined) {
-                this.bg.source = this.bgSrc;
-                this.fg.source = this.fgSrc;
-                this.thumb.source = this.thumbSrc;
-                this.bg.addEventListener(egret.TouchEvent.TOUCH_MOVE, function (event) {
-                    if (event.touchDown) {
-                        if (event.localX > 0 && event.localX < _this.bg.width) {
-                            _this.thumb.x = event.localX;
-                            _this.fg.width = event.localX;
-                            _this._value = event.localX / _this.fg.width;
-                        }
+            this.bg.addEventListener(egret.TouchEvent.TOUCH_MOVE, function (event) {
+                if (event.touchDown) {
+                    if (event.localX > 0 && event.localX < _this.bg.width) {
+                        _this.thumb.x = event.localX;
+                        _this.fg.width = event.localX;
+                        _this._value = event.localX / _this.fg.width;
                     }
-                }, this);
-            }
+                }
+            }, this);
         };
         return Slider;
     }(eui.Component));
-    gameUI.Slider = Slider;
-    __reflect(Slider.prototype, "gameUI.Slider");
-})(gameUI || (gameUI = {}));
+    gameUIControl.Slider = Slider;
+    __reflect(Slider.prototype, "gameUIControl.Slider");
+})(gameUIControl || (gameUIControl = {}));
 //# sourceMappingURL=Slider.js.map

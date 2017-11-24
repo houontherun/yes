@@ -267,7 +267,7 @@ namespace DouDiZhu {
 
         public requestPrepare():void{
             MessageManager.Instance.SendMessage({
-                c:constant.msg.cs_prepare
+                // c:constant.msg.cs_prepare
             })
         }
     }

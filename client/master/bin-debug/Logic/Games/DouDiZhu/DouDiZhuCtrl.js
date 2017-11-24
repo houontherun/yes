@@ -284,9 +284,7 @@ var DouDiZhu;
             return _super.call(this) || this;
         }
         DouDiZhuCtrl.prototype.requestPrepare = function () {
-            MessageManager.Instance.SendMessage({
-                c: constant.msg.cs_prepare
-            });
+            MessageManager.Instance.SendMessage({});
         };
         return DouDiZhuCtrl;
     }(GameController));
