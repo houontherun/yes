@@ -70,6 +70,9 @@ var gameUI;
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 _this.svData.visible = !_this.svData.visible;
             }, this);
+            // console.log(this.sliderMusic.thumb.source)
+            // var slidr = new gameUIControl.Slider()
+            // this.addChild(slidr)
         };
         setting.prototype.onSelectLanguage = function (txt) {
             this.txtLang.text = txt;

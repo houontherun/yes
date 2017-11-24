@@ -4,25 +4,21 @@ var constant = {
     connect_ip : "192.168.12.3",
     connect_port: 4567,
     msg:{
-        cs_login : "cs_login",                              // 登录
-        sc_login_succ : "sc_login_succ",                    // 登录成功
-        sc_login_failed : "sc_login_failed",                // 登录失败
-        cs_create_room : "cs_create_room",                  // 开房间
-        sc_create_room_succ : "sc_create_room_succ",        // 开房间成功
-        sc_create_room_failed : "sc_create_room_failed",    // 开房间失败
-        cs_enter_room : "cs_enter_room",                    // 进入房间
-        sc_enter_room_succ : "sc_enter_room_succ",          // 进入房间成功
-        sc_create_player : "sc_create_player",              // 通知有玩家进入房间
-        sc_destory_player : "sc_destory_player",            // 通知有玩家离开房间
-        cs_leave_room : "cs_leave_room",                    // 离开房间
-        sc_leave_room_ret : "sc_leave_room_ret",            // 确认离开房间
+        //客户端->服务端		
+        CS_LOGIN : 1001,				//登录
+        CS_CREATE_ROOM : 1002,			//创建房间
+        CS_ENTER_ROOM : 1003,			//玩家进入房间
+        CS_LEAVE_ROOM : 1004,			//玩家离开房间
+        CS_LOGOUT : 1005,				//玩家退出登录
 
-        cs_prepare:"cs_prepare",    // 点击准备
-        cs_auction:"cs_auction",    // 抢地主
-        cs_double:"cs_double",      // 加倍
-        cs_play:"cs_play",          // 出牌
-        cs_pass:"cs_pass",          // 不出牌，过
-        cs_mandate:"cs_mandate",    // 托管
+        //服务端->客户端
+        SC_LOGIN : 2001,				//登录回包			
+        SC_CREATE_ROOM : 2002,			//创建房间回包
+        SC_ENTER_ROOM : 2003,			//玩家进入房间回包
+        SC_LEAVE_ROOM : 2004,			//玩家离开房间回包
+        SC_PLAYER_ENTER_ROOM : 2005,	//玩家进入房间通知
+        SC_PLAYER_LEAVE_ROOM : 2006,	//玩家离开房间通知
+        SC_LOGOUT : 2007,				//玩家退出登录回包
     },
     event:{
         network:{

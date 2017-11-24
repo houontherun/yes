@@ -55,11 +55,16 @@ namespace gameUI{
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.svData.visible = !this.svData.visible
             }, this)
+
+            // console.log(this.sliderMusic.thumb.source)
+
+            // var slidr = new gameUIControl.Slider()
+            // this.addChild(slidr)
         }
 
         public onSelectLanguage(txt:string){
             this.txtLang.text = txt;
-            this.svData.visible = false
+            this.svData.visible = false            
         }
         public btnClose:eui.Image;
         // public svData:gameUI.Scrollview;
@@ -70,6 +75,9 @@ namespace gameUI{
 
         public imgSelect:eui.Image;
         public txtLang:eui.Label;
+        
+        public sliderMusic:gameUIControl.Slider;
+        public sliderEffect:gameUIControl.Slider;
     }
 
 }
