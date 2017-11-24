@@ -1,42 +1,59 @@
-class DDZGameController {
+	/**
+	 * 事件派发器
+	 * @author  yanwei47@163.com
+	 *
+	 */
+module CardLogic {
+export class ddzGameLogic {
 
    private bStartgame:boolean = false;
    private StartgameTick : number = 0;
-   private static shared: DDZGameController;
+   private static shared: ddzGameLogic;
+   public timerTick: () => void;
+   private timer:egret.Timer ;
 
    public static Shared() {
-        if(DDZGameController.shared == null) {
-            DDZGameController.shared = new DDZGameController();
+        if(ddzGameLogic.shared == null) {
+            ddzGameLogic.shared = new ddzGameLogic();
         }
-        return DDZGameController.shared;
+        return ddzGameLogic.shared;
     }
     private allCardList:Array<PokerCard> = [];
 
 	public constructor() {
 	     this.CreateDeck();
-         egret.startTick(this.onUpdateFrame, this);
+         //egret.startTick(this.onUpdateFrame, this);
+          this.timer = new egret.Timer(100); 
+          this.timer.addEventListener(egret.TimerEvent.TIMER,this.onUpdateFrame,this)
+          this.timer.start();
+         this.timerTick = Timer.Instance.tick;
 	}
 
     public ExitGame()
     {
         this.bStartgame = false;
         this.StartgameTick = 0;
-        egret.stopTick(this.onUpdateFrame, this);
+        //egret.stopTick(this.onUpdateFrame, this);
+        this.timer.stop();
     }
 
     public ResetGame()
     {
         this.bStartgame = false;
         this.StartgameTick = 0;
+        this.timer.reset();
     }
      
-  private onUpdateFrame(timeStamp:number):boolean
+  private onUpdateFrame()
    {
-      var now = timeStamp;
-      var time = this.StartgameTick;
-      var pass = now - time;
-      //console.log("pass: ",( pass/1000).toFixed(5));
-      return false;
+
+      if(this.timerTick != null)
+      {
+        this.timerTick();
+        
+      }
+      this.StartgameTick++;
+
    }
    
     //创建一副牌
@@ -86,15 +103,12 @@ class DDZGameController {
    public DispatchCardStart()
    {
        this.bStartgame = true;
-       this.StartgameTick = egret.getTimer();
-
-        //ui_game.Shared().AddhardCard(this.allCardList.slice(0,17));
-         var addHardEvent:Logic.CardEvent = new Logic.CardEvent(Logic.CardEvent.AddHard);
-         addHardEvent.paramObj = this.allCardList.slice(0,17);
-         Logic.CardEventDispatcher.Instance.dispatchEvent(addHardEvent);
+       var addHardEvent:CardLogic.CardEvent = new CardLogic.CardEvent(CardLogic.CardEvent.AddHard);
+       addHardEvent.paramObj = this.allCardList.slice(0,17);
+       CardLogic.CardEventDispatcher.Instance.dispatchEvent(addHardEvent);
    }
 
-
+}
    
 
 }

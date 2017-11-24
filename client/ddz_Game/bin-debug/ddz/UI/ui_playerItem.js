@@ -11,18 +11,21 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var ui_playerItem = (function (_super) {
-    __extends(ui_playerItem, _super);
-    function ui_playerItem() {
-        return _super.call(this) || this;
-    }
-    ui_playerItem.prototype.partAdded = function (partName, instance) {
-        _super.prototype.partAdded.call(this, partName, instance);
-    };
-    ui_playerItem.prototype.childrenCreated = function () {
-        _super.prototype.childrenCreated.call(this);
-    };
-    return ui_playerItem;
-}(eui.Component));
-__reflect(ui_playerItem.prototype, "ui_playerItem", ["eui.UIComponent", "egret.DisplayObject"]);
+var Card;
+(function (Card) {
+    var ui_playerItem = (function (_super) {
+        __extends(ui_playerItem, _super);
+        function ui_playerItem() {
+            return _super.call(this) || this;
+        }
+        ui_playerItem.prototype.partAdded = function (partName, instance) {
+            _super.prototype.partAdded.call(this, partName, instance);
+        };
+        ui_playerItem.prototype.childrenCreated = function () {
+            _super.prototype.childrenCreated.call(this);
+        };
+        return ui_playerItem;
+    }(eui.Component));
+    __reflect(ui_playerItem.prototype, "ui_playerItem", ["eui.UIComponent", "egret.DisplayObject"]);
+})(Card || (Card = {}));
 //# sourceMappingURL=ui_playerItem.js.map

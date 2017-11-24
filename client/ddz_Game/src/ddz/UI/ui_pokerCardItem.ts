@@ -1,9 +1,10 @@
-class ui_pokerCardItem extends eui.Component implements  eui.UIComponent {
+namespace Card {
+export class ui_pokerCardItem extends eui.Component implements  eui.UIComponent {
     private img_card:eui.Image;
 	private card : PokerCard;
 	public constructor() {
 		super();
-		this.skinName = "resource/eui_skins/ui_pokerCard.exml";
+		this.skinName = "resource/eui_skins/ddz_ui/ui_pokerCard.exml";
 	}
 
 
@@ -25,4 +26,5 @@ class ui_pokerCardItem extends eui.Component implements  eui.UIComponent {
 		}
        this.img_card.source = _source;
     }
+}
 }

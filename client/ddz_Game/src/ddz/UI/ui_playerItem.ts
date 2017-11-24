@@ -1,3 +1,4 @@
+namespace Card {
 class ui_playerItem extends eui.Component implements  eui.UIComponent {
 	public constructor() {
 		super();
@@ -14,4 +15,6 @@ class ui_playerItem extends eui.Component implements  eui.UIComponent {
 		super.childrenCreated();
 	}
 	
+}
+
 }

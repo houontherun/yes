@@ -1,7 +1,7 @@
-module Logic {
+module CardLogic {
 	/**
 	 * 事件派发器
-	 * @author 
+	 * @author  yanwei47@163.com
 	 *
 	 */
 	export class CardEventDispatcher extends egret.EventDispatcher{

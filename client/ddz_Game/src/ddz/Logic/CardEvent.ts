@@ -1,4 +1,4 @@
-module Logic {
+module CardLogic {
 	/**
 	 * 自定义事件
 	 * @author 
