@@ -35,5 +35,16 @@ namespace gameUI{
             }, thisObject)
         }
 
+         public SetImageUrl(img:eui.Image,url:string):void {
+            var texture :egret.Texture = RES.getRes(url);
+             if(texture)
+             {
+		         img.width = texture.textureWidth;
+		         img.height = texture.textureWidth;
+	             img.texture = texture;
+             }
+
+        }
+
     }
 }

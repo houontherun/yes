@@ -43,6 +43,14 @@ var gameUI;
                 onClick();
             }, thisObject);
         };
+        base.prototype.SetImageUrl = function (img, url) {
+            var texture = RES.getRes(url);
+            if (texture) {
+                img.width = texture.textureWidth;
+                img.height = texture.textureWidth;
+                img.texture = texture;
+            }
+        };
         return base;
     }(eui.Component));
     gameUI.base = base;

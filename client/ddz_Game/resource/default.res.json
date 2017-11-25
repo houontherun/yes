@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,card_0_1_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_1_1_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_2_1_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_3_1_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_back_png,Card_5_1_png,Card_5_2_png,face_1_png,face_2_png,face_4_png,face_6_png,face_12_png,face_16_png,face_15_png,bkddz_bg_day_jpg,game_clock_png,face_robot_png,userface_field_png,lobby_commonbtn_png,gold0_png,lobby_commonbtn1_png,Type_Land_png,score_bg0_png,Type_trust_png,win_png,lose_png",
+			"keys": "description_json,card_0_1_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_1_1_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_2_1_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_3_1_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_back_png,Card_5_1_png,Card_5_2_png,face_1_png,face_2_png,game_clock_png,Type_Land_png,score_bg0_png,Type_trust_png,win_png,lose_png,beijing_png,face_3_png,zuozi_png,tuoguan_png,dibulanbeiban_png,wode-jinbi_png,beishubeiban_png,beishu_png,weixinliaotian_png,yuyin_png,zhunbei_png,yizhunbei_png,btn1_png,btn2_png,huanzuo_png,fanhui_png",
 			"name": "preload"
 		}
 	],
@@ -297,64 +297,9 @@
 			"url": "assets/face/face_2.png"
 		},
 		{
-			"name": "face_4_png",
-			"type": "image",
-			"url": "assets/face/face_4.png"
-		},
-		{
-			"name": "face_6_png",
-			"type": "image",
-			"url": "assets/face/face_6.png"
-		},
-		{
-			"name": "face_12_png",
-			"type": "image",
-			"url": "assets/face/face_12.png"
-		},
-		{
-			"name": "face_16_png",
-			"type": "image",
-			"url": "assets/face/face_16.png"
-		},
-		{
-			"name": "face_15_png",
-			"type": "image",
-			"url": "assets/face/face_15.png"
-		},
-		{
-			"name": "bkddz_bg_day_jpg",
-			"type": "image",
-			"url": "assets/Res/bkddz_bg_day.jpg"
-		},
-		{
 			"name": "game_clock_png",
 			"type": "image",
 			"url": "assets/Res/game_clock.png"
-		},
-		{
-			"name": "face_robot_png",
-			"type": "image",
-			"url": "assets/Res/face_robot.png"
-		},
-		{
-			"name": "userface_field_png",
-			"type": "image",
-			"url": "assets/Res/userface_field.png"
-		},
-		{
-			"name": "lobby_commonbtn_png",
-			"type": "image",
-			"url": "assets/Res/lobby_commonbtn.png"
-		},
-		{
-			"name": "gold0_png",
-			"type": "image",
-			"url": "assets/Res/gold0.png"
-		},
-		{
-			"name": "lobby_commonbtn1_png",
-			"type": "image",
-			"url": "assets/Res/lobby_commonbtn1.png"
 		},
 		{
 			"name": "Type_Land_png",
@@ -380,6 +325,86 @@
 			"name": "lose_png",
 			"type": "image",
 			"url": "assets/Res/lose.png"
+		},
+		{
+			"name": "beijing_png",
+			"type": "image",
+			"url": "assets/Res/beijing.png"
+		},
+		{
+			"name": "face_3_png",
+			"type": "image",
+			"url": "assets/face/face_3.png"
+		},
+		{
+			"name": "zuozi_png",
+			"type": "image",
+			"url": "assets/Res/zuozi.png"
+		},
+		{
+			"name": "tuoguan_png",
+			"type": "image",
+			"url": "assets/Res/tuoguan.png"
+		},
+		{
+			"name": "dibulanbeiban_png",
+			"type": "image",
+			"url": "assets/Res/dibulanbeiban.png"
+		},
+		{
+			"name": "wode-jinbi_png",
+			"type": "image",
+			"url": "assets/Res/wode-jinbi.png"
+		},
+		{
+			"name": "beishubeiban_png",
+			"type": "image",
+			"url": "assets/Res/beishubeiban.png"
+		},
+		{
+			"name": "beishu_png",
+			"type": "image",
+			"url": "assets/Res/beishu.png"
+		},
+		{
+			"name": "weixinliaotian_png",
+			"type": "image",
+			"url": "assets/Res/weixinliaotian.png"
+		},
+		{
+			"name": "yuyin_png",
+			"type": "image",
+			"url": "assets/Res/yuyin.png"
+		},
+		{
+			"name": "zhunbei_png",
+			"type": "image",
+			"url": "assets/Res/zhunbei.png"
+		},
+		{
+			"name": "yizhunbei_png",
+			"type": "image",
+			"url": "assets/Res/yizhunbei.png"
+		},
+		{
+			"name": "btn1_png",
+			"type": "image",
+			"url": "assets/Res/btn1.png"
+		},
+		{
+			"name": "btn2_png",
+			"type": "image",
+			"url": "assets/Res/btn2.png"
+		},
+		{
+			"name": "huanzuo_png",
+			"type": "image",
+			"url": "assets/Res/huanzuo.png"
+		},
+		{
+			"name": "fanhui_png",
+			"type": "image",
+			"url": "assets/Res/fanhui.png"
 		}
 	]
 }

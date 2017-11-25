@@ -16,8 +16,8 @@ var Card;
     var ui_pokerCardItem = (function (_super) {
         __extends(ui_pokerCardItem, _super);
         function ui_pokerCardItem() {
-            var _this = _super.call(this) || this;
-            _this.skinName = "resource/eui_skins/ddz_ui/ui_pokerCard.exml";
+            var _this = _super.call(this, "resource/eui_skins/ddz_ui/ui_pokerCard.exml") || this;
+            _this.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.onclick_tap, _this);
             return _this;
         }
         Object.defineProperty(ui_pokerCardItem.prototype, "cardData", {
@@ -35,13 +35,34 @@ var Card;
                 else {
                     _source = "card_back";
                 }
-                this.img_card.source = _source;
+                this.SetImageUrl(this.img_card, _source);
             },
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(ui_pokerCardItem.prototype, "Selected", {
+            get: function () {
+                return this.bSelect;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        ui_pokerCardItem.prototype.setPos = function (posx, posy) {
+            this.x = posx;
+            this.y = posy;
+            this.posY = posy;
+        };
+        ui_pokerCardItem.prototype.onclick_tap = function () {
+            this.bSelect = !this.bSelect;
+            if (this.bSelect) {
+                this.y += 20;
+            }
+            else {
+                this.y = this.posY;
+            }
+        };
         return ui_pokerCardItem;
-    }(eui.Component));
+    }(gameUI.base));
     Card.ui_pokerCardItem = ui_pokerCardItem;
     __reflect(ui_pokerCardItem.prototype, "Card.ui_pokerCardItem", ["eui.UIComponent", "egret.DisplayObject"]);
 })(Card || (Card = {}));

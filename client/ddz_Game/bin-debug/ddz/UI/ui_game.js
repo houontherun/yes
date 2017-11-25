@@ -46,6 +46,9 @@ var Card;
                 if (i < cards.length) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
+                    _card.x = 36 * i;
+                    _card.y = -10;
+                    //_card.setPos(36*i,-10);
                     _this.group_handcards.addChild(_card);
                     _this.cardsArray.push(_card);
                     i++;

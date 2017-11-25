@@ -40,21 +40,26 @@ namespace Card {
         }
         Card.Util.sortCards(cards);
         
-        let i:number = 0;
+        var i:number = 0;
+        
         let addcardTimer =  CardLogic.Timer.Instance.Repeat(0.16,()=>{
             if(i< cards.length)
             {
-             var _card = new ui_pokerCardItem();
-             _card.cardData = cards[i];
-             this.group_handcards.addChild(_card);
-             this.cardsArray.push(_card);
-             i++;
+               var _card = new ui_pokerCardItem();
+               _card.cardData = cards[i];
+               _card.x = 36*i;
+               _card.y = -10;
+               //_card.setPos(36*i,-10);
+               this.group_handcards.addChild(_card);
+               this.cardsArray.push(_card);
+               i++;
             }
             else
             {
                CardLogic.Timer.Instance.Remove(addcardTimer);
             }
-         })   
+         })  
+
         this.group_handcards.cacheAsBitmap = true;
     }
 

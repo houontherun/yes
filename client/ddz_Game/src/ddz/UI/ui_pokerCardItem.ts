@@ -1,10 +1,12 @@
 namespace Card {
-export class ui_pokerCardItem extends eui.Component implements  eui.UIComponent {
+export class ui_pokerCardItem extends gameUI.base implements  eui.UIComponent {
     private img_card:eui.Image;
 	private card : PokerCard;
+	private bSelect:boolean;
+	private posY:number;
 	public constructor() {
-		super();
-		this.skinName = "resource/eui_skins/ddz_ui/ui_pokerCard.exml";
+		super("resource/eui_skins/ddz_ui/ui_pokerCard.exml");
+		this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_tap,this);
 	}
 
 
@@ -24,7 +26,31 @@ export class ui_pokerCardItem extends eui.Component implements  eui.UIComponent 
 		{
             _source = "card_back";
 		}
-       this.img_card.source = _source;
+		this.SetImageUrl(this.img_card,_source);
+        
     }
-}
+
+    public get Selected():boolean{
+		return this.bSelect;
+	}
+
+	public setPos(posx:number,posy:number)
+	{
+		this.x = posx;
+		this.y = posy;
+		this.posY = posy;
+	}
+
+	protected onclick_tap(){
+       this.bSelect = !this.bSelect;
+	   if(this.bSelect)
+	   {
+		   this.y += 20;
+	   }
+	   else
+	   {
+           this.y =  this.posY;
+	   }
+    }
+ }
 }
