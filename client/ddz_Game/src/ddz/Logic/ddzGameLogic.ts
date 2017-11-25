@@ -26,7 +26,7 @@ export class ddzGameLogic {
           this.timer = new egret.Timer(100); 
           this.timer.addEventListener(egret.TimerEvent.TIMER,this.onUpdateFrame,this)
           this.timer.start();
-         this.timerTick = Timer.Instance.tick;
+          this.timerTick = Timer.Instance.tick;
 	}
 
     public ExitGame()

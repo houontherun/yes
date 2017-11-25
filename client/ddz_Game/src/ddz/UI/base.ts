@@ -7,9 +7,7 @@ namespace gameUI{
 
             this.once( eui.UIEvent.COMPLETE, this.onload, this);
             this.skinName = skin;
-            
-            this.horizontalCenter = 0;
-            this.verticalCenter = 0;
+
         }
         public onload():void {
 

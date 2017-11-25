@@ -24,6 +24,7 @@ var Card;
             var _this = _super.call(this, "resource/eui_skins/ddz_ui/ui_game.exml") || this;
             _this.hardCardsArray = [];
             _this.cardsArray = [];
+            _this.otherPlayerNum = 2;
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, _this.AddhardCard, _this);
             _this.AddClick(_this.btn_tuoguan, function () {
             }, _this);
@@ -31,24 +32,28 @@ var Card;
                 CardLogic.ddzGameLogic.Shared().Shuffle();
                 CardLogic.ddzGameLogic.Shared().DispatchCardStart();
             }, _this);
+            _this.AddClick(_this.ChangeBtn, function () {
+                _this.clearCurGame();
+            }, _this);
+            _this.AddClick(_this.Changeimg, function () {
+                _this.clearCurGame();
+            }, _this);
             return _this;
         }
+        ui_game.prototype.onload = function () {
+            this.setPlayer(0, "小我问", 85000, "face_1_png");
+        };
         ///添加手牌
         ui_game.prototype.AddhardCard = function (e) {
             var _this = this;
             var cards = e.paramObj;
-            if (this.cardsArray.length > 0) {
-                this.removehardCard();
-            }
             Card.Util.sortCards(cards);
             var i = 0;
             var addcardTimer = CardLogic.Timer.Instance.Repeat(0.16, function () {
                 if (i < cards.length) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
-                    _card.x = 36 * i;
-                    _card.y = -10;
-                    //_card.setPos(36*i,-10);
+                    _card.setPos(36 * i, 22);
                     _this.group_handcards.addChild(_card);
                     _this.cardsArray.push(_card);
                     i++;
@@ -58,6 +63,8 @@ var Card;
                 }
             });
             this.group_handcards.cacheAsBitmap = true;
+            this.setPlayer(1, "nihao", 1000, "face_2_png");
+            this.setPlayer(2, "重设子对象深度", 120000, "face_3_png");
         };
         ui_game.prototype.AppendCard = function () {
         };
@@ -68,6 +75,41 @@ var Card;
                 this.group_handcards.removeChild(this.cardsArray[i]);
             }
             this.cardsArray = [];
+        };
+        ui_game.prototype.setPlayer = function (playerNum, playername, coin, head) {
+            var group;
+            if (playerNum > 0) {
+                group = this.getChildAt(playerNum);
+            }
+            else {
+                group = this.group_Player0;
+            }
+            if (group) {
+                var txtName = group.getChildAt(1);
+                txtName.text = playername;
+                if (playerNum > 0) {
+                    var txtcoin = group.getChildAt(2);
+                    txtcoin.text = coin.toString();
+                }
+                var img = new eui.Image();
+                img.source = RES.getRes(head);
+                img.x = 30;
+                group.addChildAt(img, 0);
+                group.visible = true;
+            }
+        };
+        // 清理当前牌局
+        ui_game.prototype.clearCurGame = function () {
+            if (this.cardsArray.length > 0) {
+                this.removehardCard();
+            }
+            for (var i = 1; i <= this.otherPlayerNum; i++) {
+                var group = this.getChildAt(i);
+                if (group) {
+                    group.removeChildAt(0);
+                    group.visible = false;
+                }
+            }
         };
         return ui_game;
     }(gameUI.base));

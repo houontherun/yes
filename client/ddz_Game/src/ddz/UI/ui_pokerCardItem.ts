@@ -43,14 +43,28 @@ export class ui_pokerCardItem extends gameUI.base implements  eui.UIComponent {
 
 	protected onclick_tap(){
        this.bSelect = !this.bSelect;
+
 	   if(this.bSelect)
 	   {
-		   this.y += 20;
+		   this.y -= 20;
 	   }
 	   else
 	   {
            this.y =  this.posY;
 	   }
     }
+
+	public SetShoot(bselect : boolean)
+	{
+		this.bSelect = bselect
+	   if(this.bSelect)
+	   {
+		   this.y -= 20;
+	   }
+	   else
+	   {
+           this.y =  this.posY;
+	   }
+	}
  }
 }

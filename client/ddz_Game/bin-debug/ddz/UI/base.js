@@ -20,8 +20,6 @@ var gameUI;
             var _this = _super.call(this) || this;
             _this.once(eui.UIEvent.COMPLETE, _this.onload, _this);
             _this.skinName = skin;
-            _this.horizontalCenter = 0;
-            _this.verticalCenter = 0;
             return _this;
         }
         base.prototype.onload = function () {
