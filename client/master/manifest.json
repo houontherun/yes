@@ -11,9 +11,9 @@
 	],
 	"game": [
 		"bin-debug/Logic/Games/Common/GameObject.js",
-		"bin-debug/Logic/Games/Common/GameController.js",
 		"bin-debug/UI/base.js",
 		"bin-debug/Logic/Games/Common/Dispatcher.js",
+		"bin-debug/Logic/Games/Common/GameController.js",
 		"bin-debug/Basic/constant.js",
 		"bin-debug/Logic/GameManager.js",
 		"bin-debug/Logic/HttpDownloadManager.js",
@@ -23,7 +23,7 @@
 		"bin-debug/Logic/UIManager.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Main.js",
-		"bin-debug/LoadingUI.js",
+		"bin-debug/UI/Room/lobby.js",
 		"bin-debug/Logic/Games/Common/PokerCard.js",
 		"bin-debug/Logic/Games/DouDiZhu/DouDiZhuCtrl.js",
 		"bin-debug/Logic/Util/Util.js",
@@ -36,6 +36,6 @@
 		"bin-debug/UI/Controls/Slider.js",
 		"bin-debug/UI/Room/create_room.js",
 		"bin-debug/UI/Room/enter_room.js",
-		"bin-debug/UI/Room/lobby.js"
+		"bin-debug/LoadingUI.js"
 	]
 }

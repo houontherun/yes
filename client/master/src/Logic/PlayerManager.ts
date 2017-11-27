@@ -6,7 +6,7 @@ class PlayerData{
     private bankgold:number  //玩家银行的钱
     private diamond:number //玩家钻石
     private card:number    //房卡数量
-    private account:string //openid
+    private openid:string //openid
     private name:string //名字
     private sex:number
 
@@ -16,7 +16,7 @@ class PlayerData{
         this.bankgold = loginData.bankgold
         this.diamond = loginData.diamond
         this.card = loginData.card
-        this.account = loginData.openid
+        this.openid = loginData.openid
         this.name = loginData.name
         this.sex = loginData.sex
     }
@@ -36,8 +36,8 @@ class PlayerData{
         if(data.card != undefined && data.card != null){
             this.card = data.card
         }
-        if(data.account != undefined && data.account != null){
-            this.account = data.account
+        if(data.openid != undefined && data.openid != null){
+            this.openid = data.openid
         }
         if(data.name != undefined && data.name != null){
             this.name = data.name
@@ -62,8 +62,8 @@ class PlayerData{
     public get Cardnum():number {
         return this.card
     }
-    public get Account():string {
-        return this.account
+    public get OpenId():string {
+        return this.openid
     }
     public get Name():string {
         return this.name

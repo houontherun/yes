@@ -21,6 +21,7 @@ var PlayerData = (function () {
         this.card = loginData.card;
         this.account = loginData.openid;
         this.name = loginData.name;
+        this.sex = loginData.sex;
     }
     PlayerData.prototype.Update = function (data) {
         if (data.userid != undefined && data.userid != null) {
@@ -43,6 +44,9 @@ var PlayerData = (function () {
         }
         if (data.name != undefined && data.name != null) {
             this.name = data.name;
+        }
+        if (data.sex != undefined && data.sex != null) {
+            this.sex = data.sex;
         }
     };
     Object.defineProperty(PlayerData.prototype, "UserId", {
@@ -90,6 +94,13 @@ var PlayerData = (function () {
     Object.defineProperty(PlayerData.prototype, "Name", {
         get: function () {
             return this.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PlayerData.prototype, "Sex", {
+        get: function () {
+            return this.sex;
         },
         enumerable: true,
         configurable: true
