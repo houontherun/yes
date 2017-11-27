@@ -47,14 +47,21 @@ var Card;
         Identity[Identity["Farmer"] = 0] = "Farmer";
         Identity[Identity["Landlord"] = 1] = "Landlord"; //地主
     })(Identity = Card.Identity || (Card.Identity = {}));
+    var Seat;
+    (function (Seat) {
+        Seat[Seat["Left"] = 0] = "Left";
+        Seat[Seat["Right"] = 1] = "Right"; //地主
+    })(Seat = Card.Seat || (Card.Seat = {}));
     var Util = (function () {
         function Util() {
         }
         Util.createPokerCard = function (e, c) {
             var index = e;
             var color = c;
-            var data = Card.PackCards[e];
-            var card = new PokerCard(color, index, data);
+            var data = null;
+            if (index > 0)
+                data = Card.PackCards[e];
+            var card = new PokerCard(index, color, data);
             return card;
         };
         Util.groupCards = function (cards) {

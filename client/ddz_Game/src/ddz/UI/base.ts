@@ -29,7 +29,7 @@ namespace gameUI{
             img.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 img.scaleX = scaX
                 img.scaleY = scaY
-                onClick()
+                 onClick();
             }, thisObject)
         }
 

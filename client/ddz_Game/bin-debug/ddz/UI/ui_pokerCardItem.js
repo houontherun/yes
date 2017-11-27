@@ -33,7 +33,7 @@ var Card;
                     _source = "card_" + colr + "_" + index + "_png";
                 }
                 else {
-                    _source = "card_back";
+                    _source = "card_back_png";
                 }
                 this.SetImageUrl(this.img_card, _source);
             },

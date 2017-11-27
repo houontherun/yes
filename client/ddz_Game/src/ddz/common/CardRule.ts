@@ -50,13 +50,20 @@ namespace Card {
          Landlord          //地主
      }
 
+    export enum Seat{
+         Left,           //农民
+         Right          //地主
+     }
+
     export class Util {
 
         public static createPokerCard(e:number,c?:CardColor):PokerCard{
             var index = e;
             var color = c;
-            var data = PackCards[e];
-            var card = new PokerCard(color, index, data)
+            var data = null;
+            if(index > 0)
+               data = PackCards[e];
+            var card = new PokerCard(index, color, data)
             return card;
         }
 

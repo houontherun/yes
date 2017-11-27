@@ -12,11 +12,14 @@ enum CardColor {
 * 类
 */
 class PokerCard {
-    constructor(color:CardColor, index:number,carddata:Card.Carddata){
-        this.color = color;
+    constructor( index:number,color?:CardColor,carddata?:Card.Carddata){
         this.index = index;
-        this.name = carddata.name;
-        this.weight = carddata.weight;
+        this.color = color;
+        if(carddata)
+        {
+          this.name = carddata.name;
+          this.weight = carddata.weight;
+        }
     }
 
     public get Suit():CardColor{
@@ -34,8 +37,8 @@ class PokerCard {
     public get Weight():number{
        return this.weight;
     }
-    private color:CardColor;
-    private index:number;
-    private name:string;
-    private weight:number;
+    private color:CardColor = CardColor.Diamond;
+    private index:number = 0;
+    private name:string = "";
+    private weight:number = 0;
 }

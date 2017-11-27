@@ -16,11 +16,17 @@ var CardColor;
 * 类
 */
 var PokerCard = (function () {
-    function PokerCard(color, index, carddata) {
-        this.color = color;
+    function PokerCard(index, color, carddata) {
+        this.color = CardColor.Diamond;
+        this.index = 0;
+        this.name = "";
+        this.weight = 0;
         this.index = index;
-        this.name = carddata.name;
-        this.weight = carddata.weight;
+        this.color = color;
+        if (carddata) {
+            this.name = carddata.name;
+            this.weight = carddata.weight;
+        }
     }
     Object.defineProperty(PokerCard.prototype, "Suit", {
         get: function () {

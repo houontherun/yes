@@ -24,7 +24,7 @@ export class ui_pokerCardItem extends gameUI.base implements  eui.UIComponent {
 		 }
 		 else
 		{
-            _source = "card_back";
+            _source = "card_back_png";
 		}
 		this.SetImageUrl(this.img_card,_source);
         

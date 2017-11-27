@@ -70,9 +70,6 @@ var CardLogic;
         ddzGameLogic.prototype.Shuffle = function () {
             if (this.allCardList.length == 54) {
                 this.shuffle(this.allCardList);
-                for (var i = 0; i < this.allCardList.length; i++) {
-                    //console.log(this.allCardList[i]);
-                }
             }
         };
         ddzGameLogic.prototype.DispatchCardStart = function () {

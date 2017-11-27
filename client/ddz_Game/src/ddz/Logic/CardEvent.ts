@@ -7,6 +7,7 @@ module CardLogic {
 	export class CardEvent extends egret.Event{
     	
     	public static DispatchCardStart:string = "dispatchcardstart";
+		public static AddOtherPlayers:string = "addotherPlayers";
 		public static AddHard:string = "addhard";
     	
     	public paramObj:any; 

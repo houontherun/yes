@@ -26,6 +26,7 @@ var CardLogic;
             return _super.call(this, type, bubbles, cancelable) || this;
         }
         CardEvent.DispatchCardStart = "dispatchcardstart";
+        CardEvent.AddOtherPlayers = "addotherPlayers";
         CardEvent.AddHard = "addhard";
         return CardEvent;
     }(egret.Event));
