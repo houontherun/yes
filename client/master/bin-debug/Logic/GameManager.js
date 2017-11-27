@@ -39,6 +39,6 @@ var GameManager = (function (_super) {
     };
     GameManager.Instance = new GameManager();
     return GameManager;
-}(egret.EventDispatcher));
+}(Dispatcher));
 __reflect(GameManager.prototype, "GameManager");
 //# sourceMappingURL=GameManager.js.map

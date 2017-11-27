@@ -11,7 +11,7 @@ var UI = {
     "enter_room":{name:"gameUI.enter_room", skin:"resource/custom_skins/enter_roomSkin.exml"},    
 }
 
-class UIManager extends egret.EventDispatcher {
+class UIManager extends Dispatcher {
     public static Instance : UIManager = new UIManager();
     constructor() {
         super();
@@ -42,9 +42,10 @@ class UIManager extends egret.EventDispatcher {
     }
 
     public UnloadUI(ui:any){
-        var child = this.stage.getChildByName(ui.name)
+        var child = <gameUI.base>this.stage.getChildByName(ui.name)
         if(child != null){
-            child = this.stage.removeChild(child);
+            child.onUnload()
+            this.stage.removeChild(child);
             child = null
             // child.visible = false
         }

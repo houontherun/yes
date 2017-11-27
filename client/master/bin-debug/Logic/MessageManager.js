@@ -18,9 +18,9 @@ var MessageManager = (function (_super) {
         return _super.call(this) || this;
     }
     MessageManager.prototype.DispatchMessage = function (data) {
-        var msg = data.c;
+        var msg = data.protocol;
         if (msg != null) {
-            this.dispatchEventWith(msg, false, data);
+            this.dispatchEvent(msg, data);
         }
     };
     MessageManager.prototype.SendMessage = function (data) {
@@ -28,6 +28,6 @@ var MessageManager = (function (_super) {
     };
     MessageManager.Instance = new MessageManager();
     return MessageManager;
-}(egret.EventDispatcher));
+}(Dispatcher));
 __reflect(MessageManager.prototype, "MessageManager");
 //# sourceMappingURL=MessageManager.js.map

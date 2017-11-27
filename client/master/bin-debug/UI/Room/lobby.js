@@ -12,6 +12,86 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var game_config = [
+    {
+        type_name: "0扑克",
+        icon: "default.png",
+        childs: [
+            {
+                id: 100,
+                name: "0斗地主",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 101,
+                name: "斗牛",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 102,
+                name: "炸金花",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 103,
+                name: "21点",
+                icon: "resource/assets/bg.png"
+            }
+        ]
+    },
+    {
+        type_name: "1麻将",
+        icon: "default.png",
+        childs: [
+            {
+                id: 104,
+                name: "1江西麻将",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 105,
+                name: "湖南麻将",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 106,
+                name: "四川麻将",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 107,
+                name: "福建麻将",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 108,
+                name: "上海麻将",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 109,
+                name: "杭州麻将",
+                icon: "resource/assets/bg.png"
+            },
+            {
+                id: 110,
+                name: "火星麻将",
+                icon: "resource/assets/bg.png"
+            }
+        ]
+    },
+    {
+        type_name: "2棋类",
+        icon: "default.png",
+        childs: [
+            {
+                id: 111,
+                name: "2开心消消乐",
+                icon: "resource/assets/bg.png"
+            }
+        ]
+    }
+];
 var gameUI;
 (function (gameUI) {
     var game_item = (function (_super) {
@@ -62,17 +142,17 @@ var gameUI;
             _super.prototype.onload.call(this);
             this.svGame.horizontalScrollBar = null;
             this.listGames.itemRenderer = game_item;
-            this.listGames.dataProvider = new eui.ArrayCollection(this.Data[0].childs);
+            this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
             this.AddClick(this.btnPuke, function () {
-                _this.listGames.dataProvider = new eui.ArrayCollection(_this.Data[0].childs);
+                _this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
                 _this.listGames.validateNow();
             }, this);
             this.AddClick(this.btnMajiang, function () {
-                _this.listGames.dataProvider = new eui.ArrayCollection(_this.Data[1].childs);
+                _this.listGames.dataProvider = new eui.ArrayCollection(game_config[1].childs);
                 _this.listGames.validateNow();
             }, this);
             this.AddClick(this.btnQilei, function () {
-                _this.listGames.dataProvider = new eui.ArrayCollection(_this.Data[2].childs);
+                _this.listGames.dataProvider = new eui.ArrayCollection(game_config[2].childs);
                 _this.listGames.validateNow();
             }, this);
             // top menu
@@ -114,6 +194,18 @@ var gameUI;
             // 	// console.log(this.listGames.numElements)
             // 	// this.updateChildSize(offsetX)
             // }, this)
+            PlayerManager.Instance.addEventListener(constant.event.logic.on_player_data_update, this.updatePlayerInfo, this);
+            this.updatePlayerInfo(PlayerManager.Instance.Data);
+        };
+        lobby.prototype.onUnload = function () {
+            _super.prototype.onUnload.call(this);
+            PlayerManager.Instance.removeEventListener(constant.event.logic.on_player_data_update, this.updatePlayerInfo, this);
+        };
+        lobby.prototype.updatePlayerInfo = function (data) {
+            this.txtUsrId.text = "ID:" + data.UserId.toString();
+            this.txtGoldNum.text = data.Gold.toString();
+            this.txtFbNum.text = data.Cardnum.toString();
+            this.txtUserName.text = data.Name.toString();
         };
         return lobby;
     }(gameUI.base));

@@ -20,8 +20,6 @@ var gameUI;
             var _this = _super.call(this) || this;
             _this.once(eui.UIEvent.COMPLETE, _this.onload, _this);
             _this.skinName = skin;
-            _this.horizontalCenter = 0;
-            _this.verticalCenter = 0;
             return _this;
         }
         base.prototype.onload = function () {
@@ -31,8 +29,8 @@ var gameUI;
             var scaY = img.scaleY;
             img.x += img.width / 2;
             img.y += img.height / 2;
-            img.anchorOffsetX = img.width / 2;
-            img.anchorOffsetY = img.height / 2;
+            // img.anchorOffsetX = img.width/2
+            // img.anchorOffsetY = img.height/2            
             img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, function () {
                 img.scaleX = scaX * 0.8;
                 img.scaleY = scaY * 0.8;

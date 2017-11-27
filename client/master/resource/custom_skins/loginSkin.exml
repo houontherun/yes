@@ -3,6 +3,6 @@
 	<e:Button id="btnLogin" label="登录" x="503" y="484.5" anchorOffsetX="0" width="314" anchorOffsetY="0" height="116"/>
 	<e:Label id="lblUserName" text="用户名" x="302.64" y="216.5" anchorOffsetX="0" width="274" anchorOffsetY="0" height="84" size="80"/>
 	<e:Label id="lblPassowrd" text="密   码" x="302.64" y="300.5" size="80" anchorOffsetX="0" width="239" anchorOffsetY="0" height="82"/>
-	<e:TextInput id="txtUserName" width="457" height="70" x="573.14" y="221.5" anchorOffsetX="0" anchorOffsetY="0" enabled="true" text="user name"/>
-	<e:TextInput id="txtPassword" width="457" height="70" x="573.14" y="312.5" anchorOffsetX="0" anchorOffsetY="0" enabled="true" text="password"/>
+	<e:TextInput id="txtUserName" width="457" height="70" x="573.14" y="221.5" anchorOffsetX="0" anchorOffsetY="0" enabled="true" text="sfefsndflsk"/>
+	<e:TextInput id="txtPassword" width="457" height="70" x="573.14" y="312.5" anchorOffsetX="0" anchorOffsetY="0" enabled="true"/>
 </e:Skin>

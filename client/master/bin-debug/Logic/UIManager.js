@@ -50,7 +50,8 @@ var UIManager = (function (_super) {
     UIManager.prototype.UnloadUI = function (ui) {
         var child = this.stage.getChildByName(ui.name);
         if (child != null) {
-            child = this.stage.removeChild(child);
+            child.onUnload();
+            this.stage.removeChild(child);
             child = null;
             // child.visible = false
         }
@@ -60,6 +61,6 @@ var UIManager = (function (_super) {
     };
     UIManager.Instance = new UIManager();
     return UIManager;
-}(egret.EventDispatcher));
+}(Dispatcher));
 __reflect(UIManager.prototype, "UIManager");
 //# sourceMappingURL=UIManager.js.map

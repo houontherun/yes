@@ -1,6 +1,8 @@
 // TypeScript file
 
-class NetworkManager extends egret.EventDispatcher {
+
+
+class NetworkManager extends Dispatcher {
     public static Instance : NetworkManager = new NetworkManager();
     constructor() {
         super();
@@ -29,21 +31,21 @@ class NetworkManager extends egret.EventDispatcher {
     }
     private onSocketOpen():void {
         console.log("连接成功 ip=" + this.ip + " port=" + this.port.toString())
-        this.dispatchEventWith(constant.event.network.on_connect_succeed);
+        this.dispatchEvent(constant.event.network.on_connect_succeed);
     }
 
     private onSocketClose():void {
         console.log("WebSocketClose");
-        this.dispatchEventWith(constant.event.network.on_connect_close);
+        this.dispatchEvent(constant.event.network.on_connect_close);
     }
 
     private onSocketError():void {
         console.log("WebSocketError");
-        this.dispatchEventWith(constant.event.network.on_socket_error);
+        this.dispatchEvent(constant.event.network.on_socket_error);
     }
     private onReceiveMessage(e:egret.Event):void {
         var byte:egret.ByteArray = new egret.ByteArray();        
-        this.socket.readBytes(byte);
+        this.socket.readBytes(byte);    
         var msg:string = byte.readUTFBytes(byte.length);        
         console.log(">>>> " + msg);
         var data = JSON.parse(msg);

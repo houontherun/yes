@@ -1,16 +1,17 @@
 // TypeScript file
 
 
-class MessageManager extends egret.EventDispatcher {
+class MessageManager extends Dispatcher {
     public static Instance : MessageManager = new MessageManager();
     constructor() {
         super();
     }    
 
+    
     public DispatchMessage(data):void{
-        var msg = data.c
+        var msg = data.protocol
         if (msg != null){
-            this.dispatchEventWith(msg, false, data)
+            this.dispatchEvent(msg, data)
         }
     }
 

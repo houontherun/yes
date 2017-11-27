@@ -143,17 +143,21 @@ var Main = (function (_super) {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     };
+    Main.prototype.initManagers = function () {
+        PlayerManager.Instance.Init();
+    };
     /**
      * 创建场景界面
      * Create scene interface
      */
     Main.prototype.startCreateScene = function () {
+        this.initManagers();
         // let sky = this.createBitmapByName("bg_jpg");
         // this.addChild(sky);
         // let stageW = this.stage.stageWidth;
         // let stageH = this.stage.stageHeight;
         // sky.width = stageW;
-        // sky.height = stageH;
+        // sky.height = stageH;        
         var shp = new egret.Shape();
         shp.graphics.beginFill(0x0000ff, 1);
         shp.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);

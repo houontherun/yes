@@ -28,7 +28,10 @@ var gameUI;
             return _this;
         }
         base.prototype.onload = function () {
-            console.log("onload " + this.uidata.name);
+            console.log("load ui:" + this.uidata.name);
+        };
+        base.prototype.onUnload = function () {
+            console.log("unload ui:" + this.uidata.name);
         };
         base.prototype.Close = function () {
             UIManager.Instance.UnloadUI(this.uidata);

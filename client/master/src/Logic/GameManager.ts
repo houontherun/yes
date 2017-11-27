@@ -1,5 +1,5 @@
 // TypeScript file
-class GameManager extends egret.EventDispatcher {
+class GameManager extends Dispatcher {
     public static Instance : GameManager = new GameManager();
     constructor() {
         super();

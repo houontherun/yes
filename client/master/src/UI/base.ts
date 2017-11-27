@@ -16,7 +16,10 @@ namespace gameUI{
             this.verticalCenter = 0;
         }
         public onload():void {
-            console.log("onload " + this.uidata.name)
+            console.log("load ui:" + this.uidata.name)
+        }
+        public onUnload():void{
+            console.log("unload ui:" + this.uidata.name)
         }
 
         public Close():void{
