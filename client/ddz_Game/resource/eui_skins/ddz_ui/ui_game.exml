@@ -2,13 +2,27 @@
 <e:Skin class="ui_lobbySkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" xmlns:Card="Card.*" >
 	<w:Config id="15fd7d8e423" ></w:Config>
 	<e:Image left="0" top="0" right="0" bottom="0" source="beijing_png"/>
+	<e:Group id="group_Player1" height="384" anchorOffsetX="0" anchorOffsetY="0" left="0" y="110" width="300" visible="false">
+		<e:Image anchorOffsetY="0" scale9Grid="47,3,29,18" width="175" source="beishubeiban_png" scaleX="1" scaleY="1" left="-14" height="64" y="165"/>
+		<e:Label text="小宇宙" x="12" y="170" anchorOffsetX="0" width="116" anchorOffsetY="0" height="22" size="20" fontFamily="SimHei" textColor="0xd6d4d1"/>
+		<e:Label text="100000" x="38" y="201" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" textColor="0xE2A92B" size="20" fontFamily="SimHei"/>
+		<e:Image width="28" height="28" y="196" source="wode-jinbi_png" x="4"/>
+	</e:Group>
+	<e:Group id="group_Player2" height="370" anchorOffsetX="0" anchorOffsetY="0" y="110" right="0" width="300">
+		<e:Image anchorOffsetY="0" scale9Grid="47,3,29,18" width="172" source="beishubeiban_png" scaleX="1" scaleY="1" height="64" y="165" x="148"/>
+		<e:Label text="小宇宙" x="173.5" y="170" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" size="20" fontFamily="SimHei" textColor="0xd6d4d1"/>
+		<e:Label text="0000" x="191.5" y="201" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" textColor="0xE2A92B" size="20" fontFamily="SimHei"/>
+		<e:Image id="img_jinbin1" width="28" height="28" y="196" source="wode-jinbi_png" x="160.5"/>
+	</e:Group>
 	<e:Image id="zhuozi" x="0" source="zuozi_png" scaleX="1" scaleY="1" width="1376" height="772" top="288"/>
-	<e:Label id="LeftPlayerPos" text="" x="105" y="120"/>
-	<e:Label id="RightPlayerPos" text="" anchorOffsetX="0" anchorOffsetY="0" y="120" x="1021"/>
-	<e:Image width="235" height="322" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" bottom="0" left="0" source="face_3_png"/>
+	<e:Group id="group_Player0" width="263" height="343" anchorOffsetX="0" anchorOffsetY="0" left="2" bottom="1">
+		<e:Image height="28" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="71" y="245" scaleX="1" scaleY="1" horizontalCenter="4.5"/>
+		<e:Label text="小宇宙" anchorOffsetX="0" width="85" anchorOffsetY="0" height="22" size="16" fontFamily="SimHei" textAlign="center" horizontalCenter="3" bottom="72"/>
+	</e:Group>
+	<e:Group id="group_handcards" width="1018" height="189" x="268" anchorOffsetX="0" anchorOffsetY="0" bottom="70">
+	</e:Group>
 	<e:Image id="diban" height="56" bottom="8" right="50" left="50" anchorOffsetY="0" scale9Grid="47,3,29,18" source="dibulanbeiban_png"/>
 	<e:Image id="bjban" height="46" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="13" left="76"/>
-	<e:Image id="bjban0" height="28" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="71" left="63"/>
 	<e:Image height="46" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" horizontalCenter="0" bottom="13"/>
 	<e:Image id="img_jinbin" width="44" height="44" y="690" source="wode-jinbi_png" left="77"/>
 	<e:Image width="44" height="44" x="597" y="692" source="beishu_png"/>
@@ -16,20 +30,17 @@
 	<e:Image width="112" height="54" source="weixinliaotian_png" right="100" bottom="10"/>
 	<e:Label id="txt_PlayerGold" text="1000" anchorOffsetX="0" width="90" anchorOffsetY="0" height="28" size="28" fontFamily="SimHei" textColor="0xe2a92b" left="119" bottom="23"/>
 	<e:Label id="txt_gamedouble" text="1000" x="651" anchorOffsetX="0" width="80" anchorOffsetY="0" height="28" size="28" fontFamily="SimHei" textColor="0xe2a92b" bottom="22"/>
-	<e:Label id="txt_playername" text="小宇宙" x="92" y="656" anchorOffsetX="0" width="85" anchorOffsetY="0" height="22" size="16" fontFamily="SimHei" textAlign="center"/>
 	<e:Image id="btn_tuoguan" width="69" height="66" right="98" top="25" anchorOffsetX="0" anchorOffsetY="0" source="tuoguan_png"/>
 	<e:Image id="btn_back" width="69" height="66" anchorOffsetX="0" anchorOffsetY="0" left="8" top="25" source="fanhui_png"/>
 	<e:Group id="group_tuoguan" height="277" bottom="0" left="0" right="0" anchorOffsetY="0" visible="false">
 		<e:Rect anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.64" left="0" right="0" bottom="0" top="0"/>
 		<e:Image width="86" height="30" anchorOffsetX="0" anchorOffsetY="0" source="Type_trust_png" horizontalCenter="0" x="263" scaleX="1" scaleY="1" verticalCenter="0"/>
 	</e:Group>
-	<e:Group width="566" height="92" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="78" horizontalCenter="0">
+	<e:Group width="566" height="92" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="67" horizontalCenter="0">
 		<e:Image id="prepareBtn" width="185" height="85" horizontalCenter="68" verticalCenter="0" source="btn2_png" scaleX="0.75" scaleY="0.75"/>
-		<e:Image width="185" height="85" horizontalCenter="-118" verticalCenter="0" id="prepareBtn0" source="btn1_png" scaleX="0.75" scaleY="0.75"/>
-		<e:Image id="label0" width="74" height="37" horizontalCenter="-118" verticalCenter="0" source="huanzuo_png"/>
-		<e:Image id="label1" width="74" height="37" horizontalCenter="68" verticalCenter="0" source="zhunbei_png"/>
-	</e:Group>
-	<e:Group id="group_handcards" width="1018" height="165" x="251" anchorOffsetX="0" bottom="75" anchorOffsetY="0">
+		<e:Image id="ChangeBtn" width="185" height="85" horizontalCenter="-118" verticalCenter="0" source="btn1_png" scaleX="0.75" scaleY="0.75"/>
+		<e:Image id="Changeimg" width="74" height="37" horizontalCenter="-118" verticalCenter="0" source="huanzuo_png"/>
+		<e:Image id="prepareimg" width="74" height="37" horizontalCenter="68" verticalCenter="0" source="zhunbei_png"/>
 	</e:Group>
 	<e:Group id="group_backcards" width="178.08" height="142.91" y="10" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" rotation="359.84">
 		<e:layout>

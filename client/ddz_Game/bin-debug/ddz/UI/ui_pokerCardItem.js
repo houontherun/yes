@@ -55,7 +55,16 @@ var Card;
         ui_pokerCardItem.prototype.onclick_tap = function () {
             this.bSelect = !this.bSelect;
             if (this.bSelect) {
-                this.y += 20;
+                this.y -= 20;
+            }
+            else {
+                this.y = this.posY;
+            }
+        };
+        ui_pokerCardItem.prototype.SetShoot = function (bselect) {
+            this.bSelect = bselect;
+            if (this.bSelect) {
+                this.y -= 20;
             }
             else {
                 this.y = this.posY;
