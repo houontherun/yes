@@ -23,12 +23,13 @@ var gameUI;
             _this.name = uidata.name;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
             _this.skinName = uidata.skin;
-            _this.horizontalCenter = 0;
-            _this.verticalCenter = 0;
             return _this;
         }
         base.prototype.onload = function () {
-            console.log("onload " + this.uidata.name);
+            console.log("load ui:" + this.uidata.name);
+        };
+        base.prototype.onUnload = function () {
+            console.log("unload ui:" + this.uidata.name);
         };
         base.prototype.Close = function () {
             UIManager.Instance.UnloadUI(this.uidata);

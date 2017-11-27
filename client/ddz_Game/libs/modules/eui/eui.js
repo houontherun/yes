@@ -7617,8 +7617,7 @@ var eui;
             EXMLParser.prototype.$parseCode = function (codeText, classStr) {
                 //传入的是编译后的js字符串
                 var className = classStr ? classStr : "$exmlClass" + innerClassCount++;
-                var geval = eval;
-                var clazz = geval(codeText);
+                var clazz = eval(codeText);
                 var hasClass = true;
                 if (hasClass && clazz) {
                     egret.registerClass(clazz, className);
@@ -7680,10 +7679,9 @@ var eui;
                 var exClass = this.parseClass(xmlData, className);
                 var code = exClass.toCode();
                 var clazz = null;
-                var geval = eval;
                 if (true) {
                     try {
-                        clazz = geval(code);
+                        clazz = eval(code);
                     }
                     catch (e) {
                         egret.log(code);
@@ -7691,7 +7689,7 @@ var eui;
                     }
                 }
                 else {
-                    clazz = geval(code);
+                    clazz = eval(code);
                 }
                 if (hasClass && clazz) {
                     egret.registerClass(clazz, className);
@@ -21241,9 +21239,7 @@ var EXML;
             }
         }
         if (url) {
-            if (clazz) {
-                parsedClasses[url] = clazz;
-            }
+            parsedClasses[url] = clazz;
             var list = callBackMap[url];
             delete callBackMap[url];
             var length_31 = list ? list.length : 0;

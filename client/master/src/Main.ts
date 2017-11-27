@@ -137,17 +137,24 @@ class Main extends eui.UILayer {
         }
     }
     private textfield: egret.TextField;
+
+    private initManagers():void{
+        PlayerManager.Instance.Init()
+    }
     /**
      * 创建场景界面
      * Create scene interface
      */
     protected startCreateScene(): void {
+        this.initManagers();
+        
         // let sky = this.createBitmapByName("bg_jpg");
         // this.addChild(sky);
         // let stageW = this.stage.stageWidth;
         // let stageH = this.stage.stageHeight;
         // sky.width = stageW;
-        // sky.height = stageH;
+        // sky.height = stageH;        
+        
         var shp:egret.Shape = new egret.Shape();
         shp.graphics.beginFill(0x0000ff, 1)
         shp.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);

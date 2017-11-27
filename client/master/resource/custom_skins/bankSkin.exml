@@ -2,28 +2,68 @@
 <e:Skin class="bankSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
     <e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
 	<e:Image source="bg_png" x="81.51" y="90.35" anchorOffsetX="0" width="1168.34" anchorOffsetY="0" height="615" scale9Grid="23,4,676,511"/>
-	<e:Label id="txtCurrent" text="17,222" x="344.36" y="377.85" fontFamily="SimHei" size="40" textColor="0xf2941a"/>
-	<e:Label id="txtTotel" text="20,000" x="872.95" y="377.85" fontFamily="SimHei" size="40" textColor="0xf2941a"/>
-	<e:Label id="txtNum" text="存取金额" x="324.36" y="442.89" fontFamily="SimHei" size="40" textColor="0x604524"/>
-	<e:Label id="txtPwd" text="银行密码" x="324.36" y="516.18" fontFamily="SimHei" size="40" textColor="0x604524"/>
 	<e:Image source="frame2_png" x="88.12" y="103.33" fillMode="repeat" anchorOffsetX="0" width="1152.33"/>
 	<e:Image source="frame_png" x="66" y="51" scale9Grid="73,7,713,46" anchorOffsetX="0" width="1202"/>
 	<e:Image source="titleBg_png" x="477.5" y="47.05"/>
 	<e:Image id="btnClose" source="close_png" x="1210.67" y="49.83"/>
-	<e:Image source="btnbg2_png" x="672.31" y="582.67" fillMode="clip"/>
 	<e:Image x="565" y="65.34" source="bank_bank_png"/>
-	<e:Image source="btnQuit_png" x="391.86" y="582.67"/>
-	<e:Image source="bank_icon_png" x="360.36" y="293"/>
-	<e:Image source="bank_icon2_png" x="885.31" y="293"/>
-	<e:Image source="bank_tab_png" x="312.33" y="180.53"/>
-	<e:Image source="bank_tab2_png" x="549" y="183.19"/>
-	<e:Image source="bank_tab2_png" x="785.63" y="183.19"/>
-	<e:Image source="bank_cunqu_png" x="343.33" y="201.19"/>
-	<e:Image source="bank_cuozuo_png" x="816.95" y="202.32"/>
-	<e:Image source="bank_zen_png" x="584.27" y="198.33"/>
-	<e:Image source="bank_txtBg_png" x="494.95" y="438.9"/>
-	<e:Image source="bank_txtBg_png" x="494.95" y="512.19"/>
-	<e:Label id="txtCurrent0" text="金币存取" x="322" y="157.19" fontFamily="Verdana" size="40" textColor="0xF2941A" anchorOffsetX="0" width="222.67" anchorOffsetY="0" height="52" textAlign="center" verticalAlign="middle"/>
-	<e:EditableText width="461.34" height="34.66" text="" x="518.33" y="445.67" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:EditableText width="461.34" height="34.66" text="" x="518.33" y="518.84" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="imgTabGS" source="bank_tab_png" x="312.33" y="180"/>
+	<e:Image id="imgTabGive" source="bank_tab2_png" x="549" y="180"/>
+	<e:Image id="imgTabRecord" source="bank_tab2_png" x="785.63" y="180"/>
+	<e:Label id="txtTabGS" text="金币存取" x="320" y="203.65" fontFamily="SimHei" size="40" textColor="0xF2941A" anchorOffsetX="0" width="222.67" anchorOffsetY="0" height="52" textAlign="center" verticalAlign="middle" touchEnabled="false"/>
+	<e:Label id="txtTabGive" text="金币赠送" x="556.98" y="206.31" fontFamily="SimHei" size="40" anchorOffsetX="0" width="222.67" anchorOffsetY="0" height="52" textAlign="center" verticalAlign="middle" textColor="0x775022" touchEnabled="false"/>
+	<e:Label id="txtTabRecord" text="操作记录" x="792.82" y="204.98" fontFamily="SimHei" size="40" textColor="0x775022" anchorOffsetX="0" width="222.67" anchorOffsetY="0" height="52" textAlign="center" verticalAlign="middle" touchEnabled="false"/>
+	<e:Group id="groupGS" width="896" height="392" x="235" y="284" anchorOffsetX="0" anchorOffsetY="0" visible="true">
+		<e:Label id="txtCurrent" text="17,222" x="24.03" y="93.85" fontFamily="SimHei" size="40" textColor="0xf2941a" scaleX="1" scaleY="1" verticalAlign="middle" textAlign="center" anchorOffsetX="0" width="290.66"/>
+		<e:Label id="txtTotel" text="20,000" x="525.96" y="93.85" fontFamily="SimHei" size="40" textColor="0xf2941a" scaleX="1" scaleY="1" textAlign="center" verticalAlign="middle" anchorOffsetX="0" width="339.99"/>
+		<e:Label text="存取金额" x="89.36000000000001" y="158.89" fontFamily="SimHei" size="40" textColor="0x604524" scaleX="1" scaleY="1"/>
+		<e:Label text="银行密码" x="89.36000000000001" y="232.17999999999995" fontFamily="SimHei" size="40" textColor="0x604524" scaleX="1" scaleY="1"/>
+		<e:Image id="imgOut" source="btnbg2_png" x="437.30999999999995" y="298.66999999999985" fillMode="clip" scaleX="1" scaleY="1"/>
+		<e:Image id="imgIn" source="btnQuit_png" x="156.85999999999996" y="298.66999999999985" scaleX="1" scaleY="1"/>
+		<e:Image source="bank_icon_png" x="125.35999999999996" y="9" scaleX="1" scaleY="1"/>
+		<e:Image source="bank_icon2_png" x="650.31" y="9" scaleX="1" scaleY="1"/>
+		<e:Image source="bank_txtBg_png" x="259.94999999999993" y="154.89999999999992" scaleX="1" scaleY="1"/>
+		<e:Image source="bank_txtBg_png" x="259.94999999999993" y="228.19000000000005" scaleX="1" scaleY="1"/>
+		<e:Label text="取出" x="528.68" y="316.52" fontFamily="SimHei" size="40" textColor="0x604524" scaleX="1" scaleY="1"/>
+		<e:Label text="存入" x="248.36" y="316.84" fontFamily="SimHei" size="40" textColor="0x604524" scaleX="1" scaleY="1"/>
+		<e:EditableText id="txtInNum" width="461.34" height="34.66" text="" x="283.33000000000004" y="161.66999999999996" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:EditableText id="txtGSBankPwd" width="461.34" height="34.66" text="" x="283.33000000000004" y="234.83999999999992" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+	</e:Group>
+	<e:Group id="groupGive" width="860" height="361.33" x="228" y="296" anchorOffsetX="0" anchorOffsetY="0" visible="false">
+		<e:Image source="bank_txtBg_png" x="269.28" y="22.73" scaleX="1" scaleY="1"/>
+		<e:Image source="bank_txtBg_png" x="269.28" y="96.02" scaleX="1" scaleY="1"/>
+		<e:EditableText id="txtGiveId" width="461.34" height="34.66" text="" x="292.66" y="29.5" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:EditableText id="txtGiveNum" width="461.34" height="34.66" text="" x="292.66" y="102.67" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:Label text="赠送ID：" x="82.66" y="24.04" fontFamily="SimHei" size="40" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="200" textAlign="right"/>
+		<e:Image source="bank_txtBg_png" x="279.28" y="234.25" scaleX="1" scaleY="1"/>
+		<e:EditableText id="txtBankPwd" width="461.34" height="34.66" text="" x="302.66" y="241.02" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:Label text="银行密码：" x="92.66" y="235.56" fontFamily="SimHei" size="40" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="200" textAlign="right"/>
+		<e:Label text="赠送金额：" x="82.66" y="97.33" fontFamily="SimHei" size="40" textColor="0x604524" scaleX="1" scaleY="1" textAlign="right"/>
+		<e:Image id="imgTenW" source="btnQuit_png" x="90" y="170" anchorOffsetX="0" width="95.67" anchorOffsetY="0" height="50"/>
+		<e:Label text="十万" x="97.54" y="180" fontFamily="SimHei" size="25" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="80" textAlign="center" verticalAlign="middle"/>
+		<e:Image id="imgOneQW" source="btnQuit_png" x="539.51" y="170" anchorOffsetX="0" width="95.67" anchorOffsetY="0" height="50"/>
+		<e:Label text="一千万" x="545.75" y="180" fontFamily="SimHei" size="25" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="80" textAlign="center" verticalAlign="middle"/>
+		<e:Image id="imgTenFiveBW" source="btnQuit_png" x="389.83" y="170" anchorOffsetX="0" width="95.67" anchorOffsetY="0" height="50"/>
+		<e:Label text="五百万" x="396.82" y="180" fontFamily="SimHei" size="25" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="80" textAlign="center" verticalAlign="middle"/>
+		<e:Image id="imgOneBaiW" source="btnQuit_png" x="239.98000000000002" y="170" anchorOffsetX="0" width="95.67" anchorOffsetY="0" height="50"/>
+		<e:Label text="一百万" x="247.72000000000003" y="180" fontFamily="SimHei" size="25" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="80" textAlign="center" verticalAlign="middle"/>
+		<e:Image id="imgOneYi" source="btnQuit_png" x="690.3" y="170" anchorOffsetX="0" width="95.67" anchorOffsetY="0" height="50"/>
+		<e:Label text="一亿" x="695.29" y="180" fontFamily="SimHei" size="25" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="80" textAlign="center" verticalAlign="middle"/>
+		<e:Image id="imgGiveOK" source="btnbg2_png" x="546.97" y="289.37" anchorOffsetY="0" height="59.27" anchorOffsetX="0" width="210.03"/>
+		<e:Label text="确认赠送" x="564.82" y="302.5" fontFamily="SimHei" size="25" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="172" textAlign="center" verticalAlign="middle" anchorOffsetY="0" height="33"/>
+	</e:Group>
+	<e:Group id="groupRecord" width="860" height="361.33" x="238" y="306" anchorOffsetX="0" anchorOffsetY="0" visible="false">
+		<e:Label text="交易日期" x="32.65" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
+		<e:Label text="交易金额" x="544.43" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
+		<e:Label text="收款人ID" x="385.76" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
+		<e:Label text="汇款人ID" x="223.83" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
+		<e:Label text="信用评价" x="725.63" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
+		<e:Scroller id="svData" width="860" height="318.67" x="0" y="42.66" scrollPolicyH="off" scrollPolicyV="on" anchorOffsetY="0">
+			<e:List id="dataList" width="100%" height="316" x="0" y="22.67" anchorOffsetY="0">
+				<e:layout>
+					<e:VerticalLayout />
+				</e:layout>
+			</e:List>
+		</e:Scroller>
+	</e:Group>
 </e:Skin>

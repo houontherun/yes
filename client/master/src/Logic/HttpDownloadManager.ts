@@ -1,7 +1,7 @@
 // TypeScript file
 
 // TypeScript file
-class HttpDownloadManager extends egret.EventDispatcher {
+class HttpDownloadManager extends Dispatcher {
     public static Instance : HttpDownloadManager = new HttpDownloadManager();
     constructor() {
         super();

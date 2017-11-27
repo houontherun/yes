@@ -29,8 +29,8 @@ var gameUI;
             var scaY = img.scaleY;
             img.x += img.width / 2;
             img.y += img.height / 2;
-            img.anchorOffsetX = img.width / 2;
-            img.anchorOffsetY = img.height / 2;
+            // img.anchorOffsetX = img.width/2
+            // img.anchorOffsetY = img.height/2            
             img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, function () {
                 img.scaleX = scaX * 0.8;
                 img.scaleY = scaY * 0.8;

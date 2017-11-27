@@ -43,15 +43,15 @@ var NetworkManager = (function (_super) {
     };
     NetworkManager.prototype.onSocketOpen = function () {
         console.log("连接成功 ip=" + this.ip + " port=" + this.port.toString());
-        this.dispatchEventWith(constant.event.network.on_connect_succeed);
+        this.dispatchEvent(constant.event.network.on_connect_succeed);
     };
     NetworkManager.prototype.onSocketClose = function () {
         console.log("WebSocketClose");
-        this.dispatchEventWith(constant.event.network.on_connect_close);
+        this.dispatchEvent(constant.event.network.on_connect_close);
     };
     NetworkManager.prototype.onSocketError = function () {
         console.log("WebSocketError");
-        this.dispatchEventWith(constant.event.network.on_socket_error);
+        this.dispatchEvent(constant.event.network.on_socket_error);
     };
     NetworkManager.prototype.onReceiveMessage = function (e) {
         var byte = new egret.ByteArray();
@@ -76,6 +76,6 @@ var NetworkManager = (function (_super) {
     };
     NetworkManager.Instance = new NetworkManager();
     return NetworkManager;
-}(egret.EventDispatcher));
+}(Dispatcher));
 __reflect(NetworkManager.prototype, "NetworkManager");
 //# sourceMappingURL=NetworkManager.js.map

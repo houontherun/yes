@@ -44,6 +44,6 @@ var HttpDownloadManager = (function (_super) {
     };
     HttpDownloadManager.Instance = new HttpDownloadManager();
     return HttpDownloadManager;
-}(egret.EventDispatcher));
+}(Dispatcher));
 __reflect(HttpDownloadManager.prototype, "HttpDownloadManager");
 //# sourceMappingURL=HttpDownloadManager.js.map

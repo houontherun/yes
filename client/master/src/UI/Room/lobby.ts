@@ -1,6 +1,88 @@
 // 游戏大厅主UI
 
+var game_config = [
+    {
+        type_name:"0扑克",
+        icon:"default.png",
+        childs:[
+            {
+                id:100,
+                name:"0斗地主",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:101,
+                name:"斗牛",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:102,
+                name:"炸金花",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:103,
+                name:"21点",
+                icon:"resource/assets/bg.png"
+            }
+        ]
+    },
+    {
+        type_name:"1麻将",
+        icon:"default.png",
+        childs:[
+            {
+                id:104,
+                name:"1江西麻将",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:105,
+                name:"湖南麻将",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:106,
+                name:"四川麻将",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:107,
+                name:"福建麻将",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:108,
+                name:"上海麻将",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:109,
+                name:"杭州麻将",
+                icon:"resource/assets/bg.png"
+            },
+            {
+                id:110,
+                name:"火星麻将",
+                icon:"resource/assets/bg.png"
+            }
+        ]
+    },
+    {
+        type_name:"2棋类",
+        icon:"default.png",
+        childs:[
+            {
+                id:111,
+                name:"2开心消消乐",
+                icon:"resource/assets/bg.png"
+            }
+        ]
+    }
+];
+
 namespace gameUI{
+
 	class game_item extends eui.ItemRenderer{
 		constructor() {
 			super();
@@ -42,24 +124,23 @@ namespace gameUI{
 	}
 
 	export class lobby extends gameUI.base{
-
 		public onload():void {
 			super.onload()
 			this.svGame.horizontalScrollBar	= null;
 			this.listGames.itemRenderer = game_item;
-			this.listGames.dataProvider = new eui.ArrayCollection(this.Data[0].childs);
+			this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
 
 			this.AddClick(this.btnPuke, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(this.Data[0].childs);
+				this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
 				this.listGames.validateNow();
 			}, this)
 
 			this.AddClick(this.btnMajiang, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(this.Data[1].childs);
+				this.listGames.dataProvider = new eui.ArrayCollection(game_config[1].childs);
 				this.listGames.validateNow();                
             }, this );
 			this.AddClick(this.btnQilei, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(this.Data[2].childs);
+				this.listGames.dataProvider = new eui.ArrayCollection(game_config[2].childs);
 				this.listGames.validateNow();                
             }, this );
 
@@ -99,7 +180,6 @@ namespace gameUI{
                 
             }, this)
 			this.AddClick(this.imgCoypBg, ()=>{
-
 			}, this)
 
 			// this.svGame.addEventListener(egret.Event.CHANGE, (event:Event)=>{
@@ -107,6 +187,21 @@ namespace gameUI{
 			// 	// console.log(this.listGames.numElements)
 			// 	// this.updateChildSize(offsetX)
 			// }, this)
+
+			PlayerManager.Instance.addEventListener(constant.event.logic.on_player_data_update, this.updatePlayerInfo, this)
+			this.updatePlayerInfo(PlayerManager.Instance.Data)
+		}
+		
+        public onUnload():void{
+            super.onUnload()
+			PlayerManager.Instance.removeEventListener(constant.event.logic.on_player_data_update, this.updatePlayerInfo, this)
+        }
+
+		private updatePlayerInfo(data):void{
+			this.txtUsrId.text = "ID:" + data.UserId.toString()
+			this.txtGoldNum.text = data.Gold.toString()
+			this.txtFbNum.text = data.Cardnum.toString()
+			this.txtUserName.text = data.Name.toString()
 		}
 		// private updateChildSize(offsetX:number):void{
 		// 	var itemWid = 277
@@ -128,6 +223,23 @@ namespace gameUI{
 		// 		}
 		// 	}
 		// }
+		public groupUserinfo:eui.Group;
+		public imgFbBg:eui.Image;
+		public imgFbIcon:eui.Image;
+		public imgAddFb:eui.Image;
+		public imgGoldBg:eui.Image;
+		public imgGold:eui.Image;
+		public imgGoldAdd:eui.Image;
+		public imgNameBg:eui.Image;
+		public imgHeadbg:eui.Image;
+		public imgHeadIcon:eui.Image;
+		public txtGoldNum:eui.Label;
+		public txtFbNum:eui.Label;
+		public imgCoypBg:eui.Image;
+		public txtUserName:eui.Label;
+		public txtCopyId:eui.Label;
+		public txtUsrId:eui.Label;
+
 		
 		private svGame:eui.Scroller;
 		private listGames:eui.List;
@@ -149,10 +261,5 @@ namespace gameUI{
 		public imgShare:eui.Image;
 		public imgShop:eui.Image;
 		public btnEnter:eui.Image;
-
-		public imgHeadIcon:eui.Image;
-		public imgCoypBg:eui.Image;
-
-
 	}
 }
