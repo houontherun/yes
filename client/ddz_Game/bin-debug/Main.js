@@ -59,6 +59,9 @@ var Main = (function (_super) {
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
         RES.loadGroup("preload");
+        RES.loadGroup("face");
+        RES.loadGroup("ddzRes");
+        RES.loadGroup("poke");
     };
     /**
      * 主题文件加载完成,开始预加载
@@ -73,7 +76,7 @@ var Main = (function (_super) {
      * preload resource group is loaded
      */
     Main.prototype.onResourceLoadComplete = function (event) {
-        if (event.groupName == "preload") {
+        if (event.groupName == "ddzRes") {
             this.stage.removeChild(this.loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
@@ -111,7 +114,7 @@ var Main = (function (_super) {
      * loading process of preload resource
      */
     Main.prototype.onResourceProgress = function (event) {
-        if (event.groupName == "preload") {
+        if (event.groupName == "ddzRes") {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     };

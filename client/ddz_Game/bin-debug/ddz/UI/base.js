@@ -14,17 +14,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var gameUI;
 (function (gameUI) {
-    var base = (function (_super) {
-        __extends(base, _super);
-        function base(skin) {
+    var UIbase = (function (_super) {
+        __extends(UIbase, _super);
+        function UIbase(skin) {
             var _this = _super.call(this) || this;
             _this.once(eui.UIEvent.COMPLETE, _this.onload, _this);
             _this.skinName = skin;
             return _this;
         }
-        base.prototype.onload = function () {
+        UIbase.prototype.onload = function () {
         };
-        base.prototype.AddClick = function (img, onClick, thisObject) {
+        UIbase.prototype.AddClick = function (img, onClick, thisObject) {
             var scaX = img.scaleX;
             var scaY = img.scaleY;
             img.x += img.width / 2;
@@ -41,7 +41,7 @@ var gameUI;
                 onClick();
             }, thisObject);
         };
-        base.prototype.SetImageUrl = function (img, url) {
+        UIbase.prototype.SetImageUrl = function (img, url) {
             var texture = RES.getRes(url);
             if (texture) {
                 img.width = texture.textureWidth;
@@ -49,9 +49,9 @@ var gameUI;
                 img.texture = texture;
             }
         };
-        return base;
+        return UIbase;
     }(eui.Component));
-    gameUI.base = base;
-    __reflect(base.prototype, "gameUI.base");
+    gameUI.UIbase = UIbase;
+    __reflect(UIbase.prototype, "gameUI.UIbase");
 })(gameUI || (gameUI = {}));
 //# sourceMappingURL=base.js.map

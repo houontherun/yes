@@ -1,8 +1,8 @@
 namespace Card {
-export class ui_pokerCardItem extends gameUI.base implements  eui.UIComponent {
+export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent {
     private img_card:eui.Image;
 	private card : PokerCard;
-	private bSelect:boolean;
+	private bSelect:boolean = false;
 	private posY:number;
 	public constructor() {
 		super("resource/eui_skins/ddz_ui/ui_pokerCard.exml");
@@ -43,7 +43,7 @@ export class ui_pokerCardItem extends gameUI.base implements  eui.UIComponent {
 
 	protected onclick_tap(){
        this.bSelect = !this.bSelect;
-
+       this.alpha = 1;
 	   if(this.bSelect)
 	   {
 		   this.y -= 20;

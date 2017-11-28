@@ -1,7 +1,7 @@
 // TypeScript file
 
 namespace gameUI{
-    export class base extends eui.Component{
+    export class UIbase extends eui.Component{
         constructor(skin?:any){
             super();
 
