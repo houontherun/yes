@@ -145,6 +145,7 @@ var Main = (function (_super) {
     };
     Main.prototype.initManagers = function () {
         PlayerManager.Instance.Init();
+        RoomManager.Instance.Init();
     };
     /**
      * 创建场景界面

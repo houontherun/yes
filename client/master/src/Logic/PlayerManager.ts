@@ -94,15 +94,17 @@ class PlayerManager extends Dispatcher {
         MessageManager.Instance.addEventListener(constant.msg.SC_WITHDRAW_MONEY, this.onWithdrawGoldRet, this)
         MessageManager.Instance.addEventListener(constant.msg.SC_GIVE_GOLD_2_OTHER, this.onGiveGoldRet, this)
         MessageManager.Instance.addEventListener(constant.msg.SC_RECV_OTHER_GOLD, this.onReciveGold, this)
+        MessageManager.Instance.addEventListener(constant.msg.SC_CHANGE_BANK_PASSWD, this.onModifyBankPwdRet, this)
     }
     private onLoginRet(data):void{
-        if(data.error != 0){
+        if(data.ret != 0){
             return
         }
         this._data = new PlayerData(data)
         this.dispatchEvent(constant.event.logic.on_player_data_update, this._data)
     }
 
+    // 请求存钱
     public SaveGold(num):void{
         MessageManager.Instance.SendMessage({
             protocol:constant.msg.CS_SAVE_MONEY,
@@ -116,6 +118,7 @@ class PlayerManager extends Dispatcher {
         }
         this.updateData(data)
     }
+    // 请求取钱
     public WithdrawGold(num):void{
         MessageManager.Instance.SendMessage({
             protocol:constant.msg.CS_WITHDRAW_MONEY,
@@ -129,6 +132,7 @@ class PlayerManager extends Dispatcher {
         }
         this.updateData(data)
     }
+    // 请求赠送
     public GiveGold(num, uid):void{
         MessageManager.Instance.SendMessage({
             protocol:constant.msg.CS_GIVE_GOLD_2_OTHER,
@@ -143,7 +147,24 @@ class PlayerManager extends Dispatcher {
         }
         this.updateData(data)
     }
+    // 收到他人赠送
     private onReciveGold(data):void{
         this.updateData(data)
+    }
+    // 修改银行密码
+    public modifyBankPwd(oldpwd:string, newpwd:string){
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_CHANGE_BANK_PASSWD,
+            old:oldpwd,
+            pwd:newpwd
+        })
+    }    
+    private onModifyBankPwdRet(data:any):void{
+        if(data.ret == 0){
+            alert('修改成功')
+        }
+        else{
+            alert('修改失败')
+        }
     }
 }

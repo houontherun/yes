@@ -19,8 +19,10 @@ var game_config = [
         childs: [
             {
                 id: 100,
-                name: "0斗地主",
-                icon: "resource/assets/bg.png"
+                name: "斗地主",
+                icon: "resource/assets/bg.png",
+                room_group: "aa",
+                game_group: "aaa"
             },
             {
                 id: 101,
@@ -45,7 +47,7 @@ var game_config = [
         childs: [
             {
                 id: 104,
-                name: "1江西麻将",
+                name: "江西麻将",
                 icon: "resource/assets/bg.png"
             },
             {
@@ -53,31 +55,6 @@ var game_config = [
                 name: "湖南麻将",
                 icon: "resource/assets/bg.png"
             },
-            {
-                id: 106,
-                name: "四川麻将",
-                icon: "resource/assets/bg.png"
-            },
-            {
-                id: 107,
-                name: "福建麻将",
-                icon: "resource/assets/bg.png"
-            },
-            {
-                id: 108,
-                name: "上海麻将",
-                icon: "resource/assets/bg.png"
-            },
-            {
-                id: 109,
-                name: "杭州麻将",
-                icon: "resource/assets/bg.png"
-            },
-            {
-                id: 110,
-                name: "火星麻将",
-                icon: "resource/assets/bg.png"
-            }
         ]
     },
     {
@@ -106,25 +83,18 @@ var gameUI;
             this.updateUI();
         };
         game_item.prototype.onClick = function () {
-            if (this.data != null && this.data != undefined) {
-                UIManager.Instance.LoadUI(UI.create_room, this.data);
+            if (this.data.id == 100) {
+                UIManager.Instance.LoadUI(UI.ddzSelectRoom);
+            }
+            else {
+                alert("暂未开放功能");
             }
         };
-        Object.defineProperty(game_item.prototype, "isLoaded", {
-            get: function () {
-                return this.lblName != null && this.imgIcon != null;
-            },
-            enumerable: true,
-            configurable: true
-        });
         game_item.prototype.updateUI = function () {
-            if (!this.isLoaded) {
+            if (this.imgBg == null || this.imgBg == undefined)
                 return;
-            }
-            this.imgIcon.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-            this.imgIcon.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-            this.lblName.text = this.data.name;
-            this.imgIcon.source = this.data.icon;
+            this.imgBg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+            this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         };
         game_item.prototype.dataChanged = function () {
             this.updateUI();
@@ -188,6 +158,14 @@ var gameUI;
             this.imgHeadIcon.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
             }, this);
             this.AddClick(this.imgCoypBg, function () {
+                var aa = {
+                    a: 1,
+                    b: 2,
+                    c: 3
+                };
+                for (var key in aa) {
+                    console.log('key:' + key + ' v:' + aa[key]);
+                }
             }, this);
             // this.svGame.addEventListener(egret.Event.CHANGE, (event:Event)=>{
             // 	var offsetX = this.listGames.scrollRect.x //最左边是0

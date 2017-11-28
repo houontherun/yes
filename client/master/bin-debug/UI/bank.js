@@ -26,6 +26,13 @@ var gameUI;
             this.updateUI();
         };
         rankItemRander.prototype.updateUI = function () {
+            //{guid, ruid, t, gold, id}
+            if (this.data != null && this.data != undefined && this.imgBg != undefined && this.imgBg != null) {
+                this.txtDate.text = this.data.t.toString();
+                this.txtSendId.text = this.data.guid.toString();
+                this.txtRecvId.text = this.data.ruid.toString();
+                this.txtNumber.text = this.data.gold.toString();
+            }
         };
         rankItemRander.prototype.dataChanged = function () {
             if (this.imgBg != undefined && this.imgBg != null) {
@@ -46,9 +53,39 @@ var gameUI;
             _this.currentTabIndex = -1;
             return _this;
         }
+        bank.prototype.setGiveNum = function (num) {
+            if (PlayerManager.Instance.Data.Gold >= num) {
+                this.txtGiveNum.text = num.toString();
+            }
+            else {
+                alert("金币不够");
+            }
+        };
         bank.prototype.onload = function () {
             var _this = this;
             _super.prototype.onload.call(this);
+            this.AddClick(this.imgIn, function () {
+                var num = parseInt(_this.txtInNum.text);
+                PlayerManager.Instance.SaveGold(num);
+            }, this);
+            this.AddClick(this.imgOut, function () {
+                var num = parseInt(_this.txtInNum.text);
+                PlayerManager.Instance.WithdrawGold(num);
+            }, this);
+            this.AddClick(this.imgGiveOK, function () {
+                if (_this.txtGiveId.text == null || _this.txtGiveId.text == "" || _this.txtGiveNum.text == null || _this.txtGiveNum.text == "") {
+                    alert("请填写ID或金额");
+                    return;
+                }
+                var id = parseInt(_this.txtGiveId.text);
+                var num = parseInt(_this.txtGiveNum.text);
+                PlayerManager.Instance.GiveGold(num, id);
+            }, this);
+            this.AddClick(this.imgTenW, function () { _this.setGiveNum(100000); }, this);
+            this.AddClick(this.imgOneQW, function () { _this.setGiveNum(10000000); }, this);
+            this.AddClick(this.imgTenFiveBW, function () { _this.setGiveNum(5000000); }, this);
+            this.AddClick(this.imgOneBaiW, function () { _this.setGiveNum(1000000); }, this);
+            this.AddClick(this.imgOneYi, function () { _this.setGiveNum(100000000); }, this);
             this.AddClick(this.btnClose, function () {
                 _this.Close();
             }, this);
@@ -68,13 +105,14 @@ var gameUI;
             // bind oper data
             this.dataList.itemRenderer = rankItemRander;
             this.dataList.itemRendererSkinName = "resource/custom_skins/bankOperItemSkin.exml";
-            var rankData = [
-                { index: 1, name: "张三", value: 50000 },
-                { index: 2, name: "李四", value: 40000 },
-            ];
-            this.dataList.dataProvider = new eui.ArrayCollection(rankData);
             PlayerManager.Instance.addEventListener(constant.event.logic.on_player_data_update, this.updateUI, this);
             this.updateUI(PlayerManager.Instance.Data);
+            MessageManager.Instance.addEventListener(constant.msg.SC_GET_BANK_RECORD, this.onGetBankRecord, this);
+            this.getBankRecord(0);
+        };
+        bank.prototype.onUnload = function () {
+            _super.prototype.onUnload.call(this);
+            MessageManager.Instance.removeEventListener(constant.msg.SC_GET_BANK_RECORD, this.onGetBankRecord, this);
         };
         bank.prototype.updateUI = function (data) {
             this.txtCurrent.text = Util.formatNum(data.Gold);
@@ -96,6 +134,17 @@ var gameUI;
                     this.tabText[i].textColor = unSelectColor;
                     this.tabGroup[i].visible = false;
                 }
+            }
+        };
+        bank.prototype.getBankRecord = function (begin) {
+            MessageManager.Instance.SendMessage({
+                protocol: constant.msg.CS_GET_BANK_RECORD,
+                begin: begin,
+            });
+        };
+        bank.prototype.onGetBankRecord = function (data) {
+            if (data.ret == 0) {
+                this.dataList.dataProvider = new eui.ArrayCollection(data.list); //list []{guid, ruid, t, gold, id}
             }
         };
         return bank;

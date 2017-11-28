@@ -140,6 +140,7 @@ class Main extends eui.UILayer {
 
     private initManagers():void{
         PlayerManager.Instance.Init()
+        RoomManager.Instance.Init()
     }
     /**
      * 创建场景界面
@@ -147,7 +148,6 @@ class Main extends eui.UILayer {
      */
     protected startCreateScene(): void {
         this.initManagers();
-        
         // let sky = this.createBitmapByName("bg_jpg");
         // this.addChild(sky);
         // let stageW = this.stage.stageWidth;

@@ -25,6 +25,13 @@ var Util = (function () {
         console.log('res ' + res);
         return res;
     };
+    // 本地存储
+    Util.getItem = function (key) {
+        return egret.localStorage.getItem(key);
+    };
+    Util.setItem = function (key, value) {
+        return egret.localStorage.setItem(key, value);
+    };
     return Util;
 }());
 __reflect(Util.prototype, "Util");

@@ -28,18 +28,14 @@ var gameUI;
             this.btnLogin.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 NetworkManager.Instance.addEventListener(constant.event.network.on_connect_succeed, _this.onConSucceed, _this);
                 NetworkManager.Instance.Connect(constant.connect_ip, constant.connect_port);
-                // var lgdata = {
-                //     userid : 10086,
-                //     gold:512,
-                //     bankgold:3000,
-                //     diamond:12,
-                //     card:3,
-                //     openid:"test",
-                //     name:"itol",
-                //     error:0,
-                // }
-                // this.onLoginRet(lgdata)
+                // ----- for test -------
+                // this.onConSucceed()
+                // ----------------------
             }, this);
+            var storageUserName = Util.getItem('username');
+            if (storageUserName != null) {
+                this.txtUserName.text = storageUserName;
+            }
         };
         login.prototype.onConSucceed = function () {
             NetworkManager.Instance.removeEventListener(constant.event.network.on_connect_succeed, this.onConSucceed, this);
@@ -51,12 +47,28 @@ var gameUI;
                 protocol: constant.msg.CS_LOGIN,
                 openid: this.txtUserName.text
             });
+            // ----- for test --------
+            // var lgdata = {
+            //     userid : 10086,
+            //     gold:512,
+            //     bankgold:3000,
+            //     diamond:12,
+            //     card:3,
+            //     openid:"test",
+            //     name:"itol",
+            //     sex:1,
+            //     error:0,
+            //     protocol:2001,
+            // }
+            // MessageManager.Instance.DispatchMessage(lgdata)
+            // ---------------------------
         };
         login.prototype.onLoginRet = function (data) {
-            if (data.error != 0) {
-                console.log("login error code=" + data.error);
+            if (data.ret != 0) {
+                console.log("login error code=" + data.ret);
                 return;
             }
+            Util.setItem('username', this.txtUserName.text);
             this.Close();
             UIManager.Instance.LoadUI(UI.lobby);
         };
