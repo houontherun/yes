@@ -73,9 +73,16 @@ var gameUI;
             this.AddClick(this.btnClose, function () {
                 _this.Close();
             }, this);
+            MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN, this.onPlayerSitDown, this);
         };
         ddzRoom.prototype.onUnload = function () {
             _super.prototype.onUnload.call(this);
+            MessageManager.Instance.removeEventListener(constant.msg.SC_USER_SIT_DOWN, this.onPlayerSitDown, this);
+        };
+        ddzRoom.prototype.onPlayerSitDown = function (data) {
+            if (data.ret == 0) {
+                // todo
+            }
         };
         return ddzRoom;
     }(gameUI.base));

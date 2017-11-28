@@ -287,8 +287,6 @@ var RoomManager = (function (_super) {
     };
     RoomManager.prototype.onPlayerSitDown = function (data) {
         if (data.ret == 0) {
-            if (this.currentRoom != null && this.currentRoom != undefined) {
-            }
         }
     };
     // 起来
