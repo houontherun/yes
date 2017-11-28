@@ -23,6 +23,18 @@
 		{
 			"keys": "rank_1_png,rank_2_png,rank_3_png,rank_bg_png,rank_bg2_png,rank_bg3_png,rank_bg4_png,rank_bg5_png,rank_bg6_png,rank_caifu_png,rank_fa_png,rank_fangka_png,rank_index_png,rank_meili_png,rank_nichen_png,rank_paiming_png,rank_rank_png,rank_tab_png,rank_tab2_png,rank_xinyong_png",
 			"name": "rank"
+		},
+		{
+			"keys": "face_1_png,face_2_png,face_3_png",
+			"name": "face"
+		},
+		{
+			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,huanzuo_png,lose_png,score_bg0_png,tuoguan_png,weixinliaotian_png,win_png,wode-jinbi_png,yizhunbei_png,yuyin_png,zhunbei_png,zuozi_png",
+			"name": "ddzRes"
+		},
+		{
+			"keys": "card_0_1_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_1_1_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_2_1_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_3_1_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_4_14_png,card_4_15_png,card_back_png",
+			"name": "poke"
 		}
 	],
 	"resources": [
@@ -610,6 +622,401 @@
 			"url": "assets/rank/rank_bg6.png",
 			"type": "image",
 			"name": "rank_bg6_png"
+		},
+		{
+			"url": "assets/Poker/face/face_1.png",
+			"type": "image",
+			"name": "face_1_png"
+		},
+		{
+			"url": "assets/Poker/face/face_2.png",
+			"type": "image",
+			"name": "face_2_png"
+		},
+		{
+			"url": "assets/Poker/face/face_3.png",
+			"type": "image",
+			"name": "face_3_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/Type_Land.png",
+			"type": "image",
+			"name": "Type_Land_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/Type_trust.png",
+			"type": "image",
+			"name": "Type_trust_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/beijing.png",
+			"type": "image",
+			"name": "beijing_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/beishu.png",
+			"type": "image",
+			"name": "beishu_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/beishubeiban.png",
+			"type": "image",
+			"name": "beishubeiban_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/btn1.png",
+			"type": "image",
+			"name": "btn1_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/btn2.png",
+			"type": "image",
+			"name": "btn2_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/dibulanbeiban.png",
+			"type": "image",
+			"name": "dibulanbeiban_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/fanhui.png",
+			"type": "image",
+			"name": "fanhui_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/game_clock.png",
+			"type": "image",
+			"name": "game_clock_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/huanzuo.png",
+			"type": "image",
+			"name": "huanzuo_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/lose.png",
+			"type": "image",
+			"name": "lose_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/score_bg0.png",
+			"type": "image",
+			"name": "score_bg0_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/tuoguan.png",
+			"type": "image",
+			"name": "tuoguan_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/weixinliaotian.png",
+			"type": "image",
+			"name": "weixinliaotian_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/win.png",
+			"type": "image",
+			"name": "win_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/wode-jinbi.png",
+			"type": "image",
+			"name": "wode-jinbi_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/yizhunbei.png",
+			"type": "image",
+			"name": "yizhunbei_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/yuyin.png",
+			"type": "image",
+			"name": "yuyin_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/zhunbei.png",
+			"type": "image",
+			"name": "zhunbei_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/zuozi.png",
+			"type": "image",
+			"name": "zuozi_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_1.png",
+			"type": "image",
+			"name": "card_0_1_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_10.png",
+			"type": "image",
+			"name": "card_0_10_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_11.png",
+			"type": "image",
+			"name": "card_0_11_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_12.png",
+			"type": "image",
+			"name": "card_0_12_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_13.png",
+			"type": "image",
+			"name": "card_0_13_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_2.png",
+			"type": "image",
+			"name": "card_0_2_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_3.png",
+			"type": "image",
+			"name": "card_0_3_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_4.png",
+			"type": "image",
+			"name": "card_0_4_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_5.png",
+			"type": "image",
+			"name": "card_0_5_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_6.png",
+			"type": "image",
+			"name": "card_0_6_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_7.png",
+			"type": "image",
+			"name": "card_0_7_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_8.png",
+			"type": "image",
+			"name": "card_0_8_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_0_9.png",
+			"type": "image",
+			"name": "card_0_9_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_1.png",
+			"type": "image",
+			"name": "card_1_1_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_10.png",
+			"type": "image",
+			"name": "card_1_10_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_11.png",
+			"type": "image",
+			"name": "card_1_11_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_12.png",
+			"type": "image",
+			"name": "card_1_12_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_13.png",
+			"type": "image",
+			"name": "card_1_13_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_2.png",
+			"type": "image",
+			"name": "card_1_2_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_3.png",
+			"type": "image",
+			"name": "card_1_3_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_4.png",
+			"type": "image",
+			"name": "card_1_4_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_5.png",
+			"type": "image",
+			"name": "card_1_5_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_6.png",
+			"type": "image",
+			"name": "card_1_6_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_7.png",
+			"type": "image",
+			"name": "card_1_7_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_8.png",
+			"type": "image",
+			"name": "card_1_8_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_1_9.png",
+			"type": "image",
+			"name": "card_1_9_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_1.png",
+			"type": "image",
+			"name": "card_2_1_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_10.png",
+			"type": "image",
+			"name": "card_2_10_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_11.png",
+			"type": "image",
+			"name": "card_2_11_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_12.png",
+			"type": "image",
+			"name": "card_2_12_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_13.png",
+			"type": "image",
+			"name": "card_2_13_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_2.png",
+			"type": "image",
+			"name": "card_2_2_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_3.png",
+			"type": "image",
+			"name": "card_2_3_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_4.png",
+			"type": "image",
+			"name": "card_2_4_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_5.png",
+			"type": "image",
+			"name": "card_2_5_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_6.png",
+			"type": "image",
+			"name": "card_2_6_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_7.png",
+			"type": "image",
+			"name": "card_2_7_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_8.png",
+			"type": "image",
+			"name": "card_2_8_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_2_9.png",
+			"type": "image",
+			"name": "card_2_9_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_1.png",
+			"type": "image",
+			"name": "card_3_1_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_10.png",
+			"type": "image",
+			"name": "card_3_10_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_11.png",
+			"type": "image",
+			"name": "card_3_11_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_12.png",
+			"type": "image",
+			"name": "card_3_12_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_13.png",
+			"type": "image",
+			"name": "card_3_13_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_2.png",
+			"type": "image",
+			"name": "card_3_2_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_3.png",
+			"type": "image",
+			"name": "card_3_3_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_4.png",
+			"type": "image",
+			"name": "card_3_4_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_5.png",
+			"type": "image",
+			"name": "card_3_5_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_6.png",
+			"type": "image",
+			"name": "card_3_6_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_7.png",
+			"type": "image",
+			"name": "card_3_7_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_8.png",
+			"type": "image",
+			"name": "card_3_8_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_3_9.png",
+			"type": "image",
+			"name": "card_3_9_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_4_14.png",
+			"type": "image",
+			"name": "card_4_14_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_4_15.png",
+			"type": "image",
+			"name": "card_4_15_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_back.png",
+			"type": "image",
+			"name": "card_back_png"
 		}
 	]
 }
