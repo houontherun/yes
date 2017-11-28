@@ -3,7 +3,6 @@
   "exmls": [
     "resource/eui_skins/ddz_ui/ui_game.exml",
     "resource/eui_skins/ddz_ui/ui_gameSettle.exml",
-    "resource/eui_skins/ddz_ui/ui_playerItem.exml",
     "resource/eui_skins/ddz_ui/ui_pokerCard.exml"
   ],
   "skins": {

@@ -50,6 +50,9 @@ class Main extends eui.UILayer {
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
         RES.loadGroup("preload");
+        RES.loadGroup("face");
+        RES.loadGroup("ddzRes");
+        RES.loadGroup("poke");
     }
     private isThemeLoadEnd: boolean = false;
     /**
@@ -66,7 +69,7 @@ class Main extends eui.UILayer {
      * preload resource group is loaded
      */
     private onResourceLoadComplete(event: RES.ResourceEvent): void {
-        if (event.groupName == "preload") {
+        if (event.groupName == "ddzRes") {
             this.stage.removeChild(this.loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
@@ -104,7 +107,7 @@ class Main extends eui.UILayer {
      * loading process of preload resource
      */
     private onResourceProgress(event: RES.ResourceEvent): void {
-        if (event.groupName == "preload") {
+        if (event.groupName == "ddzRes") {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }

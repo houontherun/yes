@@ -25,8 +25,21 @@
 			"name": "rank"
 		},
 		{
+<<<<<<< HEAD
 			"keys": "touxiangbeiban2_png,zuohaopai_png,zuozi2_png",
 			"name": "ddz_lobby"
+=======
+			"keys": "face_1_png,face_2_png,face_3_png",
+			"name": "face"
+		},
+		{
+			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,huanzuo_png,lose_png,score_bg0_png,tuoguan_png,weixinliaotian_png,win_png,wode-jinbi_png,yizhunbei_png,yuyin_png,zhunbei_png,zuozi_png",
+			"name": "ddzRes"
+		},
+		{
+			"keys": "card_0_1_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_1_1_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_2_1_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_3_1_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_4_14_png,card_4_15_png,card_back_png",
+			"name": "poke"
+>>>>>>> 3f23ad6971e9e3195c60eeb8acbdd894b70dac6a
 		}
 	],
 	"resources": [
@@ -616,6 +629,34 @@
 			"name": "rank_bg6_png"
 		},
 		{
+<<<<<<< HEAD
+=======
+			"url": "assets/Poker/face/face_1.png",
+			"type": "image",
+			"name": "face_1_png"
+		},
+		{
+			"url": "assets/Poker/face/face_2.png",
+			"type": "image",
+			"name": "face_2_png"
+		},
+		{
+			"url": "assets/Poker/face/face_3.png",
+			"type": "image",
+			"name": "face_3_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/Type_Land.png",
+			"type": "image",
+			"name": "Type_Land_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/Type_trust.png",
+			"type": "image",
+			"name": "Type_trust_png"
+		},
+		{
+>>>>>>> 3f23ad6971e9e3195c60eeb8acbdd894b70dac6a
 			"url": "assets/Poker/ddzRes/beijing.png",
 			"type": "image",
 			"name": "beijing_png"
@@ -676,6 +717,7 @@
 			"name": "tuoguan_png"
 		},
 		{
+<<<<<<< HEAD
 			"url": "assets/Poker/ddzRes/Type_Land.png",
 			"type": "image",
 			"name": "Type_Land_png"
@@ -686,6 +728,8 @@
 			"name": "Type_trust_png"
 		},
 		{
+=======
+>>>>>>> 3f23ad6971e9e3195c60eeb8acbdd894b70dac6a
 			"url": "assets/Poker/ddzRes/weixinliaotian.png",
 			"type": "image",
 			"name": "weixinliaotian_png"
@@ -721,6 +765,7 @@
 			"name": "zuozi_png"
 		},
 		{
+<<<<<<< HEAD
 			"url": "assets/Poker/face/face_1.png",
 			"type": "image",
 			"name": "face_1_png"
@@ -736,6 +781,8 @@
 			"name": "face_3_png"
 		},
 		{
+=======
+>>>>>>> 3f23ad6971e9e3195c60eeb8acbdd894b70dac6a
 			"url": "assets/Poker/poke/card_0_1.png",
 			"type": "image",
 			"name": "card_0_1_png"
@@ -1009,6 +1056,7 @@
 			"url": "assets/Poker/poke/card_back.png",
 			"type": "image",
 			"name": "card_back_png"
+<<<<<<< HEAD
 		},
 		{
 			"url": "assets/Common/fanhui.png",
@@ -1034,6 +1082,8 @@
 			"url": "assets/ddz_lobby/zuohaopai.png",
 			"type": "image",
 			"name": "zuohaopai_png"
+=======
+>>>>>>> 3f23ad6971e9e3195c60eeb8acbdd894b70dac6a
 		}
 	]
 }

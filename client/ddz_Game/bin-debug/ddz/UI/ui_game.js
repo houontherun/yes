@@ -25,6 +25,8 @@ var Card;
             _this.hardCardsArray = [];
             _this.otherPlayerNum = 2;
             _this.TargetCardsArray = [];
+            _this.cardBegin = -1;
+            _this.cardEnd = -1;
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddOtherPlayers, _this.addOtherPlayers, _this);
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, _this.AddhardCard, _this);
             _this.AddClick(_this.btn_tuoguan, function () {
@@ -51,40 +53,60 @@ var Card;
         ui_game.prototype.childrenCreated = function () {
             _super.prototype.childrenCreated.call(this);
             for (var i = 0; i < this.hardCardsArray.length; i++) {
+                this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.touchBegin, this);
                 this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_MOVE, this.touchMove, this);
-                this.group_handcards.addEventListener(egret.TouchEvent.TOUCH_END, this.touchEnd, this);
+                this.addEventListener(egret.TouchEvent.TOUCH_END, this.touchEnd, this);
             }
         };
         ui_game.prototype.InTargetCards = function (item) {
-            for (var i = this.TargetCardsArray.length - 1; i >= 0; i--) {
-                if (item == this.TargetCardsArray[i]) {
+            for (var i = this.hardCardsArray.length - 1; i >= 0; i--) {
+                if (item == this.hardCardsArray[i]) {
                     return i;
                 }
             }
             return -1;
         };
+        ui_game.prototype.touchBegin = function (evt) {
+            this.TargetCardsArray = [];
+            var index = this.InTargetCards(evt.currentTarget);
+            this.cardBegin = index;
+        };
         ui_game.prototype.touchMove = function (evt) {
             var index = this.InTargetCards(evt.currentTarget);
-            if (index < 0) {
-                this.TargetCardsArray.push(evt.currentTarget);
-            }
+            this.cardEnd = index;
             this.moving();
         };
         ui_game.prototype.touchEnd = function (evt) {
             this.CheckEnd();
         };
         ui_game.prototype.CheckEnd = function () {
+            if (this.cardBegin < 0 || this.cardEnd < 0)
+                return;
+            if (this.cardBegin == this.cardEnd)
+                return;
+            if (this.cardBegin < this.cardEnd)
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardBegin, this.cardEnd + 1);
+            else
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardEnd, this.cardBegin + 1);
+            for (var i = 0; i < this.TargetCardsArray.length; i++) {
+                this.TargetCardsArray[i].alpha = 1;
+                this.TargetCardsArray[i].SetShoot(!this.TargetCardsArray[i].Selected);
+            }
+            this.TargetCardsArray = [];
+            this.cardEnd = this.cardBegin = -1;
+        };
+        ui_game.prototype.moving = function () {
+            if (this.cardBegin < 0 || this.cardEnd < 0)
+                return;
+            if (this.cardBegin < this.cardEnd)
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardBegin, this.cardEnd + 1);
+            else
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardEnd, this.cardBegin + 1);
             for (var i = 0; i < this.hardCardsArray.length; i++) {
                 this.hardCardsArray[i].alpha = 1;
             }
-            for (var k = 0; k < this.TargetCardsArray.length; k++) {
-                this.TargetCardsArray[k].SetShoot(!this.TargetCardsArray[k].Selected);
-            }
-            this.TargetCardsArray = [];
-        };
-        ui_game.prototype.moving = function () {
             for (var i = 0; i < this.TargetCardsArray.length; i++) {
-                this.TargetCardsArray[i].alpha = 0.7;
+                this.TargetCardsArray[i].alpha = 0.8;
             }
         };
         ui_game.prototype.GetShootCard = function () {
@@ -106,7 +128,7 @@ var Card;
                 if (i < _this.cardTotalnum) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
-                    _card.setPos(36 * i, 22);
+                    _card.setPos(45 * i, 22);
                     _this.group_handcards.addChild(_card);
                     _this.hardCardsArray.push(_card);
                     i++;
@@ -167,7 +189,7 @@ var Card;
                 }
                 else {
                     var backCard = new eui.Image();
-                    backCard.scaleX = backCard.scaleY = 0.6;
+                    backCard.scaleX = backCard.scaleY = 0.56;
                     backCard.source = RES.getRes("card_back_png");
                     group.addChildAt(backCard, 5);
                     textNum = new eui.Label;
@@ -179,7 +201,7 @@ var Card;
                     if (seat == Card.Seat.Left) {
                         backCard.x = 250;
                         backCard.y = 200;
-                        textNum.x = 270;
+                        textNum.x = 278;
                         textNum.y = 240;
                     }
                     else {
@@ -219,7 +241,7 @@ var Card;
             }
         };
         return ui_game;
-    }(gameUI.base));
+    }(gameUI.UIbase));
     Card.ui_game = ui_game;
     __reflect(ui_game.prototype, "Card.ui_game");
 })(Card || (Card = {}));
