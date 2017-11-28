@@ -10,18 +10,18 @@
 	],
 	"game": [
 		"bin-debug/ddz/UI/base.js",
-		"bin-debug/ddz/UI/ui_pokerCardItem.js",
+		"bin-debug/ddz/Logic/CardEventDispatcher.js",
 		"bin-debug/Main.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/ddz/common/CardRule.js",
 		"bin-debug/ddz/common/PokerCard.js",
 		"bin-debug/ddz/Logic/CardEvent.js",
-		"bin-debug/ddz/Logic/CardEventDispatcher.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/ddz/Logic/ddzGameLogic.js",
 		"bin-debug/ddz/Logic/Timer.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/ddz/UI/ui_game.js",
 		"bin-debug/ddz/UI/ui_playerItem.js",
-		"bin-debug/LoadingUI.js"
+		"bin-debug/ddz/UI/ui_pokerCardItem.js"
 	]
 }

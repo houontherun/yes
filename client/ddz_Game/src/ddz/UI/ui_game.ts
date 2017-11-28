@@ -104,7 +104,7 @@ namespace Card {
 
      private moving():void{
         for (let i = 0;i < this.TargetCardsArray.length;i++) {
-                this.TargetCardsArray[i].alpha = 0.4;
+                this.TargetCardsArray[i].alpha = 0.7;
             }
     }
 

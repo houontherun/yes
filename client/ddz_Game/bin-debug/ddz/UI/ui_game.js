@@ -84,7 +84,7 @@ var Card;
         };
         ui_game.prototype.moving = function () {
             for (var i = 0; i < this.TargetCardsArray.length; i++) {
-                this.TargetCardsArray[i].alpha = 0.4;
+                this.TargetCardsArray[i].alpha = 0.7;
             }
         };
         ui_game.prototype.GetShootCard = function () {

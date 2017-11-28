@@ -1,490 +1,419 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,card_0_1_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_1_1_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_2_1_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_3_1_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_back_png,Card_5_1_png,Card_5_2_png,face_1_png,face_2_png,game_clock_png,Type_Land_png,score_bg0_png,Type_trust_png,win_png,lose_png,beijing_png,face_3_png,zuozi_png,tuoguan_png,dibulanbeiban_png,wode-jinbi_png,beishubeiban_png,beishu_png,weixinliaotian_png,yuyin_png,zhunbei_png,yizhunbei_png,btn1_png,btn2_png,huanzuo_png,fanhui_png,beijing2_png,beishu2_png,beishubeiban2_png,btn12_png,btn22_png,dibulanbeiban2_png,fanhui2_png,huanzuo2_png,tuoguan2_png,weixinliaotian2_png,wode-jinbi2_png,yizhunbei2_png,yuyin2_png,zhunbei2_png,zuozi2_png,face_32_png",
+			"keys": "description_json,card_0_1_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_1_1_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_2_1_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_3_1_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_back_png,face_1_png,face_2_png,face_3_png,face_32_png",
 			"name": "preload"
+		},
+		{
+			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,huanzuo_png,lose_png,score_bg0_png,tuoguan_png,weixinliaotian_png,win_png,wode-jinbi_png,yizhunbei_png,yuyin_png,zhunbei_png,zuozi_png",
+			"name": "ddz"
 		}
 	],
 	"resources": [
 		{
-			"name": "description_json",
+			"url": "config/description.json",
 			"type": "json",
-			"url": "config/description.json"
+			"name": "description_json"
 		},
 		{
-			"name": "card_0_1_png",
+			"url": "assets/poke/card_0_1.png",
 			"type": "image",
-			"url": "assets/poke/card_0_1.png"
+			"name": "card_0_1_png"
 		},
 		{
-			"name": "card_0_2_png",
+			"url": "assets/poke/card_0_2.png",
 			"type": "image",
-			"url": "assets/poke/card_0_2.png"
+			"name": "card_0_2_png"
 		},
 		{
-			"name": "card_0_3_png",
+			"url": "assets/poke/card_0_3.png",
 			"type": "image",
-			"url": "assets/poke/card_0_3.png"
+			"name": "card_0_3_png"
 		},
 		{
-			"name": "card_0_4_png",
+			"url": "assets/poke/card_0_4.png",
 			"type": "image",
-			"url": "assets/poke/card_0_4.png"
+			"name": "card_0_4_png"
 		},
 		{
-			"name": "card_0_5_png",
+			"url": "assets/poke/card_0_5.png",
 			"type": "image",
-			"url": "assets/poke/card_0_5.png"
+			"name": "card_0_5_png"
 		},
 		{
-			"name": "card_0_6_png",
+			"url": "assets/poke/card_0_6.png",
 			"type": "image",
-			"url": "assets/poke/card_0_6.png"
+			"name": "card_0_6_png"
 		},
 		{
-			"name": "card_0_7_png",
+			"url": "assets/poke/card_0_7.png",
 			"type": "image",
-			"url": "assets/poke/card_0_7.png"
+			"name": "card_0_7_png"
 		},
 		{
-			"name": "card_0_8_png",
+			"url": "assets/poke/card_0_8.png",
 			"type": "image",
-			"url": "assets/poke/card_0_8.png"
+			"name": "card_0_8_png"
 		},
 		{
-			"name": "card_0_9_png",
+			"url": "assets/poke/card_0_9.png",
 			"type": "image",
-			"url": "assets/poke/card_0_9.png"
+			"name": "card_0_9_png"
 		},
 		{
-			"name": "card_0_10_png",
+			"url": "assets/poke/card_0_10.png",
 			"type": "image",
-			"url": "assets/poke/card_0_10.png"
+			"name": "card_0_10_png"
 		},
 		{
-			"name": "card_0_11_png",
+			"url": "assets/poke/card_0_11.png",
 			"type": "image",
-			"url": "assets/poke/card_0_11.png"
+			"name": "card_0_11_png"
 		},
 		{
-			"name": "card_0_12_png",
+			"url": "assets/poke/card_0_12.png",
 			"type": "image",
-			"url": "assets/poke/card_0_12.png"
+			"name": "card_0_12_png"
 		},
 		{
-			"name": "card_0_13_png",
+			"url": "assets/poke/card_0_13.png",
 			"type": "image",
-			"url": "assets/poke/card_0_13.png"
+			"name": "card_0_13_png"
 		},
 		{
-			"name": "card_1_1_png",
+			"url": "assets/poke/card_1_1.png",
 			"type": "image",
-			"url": "assets/poke/card_1_1.png"
+			"name": "card_1_1_png"
 		},
 		{
-			"name": "card_1_2_png",
+			"url": "assets/poke/card_1_2.png",
 			"type": "image",
-			"url": "assets/poke/card_1_2.png"
+			"name": "card_1_2_png"
 		},
 		{
-			"name": "card_1_3_png",
+			"url": "assets/poke/card_1_3.png",
 			"type": "image",
-			"url": "assets/poke/card_1_3.png"
+			"name": "card_1_3_png"
 		},
 		{
-			"name": "card_1_4_png",
+			"url": "assets/poke/card_1_4.png",
 			"type": "image",
-			"url": "assets/poke/card_1_4.png"
+			"name": "card_1_4_png"
 		},
 		{
-			"name": "card_1_5_png",
+			"url": "assets/poke/card_1_5.png",
 			"type": "image",
-			"url": "assets/poke/card_1_5.png"
+			"name": "card_1_5_png"
 		},
 		{
-			"name": "card_1_6_png",
+			"url": "assets/poke/card_1_6.png",
 			"type": "image",
-			"url": "assets/poke/card_1_6.png"
+			"name": "card_1_6_png"
 		},
 		{
-			"name": "card_1_7_png",
+			"url": "assets/poke/card_1_7.png",
 			"type": "image",
-			"url": "assets/poke/card_1_7.png"
+			"name": "card_1_7_png"
 		},
 		{
-			"name": "card_1_8_png",
+			"url": "assets/poke/card_1_8.png",
 			"type": "image",
-			"url": "assets/poke/card_1_8.png"
+			"name": "card_1_8_png"
 		},
 		{
-			"name": "card_1_9_png",
+			"url": "assets/poke/card_1_9.png",
 			"type": "image",
-			"url": "assets/poke/card_1_9.png"
+			"name": "card_1_9_png"
 		},
 		{
-			"name": "card_1_10_png",
+			"url": "assets/poke/card_1_10.png",
 			"type": "image",
-			"url": "assets/poke/card_1_10.png"
+			"name": "card_1_10_png"
 		},
 		{
-			"name": "card_1_11_png",
+			"url": "assets/poke/card_1_11.png",
 			"type": "image",
-			"url": "assets/poke/card_1_11.png"
+			"name": "card_1_11_png"
 		},
 		{
-			"name": "card_1_12_png",
+			"url": "assets/poke/card_1_12.png",
 			"type": "image",
-			"url": "assets/poke/card_1_12.png"
+			"name": "card_1_12_png"
 		},
 		{
-			"name": "card_1_13_png",
+			"url": "assets/poke/card_1_13.png",
 			"type": "image",
-			"url": "assets/poke/card_1_13.png"
+			"name": "card_1_13_png"
 		},
 		{
-			"name": "card_2_1_png",
+			"url": "assets/poke/card_2_1.png",
 			"type": "image",
-			"url": "assets/poke/card_2_1.png"
+			"name": "card_2_1_png"
 		},
 		{
-			"name": "card_2_2_png",
+			"url": "assets/poke/card_2_2.png",
 			"type": "image",
-			"url": "assets/poke/card_2_2.png"
+			"name": "card_2_2_png"
 		},
 		{
-			"name": "card_2_3_png",
+			"url": "assets/poke/card_2_3.png",
 			"type": "image",
-			"url": "assets/poke/card_2_3.png"
+			"name": "card_2_3_png"
 		},
 		{
-			"name": "card_2_4_png",
+			"url": "assets/poke/card_2_4.png",
 			"type": "image",
-			"url": "assets/poke/card_2_4.png"
+			"name": "card_2_4_png"
 		},
 		{
-			"name": "card_2_5_png",
+			"url": "assets/poke/card_2_5.png",
 			"type": "image",
-			"url": "assets/poke/card_2_5.png"
+			"name": "card_2_5_png"
 		},
 		{
-			"name": "card_2_6_png",
+			"url": "assets/poke/card_2_6.png",
 			"type": "image",
-			"url": "assets/poke/card_2_6.png"
+			"name": "card_2_6_png"
 		},
 		{
-			"name": "card_2_7_png",
+			"url": "assets/poke/card_2_7.png",
 			"type": "image",
-			"url": "assets/poke/card_2_7.png"
+			"name": "card_2_7_png"
 		},
 		{
-			"name": "card_2_8_png",
+			"url": "assets/poke/card_2_8.png",
 			"type": "image",
-			"url": "assets/poke/card_2_8.png"
+			"name": "card_2_8_png"
 		},
 		{
-			"name": "card_2_9_png",
+			"url": "assets/poke/card_2_9.png",
 			"type": "image",
-			"url": "assets/poke/card_2_9.png"
+			"name": "card_2_9_png"
 		},
 		{
-			"name": "card_2_10_png",
+			"url": "assets/poke/card_2_10.png",
 			"type": "image",
-			"url": "assets/poke/card_2_10.png"
+			"name": "card_2_10_png"
 		},
 		{
-			"name": "card_2_11_png",
+			"url": "assets/poke/card_2_11.png",
 			"type": "image",
-			"url": "assets/poke/card_2_11.png"
+			"name": "card_2_11_png"
 		},
 		{
-			"name": "card_2_12_png",
+			"url": "assets/poke/card_2_12.png",
 			"type": "image",
-			"url": "assets/poke/card_2_12.png"
+			"name": "card_2_12_png"
 		},
 		{
-			"name": "card_2_13_png",
+			"url": "assets/poke/card_2_13.png",
 			"type": "image",
-			"url": "assets/poke/card_2_13.png"
+			"name": "card_2_13_png"
 		},
 		{
-			"name": "card_3_1_png",
+			"url": "assets/poke/card_3_1.png",
 			"type": "image",
-			"url": "assets/poke/card_3_1.png"
+			"name": "card_3_1_png"
 		},
 		{
-			"name": "card_3_2_png",
+			"url": "assets/poke/card_3_2.png",
 			"type": "image",
-			"url": "assets/poke/card_3_2.png"
+			"name": "card_3_2_png"
 		},
 		{
-			"name": "card_3_3_png",
+			"url": "assets/poke/card_3_3.png",
 			"type": "image",
-			"url": "assets/poke/card_3_3.png"
+			"name": "card_3_3_png"
 		},
 		{
-			"name": "card_3_4_png",
+			"url": "assets/poke/card_3_4.png",
 			"type": "image",
-			"url": "assets/poke/card_3_4.png"
+			"name": "card_3_4_png"
 		},
 		{
-			"name": "card_3_5_png",
+			"url": "assets/poke/card_3_5.png",
 			"type": "image",
-			"url": "assets/poke/card_3_5.png"
+			"name": "card_3_5_png"
 		},
 		{
-			"name": "card_3_6_png",
+			"url": "assets/poke/card_3_6.png",
 			"type": "image",
-			"url": "assets/poke/card_3_6.png"
+			"name": "card_3_6_png"
 		},
 		{
-			"name": "card_3_7_png",
+			"url": "assets/poke/card_3_7.png",
 			"type": "image",
-			"url": "assets/poke/card_3_7.png"
+			"name": "card_3_7_png"
 		},
 		{
-			"name": "card_3_8_png",
+			"url": "assets/poke/card_3_8.png",
 			"type": "image",
-			"url": "assets/poke/card_3_8.png"
+			"name": "card_3_8_png"
 		},
 		{
-			"name": "card_3_9_png",
+			"url": "assets/poke/card_3_9.png",
 			"type": "image",
-			"url": "assets/poke/card_3_9.png"
+			"name": "card_3_9_png"
 		},
 		{
-			"name": "card_3_10_png",
+			"url": "assets/poke/card_3_10.png",
 			"type": "image",
-			"url": "assets/poke/card_3_10.png"
+			"name": "card_3_10_png"
 		},
 		{
-			"name": "card_3_11_png",
+			"url": "assets/poke/card_3_11.png",
 			"type": "image",
-			"url": "assets/poke/card_3_11.png"
+			"name": "card_3_11_png"
 		},
 		{
-			"name": "card_3_12_png",
+			"url": "assets/poke/card_3_12.png",
 			"type": "image",
-			"url": "assets/poke/card_3_12.png"
+			"name": "card_3_12_png"
 		},
 		{
-			"name": "card_3_13_png",
+			"url": "assets/poke/card_3_13.png",
 			"type": "image",
-			"url": "assets/poke/card_3_13.png"
+			"name": "card_3_13_png"
 		},
 		{
-			"name": "card_back_png",
+			"url": "assets/poke/card_back.png",
 			"type": "image",
-			"url": "assets/poke/card_back.png"
+			"name": "card_back_png"
 		},
 		{
-			"name": "Card_5_1_png",
+			"url": "assets/poke/Card_5_1.png",
 			"type": "image",
-			"url": "assets/poke/Card_5_1.png"
+			"name": "Card_5_1_png"
 		},
 		{
-			"name": "Card_5_2_png",
+			"url": "assets/poke/Card_5_2.png",
 			"type": "image",
-			"url": "assets/poke/Card_5_2.png"
+			"name": "Card_5_2_png"
 		},
 		{
-			"name": "face_1_png",
+			"url": "assets/face/face_1.png",
 			"type": "image",
-			"url": "assets/face/face_1.png"
+			"name": "face_1_png"
 		},
 		{
-			"name": "face_2_png",
+			"url": "assets/face/face_2.png",
 			"type": "image",
-			"url": "assets/face/face_2.png"
+			"name": "face_2_png"
 		},
 		{
-			"name": "game_clock_png",
+			"url": "assets/face/face_3.png",
 			"type": "image",
-			"url": "assets/Res/game_clock.png"
+			"name": "face_3_png"
 		},
 		{
-			"name": "Type_Land_png",
+			"url": "assets/face/face_3.png",
 			"type": "image",
-			"url": "assets/Res/Type_Land.png"
+			"name": "face_32_png"
 		},
 		{
-			"name": "score_bg0_png",
+			"url": "assets/ddzRes/beijing.png",
 			"type": "image",
-			"url": "assets/Res/score_bg0.png"
+			"name": "beijing_png"
 		},
 		{
-			"name": "Type_trust_png",
+			"url": "assets/ddzRes/beishu.png",
 			"type": "image",
-			"url": "assets/Res/Type_trust.png"
+			"name": "beishu_png"
 		},
 		{
-			"name": "win_png",
+			"url": "assets/ddzRes/beishubeiban.png",
 			"type": "image",
-			"url": "assets/Res/win.png"
+			"name": "beishubeiban_png"
 		},
 		{
-			"name": "lose_png",
+			"url": "assets/ddzRes/btn1.png",
 			"type": "image",
-			"url": "assets/Res/lose.png"
+			"name": "btn1_png"
 		},
 		{
-			"name": "beijing_png",
+			"url": "assets/ddzRes/btn2.png",
 			"type": "image",
-			"url": "assets/Res/beijing.png"
+			"name": "btn2_png"
 		},
 		{
-			"name": "face_3_png",
+			"url": "assets/ddzRes/dibulanbeiban.png",
 			"type": "image",
-			"url": "assets/face/face_3.png"
+			"name": "dibulanbeiban_png"
 		},
 		{
-			"name": "zuozi_png",
+			"url": "assets/ddzRes/fanhui.png",
 			"type": "image",
-			"url": "assets/Res/zuozi.png"
+			"name": "fanhui_png"
 		},
 		{
-			"name": "tuoguan_png",
+			"url": "assets/ddzRes/game_clock.png",
 			"type": "image",
-			"url": "assets/Res/tuoguan.png"
+			"name": "game_clock_png"
 		},
 		{
-			"name": "dibulanbeiban_png",
+			"url": "assets/ddzRes/huanzuo.png",
 			"type": "image",
-			"url": "assets/Res/dibulanbeiban.png"
+			"name": "huanzuo_png"
 		},
 		{
-			"name": "wode-jinbi_png",
+			"url": "assets/ddzRes/lose.png",
 			"type": "image",
-			"url": "assets/Res/wode-jinbi.png"
+			"name": "lose_png"
 		},
 		{
-			"name": "beishubeiban_png",
+			"url": "assets/ddzRes/score_bg0.png",
 			"type": "image",
-			"url": "assets/Res/beishubeiban.png"
+			"name": "score_bg0_png"
 		},
 		{
-			"name": "beishu_png",
+			"url": "assets/ddzRes/tuoguan.png",
 			"type": "image",
-			"url": "assets/Res/beishu.png"
+			"name": "tuoguan_png"
 		},
 		{
-			"name": "weixinliaotian_png",
+			"url": "assets/ddzRes/Type_Land.png",
 			"type": "image",
-			"url": "assets/Res/weixinliaotian.png"
+			"name": "Type_Land_png"
 		},
 		{
-			"name": "yuyin_png",
+			"url": "assets/ddzRes/Type_trust.png",
 			"type": "image",
-			"url": "assets/Res/yuyin.png"
+			"name": "Type_trust_png"
 		},
 		{
-			"name": "zhunbei_png",
+			"url": "assets/ddzRes/weixinliaotian.png",
 			"type": "image",
-			"url": "assets/Res/zhunbei.png"
+			"name": "weixinliaotian_png"
 		},
 		{
-			"name": "yizhunbei_png",
+			"url": "assets/ddzRes/win.png",
 			"type": "image",
-			"url": "assets/Res/yizhunbei.png"
+			"name": "win_png"
 		},
 		{
-			"name": "btn1_png",
+			"url": "assets/ddzRes/wode-jinbi.png",
 			"type": "image",
-			"url": "assets/Res/btn1.png"
+			"name": "wode-jinbi_png"
 		},
 		{
-			"name": "btn2_png",
+			"url": "assets/ddzRes/yizhunbei.png",
 			"type": "image",
-			"url": "assets/Res/btn2.png"
+			"name": "yizhunbei_png"
 		},
 		{
-			"name": "huanzuo_png",
+			"url": "assets/ddzRes/yuyin.png",
 			"type": "image",
-			"url": "assets/Res/huanzuo.png"
+			"name": "yuyin_png"
 		},
 		{
-			"name": "fanhui_png",
+			"url": "assets/ddzRes/zhunbei.png",
 			"type": "image",
-			"url": "assets/Res/fanhui.png"
+			"name": "zhunbei_png"
 		},
 		{
-			"name": "beijing2_png",
+			"url": "assets/ddzRes/zuozi.png",
 			"type": "image",
-			"url": "assets/Res/beijing.png"
-		},
-		{
-			"name": "beishu2_png",
-			"type": "image",
-			"url": "assets/Res/beishu.png"
-		},
-		{
-			"name": "beishubeiban2_png",
-			"type": "image",
-			"url": "assets/Res/beishubeiban.png"
-		},
-		{
-			"name": "btn12_png",
-			"type": "image",
-			"url": "assets/Res/btn1.png"
-		},
-		{
-			"name": "btn22_png",
-			"type": "image",
-			"url": "assets/Res/btn2.png"
-		},
-		{
-			"name": "dibulanbeiban2_png",
-			"type": "image",
-			"url": "assets/Res/dibulanbeiban.png"
-		},
-		{
-			"name": "fanhui2_png",
-			"type": "image",
-			"url": "assets/Res/fanhui.png"
-		},
-		{
-			"name": "huanzuo2_png",
-			"type": "image",
-			"url": "assets/Res/huanzuo.png"
-		},
-		{
-			"name": "tuoguan2_png",
-			"type": "image",
-			"url": "assets/Res/tuoguan.png"
-		},
-		{
-			"name": "weixinliaotian2_png",
-			"type": "image",
-			"url": "assets/Res/weixinliaotian.png"
-		},
-		{
-			"name": "wode-jinbi2_png",
-			"type": "image",
-			"url": "assets/Res/wode-jinbi.png"
-		},
-		{
-			"name": "yizhunbei2_png",
-			"type": "image",
-			"url": "assets/Res/yizhunbei.png"
-		},
-		{
-			"name": "yuyin2_png",
-			"type": "image",
-			"url": "assets/Res/yuyin.png"
-		},
-		{
-			"name": "zhunbei2_png",
-			"type": "image",
-			"url": "assets/Res/zhunbei.png"
-		},
-		{
-			"name": "zuozi2_png",
-			"type": "image",
-			"url": "assets/Res/zuozi.png"
-		},
-		{
-			"name": "face_32_png",
-			"type": "image",
-			"url": "assets/face/face_3.png"
+			"name": "zuozi_png"
 		}
 	]
 }
