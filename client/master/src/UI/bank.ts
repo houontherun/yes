@@ -20,7 +20,13 @@ namespace gameUI{
 		}
 
         private updateUI():void{
-            
+            //{guid, ruid, t, gold, id}
+            if(this.data != null && this.data != undefined && this.imgBg != undefined && this.imgBg != null){
+                this.txtDate.text = this.data.t.toString()
+                this.txtSendId.text = this.data.guid.toString()
+                this.txtRecvId.text = this.data.ruid.toString()
+                this.txtNumber.text = this.data.gold.toString()
+            }
         }
 
 		protected dataChanged():void {
@@ -29,14 +35,45 @@ namespace gameUI{
             }
 		}
     }
+
     const selectSprite = "bank_tab_png"
     const unSelectSprite = "bank_tab2_png"
     const selectColor = 0xf2941a
     const unSelectColor = 0x775022
     
-    export class bank extends gameUI.base {      
+    export class bank extends gameUI.base {     
+        private setGiveNum(num:number):void{
+            if(PlayerManager.Instance.Data.Gold >= num){ 
+                this.txtGiveNum.text = num.toString() 
+            }else{
+                alert("金币不够")
+            }
+        } 
         public onload():void {
             super.onload();
+            this.AddClick(this.imgIn, ()=>{
+                var num = parseInt(this.txtInNum.text) 
+                PlayerManager.Instance.SaveGold(num)
+            }, this)
+            this.AddClick(this.imgOut, ()=>{
+                var num = parseInt(this.txtInNum.text) 
+                PlayerManager.Instance.WithdrawGold(num)
+            }, this)
+            this.AddClick(this.imgGiveOK, ()=>{
+                if(this.txtGiveId.text == null || this.txtGiveId.text == "" || this.txtGiveNum.text == null || this.txtGiveNum.text == ""){
+                    alert("请填写ID或金额")
+                    return
+                }
+                var id = parseInt(this.txtGiveId.text)
+                var num = parseInt(this.txtGiveNum.text)
+                PlayerManager.Instance.GiveGold(num, id)
+            }, this)
+            this.AddClick(this.imgTenW, ()=>{ this.setGiveNum(100000)  }, this)
+            this.AddClick(this.imgOneQW, ()=>{ this.setGiveNum(10000000)  }, this)
+            this.AddClick(this.imgTenFiveBW, ()=>{ this.setGiveNum(5000000)  }, this)
+            this.AddClick(this.imgOneBaiW, ()=>{ this.setGiveNum(1000000)  }, this)
+            this.AddClick(this.imgOneYi, ()=>{ this.setGiveNum(100000000)  }, this)            
+
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
@@ -58,13 +95,17 @@ namespace gameUI{
             // bind oper data
             this.dataList.itemRenderer = rankItemRander
             this.dataList.itemRendererSkinName = "resource/custom_skins/bankOperItemSkin.exml"
-            var rankData:Array<Object> = [
-                {index:1, name: "张三", value:50000},
-                {index:2, name: "李四", value:40000},
-            ]
-            this.dataList.dataProvider = new eui.ArrayCollection(rankData)         
+            
             PlayerManager.Instance.addEventListener(constant.event.logic.on_player_data_update, this.updateUI, this)
 			this.updateUI(PlayerManager.Instance.Data) 
+
+            MessageManager.Instance.addEventListener(constant.msg.SC_GET_BANK_RECORD , this.onGetBankRecord, this)
+            this.getBankRecord(0)
+        }
+        
+        public onUnload():void{
+            super.onUnload()
+            MessageManager.Instance.removeEventListener(constant.msg.SC_GET_BANK_RECORD , this.onGetBankRecord, this)
         }
 
         private updateUI(data):void{
@@ -88,7 +129,19 @@ namespace gameUI{
                     this.tabGroup[i].visible = false
                 }
             }
+        }      
+        private getBankRecord(begin:number):void{
+            MessageManager.Instance.SendMessage({
+                protocol:constant.msg.CS_GET_BANK_RECORD,
+                begin:begin,
+            })
+        }  
+        private onGetBankRecord(data):void{
+            if(data.ret == 0){
+                this.dataList.dataProvider = new eui.ArrayCollection(data.list) //list []{guid, ruid, t, gold, id}
+            }
         }
+
         private currentTabIndex:number = -1
         private tabBtns:Array<eui.Image>
         private tabText:Array<eui.Label>

@@ -19,6 +19,8 @@ var UI = {
     "rank": { name: "gameUI.rank", skin: "resource/custom_skins/rankSkin.exml" },
     "create_room": { name: "gameUI.create_room", skin: "resource/custom_skins/create_roomSkin.exml" },
     "enter_room": { name: "gameUI.enter_room", skin: "resource/custom_skins/enter_roomSkin.exml" },
+    "ddzSelectRoom": { name: "gameUI.ddzSelectRoom", skin: "resource/custom_skins/games/ddzSelectRoomSkin.exml" },
+    "ddzRoom": { name: "gameUI.ddzRoom", skin: "resource/custom_skins/games/ddzRoomSkin.exml" },
 };
 var UIManager = (function (_super) {
     __extends(UIManager, _super);

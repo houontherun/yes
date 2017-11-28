@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ddzRoomTableSkin" width="486" height="389" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="btnTable" source="zuozi2_png" x="59" y="68.5"/>
+	<e:Image source="zuohaopai_png" x="192" y="94" touchEnabled="false"/>
+	<e:Label id="txtTableNum" text="008号桌" x="209" y="99.5" size="20" verticalAlign="middle" textAlign="center" fontFamily="SimHei" touchEnabled="false"/>
+	<e:Label id="txtStatus" text="进行中" x="130" y="131" anchorOffsetX="0" width="230" verticalAlign="middle" textAlign="center" fontFamily="SimHei" size="25" touchEnabled="false"/>
+	<e:Image id="btnEnter1" source="touxiangbeiban2_png" x="19" y="2"/>
+	<e:Image id="btnEnter2" source="touxiangbeiban2_png" x="375" y="2"/>
+	<e:Image id="btnEnter3" source="touxiangbeiban2_png" x="198" y="277.5"/>
+	<e:Image id="imgUser1" source="touxiang_png" x="22" y="4" touchEnabled="false"/>
+	<e:Image id="imgUser3" source="touxiang_png" x="201" y="280.5" touchEnabled="false"/>
+	<e:Image source="touxiang_png" x="378" y="4" id="imgUser2" touchEnabled="false"/>
+</e:Skin>

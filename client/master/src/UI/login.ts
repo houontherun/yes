@@ -13,18 +13,15 @@ namespace gameUI{
                 NetworkManager.Instance.addEventListener(constant.event.network.on_connect_succeed, this.onConSucceed, this);
                 NetworkManager.Instance.Connect(constant.connect_ip, constant.connect_port);
 
-                // var lgdata = {
-                //     userid : 10086,
-                //     gold:512,
-                //     bankgold:3000,
-                //     diamond:12,
-                //     card:3,
-                //     openid:"test",
-                //     name:"itol",
-                //     error:0,
-                // }
-                // this.onLoginRet(lgdata)
-            }, this );            
+                // ----- for test -------
+                // this.onConSucceed()
+                // ----------------------
+            }, this );      
+
+            var storageUserName = Util.getItem('username')   
+            if(storageUserName != null){
+                this.txtUserName.text = storageUserName
+            }   
         }
         
         private onConSucceed():void{
@@ -38,13 +35,30 @@ namespace gameUI{
                 protocol:constant.msg.CS_LOGIN,
                 openid:this.txtUserName.text
             })
+
+            // ----- for test --------
+            // var lgdata = {
+            //     userid : 10086,
+            //     gold:512,
+            //     bankgold:3000,
+            //     diamond:12,
+            //     card:3,
+            //     openid:"test",
+            //     name:"itol",
+            //     sex:1,
+            //     error:0,
+            //     protocol:2001,
+            // }
+            // MessageManager.Instance.DispatchMessage(lgdata)
+            // ---------------------------
         }
         
         private onLoginRet(data):void{
-            if(data.error != 0){
-                console.log("login error code=" + data.error)
+            if(data.ret != 0){
+                console.log("login error code=" + data.ret)
                 return
             }
+            Util.setItem('username', this.txtUserName.text)
             this.Close();
             UIManager.Instance.LoadUI(UI.lobby);
         }

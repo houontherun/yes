@@ -2,7 +2,6 @@
 
 namespace gameUI{    
     class rankItemRander extends eui.ItemRenderer{
-                
         public imgBg:eui.Image;
         public imgIndex:eui.Image;
         public txtName:eui.Label;
@@ -20,16 +19,16 @@ namespace gameUI{
             this.updateUI()
 		}
 
-        private updateUI():void{
-            if(this.data.index == 1){
+        private updateUI():void{ //// list []{uid, name, score, rank}
+            if(this.data.rank == 0){
                 this.imgIndex.source = "rank_1_png"
                 this.imgBg.source = "rank_bg2_png"
                 this.txtIndex.visible = false
-            }else if(this.data.index == 2){
+            }else if(this.data.rank == 1){
                 this.imgIndex.source = "rank_2_png"
                 this.imgBg.source = "rank_bg3_png"
                 this.txtIndex.visible = false
-            }else if(this.data.index == 3){
+            }else if(this.data.rank == 2){
                 this.imgIndex.source = "rank_3_png"
                 this.imgBg.source = "rank_bg4_png"
                 this.txtIndex.visible = false
@@ -38,9 +37,9 @@ namespace gameUI{
                 this.imgBg.source = "rank_bg4_png"
                 this.txtIndex.visible = true
             }
-            this.txtName.text = this.data.name
-            this.txtValue.text = this.data.value
-            this.txtIndex.text = this.data.index
+            this.txtName.text = this.data.name.toString()
+            this.txtValue.text = this.data.score.toString()
+            this.txtIndex.text = (this.data.rank + 1).toString()
         }
 
 		protected dataChanged():void {
@@ -50,6 +49,11 @@ namespace gameUI{
 		}
     }
 
+    const selectSprite = "rank_tab_png"
+    const unSelectSprite = "rank_tab2_png"
+    const selectColor = 0xf2941a
+    const unSelectColor = 0x775022
+
     export class rank extends gameUI.base {
 
         public onload():void {
@@ -58,34 +62,88 @@ namespace gameUI{
                 this.Close()
             }, this)
 
+            this.tabBtns = [this.btnGold, this.btnCredit, this.btnCharm]
+            this.tabText = [this.lblGold, this.lblCredit, this.lblCharm]
+
             // this.svData.initItemRenderer(rankItemRander)
             // this.svData.initItemSkin("resource/custom_skins/rankItemSkin.exml")
             this.dataList.itemRenderer = rankItemRander
             this.dataList.itemRendererSkinName = "resource/custom_skins/rankItemSkin.exml"
-            var rankData:Array<Object> = [
-                {index:1, name: "张三", value:50000},
-                {index:2, name: "李四", value:40000},
-                {index:3, name: "王五", value:30000},
-                {index:4, name: "老六", value:20000},
-                {index:5, name: "三本地", value:10000},
-                {index:6, name: "枯霜地有", value:9000},
-                {index:7, name: "支付宝", value:5000},
-                {index:8, name: "钱我残", value:4000},
-                {index:9, name: "工工工", value:3000},
-                {index:10, name: "顶替", value:2000},
-                {index:11, name: "于地", value:1000},
-                {index:12, name: "擤", value:400},
-                {index:13, name: "夺一的", value:300},
-            ]
-            // this.svData.bindData(rankData)   
-            this.dataList.dataProvider = new eui.ArrayCollection(rankData)          
+
+            MessageManager.Instance.addEventListener(constant.msg.SC_GET_RANK, this.onGetRankList, this)   
+
+            this.btnGold.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
+                this.loadTab(0)
+                this.getRankList(0, 1)
+            }, this)  
+            this.btnCredit.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
+                this.loadTab(1)
+                this.getRankList(0, 2)
+            }, this)  
+            this.loadTab(0)
+            this.getRankList(0, 1)
         }
+
+        public onUnload():void{
+            super.onUnload()
+            MessageManager.Instance.removeEventListener(constant.msg.SC_GET_RANK, this.onGetRankList, this)
+        }
+        
+        private loadTab(index:number):void{
+            if(this.currentTabIndex == index){
+                return
+            }
+            this.currentTabIndex = index
+            for(var i = 0; i < 3; i++){
+                if(i == this.currentTabIndex){
+                    this.tabBtns[i].source = selectSprite
+                    this.tabText[i].textColor = selectColor
+                }
+                else{
+                    this.tabBtns[i].source = unSelectSprite
+                    this.tabText[i].textColor = unSelectColor
+                }
+            }
+        }      
+
+        // 获取操行榜  1是金币排行榜，2是信用排行榜
+        private getRankList(begin:number, type:number):void{
+            MessageManager.Instance.SendMessage({
+                protocol:constant.msg.CS_GET_RANK,
+                begin:begin,
+                type:type
+            })
+        }
+        private onGetRankList(data:any):void{   
+            // if(data.ret == 0){ 
+                this.dataList.dataProvider = new eui.ArrayCollection(data.rank) 
+                if(data.type == 1){
+                    this.txtScore.text = "金币"
+                }
+                else if(data.type == 2){
+                    this.txtScore.text = "信用"
+                }
+            // }
+        }
+
+        private tabBtns:Array<eui.Image>
+        private tabText:Array<eui.Label>
 
         public btnClose:eui.Image;
         // public svData:gameUI.Scrollview;
         public svData:eui.Scroller;
         public dataList:eui.List;
+        public btnGold:eui.Image;
+        public btnCredit:eui.Image;
+        public btnCharm:eui.Image;
+        public lblGold:eui.Label;
+        public lblCredit:eui.Label;
+        public lblCharm:eui.Label;
 
+        private currentTabIndex:number = -1
+        public txtRank:eui.Label;
+        public txtName:eui.Label;
+        public txtScore:eui.Label;
     }
 
 }

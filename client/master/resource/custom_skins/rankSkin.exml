@@ -8,16 +8,10 @@
 	<e:Image id="btnClose" source="close_png" x="1229" y="24.54"/>
 	<e:Image source="rank_rank_png" x="593.48" y="39.7"/>
 	<e:Image source="rank_bg5_png" x="91.21" y="131.04"/>
-	<e:Image source="rank_tab_png" x="102.17" y="145.39"/>
-	<e:Image source="rank_tab2_png" x="104.86" y="242.71"/>
-	<e:Image source="rank_tab2_png" x="104.86" y="338.75"/>
+	<e:Image id="btnGold" source="rank_tab_png" x="102.17" y="145.39"/>
+	<e:Image id="btnCredit" source="rank_tab2_png" x="104.86" y="242.71"/>
+	<e:Image id="btnCharm" source="rank_tab2_png" x="104.86" y="338.75"/>
 	<e:Image source="rank_bg6_png" x="361.18" y="142.6"/>
-	<e:Image source="rank_caifu_png" x="158.3" y="172.33"/>
-	<e:Image source="rank_meili_png" x="158.63" y="365.34"/>
-	<e:Image source="rank_xinyong_png" x="160.32" y="268.98"/>
-	<e:Image source="rank_fangka_png" x="1094.29" y="160"/>
-	<e:Image source="rank_nichen_png" x="747.32" y="160"/>
-	<e:Image source="rank_paiming_png" x="400" y="160"/>
 	<e:Image source="rank_bg_png" x="370.32" y="207.04"/>
 	<!--<gameUI:Scrollview id="svData" width="858.67" height="476" x="375" y="223" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Group anchorOffsetX="0" width="618.67" anchorOffsetY="0" height="382.67"/>
@@ -29,4 +23,10 @@
             </e:layout>
         </e:List>
 	</e:Scroller>
+	<e:Label id="lblGold" text="财富榜" x="153.64" y="170.23" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
+	<e:Label id="lblCredit" text="信用榜" x="155.03" y="267.55" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
+	<e:Label id="lblCharm" text="魅力榜" x="150.88" y="363.58" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
+	<e:Label id="txtRank" text="排名" x="407.32" y="164" textColor="0xa37a28" fontFamily="SimHei" size="35" bold="true"/>
+	<e:Label id="txtName" text="昵称" x="747.6" y="164" textColor="0xA37A28" fontFamily="SimHei" size="35" bold="true"/>
+	<e:Label id="txtScore" text="金币" x="1076.18" y="164" textColor="0xA37A28" fontFamily="SimHei" size="35" bold="true"/>
 </e:Skin>

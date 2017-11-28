@@ -19,7 +19,7 @@ var PlayerData = (function () {
         this.bankgold = loginData.bankgold;
         this.diamond = loginData.diamond;
         this.card = loginData.card;
-        this.account = loginData.openid;
+        this.openid = loginData.openid;
         this.name = loginData.name;
         this.sex = loginData.sex;
     }
@@ -39,8 +39,8 @@ var PlayerData = (function () {
         if (data.card != undefined && data.card != null) {
             this.card = data.card;
         }
-        if (data.account != undefined && data.account != null) {
-            this.account = data.account;
+        if (data.openid != undefined && data.openid != null) {
+            this.openid = data.openid;
         }
         if (data.name != undefined && data.name != null) {
             this.name = data.name;
@@ -84,9 +84,9 @@ var PlayerData = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(PlayerData.prototype, "Account", {
+    Object.defineProperty(PlayerData.prototype, "OpenId", {
         get: function () {
-            return this.account;
+            return this.openid;
         },
         enumerable: true,
         configurable: true
@@ -130,14 +130,16 @@ var PlayerManager = (function (_super) {
         MessageManager.Instance.addEventListener(constant.msg.SC_WITHDRAW_MONEY, this.onWithdrawGoldRet, this);
         MessageManager.Instance.addEventListener(constant.msg.SC_GIVE_GOLD_2_OTHER, this.onGiveGoldRet, this);
         MessageManager.Instance.addEventListener(constant.msg.SC_RECV_OTHER_GOLD, this.onReciveGold, this);
+        MessageManager.Instance.addEventListener(constant.msg.SC_CHANGE_BANK_PASSWD, this.onModifyBankPwdRet, this);
     };
     PlayerManager.prototype.onLoginRet = function (data) {
-        if (data.error != 0) {
+        if (data.ret != 0) {
             return;
         }
         this._data = new PlayerData(data);
         this.dispatchEvent(constant.event.logic.on_player_data_update, this._data);
     };
+    // 请求存钱
     PlayerManager.prototype.SaveGold = function (num) {
         MessageManager.Instance.SendMessage({
             protocol: constant.msg.CS_SAVE_MONEY,
@@ -151,6 +153,7 @@ var PlayerManager = (function (_super) {
         }
         this.updateData(data);
     };
+    // 请求取钱
     PlayerManager.prototype.WithdrawGold = function (num) {
         MessageManager.Instance.SendMessage({
             protocol: constant.msg.CS_WITHDRAW_MONEY,
@@ -164,6 +167,7 @@ var PlayerManager = (function (_super) {
         }
         this.updateData(data);
     };
+    // 请求赠送
     PlayerManager.prototype.GiveGold = function (num, uid) {
         MessageManager.Instance.SendMessage({
             protocol: constant.msg.CS_GIVE_GOLD_2_OTHER,
@@ -178,8 +182,25 @@ var PlayerManager = (function (_super) {
         }
         this.updateData(data);
     };
+    // 收到他人赠送
     PlayerManager.prototype.onReciveGold = function (data) {
         this.updateData(data);
+    };
+    // 修改银行密码
+    PlayerManager.prototype.modifyBankPwd = function (oldpwd, newpwd) {
+        MessageManager.Instance.SendMessage({
+            protocol: constant.msg.CS_CHANGE_BANK_PASSWD,
+            old: oldpwd,
+            pwd: newpwd
+        });
+    };
+    PlayerManager.prototype.onModifyBankPwdRet = function (data) {
+        if (data.ret == 0) {
+            alert('修改成功');
+        }
+        else {
+            alert('修改失败');
+        }
     };
     PlayerManager.Instance = new PlayerManager();
     return PlayerManager;

@@ -23,4 +23,12 @@ class Util{
         console.log('res ' + res)
         return res
     }
+
+    // 本地存储
+    public static getItem(key:string){
+        return egret.localStorage.getItem(key) 
+    } 
+    public static setItem(key:string, value:string){
+        return egret.localStorage.setItem(key, value) 
+    } 
 }

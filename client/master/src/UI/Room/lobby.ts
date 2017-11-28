@@ -7,8 +7,10 @@ var game_config = [
         childs:[
             {
                 id:100,
-                name:"0斗地主",
-                icon:"resource/assets/bg.png"
+                name:"斗地主",
+                icon:"resource/assets/bg.png",
+				room_group:"aa",
+				game_group:"aaa"
             },
             {
                 id:101,
@@ -33,7 +35,7 @@ var game_config = [
         childs:[
             {
                 id:104,
-                name:"1江西麻将",
+                name:"江西麻将",
                 icon:"resource/assets/bg.png"
             },
             {
@@ -41,31 +43,6 @@ var game_config = [
                 name:"湖南麻将",
                 icon:"resource/assets/bg.png"
             },
-            {
-                id:106,
-                name:"四川麻将",
-                icon:"resource/assets/bg.png"
-            },
-            {
-                id:107,
-                name:"福建麻将",
-                icon:"resource/assets/bg.png"
-            },
-            {
-                id:108,
-                name:"上海麻将",
-                icon:"resource/assets/bg.png"
-            },
-            {
-                id:109,
-                name:"杭州麻将",
-                icon:"resource/assets/bg.png"
-            },
-            {
-                id:110,
-                name:"火星麻将",
-                icon:"resource/assets/bg.png"
-            }
         ]
     },
     {
@@ -94,33 +71,27 @@ namespace gameUI{
 			this.updateUI();
 		}
 
-		private onClick():void{
-			if(this.data != null && this.data != undefined){
-				UIManager.Instance.LoadUI(UI.create_room, this.data)
+		private onClick():void {
+			if(this.data.id == 100){ // 斗地主
+				UIManager.Instance.LoadUI(UI.ddzSelectRoom)
+			}else{
+				alert("暂未开放功能")
 			}
-		}
-
-		public get isLoaded():boolean{
-			return this.lblName != null && this.imgIcon != null;
 		}
 
 		private updateUI():void{
-			if(!this.isLoaded){
-				return;
-			}
-			this.imgIcon.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-			this.imgIcon.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+			if(this.imgBg == null || this.imgBg == undefined)
+				return
 
-			this.lblName.text = this.data.name;
-			this.imgIcon.source = this.data.icon;
+			this.imgBg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+			this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		}
 
 		protected dataChanged():void {
 			this.updateUI();
 		}
 
-		private imgIcon:eui.Image;
-		private lblName:eui.Label;
+		private imgBg:eui.Image;
 	}
 
 	export class lobby extends gameUI.base{
@@ -180,6 +151,14 @@ namespace gameUI{
                 
             }, this)
 			this.AddClick(this.imgCoypBg, ()=>{
+				var aa = {
+					a:1,
+					b:2,
+					c:3
+				}
+				for(var key in aa){
+					console.log('key:' + key + ' v:' + aa[key])
+				}
 			}, this)
 
 			// this.svGame.addEventListener(egret.Event.CHANGE, (event:Event)=>{
