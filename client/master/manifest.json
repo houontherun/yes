@@ -15,6 +15,7 @@
 		"bin-debug/UI/base.js",
 		"bin-debug/Logic/Games/Common/Dispatcher.js",
 		"bin-debug/Logic/Games/ddz/Logic/CardEventDispatcher.js",
+		"bin-debug/Logic/DataManager.js",
 		"bin-debug/Logic/GameManager.js",
 		"bin-debug/Logic/HttpDownloadManager.js",
 		"bin-debug/Logic/MessageManager.js",

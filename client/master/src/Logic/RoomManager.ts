@@ -98,11 +98,12 @@ class TableData{
         return null
     }
 }
-class EnterRoomData{
+class EnterRoomData extends Dispatcher {
     private users = []
     private tables = []
     private tablesDic = {}
     constructor(data){
+        super()
         for(var i = 0; i < data.users.length; i++){
             var ud = new UserData(data.users[i])
             this.users.push(ud)
@@ -118,6 +119,7 @@ class EnterRoomData{
         this.users.push(ud)
         if(this.tablesDic[ud.TableId] != undefined && this.tablesDic[ud.TableId] != null){
             this.tablesDic[ud.TableId].UpdateUser(ud)
+            this.dispatchEvent('TableUpdate', ud.TableId)
         }
     }
     public RemoveUser(data):void{
@@ -125,6 +127,7 @@ class EnterRoomData{
             if(this.users[i].UserId == data.user_id){
                 if(this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null){
                     this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i])
+                    this.dispatchEvent('TableUpdate', this.users[i].TableId)
                 }
                 this.users.splice(i, 1)
             }
@@ -136,6 +139,7 @@ class EnterRoomData{
                 this.users[i].Update(data)
                 if(this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null){
                     this.tablesDic[this.users[i].TableId].UpdateUser(this.users[i])
+                    this.dispatchEvent('TableUpdate', this.users[i].TableId)
                 }
             }
         }
