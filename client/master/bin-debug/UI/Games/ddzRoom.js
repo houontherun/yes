@@ -72,12 +72,19 @@ var gameUI;
             this.listGames.dataProvider = new eui.ArrayCollection(RoomManager.Instance.currentRoom.Tables);
             this.AddClick(this.btnClose, function () {
                 _this.Close();
+                UIManager.Instance.LoadUI(UI.ddzSelectRoom);
             }, this);
             MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN, this.onPlayerSitDown, this);
+            UIManager.Instance.Lobby.groupType.visible = false;
+            UIManager.Instance.Lobby.groupTopMenu.visible = false;
+            UIManager.Instance.Lobby.imgBg.source = 'background2_png';
         };
         ddzRoom.prototype.onUnload = function () {
             _super.prototype.onUnload.call(this);
             MessageManager.Instance.removeEventListener(constant.msg.SC_USER_SIT_DOWN, this.onPlayerSitDown, this);
+            UIManager.Instance.Lobby.groupType.visible = true;
+            UIManager.Instance.Lobby.groupTopMenu.visible = true;
+            UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground;
         };
         ddzRoom.prototype.onPlayerSitDown = function (data) {
             if (data.ret == 0) {

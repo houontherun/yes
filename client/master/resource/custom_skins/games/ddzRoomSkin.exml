@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="ddzRoomSkin" height="750" width="1335" xmlns:e="http://ns.egret.com/eui">
-    <e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
-    <e:Scroller id="svGame" width="1306" anchorOffsetX="0" anchorOffsetY="0" left="15" height="430" y="171.15">
-	 	<e:List id="listGames" height="430" anchorOffsetX="0" width="1302" x="-238" y="0" anchorOffsetY="0">
+    <!--<e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>-->
+    <e:Scroller id="svGame" width="1306" anchorOffsetX="0" anchorOffsetY="0" left="15" height="430" y="215.15">
+	 	<e:List id="listGames" height="430" anchorOffsetX="0" width="1302" x="-238" y="1.52" anchorOffsetY="0">
 			<e:layout>
 				<e:HorizontalLayout />
 			</e:layout>
 		</e:List>
 	</e:Scroller>
 	<e:Image id="btnClose" x="1152" y="48" source="fanhui2_png"/>
+	<e:Image source="kuaishukaishi_png" x="533" y="142.62"/>
+	<e:Label text="快速开始" x="535" y="144.81" textAlign="center" verticalAlign="middle" anchorOffsetY="0" height="62" anchorOffsetX="0" width="261" size="40" fontFamily="SimHei"/>
 </e:Skin>

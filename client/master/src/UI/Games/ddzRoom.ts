@@ -67,12 +67,19 @@ namespace gameUI{
 
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
+                UIManager.Instance.LoadUI(UI.ddzSelectRoom)
             }, this)
             MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this) 
+            UIManager.Instance.Lobby.groupType.visible = false
+            UIManager.Instance.Lobby.groupTopMenu.visible = false
+            UIManager.Instance.Lobby.imgBg.source = 'background2_png'
         }
         public onUnload():void{
             super.onUnload()
             MessageManager.Instance.removeEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this) 
+            UIManager.Instance.Lobby.groupType.visible = true
+            UIManager.Instance.Lobby.groupTopMenu.visible = true
+            UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground
         }
         private onPlayerSitDown(data):void{
             if(data.ret == 0){

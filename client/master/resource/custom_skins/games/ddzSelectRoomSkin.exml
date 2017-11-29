@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="ddzSelectRoomSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-<e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
+<!--<e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>-->
 	<e:Scroller id="svGame" width="1020" anchorOffsetX="0" anchorOffsetY="0" left="301" height="430" y="171.15">
 	 	<e:List id="listGames" height="430" anchorOffsetX="0" width="1020" x="0" y="32" anchorOffsetY="0">
 			<e:layout>
@@ -9,5 +9,5 @@
 		</e:List>
 	</e:Scroller>
 	<e:Image id="imgGameBg" source="beibansan_png" x="41.33" y="228.68" anchorOffsetX="0" width="250.34" anchorOffsetY="0" height="339"/>
-	<e:Image id="btnClose" source="close_png" x="1152" y="48"/>
+	<e:Image id="btnClose" x="1152" y="48" source="fanhui2_png"/>
 </e:Skin>

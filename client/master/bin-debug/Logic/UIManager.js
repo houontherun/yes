@@ -29,6 +29,18 @@ var UIManager = (function (_super) {
         _this.stage = null;
         return _this;
     }
+    Object.defineProperty(UIManager.prototype, "Lobby", {
+        get: function () {
+            var child = this.GetChild(UI.lobby);
+            if (child != null) {
+                var lob = child;
+                return lob;
+            }
+            return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
     UIManager.prototype.Init = function (stage) {
         this.stage = stage;
     };

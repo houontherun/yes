@@ -18,13 +18,6 @@
 		<e:Label id="txtCopyId" text="复制ID" x="222.29" y="65.79" size="15" anchorOffsetY="0" height="16" scaleX="1" scaleY="1" touchEnabled="false"/>
 		<e:Label id="txtUsrId" text="ID:10001" x="125.96" y="60.79" anchorOffsetX="0" width="71" anchorOffsetY="0" height="26" size="15" verticalAlign="middle" textAlign="left"/>
 	</e:Group>
-	<e:Scroller id="svGame" width="994.21" anchorOffsetX="0" anchorOffsetY="0" left="327" height="374.06" y="211.15">
-	 	<e:List id="listGames" height="380.72" anchorOffsetX="0" width="1730" x="0" y="32" anchorOffsetY="0">
-			<e:layout>
-				<e:HorizontalLayout />
-			</e:layout>
-		</e:List>
-	</e:Scroller>
 	<e:Group id="groupBottomMenu" width="1328.66" height="117.82" x="2.67" y="632.18" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image source="dibu_png" x="-6.66" y="-10.18"/>
 		<e:Image id="imgBank" source="yinhang_png" x="81.5" y="16.7"/>
@@ -46,7 +39,7 @@
 		<e:Label text="商城" x="847.3" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
 		<e:Label text="设置" x="1038" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
 	</e:Group>
-	<e:Group id="topMenu" width="501.81" height="84.85" x="832.19" y="7.15" anchorOffsetX="0" anchorOffsetY="0">
+	<e:Group id="groupTopMenu" width="501.81" height="84.85" x="832.19" y="7.15" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="imgMore" source="paopao_png" x="379.69" y="5" scaleX="1" scaleY="1"/>
 		<e:Image id="imgNotice" source="paopao_png" x="285.17" y="5" scaleX="1" scaleY="1"/>
 		<e:Image id="imgActivity" source="paopao_png" x="189.9" y="5" scaleX="1" scaleY="1"/>
@@ -65,12 +58,19 @@
 		<e:Label id="txtFbNum0" text="公告：游戏上线充300送100" x="134.67" y="14" size="20" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="466" verticalAlign="middle" textAlign="center" textColor="0xF4B813"/>
 		<e:Image source="tixing_png" x="81.67" y="14"/>
 	</e:Group>
-	<e:Group id="groupType" width="276" height="400" x="24" y="208" anchorOffsetX="0" anchorOffsetY="0">
+	<e:Group id="groupType" width="1298.72" height="400" x="24" y="208" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="btnPuke" source="puke_png" x="28" y="28" scaleX="1" scaleY="1"/>
 		<e:Image id="btnMajiang" source="majiang_png" x="29" y="148" scaleX="1" scaleY="1"/>
 		<e:Image id="btnQilei" source="qilei_png" x="28" y="268" scaleX="1" scaleY="1"/>
 		<e:Image source="mj_name_png" x="86" y="159.33" touchEnabled="false"/>
 		<e:Image source="ql_name_png" x="86" y="279.99" touchEnabled="false"/>
 		<e:Image source="pk_name_png" x="86" y="38" anchorOffsetX="0.5" anchorOffsetY="0.5" touchEnabled="false"/>
+		<e:Scroller id="svGame" width="994.21" anchorOffsetX="0" anchorOffsetY="0" left="292" height="374.06" y="3.1500000000000057" x="303.00000000000006" scaleX="1" scaleY="1">
+			<e:List id="listGames" height="380.72" anchorOffsetX="0" width="1730" x="0" y="32" anchorOffsetY="0">
+			<e:layout>
+				<e:HorizontalLayout/>
+			</e:layout>
+			</e:List>
+		</e:Scroller>
 	</e:Group>
 </e:Skin>

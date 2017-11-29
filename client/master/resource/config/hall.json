@@ -1,0 +1,107 @@
+{ 
+    "RoomType" : {
+        "1" : { 
+            "ID" : 1,
+            "gameID" : 101,
+            "Name" : "初级房",
+            "BaseScore" : 100
+        },
+        "2" : { 
+            "ID" : 2,
+            "gameID" : 101,
+            "Name" : "中级房",
+            "BaseScore" : 1000
+        },
+        "3" : { 
+            "ID" : 3,
+            "gameID" : 101,
+            "Name" : "高级房",
+            "BaseScore" : 10000
+        }
+    },
+
+    "Game" : {
+        "101" : { 
+            "ID" : 101,
+            "type" : 1,
+            "Name1" : "斗地主",
+            "Chinese" : 1,
+            "English" : 0
+        },
+        "102" : { 
+            "ID" : 102,
+            "type" : 1,
+            "Name1" : "",
+            "Chinese" : 0,
+            "English" : 1
+        },
+        "201" : { 
+            "ID" : 201,
+            "type" : 1,
+            "Name1" : "炸金花",
+            "Chinese" : 0,
+            "English" : 1
+        },
+        "301" : { 
+            "ID" : 301,
+            "type" : 2,
+            "Name1" : "四川麻将",
+            "Chinese" : 0,
+            "English" : 0
+        },
+        "401" : { 
+            "ID" : 401,
+            "type" : 2,
+            "Name1" : "",
+            "Chinese" : 0,
+            "English" : 0
+        },
+        "501" : { 
+            "ID" : 501,
+            "type" : 3,
+            "Name1" : "四国军棋",
+            "Chinese" : 0,
+            "English" : 0
+        },
+        "502" : { 
+            "ID" : 502,
+            "type" : 3,
+            "Name1" : "象棋",
+            "Chinese" : 0,
+            "English" : 0
+        }
+    },
+
+    "Role" : {
+        "1" : { 
+            "ID" : 1,
+            "icon" : "",
+            "picture" : ""
+        },
+        "2" : { 
+            "ID" : 2,
+            "icon" : "",
+            "picture" : ""
+        },
+        "3" : { 
+            "ID" : 3,
+            "icon" : "",
+            "picture" : ""
+        },
+        "4" : { 
+            "ID" : 4,
+            "icon" : "",
+            "picture" : ""
+        },
+        "5" : { 
+            "ID" : 5,
+            "icon" : "",
+            "picture" : ""
+        },
+        "6" : { 
+            "ID" : 6,
+            "icon" : "",
+            "picture" : ""
+        }
+    }
+}

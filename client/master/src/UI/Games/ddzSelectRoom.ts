@@ -52,15 +52,19 @@ namespace gameUI{
             }, this)
             
             MessageManager.Instance.addEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this) 
+            UIManager.Instance.Lobby.groupType.visible = false
+            UIManager.Instance.Lobby.groupTopMenu.visible = false
         }
         public onUnload():void{
             super.onUnload()
             MessageManager.Instance.removeEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this) 
+            UIManager.Instance.Lobby.groupType.visible = true
+            UIManager.Instance.Lobby.groupTopMenu.visible = true
         }
 
         private onQueryRoomInfoRet(data:any):void{
             if(data.ret == 0){
-                // this.Close()
+                this.Close()
                 UIManager.Instance.LoadUI(UI.ddzRoom)
             }
         }

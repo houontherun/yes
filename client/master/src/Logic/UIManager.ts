@@ -1,6 +1,7 @@
 
 
 
+
 var UI = {
     "login":{name:"gameUI.login", skin:"resource/custom_skins/loginSkin.exml"},
     "lobby":{name:"gameUI.lobby", skin:"resource/custom_skins/lobbySkin.exml"},
@@ -13,6 +14,7 @@ var UI = {
     "ddzRoom":{name:"gameUI.ddzRoom", skin:"resource/custom_skins/games/ddzRoomSkin.exml"}, 
 }
 
+
 class UIManager extends Dispatcher {
     public static Instance : UIManager = new UIManager();
     constructor() {
@@ -20,6 +22,15 @@ class UIManager extends Dispatcher {
     }   
 
     private stage:eui.UILayer = null;
+
+    public get Lobby():gameUI.lobby{
+        var child = this.GetChild(UI.lobby)
+        if(child != null){
+            var lob = <gameUI.lobby>child
+            return lob
+        }
+        return null
+    }
     
     public Init(stage:eui.UILayer):void{
         this.stage = stage;

@@ -56,14 +56,18 @@ var gameUI;
                 _this.Close();
             }, this);
             MessageManager.Instance.addEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this);
+            UIManager.Instance.Lobby.groupType.visible = false;
+            UIManager.Instance.Lobby.groupTopMenu.visible = false;
         };
         ddzSelectRoom.prototype.onUnload = function () {
             _super.prototype.onUnload.call(this);
             MessageManager.Instance.removeEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this);
+            UIManager.Instance.Lobby.groupType.visible = true;
+            UIManager.Instance.Lobby.groupTopMenu.visible = true;
         };
         ddzSelectRoom.prototype.onQueryRoomInfoRet = function (data) {
             if (data.ret == 0) {
-                // this.Close()
+                this.Close();
                 UIManager.Instance.LoadUI(UI.ddzRoom);
             }
         };

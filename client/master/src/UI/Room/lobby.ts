@@ -1,63 +1,4 @@
 // 游戏大厅主UI
-
-var game_config = [
-    {
-        type_name:"0扑克",
-        icon:"default.png",
-        childs:[
-            {
-                id:100,
-                name:"斗地主",
-                icon:"resource/assets/bg.png",
-				room_group:"aa",
-				game_group:"aaa"
-            },
-            {
-                id:101,
-                name:"斗牛",
-                icon:"resource/assets/bg.png"
-            },
-            {
-                id:102,
-                name:"炸金花",
-                icon:"resource/assets/bg.png"
-            },
-            {
-                id:103,
-                name:"21点",
-                icon:"resource/assets/bg.png"
-            }
-        ]
-    },
-    {
-        type_name:"1麻将",
-        icon:"default.png",
-        childs:[
-            {
-                id:104,
-                name:"江西麻将",
-                icon:"resource/assets/bg.png"
-            },
-            {
-                id:105,
-                name:"湖南麻将",
-                icon:"resource/assets/bg.png"
-            },
-        ]
-    },
-    {
-        type_name:"2棋类",
-        icon:"default.png",
-        childs:[
-            {
-                id:111,
-                name:"2开心消消乐",
-                icon:"resource/assets/bg.png"
-            }
-        ]
-    }
-];
-
 namespace gameUI{
 
 	class game_item extends eui.ItemRenderer{
@@ -69,10 +10,11 @@ namespace gameUI{
 
 		private onload():void {
 			this.updateUI();
+			this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		}
 
 		private onClick():void {
-			if(this.data.id == 100){ // 斗地主
+			if(this.data.ID == 100){ // 斗地主
 				UIManager.Instance.LoadUI(UI.ddzSelectRoom)
 			}else{
 				alert("暂未开放功能")
@@ -82,9 +24,7 @@ namespace gameUI{
 		private updateUI():void{
 			if(this.imgBg == null || this.imgBg == undefined)
 				return
-
-			this.imgBg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-			this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+			this.txtName.text = this.data.Name1
 		}
 
 		protected dataChanged():void {
@@ -92,26 +32,39 @@ namespace gameUI{
 		}
 
 		private imgBg:eui.Image;
+		public txtName:eui.Label;
 	}
 
 	export class lobby extends gameUI.base{
 		public onload():void {
 			super.onload()
+
+			var jsonData = RES.getRes('hall_json')
+			var games = {
+				1:[],
+				2:[],
+				3:[]
+			}
+			for(var id in jsonData.Game){
+				var game = jsonData.Game[id]
+				games[game.type].push(game)
+			}
+
 			this.svGame.horizontalScrollBar	= null;
 			this.listGames.itemRenderer = game_item;
-			this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
+			this.listGames.dataProvider = new eui.ArrayCollection(games[1]);
 
 			this.AddClick(this.btnPuke, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
+				this.listGames.dataProvider = new eui.ArrayCollection(games[1]);
 				this.listGames.validateNow();
 			}, this)
 
 			this.AddClick(this.btnMajiang, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(game_config[1].childs);
+				this.listGames.dataProvider = new eui.ArrayCollection(games[2]);
 				this.listGames.validateNow();                
             }, this );
 			this.AddClick(this.btnQilei, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(game_config[2].childs);
+				this.listGames.dataProvider = new eui.ArrayCollection(games[3]);
 				this.listGames.validateNow();                
             }, this );
 
@@ -151,14 +104,6 @@ namespace gameUI{
                 
             }, this)
 			this.AddClick(this.imgCoypBg, ()=>{
-				var aa = {
-					a:1,
-					b:2,
-					c:3
-				}
-				for(var key in aa){
-					console.log('key:' + key + ' v:' + aa[key])
-				}
 			}, this)
 
 			// this.svGame.addEventListener(egret.Event.CHANGE, (event:Event)=>{
@@ -202,7 +147,9 @@ namespace gameUI{
 		// 		}
 		// 	}
 		// }
-		public groupUserinfo:eui.Group;
+		public defaultBackground = "background_png"
+
+		public imgBg:eui.Image;
 		public imgFbBg:eui.Image;
 		public imgFbIcon:eui.Image;
 		public imgAddFb:eui.Image;
@@ -240,5 +187,12 @@ namespace gameUI{
 		public imgShare:eui.Image;
 		public imgShop:eui.Image;
 		public btnEnter:eui.Image;
+
+		public groupType:eui.Group;
+		public groupMessage:eui.Group;
+		public groupTopMenu:eui.Group;
+		public groupBottomMenu:eui.Group;
+		public groupUserinfo:eui.Group;
+
 	}
 }

@@ -1,4 +1,3 @@
-// 游戏大厅主UI
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
@@ -12,63 +11,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var game_config = [
-    {
-        type_name: "0扑克",
-        icon: "default.png",
-        childs: [
-            {
-                id: 100,
-                name: "斗地主",
-                icon: "resource/assets/bg.png",
-                room_group: "aa",
-                game_group: "aaa"
-            },
-            {
-                id: 101,
-                name: "斗牛",
-                icon: "resource/assets/bg.png"
-            },
-            {
-                id: 102,
-                name: "炸金花",
-                icon: "resource/assets/bg.png"
-            },
-            {
-                id: 103,
-                name: "21点",
-                icon: "resource/assets/bg.png"
-            }
-        ]
-    },
-    {
-        type_name: "1麻将",
-        icon: "default.png",
-        childs: [
-            {
-                id: 104,
-                name: "江西麻将",
-                icon: "resource/assets/bg.png"
-            },
-            {
-                id: 105,
-                name: "湖南麻将",
-                icon: "resource/assets/bg.png"
-            },
-        ]
-    },
-    {
-        type_name: "2棋类",
-        icon: "default.png",
-        childs: [
-            {
-                id: 111,
-                name: "2开心消消乐",
-                icon: "resource/assets/bg.png"
-            }
-        ]
-    }
-];
+// 游戏大厅主UI
 var gameUI;
 (function (gameUI) {
     var game_item = (function (_super) {
@@ -81,9 +24,10 @@ var gameUI;
         }
         game_item.prototype.onload = function () {
             this.updateUI();
+            this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         };
         game_item.prototype.onClick = function () {
-            if (this.data.id == 100) {
+            if (this.data.ID == 100) {
                 UIManager.Instance.LoadUI(UI.ddzSelectRoom);
             }
             else {
@@ -93,8 +37,7 @@ var gameUI;
         game_item.prototype.updateUI = function () {
             if (this.imgBg == null || this.imgBg == undefined)
                 return;
-            this.imgBg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-            this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+            this.txtName.text = this.data.Name1;
         };
         game_item.prototype.dataChanged = function () {
             this.updateUI();
@@ -105,24 +48,56 @@ var gameUI;
     var lobby = (function (_super) {
         __extends(lobby, _super);
         function lobby() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            // private updateChildSize(offsetX:number):void{
+            // 	var itemWid = 277
+            // 	var itemHei = 355
+            // 	var centerX = 277 + offsetX
+            // 	for(var i = 0; i < this.listGames.numElements; i++){
+            // 		// var i = 3
+            // 		var element = this.listGames.getElementAt(i)
+            // 		if(element != undefined){
+            // 			var x = i * itemWid
+            // 			var ox = Math.abs(x - centerX)
+            // 			if(ox > 150){ //ox=0的时候正中
+            // 				ox = 150
+            // 			}
+            // 			var scale = 1.5/((ox/300) + 1)
+            // 			// console.log(scale)
+            // 			// element.height = itemHei * scale
+            // 			element.width = itemWid * scale
+            // 		}
+            // 	}
+            // }
+            _this.defaultBackground = "background_png";
+            return _this;
         }
         lobby.prototype.onload = function () {
             var _this = this;
             _super.prototype.onload.call(this);
+            var jsonData = RES.getRes('hall_json');
+            var games = {
+                1: [],
+                2: [],
+                3: []
+            };
+            for (var id in jsonData.Game) {
+                var game = jsonData.Game[id];
+                games[game.type].push(game);
+            }
             this.svGame.horizontalScrollBar = null;
             this.listGames.itemRenderer = game_item;
-            this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
+            this.listGames.dataProvider = new eui.ArrayCollection(games[1]);
             this.AddClick(this.btnPuke, function () {
-                _this.listGames.dataProvider = new eui.ArrayCollection(game_config[0].childs);
+                _this.listGames.dataProvider = new eui.ArrayCollection(games[1]);
                 _this.listGames.validateNow();
             }, this);
             this.AddClick(this.btnMajiang, function () {
-                _this.listGames.dataProvider = new eui.ArrayCollection(game_config[1].childs);
+                _this.listGames.dataProvider = new eui.ArrayCollection(games[2]);
                 _this.listGames.validateNow();
             }, this);
             this.AddClick(this.btnQilei, function () {
-                _this.listGames.dataProvider = new eui.ArrayCollection(game_config[2].childs);
+                _this.listGames.dataProvider = new eui.ArrayCollection(games[3]);
                 _this.listGames.validateNow();
             }, this);
             // top menu
@@ -158,14 +133,6 @@ var gameUI;
             this.imgHeadIcon.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
             }, this);
             this.AddClick(this.imgCoypBg, function () {
-                var aa = {
-                    a: 1,
-                    b: 2,
-                    c: 3
-                };
-                for (var key in aa) {
-                    console.log('key:' + key + ' v:' + aa[key]);
-                }
             }, this);
             // this.svGame.addEventListener(egret.Event.CHANGE, (event:Event)=>{
             // 	var offsetX = this.listGames.scrollRect.x //最左边是0
