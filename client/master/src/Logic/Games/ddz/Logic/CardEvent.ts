@@ -9,7 +9,8 @@ module CardLogic {
     	public static DispatchCardStart:string = "dispatchcardstart";
 		public static AddOtherPlayers:string = "addotherPlayers";
 		public static AddHard:string = "addhard";
-    	
+    	public static UpdatePlayers:string = "updatePlayers";
+
     	public paramObj:any; 
     	
 		public constructor(type:string, bubbles:boolean=false, cancelable:boolean=false) {

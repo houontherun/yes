@@ -21,42 +21,71 @@ namespace gameUI{
    private TargetCardsArray: Card.ui_pokerCardItem[] = [];
    private cardBegin: number = -1;
    private cardEnd: number = -1;
+   private btn_back:eui.Image;
 
     public onload():void {
        
         super.onload();
-        CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddOtherPlayers,this.addOtherPlayers,this);
+
+        MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
+        CardLogic.ddzGameLogic.Instance.init();
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
+        CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
  		this.AddClick(this.btn_tuoguan, ()=>{ 
                  
             }, this );
 
         this.AddClick(this.prepareBtn, ()=>{   
-            CardLogic.ddzGameLogic.Shared().Shuffle();   
-            CardLogic.ddzGameLogic.Shared().DispatchCardStart();
           
             }, this );
 
         this.AddClick(this.ChangeBtn,()=>{
             this.clearCurGame();
-            CardLogic.CardEventDispatcher.Instance.dispatchEvent(new CardLogic.CardEvent(CardLogic.CardEvent.AddOtherPlayers));
         },this); 
 
+        this.AddClick(this.btn_back, ()=>{   
+             MessageManager.Instance.SendMessage({
+              protocol:constant.msg.CS_USER_STAND_UP
+           });
+
+            }, this );
         this.Changeimg.$touchEnabled =false;  
         this.prepareimg.$touchEnabled =false;  
-
-        
+       
     }
 
 
-   public addOtherPlayers(e:CardLogic.CardEvent)
-   {
-        this.setPlayer(0,"小我问",85000,"face_1_png");
-        this.setPlayer(1,"蛇头02",1000,"face_2_png");
-        this.setPlayer(2,"重设子对象深度",120000,"face_3_png");
-   }
+   public onUnload():void{
+        super.onUnload()
+        MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.Standup,this) ;
+    }
 
 
+  private SetplayersInfo()
+  {
+    var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
+     if(players.length > 0)
+     {
+         for(var i = 0;i<players.length;i++)
+         {
+             if(players[i].UserId == PlayerManager.Instance.Data.UserId)
+              {
+                   this.setPlayer(0,players[i].UserName,players[i].Gold,"face_1_png");
+              }
+              else
+              {
+                    this.setPlayer(players[i].ChairId,players[i].UserName,players[i].Gold,"face_2_png");
+              }
+         }
+     }
+  }
+
+  private Standup(data:any):void
+  {
+      UIManager.Instance.UnloadUI(UI.ddzGame);
+      UIManager.Instance.LoadUI(UI.ddzRoom);   
+       CardLogic.ddzGameLogic.Instance.ExitGame();
+  }
 
    protected childrenCreated() {
             super.childrenCreated();

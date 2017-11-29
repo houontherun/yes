@@ -50,6 +50,7 @@ var constant = {
         SC_CHILD_GAME_MESSAGE : 2018,	//子游戏消息
 	    SC_GAME_MESSAGE : 2019,			//游戏信息，包括聊天等,显示用
 	    SC_QUERY_ROOM_INFO : 2023,		//推送房间信息
+        SC_TABLE_PLAYER_INFO : 2025,	//桌子上玩家信息
 	    SC_MAX : 2999,
     },
     error_code:{

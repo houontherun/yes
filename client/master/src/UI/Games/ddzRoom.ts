@@ -103,14 +103,13 @@ namespace gameUI{
             UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground
         }
         private onPlayerSitDown(data):void{
-            if(data.ret == 1){
+            if(data.ret == 0){
                 // todo
                 RES.loadGroup("ddzRes");
                 RES.loadGroup("face");
                 RES.loadGroup("poke");
                 UIManager.Instance.UnloadUI(UI.ddzRoom);
-                UIManager.Instance.UnloadUI(UI.lobby);
-                UIManager.Instance.LoadUI(UI.ddzGame);
+                 UIManager.Instance.LoadUI(UI.ddzGame);
             }
         }
         private onLeaveRoomRet(data):void{
