@@ -28,6 +28,7 @@ var CardLogic;
         CardEvent.DispatchCardStart = "dispatchcardstart";
         CardEvent.AddOtherPlayers = "addotherPlayers";
         CardEvent.AddHard = "addhard";
+        CardEvent.UpdatePlayers = "updatePlayers";
         return CardEvent;
     }(egret.Event));
     CardLogic.CardEvent = CardEvent;

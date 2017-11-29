@@ -107,6 +107,7 @@ namespace gameUI{
 
 			PlayerManager.Instance.addEventListener(constant.event.logic.on_player_data_update, this.updatePlayerInfo, this)
 			this.updatePlayerInfo(PlayerManager.Instance.Data)
+			this.imgBg.source = this.defaultBackground
 		}
 		
         public onUnload():void{

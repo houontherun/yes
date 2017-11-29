@@ -32,25 +32,46 @@ var gameUI;
         ddz_game.prototype.onload = function () {
             var _this = this;
             _super.prototype.onload.call(this);
-            CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddOtherPlayers, this.addOtherPlayers, this);
+            MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
+            CardLogic.ddzGameLogic.Instance.init();
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
+            CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
             this.AddClick(this.btn_tuoguan, function () {
             }, this);
             this.AddClick(this.prepareBtn, function () {
-                CardLogic.ddzGameLogic.Shared().Shuffle();
-                CardLogic.ddzGameLogic.Shared().DispatchCardStart();
             }, this);
             this.AddClick(this.ChangeBtn, function () {
                 _this.clearCurGame();
-                CardLogic.CardEventDispatcher.Instance.dispatchEvent(new CardLogic.CardEvent(CardLogic.CardEvent.AddOtherPlayers));
+            }, this);
+            this.AddClick(this.btn_back, function () {
+                MessageManager.Instance.SendMessage({
+                    protocol: constant.msg.CS_USER_STAND_UP
+                });
             }, this);
             this.Changeimg.$touchEnabled = false;
             this.prepareimg.$touchEnabled = false;
         };
-        ddz_game.prototype.addOtherPlayers = function (e) {
-            this.setPlayer(0, "小我问", 85000, "face_1_png");
-            this.setPlayer(1, "蛇头02", 1000, "face_2_png");
-            this.setPlayer(2, "重设子对象深度", 120000, "face_3_png");
+        ddz_game.prototype.onUnload = function () {
+            _super.prototype.onUnload.call(this);
+            MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
+        };
+        ddz_game.prototype.SetplayersInfo = function () {
+            var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
+            if (players.length > 0) {
+                for (var i = 0; i < players.length; i++) {
+                    if (players[i].UserId == PlayerManager.Instance.Data.UserId) {
+                        this.setPlayer(0, players[i].UserName, players[i].Gold, "face_1_png");
+                    }
+                    else {
+                        this.setPlayer(players[i].ChairId, players[i].UserName, players[i].Gold, "face_2_png");
+                    }
+                }
+            }
+        };
+        ddz_game.prototype.Standup = function (data) {
+            UIManager.Instance.UnloadUI(UI.ddzGame);
+            UIManager.Instance.LoadUI(UI.ddzRoom);
+            CardLogic.ddzGameLogic.Instance.ExitGame();
         };
         ddz_game.prototype.childrenCreated = function () {
             _super.prototype.childrenCreated.call(this);
