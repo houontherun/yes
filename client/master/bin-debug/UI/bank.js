@@ -18,26 +18,26 @@ var gameUI;
         __extends(rankItemRander, _super);
         function rankItemRander() {
             var _this = _super.call(this) || this;
-            _this.skinName = "resource/custom_skins/bankOperItemSkin.exml";
+            _this.isLoaded = false;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.skinName = "resource/custom_skins/bankOperItemSkin.exml";
             return _this;
         }
         rankItemRander.prototype.onload = function () {
+            this.isLoaded = true;
             this.updateUI();
         };
         rankItemRander.prototype.updateUI = function () {
             //{guid, ruid, t, gold, id}
-            if (this.data != null && this.data != undefined && this.imgBg != undefined && this.imgBg != null) {
-                this.txtDate.text = this.data.t.toString();
-                this.txtSendId.text = this.data.guid.toString();
-                this.txtRecvId.text = this.data.ruid.toString();
-                this.txtNumber.text = this.data.gold.toString();
-            }
+            if (this.data == null || !this.isLoaded)
+                return;
+            this.txtDate.text = this.data.t.toString();
+            this.txtSendId.text = this.data.guid.toString();
+            this.txtRecvId.text = this.data.ruid.toString();
+            this.txtNumber.text = this.data.gold.toString();
         };
         rankItemRander.prototype.dataChanged = function () {
-            if (this.imgBg != undefined && this.imgBg != null) {
-                this.updateUI();
-            }
+            this.updateUI();
         };
         return rankItemRander;
     }(eui.ItemRenderer));

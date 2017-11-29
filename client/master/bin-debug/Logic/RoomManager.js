@@ -57,6 +57,8 @@ var UserData = (function () {
         this.table_id = data.table_id;
         this.chair_id = data.chair_id;
         this.user_name = data.user_name;
+        this.face_id = data.face_id;
+        this.gold = data.gold;
     }
     Object.defineProperty(UserData.prototype, "RoomId", {
         get: function () { return this.room_id; },
@@ -88,6 +90,16 @@ var UserData = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(UserData.prototype, "FaceId", {
+        get: function () { return this.face_id; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UserData.prototype, "Gold", {
+        get: function () { return this.gold; },
+        enumerable: true,
+        configurable: true
+    });
     UserData.prototype.Update = function (data) {
         if (data.room_id != undefined && data.room_id != null) {
             this.room_id = data.room_id;
@@ -106,6 +118,12 @@ var UserData = (function () {
         }
         if (data.user_name != undefined && data.user_name != null) {
             this.user_name = data.user_name;
+        }
+        if (data.face_id != undefined && data.face_id != null) {
+            this.face_id = data.face_id;
+        }
+        if (data.gold != undefined && data.gold != null) {
+            this.gold = data.gold;
         }
     };
     return UserData;
@@ -168,7 +186,9 @@ var EnterRoomData = (function () {
     EnterRoomData.prototype.RemoveUser = function (data) {
         for (var i = this.users.length - 1; i >= 0; i--) {
             if (this.users[i].UserId == data.user_id) {
-                this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i]);
+                if (this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null) {
+                    this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i]);
+                }
                 this.users.splice(i, 1);
             }
         }
@@ -237,7 +257,7 @@ var RoomManager = (function (_super) {
     };
     RoomManager.prototype.onEnterRoomRet = function (data) {
         if (data.ret == 0) {
-            this.queryRoomInfo();
+            // do nothing
         }
     };
     RoomManager.prototype.queryRoomInfo = function () {

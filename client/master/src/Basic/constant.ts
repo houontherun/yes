@@ -1,8 +1,8 @@
 // TypeScript file
 
 var constant = {
-    connect_ip : "192.168.12.3", // 候
-    // connect_ip : "192.168.12.1", // 谭
+    //connect_ip : "192.168.12.3", // 候
+    connect_ip : "192.168.12.1", // 谭
     connect_port: 8000,
     msg:{
         //客户端->服务端		

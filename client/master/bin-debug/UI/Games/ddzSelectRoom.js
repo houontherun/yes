@@ -18,16 +18,19 @@ var gameUI;
         __extends(ddzSelectRoomItemRander, _super);
         function ddzSelectRoomItemRander() {
             var _this = _super.call(this) || this;
-            _this.skinName = "resource/custom_skins/games/ddzSelectRoomItemSkin.exml";
+            _this.isLoaded = false;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.skinName = "resource/custom_skins/games/ddzSelectRoomItemSkin.exml";
             return _this;
         }
         ddzSelectRoomItemRander.prototype.onload = function () {
+            this.isLoaded = true;
+            this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
             this.updateUI();
         };
         ddzSelectRoomItemRander.prototype.updateUI = function () {
-            this.imgBg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-            this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+            if (!this.isLoaded || this.data == null)
+                return;
         };
         ddzSelectRoomItemRander.prototype.onClick = function () {
             // 请求进入房间
@@ -35,9 +38,7 @@ var gameUI;
             RoomManager.Instance.EnterRoom(this.data.RoomId);
         };
         ddzSelectRoomItemRander.prototype.dataChanged = function () {
-            if (this.imgBg != undefined && this.imgBg != null) {
-                this.updateUI();
-            }
+            this.updateUI();
         };
         return ddzSelectRoomItemRander;
     }(eui.ItemRenderer));
@@ -56,14 +57,21 @@ var gameUI;
                 _this.Close();
             }, this);
             MessageManager.Instance.addEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this);
+            MessageManager.Instance.addEventListener(constant.msg.SC_ENTER_ROOM, this.onEnterRoomRet, this);
             UIManager.Instance.Lobby.groupType.visible = false;
             UIManager.Instance.Lobby.groupTopMenu.visible = false;
         };
         ddzSelectRoom.prototype.onUnload = function () {
             _super.prototype.onUnload.call(this);
             MessageManager.Instance.removeEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this);
+            MessageManager.Instance.removeEventListener(constant.msg.SC_ENTER_ROOM, this.onEnterRoomRet, this);
             UIManager.Instance.Lobby.groupType.visible = true;
             UIManager.Instance.Lobby.groupTopMenu.visible = true;
+        };
+        ddzSelectRoom.prototype.onEnterRoomRet = function (data) {
+            if (data.ret == 0) {
+                RoomManager.Instance.queryRoomInfo();
+            }
         };
         ddzSelectRoom.prototype.onQueryRoomInfoRet = function (data) {
             if (data.ret == 0) {

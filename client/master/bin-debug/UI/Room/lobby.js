@@ -18,13 +18,15 @@ var gameUI;
         __extends(game_item, _super);
         function game_item() {
             var _this = _super.call(this) || this;
-            _this.skinName = "resource/custom_skins/game_itemSkin.exml";
+            _this.isLoaded = false;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.skinName = "resource/custom_skins/game_itemSkin.exml";
             return _this;
         }
         game_item.prototype.onload = function () {
-            this.updateUI();
+            this.isLoaded = true;
             this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+            this.updateUI();
         };
         game_item.prototype.onClick = function () {
             if (this.data.ID == 101) {
@@ -35,7 +37,7 @@ var gameUI;
             }
         };
         game_item.prototype.updateUI = function () {
-            if (this.imgBg == null || this.imgBg == undefined)
+            if (this.data == null || !this.isLoaded)
                 return;
             this.txtName.text = this.data.Name1;
         };

@@ -18,14 +18,19 @@ var gameUI;
         __extends(rankItemRander, _super);
         function rankItemRander() {
             var _this = _super.call(this) || this;
-            _this.skinName = "resource/custom_skins/rankItemSkin.exml";
+            _this.isLoaded = false;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.skinName = "resource/custom_skins/rankItemSkin.exml";
             return _this;
         }
         rankItemRander.prototype.onload = function () {
+            this.isLoaded = true;
             this.updateUI();
         };
         rankItemRander.prototype.updateUI = function () {
+            if (!this.isLoaded || this.data == null) {
+                return;
+            }
             if (this.data.rank == 0) {
                 this.imgIndex.source = "rank_1_png";
                 this.imgBg.source = "rank_bg2_png";
@@ -51,9 +56,7 @@ var gameUI;
             this.txtIndex.text = (this.data.rank + 1).toString();
         };
         rankItemRander.prototype.dataChanged = function () {
-            if (this.imgBg != undefined && this.imgBg != null) {
-                this.updateUI();
-            }
+            this.updateUI();
         };
         return rankItemRander;
     }(eui.ItemRenderer));

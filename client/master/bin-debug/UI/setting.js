@@ -18,14 +18,14 @@ var gameUI;
         __extends(settingLanguageItemRander, _super);
         function settingLanguageItemRander() {
             var _this = _super.call(this) || this;
-            _this.skinName = "resource/custom_skins/settingLanguageItem.exml";
+            _this.isLoaded = false;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.skinName = "resource/custom_skins/settingLanguageItem.exml";
             return _this;
         }
         settingLanguageItemRander.prototype.onload = function () {
             var _this = this;
-            console.log("onload");
-            this.txtLan.text = this.data.text;
+            this.isLoaded = true;
             this.txtLan.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 var settingUI = UIManager.Instance.GetChild(UI.setting);
                 if (settingUI != null) {
@@ -34,10 +34,10 @@ var gameUI;
             }, this);
         };
         settingLanguageItemRander.prototype.dataChanged = function () {
-            console.log("dataChanged");
-            if (this.txtLan != undefined && this.txtLan != null) {
-                this.txtLan.text = this.data.text;
+            if (!this.isLoaded) {
+                return;
             }
+            this.txtLan.text = this.data.text;
         };
         return settingLanguageItemRander;
     }(eui.ItemRenderer));
@@ -56,8 +56,6 @@ var gameUI;
             this.svData.visible = false;
             // this.svData.initItemRenderer(settingLanguageItemRander)
             // this.svData.initItemSkin("resource/custom_skins/settingLanguageItem.exml")
-            this.dataList.itemRenderer = settingLanguageItemRander;
-            this.dataList.itemRendererSkinName = "resource/custom_skins/settingLanguageItem.exml";
             var languages = [
                 { text: "中文" },
                 { text: "英文" },
@@ -66,7 +64,7 @@ var gameUI;
                 { text: "兽语" },
             ];
             this.dataList.dataProvider = new eui.ArrayCollection(languages);
-            // this.svData.bindData(languages)
+            this.dataList.itemRenderer = settingLanguageItemRander;
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 _this.svData.visible = !_this.svData.visible;
             }, this);

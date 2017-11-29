@@ -18,12 +18,14 @@ var gameUI;
         __extends(ddzRoomItemRander, _super);
         function ddzRoomItemRander() {
             var _this = _super.call(this) || this;
-            _this.skinName = "resource/custom_skins/games/ddzRoomTableSkin.exml";
+            _this.isLoaded = false;
             _this.addEventListener(eui.UIEvent.COMPLETE, _this.onload, _this);
+            _this.skinName = "resource/custom_skins/games/ddzRoomTableSkin.exml";
             return _this;
         }
         ddzRoomItemRander.prototype.onload = function () {
             var _this = this;
+            this.isLoaded = true;
             this.updateUI();
             this.btnEnter1.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
                 _this.sitDown(0);
@@ -36,26 +38,30 @@ var gameUI;
             }, this);
         };
         ddzRoomItemRander.prototype.sitDown = function (chair_id) {
+            if (this.data.GetUserByChairId(chair_id) != null) {
+                alert('有人坐了，请选其他位置');
+                return;
+            }
             RoomManager.Instance.SitDown(this.data.TableId, chair_id);
         };
         ddzRoomItemRander.prototype.updateUI = function () {
-            if (this.imgUser1 != undefined && this.imgUser1 != null) {
-                var userImages = [this.imgUser1, this.imgUser2, this.imgUser3];
-                for (var i = 0; i < 3; i++) {
-                    var userId = this.data.GetUserByChairId(i);
-                    if (userId != null) {
-                        userImages[i].visible = true;
-                    }
-                    else {
-                        userImages[i].visible = false;
-                    }
+            if (!this.isLoaded || this.data == null)
+                return;
+            var userImages = [this.imgUser1, this.imgUser2, this.imgUser3];
+            for (var i = 0; i < 3; i++) {
+                var userId = this.data.GetUserByChairId(i);
+                if (userId != null) {
+                    userImages[i].visible = true;
+                }
+                else {
+                    userImages[i].visible = false;
                 }
             }
+            this.txtTableNum.text = this.data.TableId.toString() + "号桌";
+            this.txtStatus.text = '等待中';
         };
         ddzRoomItemRander.prototype.dataChanged = function () {
-            if (this.btnTable != undefined && this.btnTable != null) {
-                this.updateUI();
-            }
+            this.updateUI();
         };
         return ddzRoomItemRander;
     }(eui.ItemRenderer));
@@ -68,20 +74,26 @@ var gameUI;
         ddzRoom.prototype.onload = function () {
             var _this = this;
             _super.prototype.onload.call(this);
+            MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN, this.onPlayerSitDown, this);
+            MessageManager.Instance.addEventListener(constant.msg.SC_LEAVE_ROOM, this.onLeaveRoomRet, this);
             this.listGames.itemRenderer = ddzRoomItemRander;
             this.listGames.dataProvider = new eui.ArrayCollection(RoomManager.Instance.currentRoom.Tables);
             this.AddClick(this.btnClose, function () {
-                _this.Close();
-                UIManager.Instance.LoadUI(UI.ddzSelectRoom);
+                RoomManager.Instance.LevelRoom();
             }, this);
-            MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN, this.onPlayerSitDown, this);
             UIManager.Instance.Lobby.groupType.visible = false;
             UIManager.Instance.Lobby.groupTopMenu.visible = false;
             UIManager.Instance.Lobby.imgBg.source = 'background2_png';
+            this.AddClick(this.btnQuickStart, function () {
+                for (var i = 0; i < _this.listGames.numChildren; i++) {
+                    var tableItem = _this.listGames.getChildAt(i);
+                }
+            }, this);
         };
         ddzRoom.prototype.onUnload = function () {
             _super.prototype.onUnload.call(this);
             MessageManager.Instance.removeEventListener(constant.msg.SC_USER_SIT_DOWN, this.onPlayerSitDown, this);
+            MessageManager.Instance.removeEventListener(constant.msg.SC_LEAVE_ROOM, this.onLeaveRoomRet, this);
             UIManager.Instance.Lobby.groupType.visible = true;
             UIManager.Instance.Lobby.groupTopMenu.visible = true;
             UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground;
@@ -93,9 +105,14 @@ var gameUI;
                 RES.loadGroup("face");
                 RES.loadGroup("poke");
                 UIManager.Instance.UnloadUI(UI.ddzRoom);
-                UIManager.Instance.UnloadUI(UI.ddzSelectRoom);
                 UIManager.Instance.UnloadUI(UI.lobby);
                 UIManager.Instance.LoadUI(UI.ddzGame);
+            }
+        };
+        ddzRoom.prototype.onLeaveRoomRet = function (data) {
+            if (data.ret == 0) {
+                this.Close();
+                UIManager.Instance.LoadUI(UI.ddzSelectRoom);
             }
         };
         return ddzRoom;

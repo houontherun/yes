@@ -11,9 +11,9 @@
 	],
 	"game": [
 		"bin-debug/Logic/Games/Common/GameObject.js",
-		"bin-debug/Logic/Games/Common/Dispatcher.js",
 		"bin-debug/Logic/Games/ddz/UI/base.js",
 		"bin-debug/UI/base.js",
+		"bin-debug/Logic/Games/Common/Dispatcher.js",
 		"bin-debug/Logic/Games/ddz/Logic/CardEventDispatcher.js",
 		"bin-debug/Logic/GameManager.js",
 		"bin-debug/Logic/HttpDownloadManager.js",
@@ -29,7 +29,7 @@
 		"bin-debug/Logic/Games/ddz/common/CardRule.js",
 		"bin-debug/Logic/Games/ddz/common/PokerCard.js",
 		"bin-debug/Logic/Games/ddz/Logic/CardEvent.js",
-		"bin-debug/LoadingUI.js",
+		"bin-debug/UI/Room/lobby.js",
 		"bin-debug/Logic/Games/ddz/Logic/ddzGameLogic.js",
 		"bin-debug/Logic/Games/ddz/Logic/Timer.js",
 		"bin-debug/ThemeAdapter.js",
@@ -48,6 +48,6 @@
 		"bin-debug/UI/Games/ddzSelectRoom.js",
 		"bin-debug/UI/Room/create_room.js",
 		"bin-debug/UI/Room/enter_room.js",
-		"bin-debug/UI/Room/lobby.js"
+		"bin-debug/LoadingUI.js"
 	]
 }
