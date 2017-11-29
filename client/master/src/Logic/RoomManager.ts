@@ -35,6 +35,8 @@ class UserData{
     private table_id:number //  当前桌号
     private chair_id:number //  当前椅子号
     private user_name:string //玩家名字
+    private face_id:number  // 头像索引
+    private gold:number     // 当前金币
 
     public get RoomId():number { return this.room_id }
     public get UserId():number { return this.user_id }
@@ -42,6 +44,8 @@ class UserData{
     public get TableId():number { return this.table_id }
     public get ChairId():number { return this.chair_id }
     public get UserName():string { return this.user_name }
+    public get FaceId():number { return this.face_id }
+    public get Gold():number { return this.gold }
 
     constructor(data){
         this.room_id = data.room_id
@@ -50,6 +54,8 @@ class UserData{
         this.table_id = data.table_id
         this.chair_id = data.chair_id
         this.user_name = data.user_name
+        this.face_id = data.face_id
+        this.gold = data.gold
     }
 
     public Update(data:any):void{
@@ -59,6 +65,8 @@ class UserData{
         if(data.table_id != undefined && data.table_id != null){  this.table_id = data.table_id }
         if(data.chair_id != undefined && data.chair_id != null){  this.chair_id = data.chair_id }
         if(data.user_name != undefined && data.user_name != null){  this.user_name = data.user_name }
+        if(data.face_id != undefined && data.face_id != null){  this.face_id = data.face_id }
+        if(data.gold != undefined && data.gold != null){  this.gold = data.gold }
     }
 }
 class TableData{
@@ -177,7 +185,7 @@ class RoomManager extends Dispatcher {
     }
     private onEnterRoomRet(data:any):void{
         if(data.ret == 0){
-            this.queryRoomInfo()
+            // do nothing
         }
     }
     public queryRoomInfo():void{

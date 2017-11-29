@@ -35,12 +35,16 @@ namespace gameUI{
             }, this);
 		}
         private sitDown(chair_id:number):void{
+            if(this.data.GetUserByChairId(chair_id) != null){
+                alert('有人坐了，请选其他位置')
+                return
+            }
             RoomManager.Instance.SitDown(this.data.TableId, chair_id)
         }
 
         private updateUI():void{
             if(!this.isLoaded || this.data == null)
-                return             
+                return
             var userImages = [this.imgUser1, this.imgUser2, this.imgUser3]
             for(var i = 0; i < 3; i++){
                 var userId = this.data.GetUserByChairId(i)
@@ -51,6 +55,8 @@ namespace gameUI{
                     userImages[i].visible = false
                 }
             }
+            this.txtTableNum.text = this.data.TableId.toString() + "号桌"
+            this.txtStatus.text = '等待中'
         }
 
 		protected dataChanged():void {
@@ -61,22 +67,29 @@ namespace gameUI{
     export class ddzRoom extends gameUI.base{        
         public onload():void {
             super.onload();
+            MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this)   
+            MessageManager.Instance.addEventListener(constant.msg.SC_LEAVE_ROOM,  this.onLeaveRoomRet, this)    
 
             this.listGames.itemRenderer = ddzRoomItemRander
             this.listGames.dataProvider = new eui.ArrayCollection(RoomManager.Instance.currentRoom.Tables)
 
             this.AddClick(this.btnClose, ()=>{
-                this.Close()
-                UIManager.Instance.LoadUI(UI.ddzSelectRoom)
+                RoomManager.Instance.LevelRoom()
             }, this)
-            MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this) 
             UIManager.Instance.Lobby.groupType.visible = false
             UIManager.Instance.Lobby.groupTopMenu.visible = false
             UIManager.Instance.Lobby.imgBg.source = 'background2_png'
+
+            this.AddClick(this.btnQuickStart, ()=>{
+                for(var i = 0; i < this.listGames.numChildren; i++){
+                    var tableItem = <ddzRoomItemRander>this.listGames.getChildAt(i)
+                }
+            }, this)
         }
         public onUnload():void{
             super.onUnload()
             MessageManager.Instance.removeEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this) 
+            MessageManager.Instance.removeEventListener(constant.msg.SC_LEAVE_ROOM,  this.onLeaveRoomRet, this)    
             UIManager.Instance.Lobby.groupType.visible = true
             UIManager.Instance.Lobby.groupTopMenu.visible = true
             UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground
@@ -93,9 +106,16 @@ namespace gameUI{
                 UIManager.Instance.LoadUI(UI.ddzGame);
             }
         }
+        private onLeaveRoomRet(data):void{
+            if(data.ret == 0){
+                this.Close()
+                UIManager.Instance.LoadUI(UI.ddzSelectRoom)
+            }
+        }
 
         public svGame:eui.Scroller;
         public listGames:eui.List;
         public btnClose:eui.Image;
+        public btnQuickStart:eui.Image;
     }
 }
