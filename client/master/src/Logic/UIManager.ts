@@ -11,6 +11,7 @@ var UI = {
     "enter_room":{name:"gameUI.enter_room", skin:"resource/custom_skins/enter_roomSkin.exml"},   
     "ddzSelectRoom":{name:"gameUI.ddzSelectRoom", skin:"resource/custom_skins/games/ddzSelectRoomSkin.exml"}, 
     "ddzRoom":{name:"gameUI.ddzRoom", skin:"resource/custom_skins/games/ddzRoomSkin.exml"}, 
+    "ddzGame":{name:"gameUI.ddz_game", skin:"resource/eui_skins/ddz_ui/ui_game.exml"}, 
 }
 
 class UIManager extends Dispatcher {
