@@ -115,7 +115,9 @@ class EnterRoomData{
     public RemoveUser(data):void{
         for(var i = this.users.length - 1; i >= 0; i--){
             if(this.users[i].UserId == data.user_id){
-                this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i])
+                if(this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null){
+                    this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i])
+                }
                 this.users.splice(i, 1)
             }
         }
