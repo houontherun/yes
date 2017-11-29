@@ -109,7 +109,6 @@ namespace gameUI{
                 RES.loadGroup("face");
                 RES.loadGroup("poke");
                 UIManager.Instance.UnloadUI(UI.ddzRoom);
-                UIManager.Instance.UnloadUI(UI.ddzSelectRoom);
                 UIManager.Instance.UnloadUI(UI.lobby);
                 UIManager.Instance.LoadUI(UI.ddzGame);
             }
