@@ -1,6 +1,9 @@
 // TypeScript file
 
 class Dispatcher extends GameObject{
+    constructor(){
+        super()
+    }
     private _eventMap: any = {};
 
     public addEventListener(eventID: any, callback: Function, thisObj: any): void {

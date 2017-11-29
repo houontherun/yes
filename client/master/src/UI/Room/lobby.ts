@@ -41,16 +41,7 @@ namespace gameUI{
 		public onload():void {
 			super.onload()
 
-			var jsonData = RES.getRes('hall_json')
-			var games = {
-				1:[],
-				2:[],
-				3:[]
-			}
-			for(var id in jsonData.Game){
-				var game = jsonData.Game[id]
-				games[game.type].push(game)
-			}
+			var games = DataManager.Instance.getGames()
 
 			this.svGame.horizontalScrollBar	= null;
 			this.listGames.itemRenderer = game_item;

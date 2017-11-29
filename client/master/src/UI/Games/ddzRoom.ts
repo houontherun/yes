@@ -42,9 +42,10 @@ namespace gameUI{
             RoomManager.Instance.SitDown(this.data.TableId, chair_id)
         }
 
-        private updateUI():void{
+        public updateUI():void{
             if(!this.isLoaded || this.data == null)
                 return
+            var isReady = true
             var userImages = [this.imgUser1, this.imgUser2, this.imgUser3]
             for(var i = 0; i < 3; i++){
                 var userId = this.data.GetUserByChairId(i)
@@ -53,10 +54,15 @@ namespace gameUI{
                 }
                 else{
                     userImages[i].visible = false
+                    isReady = false
                 }
             }
             this.txtTableNum.text = this.data.TableId.toString() + "号桌"
-            this.txtStatus.text = '等待中'
+            if(isReady){
+                this.txtStatus.text = '进行中'
+            }else{
+                this.txtStatus.text = '等待中'
+            }            
         }
 
 		protected dataChanged():void {
@@ -73,6 +79,9 @@ namespace gameUI{
             this.listGames.itemRenderer = ddzRoomItemRander
             this.listGames.dataProvider = new eui.ArrayCollection(RoomManager.Instance.currentRoom.Tables)
 
+            // RoomManager.Instance.currentRoom.removeEventListener('TableUpdate', this.onTableUpdate, this) 
+            RoomManager.Instance.currentRoom.addEventListener('TableUpdate', this.onTableUpdate, this)
+
             this.AddClick(this.btnClose, ()=>{
                 RoomManager.Instance.LevelRoom()
             }, this)
@@ -81,15 +90,14 @@ namespace gameUI{
             UIManager.Instance.Lobby.imgBg.source = 'background2_png'
 
             this.AddClick(this.btnQuickStart, ()=>{
-                for(var i = 0; i < this.listGames.numChildren; i++){
-                    var tableItem = <ddzRoomItemRander>this.listGames.getChildAt(i)
-                }
+                console.log(DataManager.Instance.getJson('name').RandWomanName[1].WomanName)
             }, this)
         }
         public onUnload():void{
             super.onUnload()
             MessageManager.Instance.removeEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this) 
-            MessageManager.Instance.removeEventListener(constant.msg.SC_LEAVE_ROOM,  this.onLeaveRoomRet, this)    
+            MessageManager.Instance.removeEventListener(constant.msg.SC_LEAVE_ROOM,  this.onLeaveRoomRet, this)   
+            // RoomManager.Instance.currentRoom.removeEventListener('TableUpdate', this.onTableUpdate, this) 
             UIManager.Instance.Lobby.groupType.visible = true
             UIManager.Instance.Lobby.groupTopMenu.visible = true
             UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground
@@ -110,6 +118,14 @@ namespace gameUI{
             if(data.ret == 0){
                 this.Close()
                 UIManager.Instance.LoadUI(UI.ddzSelectRoom)
+            }
+        }
+        private onTableUpdate(tableId):void{
+            for(var i = 0; i < this.listGames.numChildren; i++){
+                var tableItem = <ddzRoomItemRander>this.listGames.getChildAt(i)
+                if(tableId == tableItem.data.TableId){
+                    tableItem.updateUI()
+                }
             }
         }
 
