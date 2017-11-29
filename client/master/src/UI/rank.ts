@@ -9,17 +9,24 @@ namespace gameUI{
         public txtValue:eui.Label;
         public txtIndex:eui.Label;
 
+        private isLoaded = false
+
         constructor() {
 			super();
-			this.skinName = "resource/custom_skins/rankItemSkin.exml";
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+			this.skinName = "resource/custom_skins/rankItemSkin.exml";
 		}
 
 		private onload():void {
+            this.isLoaded = true
+
             this.updateUI()
 		}
 
-        private updateUI():void{ //// list []{uid, name, score, rank}
+        private updateUI():void{ // list []{uid, name, score, rank}
+            if(!this.isLoaded || this.data == null){
+                return
+            }
             if(this.data.rank == 0){
                 this.imgIndex.source = "rank_1_png"
                 this.imgBg.source = "rank_bg2_png"
@@ -43,9 +50,7 @@ namespace gameUI{
         }
 
 		protected dataChanged():void {
-            if(this.imgBg != undefined && this.imgBg != null){
-                this.updateUI()
-            }
+            this.updateUI()
 		}
     }
 

@@ -4,13 +4,14 @@ namespace gameUI{
 	class game_item extends eui.ItemRenderer{
 		constructor() {
 			super();
-			this.skinName = "resource/custom_skins/game_itemSkin.exml";
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+			this.skinName = "resource/custom_skins/game_itemSkin.exml";
 		}
 
 		private onload():void {
-			this.updateUI();
+			this.isLoaded = true
 			this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+			this.updateUI();
 		}
 
 		private onClick():void {
@@ -22,7 +23,7 @@ namespace gameUI{
 		}
 
 		private updateUI():void{
-			if(this.imgBg == null || this.imgBg == undefined)
+			if(this.data == null || !this.isLoaded)
 				return
 			this.txtName.text = this.data.Name1
 		}
@@ -31,6 +32,7 @@ namespace gameUI{
 			this.updateUI();
 		}
 
+		private isLoaded = false
 		private imgBg:eui.Image;
 		public txtName:eui.Label;
 	}

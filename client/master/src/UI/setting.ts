@@ -4,16 +4,16 @@
 namespace gameUI{    
     class settingLanguageItemRander extends eui.ItemRenderer{
         public txtLan:eui.Label;
+        private isLoaded = false
 
         constructor() {
 			super();
-			this.skinName = "resource/custom_skins/settingLanguageItem.exml";
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+			this.skinName = "resource/custom_skins/settingLanguageItem.exml";
 		}
 
 		private onload():void {
-            console.log("onload")
-            this.txtLan.text = this.data.text
+            this.isLoaded = true
             this.txtLan.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 var settingUI = UIManager.Instance.GetChild(UI.setting)
                 if(settingUI != null){
@@ -22,10 +22,10 @@ namespace gameUI{
             }, this)
 		}
 		protected dataChanged():void {
-            console.log("dataChanged")
-            if(this.txtLan != undefined && this.txtLan != null){
-                this.txtLan.text = this.data.text
+            if(!this.isLoaded){
+                return
             }
+            this.txtLan.text = this.data.text            
 		}
     }
 
@@ -40,8 +40,6 @@ namespace gameUI{
             this.svData.visible = false
             // this.svData.initItemRenderer(settingLanguageItemRander)
             // this.svData.initItemSkin("resource/custom_skins/settingLanguageItem.exml")
-            this.dataList.itemRenderer = settingLanguageItemRander
-            this.dataList.itemRendererSkinName = "resource/custom_skins/settingLanguageItem.exml"
             var languages:Array<Object> = [
                 {text : "中文"},
                 {text : "英文"},
@@ -50,7 +48,7 @@ namespace gameUI{
                 {text : "兽语"},
             ]
             this.dataList.dataProvider = new eui.ArrayCollection(languages) 
-            // this.svData.bindData(languages)
+            this.dataList.itemRenderer = settingLanguageItemRander
             
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.svData.visible = !this.svData.visible

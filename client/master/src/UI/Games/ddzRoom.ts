@@ -12,13 +12,16 @@ namespace gameUI{
         public btnEnter1:eui.Image;
         public btnEnter2:eui.Image;
 
+        private isLoaded = false
+
         constructor() {
 			super();
-			this.skinName = "resource/custom_skins/games/ddzRoomTableSkin.exml";
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+			this.skinName = "resource/custom_skins/games/ddzRoomTableSkin.exml";
 		}
 
 		private onload():void {
+            this.isLoaded = true
             this.updateUI()
             
             this.btnEnter1.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
@@ -36,25 +39,22 @@ namespace gameUI{
         }
 
         private updateUI():void{
-            if(this.imgUser1 != undefined && this.imgUser1 != null){                
-                var userImages = [this.imgUser1, this.imgUser2, this.imgUser3]
-                for(var i = 0; i < 3; i++){
-                    var userId = this.data.GetUserByChairId(i)
-                    if(userId != null){
-                        userImages[i].visible = true
-                    }
-                    else{
-                        userImages[i].visible = false
-                    }
+            if(!this.isLoaded || this.data == null)
+                return             
+            var userImages = [this.imgUser1, this.imgUser2, this.imgUser3]
+            for(var i = 0; i < 3; i++){
+                var userId = this.data.GetUserByChairId(i)
+                if(userId != null){
+                    userImages[i].visible = true
+                }
+                else{
+                    userImages[i].visible = false
                 }
             }
-            
         }
 
 		protected dataChanged():void {
-            if(this.btnTable != undefined && this.btnTable != null){
-                this.updateUI()
-            }
+            this.updateUI()
 		}
     }
 

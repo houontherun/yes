@@ -8,19 +8,23 @@ namespace gameUI{
         public txtState:eui.Label;
         public txtEnterGold:eui.Label;
 
+        private isLoaded = false
+
         constructor() {
 			super();
-			this.skinName = "resource/custom_skins/games/ddzSelectRoomItemSkin.exml";
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+			this.skinName = "resource/custom_skins/games/ddzSelectRoomItemSkin.exml";
 		}
 
 		private onload():void {
+            this.isLoaded = true
+			this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
             this.updateUI()
 		}
 
         private updateUI():void{
-            this.imgBg.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-			this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+            if(!this.isLoaded || this.data == null)
+                return
         }
         private onClick():void {
             // 请求进入房间
@@ -29,9 +33,7 @@ namespace gameUI{
 		}
 
 		protected dataChanged():void {
-            if(this.imgBg != undefined && this.imgBg != null){
-                this.updateUI()
-            }
+            this.updateUI()
 		}
     }
 

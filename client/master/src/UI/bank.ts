@@ -9,30 +9,31 @@ namespace gameUI{
         public txtNumber:eui.Label;
         public imgRemark:eui.Image;
 
+        private isLoaded = false
+
         constructor() {
 			super();
-			this.skinName = "resource/custom_skins/bankOperItemSkin.exml";
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+			this.skinName = "resource/custom_skins/bankOperItemSkin.exml";
 		}
 
 		private onload():void {
+            this.isLoaded = true
             this.updateUI()
 		}
 
         private updateUI():void{
             //{guid, ruid, t, gold, id}
-            if(this.data != null && this.data != undefined && this.imgBg != undefined && this.imgBg != null){
-                this.txtDate.text = this.data.t.toString()
-                this.txtSendId.text = this.data.guid.toString()
-                this.txtRecvId.text = this.data.ruid.toString()
-                this.txtNumber.text = this.data.gold.toString()
-            }
+            if(this.data == null || !this.isLoaded)
+                return
+            this.txtDate.text = this.data.t.toString()
+            this.txtSendId.text = this.data.guid.toString()
+            this.txtRecvId.text = this.data.ruid.toString()
+            this.txtNumber.text = this.data.gold.toString()
         }
 
 		protected dataChanged():void {
-            if(this.imgBg != undefined && this.imgBg != null){
-                this.updateUI()
-            }
+            this.updateUI()
 		}
     }
 
