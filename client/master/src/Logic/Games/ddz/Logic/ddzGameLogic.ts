@@ -34,7 +34,11 @@ export class ddzGameLogic extends Dispatcher {
        this.timer.start();
        this.timerTick = Timer.Instance.tick;
        this.UpdatePlayersEvent = new CardLogic.CardEvent(CardLogic.CardEvent.UpdatePlayers);
-       MessageManager.Instance.addEventListener(constant.msg.SC_TABLE_PLAYER_INFO, this.UpdatePlayers, this)   
+        
+       MessageManager.Instance.addEventListener(constant.msg.SC_TABLE_PLAYER_INFO, this.UpdatePlayers, this); 
+       MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_QUERY_TABLE_USER_INFO,
+        })  
    } 
 
     public get ALLPlayers()
@@ -44,7 +48,7 @@ export class ddzGameLogic extends Dispatcher {
 
     public UpdatePlayers(data)
     {
-         this.players = [];
+        this.players = [];
         for(var i = 0; i < data.players.length; i++){
             var ud = new UserData(data.players[i])
             this.players.push(ud)
@@ -57,7 +61,7 @@ export class ddzGameLogic extends Dispatcher {
     {
         this.bStartgame = false;
         this.StartgameTick = 0;
-        //egret.stopTick(this.onUpdateFrame, this);
+
         this.timer.stop();
         MessageManager.Instance.removeEventListener(constant.msg.SC_TABLE_PLAYER_INFO, this.UpdatePlayers, this);
     }

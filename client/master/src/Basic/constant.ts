@@ -1,8 +1,8 @@
 // TypeScript file
 
 var constant = {
-    connect_ip : "192.168.12.3", // 候
-    // connect_ip : "192.168.12.1", // 谭
+    //connect_ip : "192.168.12.3", // 候
+     connect_ip : "192.168.12.1", // 谭
     connect_port: 8000,
     msg:{
         //客户端->服务端		
@@ -17,7 +17,7 @@ var constant = {
         CS_CHANGE_BANK_PASSWD : 1020,   //修改银行密码
         CS_GET_BANK_RECORD : 1021,      //获取转赠记录
         CS_GET_RANK : 1022,             //获取排行榜
-
+        CS_QUERY_TABLE_USER_INFO:1024,   //玩家请求桌子玩家列表
         CS_USER_SIT_DOWN : 1009,		//玩家坐下
         CS_USER_STAND_UP : 1010,		//玩家起立
         CS_USER_READY : 1011,			//玩家准备

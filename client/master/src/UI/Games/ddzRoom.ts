@@ -105,13 +105,34 @@ namespace gameUI{
         private onPlayerSitDown(data):void{
             if(data.ret == 0){
                 // todo
-                RES.loadGroup("ddzRes");
-                RES.loadGroup("face");
-                RES.loadGroup("poke");
-                UIManager.Instance.UnloadUI(UI.ddzRoom);
-                 UIManager.Instance.LoadUI(UI.ddzGame);
+                if(!RES.isGroupLoaded("ddzRes"))
+                   RES.loadGroup("ddzRes");
+
+                if(!RES.isGroupLoaded("face"))
+                  RES.loadGroup("face");
+                if(!RES.isGroupLoaded("poke"))  
+                {
+                   RES.loadGroup("poke");
+                
+                   RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
+                }
+                else
+                {
+                    
+                    UIManager.Instance.UnloadUI(UI.ddzRoom);
+                    UIManager.Instance.LoadUI(UI.ddzGame);
+                }
+               
             }
         }
+
+        private onResourceLoadComplete(event: RES.ResourceEvent): void {
+        if (event.groupName == "poke") {
+            UIManager.Instance.UnloadUI(UI.ddzRoom);
+            UIManager.Instance.LoadUI(UI.ddzGame);
+        }
+    }
+
         private onLeaveRoomRet(data):void{
             if(data.ret == 0){
                 this.Close()

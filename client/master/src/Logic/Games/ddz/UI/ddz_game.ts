@@ -84,7 +84,7 @@ namespace gameUI{
   {
       UIManager.Instance.UnloadUI(UI.ddzGame);
       UIManager.Instance.LoadUI(UI.ddzRoom);   
-       CardLogic.ddzGameLogic.Instance.ExitGame();
+      CardLogic.ddzGameLogic.Instance.ExitGame();
   }
 
    protected childrenCreated() {
