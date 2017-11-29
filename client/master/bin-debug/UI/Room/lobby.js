@@ -27,7 +27,7 @@ var gameUI;
             this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         };
         game_item.prototype.onClick = function () {
-            if (this.data.ID == 100) {
+            if (this.data.ID == 101) {
                 UIManager.Instance.LoadUI(UI.ddzSelectRoom);
             }
             else {

@@ -3,10 +3,10 @@
 	 * @author  yanwei47@163.com
 	 *
 	 */
-namespace Card {
-  export class ui_game extends gameUI.UIbase {
+namespace gameUI{
+  export class ddz_game extends gameUI.base {
 
-   private prepareBtn:eui.Button;
+   private prepareBtn:eui.Image;
    private  btn_tuoguan : eui.Image;
    private ChangeBtn :eui.Image;
    private Changeimg :eui.Image;
@@ -14,24 +14,26 @@ namespace Card {
    private group_handcards:eui.Group;
    private group_Player0:eui.Group;// 4:头像 5：牌 6：牌数
    private txt_PlayerGold:eui.Label;
-   private hardCardsArray: ui_pokerCardItem[] = [];
+   private hardCardsArray: Card.ui_pokerCardItem[] = [];
    private otherPlayerNum:number = 2;
    private prepareimg :eui.Image;
    private cardTotalnum: number;
-   private TargetCardsArray: ui_pokerCardItem[] = [];
+   private TargetCardsArray: Card.ui_pokerCardItem[] = [];
+   private cardBegin: number = -1;
+   private cardEnd: number = -1;
 
-
-	public constructor() {
-		super("resource/eui_skins/ddz_ui/ui_game.exml");
-        CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddOtherPlayers,this.addOtherPlayers,this)
-        CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this)
+    public onload():void {
+       
+        super.onload();
+        CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddOtherPlayers,this.addOtherPlayers,this);
+        CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
  		this.AddClick(this.btn_tuoguan, ()=>{ 
                  
             }, this );
 
         this.AddClick(this.prepareBtn, ()=>{   
             CardLogic.ddzGameLogic.Shared().Shuffle();   
-            CardLogic.ddzGameLogic.Shared().DispatchCardStart();  
+            CardLogic.ddzGameLogic.Shared().DispatchCardStart();
           
             }, this );
 
@@ -42,69 +44,92 @@ namespace Card {
 
         this.Changeimg.$touchEnabled =false;  
         this.prepareimg.$touchEnabled =false;  
-	}
 
-    public onload():void {
-
-        this.setPlayer(0,"小我问",85000,"face_1_png");
+        
     }
 
 
    public addOtherPlayers(e:CardLogic.CardEvent)
    {
+        this.setPlayer(0,"小我问",85000,"face_1_png");
         this.setPlayer(1,"蛇头02",1000,"face_2_png");
         this.setPlayer(2,"重设子对象深度",120000,"face_3_png");
    }
 
+
+
    protected childrenCreated() {
             super.childrenCreated();
             for(let i = 0;i < this.hardCardsArray.length;i++){
+                 this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.touchBegin,this);
                 this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchMove,this);
-                this.group_handcards.addEventListener(egret.TouchEvent.TOUCH_END,this.touchEnd,this);
+                this.addEventListener(egret.TouchEvent.TOUCH_END,this.touchEnd,this);
             }
         }
 
       private  InTargetCards(item:any):number
       {
-         for (let i = this.TargetCardsArray.length - 1;i >= 0;i--){
-                if(item == this.TargetCardsArray[i]){
+         for (let i = this.hardCardsArray.length - 1;i >= 0;i--){
+                if(item == this.hardCardsArray[i]){
                     return i;
                 }
             }
 
             return -1;
       }
-
+     
+     private touchBegin(evt:egret.TouchEvent):void
+     {
+         this.TargetCardsArray = [];
+         let index = this.InTargetCards(evt.currentTarget);
+         this.cardBegin = index;
+     }
      
        private touchMove(evt:egret.TouchEvent):void{
              
-             let index = this.InTargetCards(evt.currentTarget);
-              if(index<0)
-               {
-                  this.TargetCardsArray.push(<ui_pokerCardItem>evt.currentTarget);
-               }
-
+           let index = this.InTargetCards(evt.currentTarget);
+           this.cardEnd = index;
            
-             this.moving();
+           this.moving();
         }
 
         private touchEnd(evt:egret.TouchEvent):void{
             this.CheckEnd();
+
         }
 
     private CheckEnd():void{
-        for (let i = 0;i < this.hardCardsArray.length;i++) {
-                this.hardCardsArray[i].alpha = 1;
+        if(this.cardBegin<0||this.cardEnd<0) return;
+        if(this.cardBegin == this.cardEnd) return;
+
+        if(this.cardBegin<this.cardEnd)
+            this.TargetCardsArray = this.hardCardsArray.slice( this.cardBegin,this.cardEnd+1);
+        else
+            this.TargetCardsArray = this.hardCardsArray.slice( this.cardEnd,this.cardBegin+1 );
+
+        for (let i = 0;i < this.TargetCardsArray.length;i++) {
+                this.TargetCardsArray[i].alpha = 1;
+                this.TargetCardsArray[i].SetShoot(!this.TargetCardsArray[i].Selected);
             }
-         for (let k = 0;k < this.TargetCardsArray.length;k++) {
-                this.TargetCardsArray[k].SetShoot(!this.TargetCardsArray[k].Selected);
-            }   
+  
            this.TargetCardsArray = [];
+           this.cardEnd = this.cardBegin = -1;
     }
 
      private moving():void{
+  
+        if(this.cardBegin<0||this.cardEnd<0) return;
+        if(this.cardBegin<this.cardEnd)
+            this.TargetCardsArray = this.hardCardsArray.slice( this.cardBegin,this.cardEnd +1);
+        else
+            this.TargetCardsArray = this.hardCardsArray.slice( this.cardEnd,this.cardBegin+1 );
+            
+       
+       for (let i = 0;i < this.hardCardsArray.length;i++) {
+                this.hardCardsArray[i].alpha = 1;
+            }
         for (let i = 0;i < this.TargetCardsArray.length;i++) {
-                this.TargetCardsArray[i].alpha = 0.7;
+                this.TargetCardsArray[i].alpha = 0.8;
             }
     }
 
@@ -132,9 +157,9 @@ namespace Card {
         let addcardTimer =  CardLogic.Timer.Instance.Repeat(0.18,()=>{
             if(i< this.cardTotalnum )
             {
-               var _card = new ui_pokerCardItem();
+               var _card = new Card.ui_pokerCardItem();
                _card.cardData = cards[i];
-               _card.setPos(42*i,22);
+               _card.setPos(45*i,22);
                this.group_handcards.addChild(_card);
                this.hardCardsArray.push(_card);
                i++;
@@ -218,7 +243,7 @@ namespace Card {
                var backCard = new eui.Image();
 
                
-               backCard.scaleX = backCard.scaleY = 0.5;
+               backCard.scaleX = backCard.scaleY = 0.56;
                backCard.source = RES.getRes("card_back_png");
                group.addChildAt(backCard,5);
                textNum = new eui.Label;
@@ -240,7 +265,7 @@ namespace Card {
                   backCard.x = 0;
                   backCard.y = 200;
                   textNum.x = 30;
-                  textNum.y = 238;
+                  textNum.y = 240;
                }
                
                group.addChildAt(textNum,6);

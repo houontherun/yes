@@ -16,78 +16,102 @@ var __extends = (this && this.__extends) || (function () {
  * @author  yanwei47@163.com
  *
  */
-var Card;
-(function (Card) {
-    var ui_game = (function (_super) {
-        __extends(ui_game, _super);
-        function ui_game() {
-            var _this = _super.call(this, "resource/eui_skins/ddz_ui/ui_game.exml") || this;
+var gameUI;
+(function (gameUI) {
+    var ddz_game = (function (_super) {
+        __extends(ddz_game, _super);
+        function ddz_game() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.hardCardsArray = [];
             _this.otherPlayerNum = 2;
             _this.TargetCardsArray = [];
-            CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddOtherPlayers, _this.addOtherPlayers, _this);
-            CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, _this.AddhardCard, _this);
-            _this.AddClick(_this.btn_tuoguan, function () {
-            }, _this);
-            _this.AddClick(_this.prepareBtn, function () {
-                CardLogic.ddzGameLogic.Shared().Shuffle();
-                CardLogic.ddzGameLogic.Shared().DispatchCardStart();
-            }, _this);
-            _this.AddClick(_this.ChangeBtn, function () {
-                _this.clearCurGame();
-                CardLogic.CardEventDispatcher.Instance.dispatchEvent(new CardLogic.CardEvent(CardLogic.CardEvent.AddOtherPlayers));
-            }, _this);
-            _this.Changeimg.$touchEnabled = false;
-            _this.prepareimg.$touchEnabled = false;
+            _this.cardBegin = -1;
+            _this.cardEnd = -1;
             return _this;
         }
-        ui_game.prototype.onload = function () {
-            this.setPlayer(0, "小我问", 85000, "face_1_png");
+        ddz_game.prototype.onload = function () {
+            var _this = this;
+            _super.prototype.onload.call(this);
+            CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddOtherPlayers, this.addOtherPlayers, this);
+            CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
+            this.AddClick(this.btn_tuoguan, function () {
+            }, this);
+            this.AddClick(this.prepareBtn, function () {
+                CardLogic.ddzGameLogic.Shared().Shuffle();
+                CardLogic.ddzGameLogic.Shared().DispatchCardStart();
+            }, this);
+            this.AddClick(this.ChangeBtn, function () {
+                _this.clearCurGame();
+                CardLogic.CardEventDispatcher.Instance.dispatchEvent(new CardLogic.CardEvent(CardLogic.CardEvent.AddOtherPlayers));
+            }, this);
+            this.Changeimg.$touchEnabled = false;
+            this.prepareimg.$touchEnabled = false;
         };
-        ui_game.prototype.addOtherPlayers = function (e) {
+        ddz_game.prototype.addOtherPlayers = function (e) {
+            this.setPlayer(0, "小我问", 85000, "face_1_png");
             this.setPlayer(1, "蛇头02", 1000, "face_2_png");
             this.setPlayer(2, "重设子对象深度", 120000, "face_3_png");
         };
-        ui_game.prototype.childrenCreated = function () {
+        ddz_game.prototype.childrenCreated = function () {
             _super.prototype.childrenCreated.call(this);
             for (var i = 0; i < this.hardCardsArray.length; i++) {
+                this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.touchBegin, this);
                 this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_MOVE, this.touchMove, this);
-                this.group_handcards.addEventListener(egret.TouchEvent.TOUCH_END, this.touchEnd, this);
+                this.addEventListener(egret.TouchEvent.TOUCH_END, this.touchEnd, this);
             }
         };
-        ui_game.prototype.InTargetCards = function (item) {
-            for (var i = this.TargetCardsArray.length - 1; i >= 0; i--) {
-                if (item == this.TargetCardsArray[i]) {
+        ddz_game.prototype.InTargetCards = function (item) {
+            for (var i = this.hardCardsArray.length - 1; i >= 0; i--) {
+                if (item == this.hardCardsArray[i]) {
                     return i;
                 }
             }
             return -1;
         };
-        ui_game.prototype.touchMove = function (evt) {
+        ddz_game.prototype.touchBegin = function (evt) {
+            this.TargetCardsArray = [];
             var index = this.InTargetCards(evt.currentTarget);
-            if (index < 0) {
-                this.TargetCardsArray.push(evt.currentTarget);
-            }
+            this.cardBegin = index;
+        };
+        ddz_game.prototype.touchMove = function (evt) {
+            var index = this.InTargetCards(evt.currentTarget);
+            this.cardEnd = index;
             this.moving();
         };
-        ui_game.prototype.touchEnd = function (evt) {
+        ddz_game.prototype.touchEnd = function (evt) {
             this.CheckEnd();
         };
-        ui_game.prototype.CheckEnd = function () {
+        ddz_game.prototype.CheckEnd = function () {
+            if (this.cardBegin < 0 || this.cardEnd < 0)
+                return;
+            if (this.cardBegin == this.cardEnd)
+                return;
+            if (this.cardBegin < this.cardEnd)
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardBegin, this.cardEnd + 1);
+            else
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardEnd, this.cardBegin + 1);
+            for (var i = 0; i < this.TargetCardsArray.length; i++) {
+                this.TargetCardsArray[i].alpha = 1;
+                this.TargetCardsArray[i].SetShoot(!this.TargetCardsArray[i].Selected);
+            }
+            this.TargetCardsArray = [];
+            this.cardEnd = this.cardBegin = -1;
+        };
+        ddz_game.prototype.moving = function () {
+            if (this.cardBegin < 0 || this.cardEnd < 0)
+                return;
+            if (this.cardBegin < this.cardEnd)
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardBegin, this.cardEnd + 1);
+            else
+                this.TargetCardsArray = this.hardCardsArray.slice(this.cardEnd, this.cardBegin + 1);
             for (var i = 0; i < this.hardCardsArray.length; i++) {
                 this.hardCardsArray[i].alpha = 1;
             }
-            for (var k = 0; k < this.TargetCardsArray.length; k++) {
-                this.TargetCardsArray[k].SetShoot(!this.TargetCardsArray[k].Selected);
-            }
-            this.TargetCardsArray = [];
-        };
-        ui_game.prototype.moving = function () {
             for (var i = 0; i < this.TargetCardsArray.length; i++) {
-                this.TargetCardsArray[i].alpha = 0.7;
+                this.TargetCardsArray[i].alpha = 0.8;
             }
         };
-        ui_game.prototype.GetShootCard = function () {
+        ddz_game.prototype.GetShootCard = function () {
             var cards = [];
             for (var i = 0; i < this.hardCardsArray.length; i++) {
                 if (this.hardCardsArray[i].Selected)
@@ -96,7 +120,7 @@ var Card;
             return cards;
         };
         ///添加手牌
-        ui_game.prototype.AddhardCard = function (e) {
+        ddz_game.prototype.AddhardCard = function (e) {
             var _this = this;
             var cards = e.paramObj;
             Card.Util.sortCards(cards);
@@ -106,7 +130,7 @@ var Card;
                 if (i < _this.cardTotalnum) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
-                    _card.setPos(42 * i, 22);
+                    _card.setPos(45 * i, 22);
                     _this.group_handcards.addChild(_card);
                     _this.hardCardsArray.push(_card);
                     i++;
@@ -119,17 +143,17 @@ var Card;
             this.group_handcards.cacheAsBitmap = true;
             this.AddotherCard();
         };
-        ui_game.prototype.AddotherCard = function () {
+        ddz_game.prototype.AddotherCard = function () {
             this.dealtoPlayer(1, Card.Seat.Left);
             this.dealtoPlayer(2, Card.Seat.Right);
         };
-        ui_game.prototype.removehardCard = function () {
+        ddz_game.prototype.removehardCard = function () {
             for (var i = 0; i < this.hardCardsArray.length; i++) {
                 this.group_handcards.removeChild(this.hardCardsArray[i]);
             }
             this.hardCardsArray = [];
         };
-        ui_game.prototype.setPlayer = function (playerNum, playername, coin, head) {
+        ddz_game.prototype.setPlayer = function (playerNum, playername, coin, head) {
             var group;
             if (playerNum > 0) {
                 group = this.getChildAt(playerNum + 1);
@@ -155,7 +179,7 @@ var Card;
                 group.visible = true;
             }
         };
-        ui_game.prototype.dealtoPlayer = function (playernum, seat) {
+        ddz_game.prototype.dealtoPlayer = function (playernum, seat) {
             var _this = this;
             var group;
             var textNum;
@@ -167,7 +191,7 @@ var Card;
                 }
                 else {
                     var backCard = new eui.Image();
-                    backCard.scaleX = backCard.scaleY = 0.5;
+                    backCard.scaleX = backCard.scaleY = 0.56;
                     backCard.source = RES.getRes("card_back_png");
                     group.addChildAt(backCard, 5);
                     textNum = new eui.Label;
@@ -186,7 +210,7 @@ var Card;
                         backCard.x = 0;
                         backCard.y = 200;
                         textNum.x = 30;
-                        textNum.y = 238;
+                        textNum.y = 240;
                     }
                     group.addChildAt(textNum, 6);
                 }
@@ -205,7 +229,7 @@ var Card;
             }
         };
         // 清理当前牌局
-        ui_game.prototype.clearCurGame = function () {
+        ddz_game.prototype.clearCurGame = function () {
             if (this.hardCardsArray.length > 0) {
                 this.removehardCard();
             }
@@ -218,9 +242,9 @@ var Card;
                     group.removeChildAt(0);
             }
         };
-        return ui_game;
-    }(gameUI.UIbase));
-    Card.ui_game = ui_game;
-    __reflect(ui_game.prototype, "Card.ui_game");
-})(Card || (Card = {}));
-//# sourceMappingURL=ui_game.js.map
+        return ddz_game;
+    }(gameUI.base));
+    gameUI.ddz_game = ddz_game;
+    __reflect(ddz_game.prototype, "gameUI.ddz_game");
+})(gameUI || (gameUI = {}));
+//# sourceMappingURL=ddz_game.js.map

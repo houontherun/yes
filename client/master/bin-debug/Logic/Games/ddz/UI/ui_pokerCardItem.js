@@ -17,6 +17,7 @@ var Card;
         __extends(ui_pokerCardItem, _super);
         function ui_pokerCardItem() {
             var _this = _super.call(this, "resource/eui_skins/ddz_ui/ui_pokerCard.exml") || this;
+            _this.bSelect = false;
             _this.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.onclick_tap, _this);
             return _this;
         }
@@ -54,6 +55,7 @@ var Card;
         };
         ui_pokerCardItem.prototype.onclick_tap = function () {
             this.bSelect = !this.bSelect;
+            this.alpha = 1;
             if (this.bSelect) {
                 this.y -= 20;
             }
