@@ -90,7 +90,7 @@ namespace gameUI{
             UIManager.Instance.Lobby.imgBg.source = 'background2_png'
 
             this.AddClick(this.btnQuickStart, ()=>{
-                console.log(DataManager.Instance.getJson('name').RandWomanName[1].WomanName)
+                // console.log(DataManager.Instance.getJson('name').RandWomanName[1].WomanName)
             }, this)
         }
         public onUnload():void{
