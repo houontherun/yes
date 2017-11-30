@@ -2,7 +2,11 @@
 
 var constant = {
     //connect_ip : "192.168.12.3", // 候
+<<<<<<< HEAD
+    connect_ip : "192.168.12.1", // 谭
+=======
      connect_ip : "192.168.12.1", // 谭
+>>>>>>> eb22b3eee4b02655354ce79d8ce7fbe654cf867f
     connect_port: 8000,
     msg:{
         //客户端->服务端
