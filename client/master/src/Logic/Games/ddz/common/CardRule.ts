@@ -106,6 +106,9 @@ namespace Card {
                 return  b.Weight -a.Weight;
             })
         }
+        private static isSINGLE_TYPE(cards:Array<PokerCard>){
+            
+        }
         private static isPAIR_TYPE(cards:Array<PokerCard>){ // 是否是对子
             return cards.length == 2 && cards[0].Index == cards[1].Index
         }
