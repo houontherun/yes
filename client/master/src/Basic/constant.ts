@@ -2,10 +2,20 @@
 
 var constant = {
     //connect_ip : "192.168.12.3", // 候
+<<<<<<< HEAD
     connect_ip : "192.168.12.1", // 谭
+=======
+     connect_ip : "192.168.12.1", // 谭
+>>>>>>> eb22b3eee4b02655354ce79d8ce7fbe654cf867f
     connect_port: 8000,
     msg:{
-        //客户端->服务端		
+        //客户端->服务端
+        SUB_C_LAND_SCORE:1,            //用户叫分
+        SUB_C_OUT_CART:2,             //用户出牌
+        SUB_C_PASS_CARD:3,            //放弃出牌
+        SUB_C_TRUSTEE:4,              //托管消息
+        SUB_C_BRIGHT:5,               //用户明牌
+        SUB_C_DOUBLE:6,               //用户加倍
         CS_LOGIN : 1001,				//登录
         CS_CREATE_ROOM : 1002,			//创建房间
         CS_ENTER_ROOM : 1003,			//玩家进入房间
@@ -17,7 +27,7 @@ var constant = {
         CS_CHANGE_BANK_PASSWD : 1020,   //修改银行密码
         CS_GET_BANK_RECORD : 1021,      //获取转赠记录
         CS_GET_RANK : 1022,             //获取排行榜
-
+        CS_QUERY_TABLE_USER_INFO:1024,   //玩家请求桌子玩家列表
         CS_USER_SIT_DOWN : 1009,		//玩家坐下
         CS_USER_STAND_UP : 1010,		//玩家起立
         CS_USER_READY : 1011,			//玩家准备
@@ -26,6 +36,18 @@ var constant = {
         CS_MAX : 1999,
 
         //服务端->客户端
+
+        SUB_S_SEND_CARD:100,              //发牌命令
+        SUB_S_LAND_SCORE:101,             //叫分命令
+        SUB_S_GAME_START:102,           //游戏开始
+        SUB_S_OUT_CARD:103,             //用户出牌
+        SUB_S_PASS_CARD:104,            //放弃出牌
+        SUB_S_GAME_END:105,             //游戏结束
+        SUB_S_USER_BRIGHT:106,            //用户明牌
+        SUB_S_USER_DOUBLE:107,           //用户加倍
+        SUB_S_SET_BASESCORE:108,         //设置基数
+        SUB_S_TRUSTEE:109,               //玩家托管
+        
         SC_LOGIN : 2001,				//登录回包			
         SC_CREATE_ROOM : 2002,			//创建房间回包
         SC_ENTER_ROOM : 2003,			//玩家进入房间回包
@@ -50,6 +72,7 @@ var constant = {
         SC_CHILD_GAME_MESSAGE : 2018,	//子游戏消息
 	    SC_GAME_MESSAGE : 2019,			//游戏信息，包括聊天等,显示用
 	    SC_QUERY_ROOM_INFO : 2023,		//推送房间信息
+        SC_TABLE_PLAYER_INFO : 2025,	//桌子上玩家信息
 	    SC_MAX : 2999,
     },
     error_code:{

@@ -104,14 +104,13 @@ class EnterRoomData extends Dispatcher {
     private tablesDic = {}
     constructor(data){
         super()
-        for(var i = 0; i < data.users.length; i++){
-            var ud = new UserData(data.users[i])
-            this.users.push(ud)
-        }
         for(var i = 0; i < data.tables.length; i++){
             var td = new TableData(data.tables[i])
             this.tables.push(td)
             this.tablesDic[td.TableId] = td
+        }
+        for(var i = 0; i < data.users.length; i++){
+            this.AddUser(data.users[i])
         }
     }
     public AddUser(data):void{
