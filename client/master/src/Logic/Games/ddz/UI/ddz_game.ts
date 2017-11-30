@@ -219,7 +219,7 @@ namespace gameUI{
             {
                var _card = new Card.ui_pokerCardItem();
                _card.cardData = cards[i];
-               _card.setPos(45*i,22);
+               _card.setPos(45*i,16);
                this.group_handcards.addChild(_card);
                this.hardCardsArray.push(_card);
                i++;
