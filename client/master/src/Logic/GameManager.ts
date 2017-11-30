@@ -43,7 +43,6 @@ class GameManager extends Dispatcher {
         }
         else
         {
-            UIManager.Instance.UnloadUI(UI.ddzRoom);
             UIManager.Instance.LoadUI(UI.ddzGame);
         }
     }

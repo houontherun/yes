@@ -45,6 +45,8 @@ namespace gameUI{
         
         public onload():void {
             super.onload();
+            UIManager.Instance.Lobby.groupType.visible = false
+            UIManager.Instance.Lobby.groupTopMenu.visible = false            
 
             this.listGames.itemRenderer = ddzSelectRoomItemRander
             this.listGames.dataProvider = new eui.ArrayCollection(RoomManager.Instance.RoomList)
@@ -52,23 +54,20 @@ namespace gameUI{
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
-            
-            MessageManager.Instance.addEventListener(constant.msg.SC_ENTER_ROOM, this.onEnterRoomRet, this)  
-            UIManager.Instance.Lobby.groupType.visible = false
-            UIManager.Instance.Lobby.groupTopMenu.visible = false            
+             
+            RoomManager.Instance.addEventListener(constant.event.logic.on_self_enter_room, this.onEnterRoom, this)
         }
         public onUnload():void{
             super.onUnload()
-            MessageManager.Instance.removeEventListener(constant.msg.SC_ENTER_ROOM, this.onEnterRoomRet, this)  
             UIManager.Instance.Lobby.groupType.visible = true
             UIManager.Instance.Lobby.groupTopMenu.visible = true
+            
+            RoomManager.Instance.removeEventListener(constant.event.logic.on_self_enter_room, this.onEnterRoom, this)
         }
 
-        private onEnterRoomRet(data):void{
-            if(data.ret == 0){
-                UIManager.Instance.LoadUI(UI.ddzRoom)
-                this.Close()
-            }
+        private onEnterRoom(data):void{
+            UIManager.Instance.LoadUI(UI.ddzRoom)
+            this.Close()
         }
 
     }
