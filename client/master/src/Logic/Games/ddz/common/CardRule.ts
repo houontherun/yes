@@ -68,7 +68,7 @@ namespace Card {
 
        public static GetCardColor(cb:number):number
        {
-           return (cb & MASK_COLOR); 
+           return (cb & MASK_COLOR) /16; 
        }
 
         public static createPokerCard(e:number,c?:CardColor):PokerCard{
