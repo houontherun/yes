@@ -132,10 +132,11 @@ class EnterRoomData extends Dispatcher {
         for(var i = this.users.length - 1; i >= 0; i--){
             var ud = this.users[i]
             if(ud.UserId == data.user_id){
-                if(ud.TableId != constant.INVALID){
-                    this.tableDic[ud.TableId].UpdateUsers()
-                }
+                var oldTableid = ud.TableId
                 ud.Update(data)
+                if(oldTableid != constant.INVALID && ud.TableId != oldTableid){
+                    this.tableDic[oldTableid].UpdateUsers()
+                }
                 if(ud.TableId != constant.INVALID){
                     this.tableDic[ud.TableId].UpdateUsers()
                 }
