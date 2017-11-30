@@ -75,6 +75,7 @@ namespace gameUI{
 
   private SetplayersInfo()
   {
+    this.clearOtherPlayers();
     var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
      if(players.length > 0)
      {
@@ -353,15 +354,8 @@ namespace gameUI{
        
     }
 
-    
-    // 清理当前牌局
-    private clearCurGame()
+    private clearOtherPlayers()
     {
-        if(this.hardCardsArray.length > 0) 
-        {
-           this.removehardCard();
-        }
-
          for(let i =1;i<this.PlayersNum;i++)
          {
              var group = <eui.Group>this.getChildAt(i+1);
@@ -374,6 +368,18 @@ namespace gameUI{
                 group.removeChildAt(0);
 
          }
+    }
+
+
+    // 清理当前牌局
+    private clearCurGame()
+    {
+        if(this.hardCardsArray.length > 0) 
+        {
+           this.removehardCard();
+        }
+
+         this.clearOtherPlayers();
     }
     	
 }
