@@ -161,26 +161,30 @@ var TableData = (function () {
     return TableData;
 }());
 __reflect(TableData.prototype, "TableData");
-var EnterRoomData = (function () {
+var EnterRoomData = (function (_super) {
+    __extends(EnterRoomData, _super);
     function EnterRoomData(data) {
-        this.users = [];
-        this.tables = [];
-        this.tablesDic = {};
+        var _this = _super.call(this) || this;
+        _this.users = [];
+        _this.tables = [];
+        _this.tablesDic = {};
         for (var i = 0; i < data.users.length; i++) {
             var ud = new UserData(data.users[i]);
-            this.users.push(ud);
+            _this.users.push(ud);
         }
         for (var i = 0; i < data.tables.length; i++) {
             var td = new TableData(data.tables[i]);
-            this.tables.push(td);
-            this.tablesDic[td.TableId] = td;
+            _this.tables.push(td);
+            _this.tablesDic[td.TableId] = td;
         }
+        return _this;
     }
     EnterRoomData.prototype.AddUser = function (data) {
         var ud = new UserData(data);
         this.users.push(ud);
         if (this.tablesDic[ud.TableId] != undefined && this.tablesDic[ud.TableId] != null) {
             this.tablesDic[ud.TableId].UpdateUser(ud);
+            this.dispatchEvent('TableUpdate', ud.TableId);
         }
     };
     EnterRoomData.prototype.RemoveUser = function (data) {
@@ -188,6 +192,7 @@ var EnterRoomData = (function () {
             if (this.users[i].UserId == data.user_id) {
                 if (this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null) {
                     this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i]);
+                    this.dispatchEvent('TableUpdate', this.users[i].TableId);
                 }
                 this.users.splice(i, 1);
             }
@@ -199,6 +204,7 @@ var EnterRoomData = (function () {
                 this.users[i].Update(data);
                 if (this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null) {
                     this.tablesDic[this.users[i].TableId].UpdateUser(this.users[i]);
+                    this.dispatchEvent('TableUpdate', this.users[i].TableId);
                 }
             }
         }
@@ -214,7 +220,7 @@ var EnterRoomData = (function () {
         configurable: true
     });
     return EnterRoomData;
-}());
+}(Dispatcher));
 __reflect(EnterRoomData.prototype, "EnterRoomData");
 var RoomManager = (function (_super) {
     __extends(RoomManager, _super);
