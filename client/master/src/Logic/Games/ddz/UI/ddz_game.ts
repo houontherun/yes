@@ -28,7 +28,7 @@ namespace gameUI{
         super.onload();
 
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
-        MessageManager.Instance.addEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCard, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCard, this);
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         CardLogic.ddzGameLogic.Instance.init();
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
@@ -62,6 +62,10 @@ namespace gameUI{
    public onUnload():void{
         super.onUnload()
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.Standup,this) ;
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCard, this);
+        MessageManager.Instance.removeEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
+        CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
+        CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
     }
 
  private ReadyRet(data)
