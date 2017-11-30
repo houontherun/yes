@@ -28,7 +28,7 @@ namespace gameUI{
         super.onload();
 
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
-        MessageManager.Instance.addEventListener(constant.msg.SUB_S_SEND_CARD, this.DispatchCard, this);
+        MessageManager.Instance.addEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCard, this);
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         CardLogic.ddzGameLogic.Instance.init();
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
@@ -100,7 +100,8 @@ namespace gameUI{
                   let chairid = Math.abs(players[i].ChairId - this.playerChairid);
                   if((players[i].ChairId == this.PlayersNum -1)&&chairid!=this.PlayersNum -1)
                      chairid += 1;
-                   this.setPlayer(chairid,players[i].UserName,players[i].Gold,"face_2_png");
+                  if(chairid <this.PlayersNum)
+                      this.setPlayer(chairid,players[i].UserName,players[i].Gold,"face_2_png");
               }
          }
      }
