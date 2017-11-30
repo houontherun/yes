@@ -15,19 +15,21 @@ namespace gameUI{
    private group_Player0:eui.Group;// 4:头像 5：牌 6：牌数
    private txt_PlayerGold:eui.Label;
    private hardCardsArray: Card.ui_pokerCardItem[] = [];
-   private otherPlayerNum:number = 2;
+   private PlayersNum:number = 3;
    private prepareimg :eui.Image;
    private cardTotalnum: number;
    private TargetCardsArray: Card.ui_pokerCardItem[] = [];
    private cardBegin: number = -1;
    private cardEnd: number = -1;
    private btn_back:eui.Image;
-
+   private playerChairid:number = 0;
     public onload():void {
        
         super.onload();
 
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
+        MessageManager.Instance.addEventListener(constant.msg.SUB_S_SEND_CARD, this.DispatchCard, this);
+        MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         CardLogic.ddzGameLogic.Instance.init();
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
@@ -36,7 +38,9 @@ namespace gameUI{
             }, this );
 
         this.AddClick(this.prepareBtn, ()=>{   
-          
+            MessageManager.Instance.SendMessage({
+              protocol:constant.msg.CS_USER_READY
+             });
             }, this );
 
         this.AddClick(this.ChangeBtn,()=>{
@@ -47,7 +51,7 @@ namespace gameUI{
              MessageManager.Instance.SendMessage({
               protocol:constant.msg.CS_USER_STAND_UP
            });
-
+           
             }, this );
         this.Changeimg.$touchEnabled =false;  
         this.prepareimg.$touchEnabled =false;  
@@ -60,6 +64,14 @@ namespace gameUI{
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.Standup,this) ;
     }
 
+ private ReadyRet(data)
+ {
+    if(data.ret == 0)
+    {
+        this.prepareBtn.parent.removeChild(this.prepareBtn);
+        this.prepareimg.parent.removeChild(this.prepareimg);
+    }
+ }
 
   private SetplayersInfo()
   {
@@ -70,11 +82,24 @@ namespace gameUI{
          {
              if(players[i].UserId == PlayerManager.Instance.Data.UserId)
               {
-                   this.setPlayer(0,players[i].UserName,players[i].Gold,"face_1_png");
+                   this.playerChairid = players[i].ChairId;
+              }
+            
+         }
+
+
+         for(var i = 0;i<players.length;i++)
+         {
+             if(players[i].UserId == PlayerManager.Instance.Data.UserId)
+              {
+                    this.setPlayer(0,players[i].UserName,players[i].Gold,"face_1_png");
               }
               else
               {
-                    this.setPlayer(players[i].ChairId,players[i].UserName,players[i].Gold,"face_2_png");
+                  let chairid = Math.abs(players[i].ChairId - this.playerChairid);
+                  if((players[i].ChairId == this.PlayersNum -1)&&chairid!=this.PlayersNum -1)
+                     chairid += 1;
+                   this.setPlayer(chairid,players[i].UserName,players[i].Gold,"face_2_png");
               }
          }
      }
@@ -85,6 +110,11 @@ namespace gameUI{
       UIManager.Instance.UnloadUI(UI.ddzGame);
       UIManager.Instance.LoadUI(UI.ddzRoom);   
       CardLogic.ddzGameLogic.Instance.ExitGame();
+  }
+
+  private DispatchCard(data):void
+  {
+       let cards = data.cards;
   }
 
    protected childrenCreated() {
@@ -332,7 +362,7 @@ namespace gameUI{
            this.removehardCard();
         }
 
-         for(let i =1;i<=this.otherPlayerNum;i++)
+         for(let i =1;i<this.PlayersNum;i++)
          {
              var group = <eui.Group>this.getChildAt(i+1);
              if(group)
