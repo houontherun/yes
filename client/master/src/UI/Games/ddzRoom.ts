@@ -35,7 +35,7 @@ namespace gameUI{
             }, this);
 		}
         private sitDown(chair_id:number):void{
-            if(this.data.GetUserByChairId(chair_id) != null){
+            if(this.data.Users[chair_id] != null && this.data.Users[chair_id] != undefined){
                 alert('有人坐了，请选其他位置')
                 return
             }
@@ -47,9 +47,9 @@ namespace gameUI{
                 return
             var isReady = true
             var userImages = [this.imgUser1, this.imgUser2, this.imgUser3]
-            for(var i = 0; i < 3; i++){
-                var userId = this.data.GetUserByChairId(i)
-                if(userId != null){
+            for(var i = 0; i <=2; i++){
+                var user = this.data.Users[i]
+                if(user != null && user != undefined){
                     userImages[i].visible = true
                 }
                 else{
@@ -99,9 +99,10 @@ namespace gameUI{
             RoomManager.Instance.removeEventListener(constant.event.logic.on_self_leave_room, this.onLeaveRoom, this)
 
             RoomManager.Instance.removeEventListener(constant.event.logic.on_query_room_info, this.onQueryRoomInfo, this)
-            if(this.enterRoomData != null){
-                this.enterRoomData.removeEventListener(constant.event.logic.on_table_info_update, this.onTableUpdate, this)
+            if(this.enterRoomData){
+                this.enterRoomData.removeEventListener(constant.event.logic.on_table_users_update, this.onTableUserUpdate, this)
             }
+            this.enterRoomData = null
 
             UIManager.Instance.Lobby.groupType.visible = true
             UIManager.Instance.Lobby.groupTopMenu.visible = true
@@ -109,8 +110,8 @@ namespace gameUI{
         }
         private onQueryRoomInfo(data:EnterRoomData):void{
             this.enterRoomData = data
+            this.enterRoomData.addEventListener(constant.event.logic.on_table_users_update, this.onTableUserUpdate, this)
             this.listGames.dataProvider = new eui.ArrayCollection(this.enterRoomData.Tables)
-            this.enterRoomData.addEventListener(constant.event.logic.on_table_info_update, this.onTableUpdate, this)
         }
         private onSitDown(data):void{
             UIManager.Instance.UnloadUI(UI.ddzRoom);
@@ -121,14 +122,15 @@ namespace gameUI{
             this.Close()
             UIManager.Instance.LoadUI(UI.ddzSelectRoom)
         }
-        private onTableUpdate(tableData:TableData):void{
+        private onTableUserUpdate(table:TableData):void{
             for(var i = 0; i < this.listGames.numChildren; i++){
                 var tableItem = <ddzRoomItemRander>this.listGames.getChildAt(i)
-                if(tableData.TableId == tableItem.data.TableId){
+                if(tableItem.data.TableId == table.TableId){
                     tableItem.updateUI()
                 }
-            }
+            }      
         }
+
         private enterRoomData:EnterRoomData
         public svGame:eui.Scroller;
         public listGames:eui.List;

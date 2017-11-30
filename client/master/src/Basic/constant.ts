@@ -90,6 +90,7 @@ var constant = {
         ERROR_CHAIR_IS_SITTING : 12,					//这个位置已被别人捷足先登了
         ERROR_GOLD_IS_NOT_ENOUGH : 13,					//金币不足，无法进入
     },
+    INVALID:0xFFFF,								//无效椅子
     event:{
         network:{
             on_connect_succeed:"on_connect_succeed",
@@ -106,8 +107,9 @@ var constant = {
             on_self_leave_room:"on_self_leave_room",
             on_self_sit_down:"on_self_sit_down",
             on_self_stand_up:"on_self_stand_up",
-            on_other_enter_room:"on_other_enter_room",
-            on_other_leave_room:"on_other_leave_room",
+            on_player_enter_room:"on_player_enter_room",
+            on_player_leave_room:"on_player_leave_room",
+            on_table_users_update:"on_table_users_update",
         },
         doudizhu:{
             on_rec:"onrec",

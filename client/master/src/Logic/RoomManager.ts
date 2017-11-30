@@ -71,77 +71,78 @@ class UserData{
 }
 class TableData{
     private table_id:number //  当前桌号
-    private chairs = {} //key=chair_id value=user_id
+    private room:EnterRoomData
+    private users = {}
 
-    constructor(data){
+    constructor(r:EnterRoomData, data){
         this.table_id = data.table_id
-        for(var i = 0; i < data.chairs.length; i++){
-            this.chairs[data.chairs[i].chair_id] = data.chairs[i].user_id
-        }
+        this.room = r
     }
     public get TableId():number { return this.table_id }
+    public get Users():any{ return this.users }
 
-    public UpdateUser(user:UserData):void{
-        if(user.Status >= UserStatus.US_SIT){
-            this.chairs[user.ChairId] = user.UserId
-        }        
-    }
-    public RemoveUser(user:UserData):void{
-        if(this.chairs[user.ChairId] != undefined && this.chairs[user.ChairId] != null){
-            this.chairs[user.ChairId] = null
+    public UpdateUsers():any{
+        this.users = {}
+        for(var i = 0; i < this.room.Users.length; i++){
+            if(this.room.Users[i].TableId == this.table_id && this.room.Users[i].ChairId != constant.INVALID){
+                this.users[this.room.Users[i].ChairId] = this.room.Users[i]
+            }
         }
-    }
-    public GetUserByChairId(chair_id:number):number{
-        if(this.chairs[chair_id] != undefined && this.chairs[chair_id] != null && this.chairs[chair_id] != 0xFFFF){
-            return this.chairs[chair_id]
-        }
-        return null
+        this.room.dispatchEvent(constant.event.logic.on_table_users_update, this)
     }
 }
+
 class EnterRoomData extends Dispatcher {
     private users = []
     private tables = []
-    private tablesDic = {}
+    private tableDic = {}
     constructor(data){
         super()
         for(var i = 0; i < data.tables.length; i++){
-            var td = new TableData(data.tables[i])
+            var td = new TableData(this, data.tables[i])
             this.tables.push(td)
-            this.tablesDic[td.TableId] = td
+            this.tableDic[td.TableId] = td
         }
         for(var i = 0; i < data.users.length; i++){
             this.AddUser(data.users[i])
         }
     }
-    public AddUser(data):void{
+    public AddUser(data):UserData{
         var ud = new UserData(data)
         this.users.push(ud)
-        if(this.tablesDic[ud.TableId] != undefined && this.tablesDic[ud.TableId] != null){
-            this.tablesDic[ud.TableId].UpdateUser(ud)
-            this.dispatchEvent(constant.event.logic.on_table_info_update, this.tablesDic[ud.TableId])
+        if(ud.TableId != constant.INVALID){
+            this.tableDic[ud.TableId].UpdateUsers()
         }
+        return ud     
     }
-    public RemoveUser(data):void{
+    public RemoveUser(data):UserData{
         for(var i = this.users.length - 1; i >= 0; i--){
-            if(this.users[i].UserId == data.user_id){
-                if(this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null){
-                    this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i])
-                    this.dispatchEvent(constant.event.logic.on_table_info_update, this.tablesDic[this.users[i].TableId])
-                }
+            var ud = this.users[i]
+            if(ud.UserId == data.user_id){
                 this.users.splice(i, 1)
-            }
-        }
-    }
-    public UpdateUser(data):void{
-        for(var i = this.users.length - 1; i >= 0; i--){
-            if(this.users[i].UserId == data.user_id){
-                this.users[i].Update(data)
-                if(this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null){
-                    this.tablesDic[this.users[i].TableId].UpdateUser(this.users[i])
-                    this.dispatchEvent(constant.event.logic.on_table_info_update, this.tablesDic[this.users[i].TableId])
+                if(ud.TableId != constant.INVALID){
+                    this.tableDic[ud.TableId].UpdateUsers()
                 }
+                return ud
             }
         }
+        console.error('remove user error. not exist user:' + data.user_id)
+    }
+    public UpdateUser(data):UserData{
+        for(var i = this.users.length - 1; i >= 0; i--){
+            var ud = this.users[i]
+            if(ud.UserId == data.user_id){
+                if(ud.TableId != constant.INVALID){
+                    this.tableDic[ud.TableId].UpdateUsers()
+                }
+                ud.Update(data)
+                if(ud.TableId != constant.INVALID){
+                    this.tableDic[ud.TableId].UpdateUsers()
+                }
+                return ud
+            }
+        }
+        console.error('update user error. not exist user:' + data.user_id)
     }
     public get Tables() { return this.tables }
     public get Users() { return this.users }
@@ -218,8 +219,8 @@ class RoomManager extends Dispatcher {
     private onPlayerEnterRoom(data:any):void{
         if(data.ret == 0){
             if(this.currentRoom != null && this.currentRoom != undefined){
-                this.currentRoom.AddUser(data)
-                this.dispatchEvent(constant.event.logic.on_other_enter_room)
+                var user = this.currentRoom.AddUser(data)
+                this.dispatchEvent(constant.event.logic.on_player_enter_room, user)
             }
         }
     }
@@ -227,8 +228,8 @@ class RoomManager extends Dispatcher {
     private onPlayerLeaveRoom(data:any):void{
         if(data.ret == 0){
             if(this.currentRoom != null && this.currentRoom != undefined){
-                this.currentRoom.RemoveUser(data)
-                this.dispatchEvent(constant.event.logic.on_other_leave_room)
+                var user = this.currentRoom.RemoveUser(data)
+                this.dispatchEvent(constant.event.logic.on_player_leave_room, user)
             }
         }
     }
@@ -261,9 +262,9 @@ class RoomManager extends Dispatcher {
     private onPlayerStateUpdate(data:any):void{
         if(data.ret == 0){
             if(this.currentRoom != null && this.currentRoom != undefined){
-                this.currentRoom.UpdateUser(data)
+                var user = this.currentRoom.UpdateUser(data)
+                this.dispatchEvent(constant.event.logic.on_player_data_update, user)
             }
         }
     }
-
 }
