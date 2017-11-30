@@ -118,7 +118,7 @@ class EnterRoomData extends Dispatcher {
         this.users.push(ud)
         if(this.tablesDic[ud.TableId] != undefined && this.tablesDic[ud.TableId] != null){
             this.tablesDic[ud.TableId].UpdateUser(ud)
-            this.dispatchEvent('TableUpdate', ud.TableId)
+            this.dispatchEvent(constant.event.logic.on_table_info_update, this.tablesDic[ud.TableId])
         }
     }
     public RemoveUser(data):void{
@@ -126,7 +126,7 @@ class EnterRoomData extends Dispatcher {
             if(this.users[i].UserId == data.user_id){
                 if(this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null){
                     this.tablesDic[this.users[i].TableId].RemoveUser(this.users[i])
-                    this.dispatchEvent('TableUpdate', this.users[i].TableId)
+                    this.dispatchEvent(constant.event.logic.on_table_info_update, this.tablesDic[this.users[i].TableId])
                 }
                 this.users.splice(i, 1)
             }
@@ -138,7 +138,7 @@ class EnterRoomData extends Dispatcher {
                 this.users[i].Update(data)
                 if(this.tablesDic[this.users[i].TableId] != undefined && this.tablesDic[this.users[i].TableId] != null){
                     this.tablesDic[this.users[i].TableId].UpdateUser(this.users[i])
-                    this.dispatchEvent('TableUpdate', this.users[i].TableId)
+                    this.dispatchEvent(constant.event.logic.on_table_info_update, this.tablesDic[this.users[i].TableId])
                 }
             }
         }
@@ -154,7 +154,7 @@ class RoomManager extends Dispatcher {
     }
 
     private roomList = []
-    public currentRoom:EnterRoomData = null
+    private currentRoom:EnterRoomData = null
 
     public Init():void{
         MessageManager.Instance.addEventListener(constant.msg.SC_ROOM_LIST, this.onRoomListRet, this)    
@@ -188,7 +188,7 @@ class RoomManager extends Dispatcher {
     }
     private onEnterRoomRet(data:any):void{
         if(data.ret == 0){
-            // do nothing
+            this.dispatchEvent(constant.event.logic.on_self_enter_room)
         }
     }
     public queryRoomInfo():void{
@@ -199,6 +199,7 @@ class RoomManager extends Dispatcher {
     private onQueryRoomInfoRet(data:any):void{
         if(data.ret == 0){
             this.currentRoom = new EnterRoomData(data)
+            this.dispatchEvent(constant.event.logic.on_query_room_info, this.currentRoom)
         }
     }
     // 请求离开房间
@@ -207,8 +208,9 @@ class RoomManager extends Dispatcher {
             protocol:constant.msg.CS_LEAVE_ROOM
         })
     }
-    private onLeaveRoomRet(data:any):void{ // 同时推送SC_ROOM_LIST消息
+    private onLeaveRoomRet(data:any):void{
         if(data.ret == 0){
+            this.dispatchEvent(constant.event.logic.on_self_leave_room, this.currentRoom)
             this.currentRoom = null
         }
     }
@@ -217,6 +219,7 @@ class RoomManager extends Dispatcher {
         if(data.ret == 0){
             if(this.currentRoom != null && this.currentRoom != undefined){
                 this.currentRoom.AddUser(data)
+                this.dispatchEvent(constant.event.logic.on_other_enter_room)
             }
         }
     }
@@ -225,6 +228,7 @@ class RoomManager extends Dispatcher {
         if(data.ret == 0){
             if(this.currentRoom != null && this.currentRoom != undefined){
                 this.currentRoom.RemoveUser(data)
+                this.dispatchEvent(constant.event.logic.on_other_leave_room)
             }
         }
     }
@@ -238,6 +242,7 @@ class RoomManager extends Dispatcher {
     }
     private onPlayerSitDown(data:any):void{
         if(data.ret == 0){
+            this.dispatchEvent(constant.event.logic.on_self_sit_down, this.currentRoom)
         }
     }
     // 起来
@@ -247,7 +252,9 @@ class RoomManager extends Dispatcher {
         })
     }
     private onPlayerStandup(data:any):void{
-        // do nothing
+        if(data.ret == 0){
+            this.dispatchEvent(constant.event.logic.on_self_stand_up, this.currentRoom)
+        }
     }
 
     // 玩家状态改变

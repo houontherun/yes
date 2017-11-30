@@ -53,14 +53,12 @@ namespace gameUI{
                 this.Close()
             }, this)
             
-            MessageManager.Instance.addEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this) 
             MessageManager.Instance.addEventListener(constant.msg.SC_ENTER_ROOM, this.onEnterRoomRet, this)  
             UIManager.Instance.Lobby.groupType.visible = false
             UIManager.Instance.Lobby.groupTopMenu.visible = false            
         }
         public onUnload():void{
             super.onUnload()
-            MessageManager.Instance.removeEventListener(constant.msg.SC_QUERY_ROOM_INFO, this.onQueryRoomInfoRet, this) 
             MessageManager.Instance.removeEventListener(constant.msg.SC_ENTER_ROOM, this.onEnterRoomRet, this)  
             UIManager.Instance.Lobby.groupType.visible = true
             UIManager.Instance.Lobby.groupTopMenu.visible = true
@@ -68,15 +66,10 @@ namespace gameUI{
 
         private onEnterRoomRet(data):void{
             if(data.ret == 0){
-                RoomManager.Instance.queryRoomInfo()
+                UIManager.Instance.LoadUI(UI.ddzRoom)
+                this.Close()
             }
         }
 
-        private onQueryRoomInfoRet(data:any):void{
-            if(data.ret == 0){
-                this.Close()
-                UIManager.Instance.LoadUI(UI.ddzRoom)
-            }
-        }
     }
 }

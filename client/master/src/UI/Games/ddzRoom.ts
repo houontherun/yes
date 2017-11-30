@@ -73,81 +73,63 @@ namespace gameUI{
     export class ddzRoom extends gameUI.base{        
         public onload():void {
             super.onload();
-            MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this)   
-            MessageManager.Instance.addEventListener(constant.msg.SC_LEAVE_ROOM,  this.onLeaveRoomRet, this)    
 
-            this.listGames.itemRenderer = ddzRoomItemRander
-            this.listGames.dataProvider = new eui.ArrayCollection(RoomManager.Instance.currentRoom.Tables)
-
-            // RoomManager.Instance.currentRoom.removeEventListener('TableUpdate', this.onTableUpdate, this) 
-            RoomManager.Instance.currentRoom.addEventListener('TableUpdate', this.onTableUpdate, this)
-
-            this.AddClick(this.btnClose, ()=>{
-                RoomManager.Instance.LevelRoom()
-            }, this)
             UIManager.Instance.Lobby.groupType.visible = false
             UIManager.Instance.Lobby.groupTopMenu.visible = false
             UIManager.Instance.Lobby.imgBg.source = 'background2_png'
 
-            this.AddClick(this.btnQuickStart, ()=>{
-                // console.log(DataManager.Instance.getJson('name').RandWomanName[1].WomanName)
+            this.listGames.itemRenderer = ddzRoomItemRander
+            this.AddClick(this.btnClose, ()=>{
+                RoomManager.Instance.LevelRoom()
             }, this)
+            this.AddClick(this.btnQuickStart, ()=>{
+                
+            }, this)
+
+            RoomManager.Instance.addEventListener(constant.event.logic.on_self_sit_down, this.onSitDown, this)   
+            RoomManager.Instance.addEventListener(constant.event.logic.on_self_leave_room, this.onLeaveRoom, this)   
+
+            RoomManager.Instance.addEventListener(constant.event.logic.on_query_room_info, this.onQueryRoomInfo, this)
+            this.enterRoomData = null
+            RoomManager.Instance.queryRoomInfo()
         }
         public onUnload():void{
             super.onUnload()
-            MessageManager.Instance.removeEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this) 
-            MessageManager.Instance.removeEventListener(constant.msg.SC_LEAVE_ROOM,  this.onLeaveRoomRet, this)   
-            // RoomManager.Instance.currentRoom.removeEventListener('TableUpdate', this.onTableUpdate, this) 
+            RoomManager.Instance.removeEventListener(constant.event.logic.on_self_sit_down, this.onSitDown, this) 
+            RoomManager.Instance.removeEventListener(constant.event.logic.on_self_leave_room, this.onLeaveRoom, this)
+
+            RoomManager.Instance.removeEventListener(constant.event.logic.on_query_room_info, this.onQueryRoomInfo, this)
+            if(this.enterRoomData != null){
+                this.enterRoomData.removeEventListener(constant.event.logic.on_table_info_update, this.onTableUpdate, this)
+            }
+
             UIManager.Instance.Lobby.groupType.visible = true
             UIManager.Instance.Lobby.groupTopMenu.visible = true
             UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground
         }
-        private onPlayerSitDown(data):void{
-            if(data.ret == 0){
-                // todo
-                if(!RES.isGroupLoaded("ddzRes"))
-                   RES.loadGroup("ddzRes");
-
-                if(!RES.isGroupLoaded("face"))
-                  RES.loadGroup("face");
-                if(!RES.isGroupLoaded("poke"))  
-                {
-                   RES.loadGroup("poke");
-                
-                   RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
-                }
-                else
-                {
-                    
-                    UIManager.Instance.UnloadUI(UI.ddzRoom);
-                    UIManager.Instance.LoadUI(UI.ddzGame);
-                }
-               
-            }
+        private onQueryRoomInfo(data:EnterRoomData):void{
+            this.enterRoomData = data
+            this.listGames.dataProvider = new eui.ArrayCollection(this.enterRoomData.Tables)
+            this.enterRoomData.addEventListener(constant.event.logic.on_table_info_update, this.onTableUpdate, this)
         }
-
-        private onResourceLoadComplete(event: RES.ResourceEvent): void {
-        if (event.groupName == "poke") {
+        private onSitDown(data):void{
             UIManager.Instance.UnloadUI(UI.ddzRoom);
-            UIManager.Instance.LoadUI(UI.ddzGame);
+            GameManager.Instance.startDDZGame()
         }
-    }
 
-        private onLeaveRoomRet(data):void{
-            if(data.ret == 0){
-                this.Close()
-                UIManager.Instance.LoadUI(UI.ddzSelectRoom)
-            }
+        private onLeaveRoom(data):void{
+            this.Close()
+            UIManager.Instance.LoadUI(UI.ddzSelectRoom)
         }
-        private onTableUpdate(tableId):void{
+        private onTableUpdate(tableData:TableData):void{
             for(var i = 0; i < this.listGames.numChildren; i++){
                 var tableItem = <ddzRoomItemRander>this.listGames.getChildAt(i)
-                if(tableId == tableItem.data.TableId){
+                if(tableData.TableId == tableItem.data.TableId){
                     tableItem.updateUI()
                 }
             }
         }
-
+        private enterRoomData:EnterRoomData
         public svGame:eui.Scroller;
         public listGames:eui.List;
         public btnClose:eui.Image;

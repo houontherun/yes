@@ -5,8 +5,8 @@ class GameManager extends Dispatcher {
         super();
     }   
 
-    public downloadGame(game_id:number)
-    {
+    // public downloadGame(game_id:number)
+    // {
         // this.url = "http://192.168.12.5:8080/test.png";
         // this.url = "http://192.168.12.5:8080/text.zip";
         // this.url = "http://192.168.12.5:8080/test.abc";
@@ -26,5 +26,31 @@ class GameManager extends Dispatcher {
         // request.addEventListener(egret.Event.COMPLETE,this.onGetComplete,this);
         // request.addEventListener(egret.IOErrorEvent.IO_ERROR,this.onGetIOError,this);
         // request.addEventListener(egret.ProgressEvent.PROGRESS,this.onGetProgress,this);
+    // }
+
+    public startDDZGame():void{
+        // todo
+        if(!RES.isGroupLoaded("ddzRes"))
+            RES.loadGroup("ddzRes");
+
+        if(!RES.isGroupLoaded("face"))
+            RES.loadGroup("face");
+        if(!RES.isGroupLoaded("poke"))  
+        {
+            RES.loadGroup("poke");
+        
+            RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
+        }
+        else
+        {
+            UIManager.Instance.UnloadUI(UI.ddzRoom);
+            UIManager.Instance.LoadUI(UI.ddzGame);
+        }
+    }
+
+    private onResourceLoadComplete(event: RES.ResourceEvent): void {
+        if (event.groupName == "poke") {
+            UIManager.Instance.LoadUI(UI.ddzGame);
+        }
     }
 }
