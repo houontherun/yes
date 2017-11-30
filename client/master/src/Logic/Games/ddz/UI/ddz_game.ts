@@ -43,7 +43,7 @@ namespace gameUI{
             }, this );
 
         this.AddClick(this.ChangeBtn,()=>{
-            this.clearCurGame();
+            
         },this); 
 
         this.AddClick(this.btn_back, ()=>{   
@@ -207,6 +207,7 @@ namespace gameUI{
    ///添加手牌
     public AddhardCard(e:CardLogic.CardEvent)
     {
+        this.clearCurGame();
         var cards:Array<PokerCard> = e.paramObj;
 
         Card.Util.sortCards(cards);
@@ -218,7 +219,7 @@ namespace gameUI{
             {
                var _card = new Card.ui_pokerCardItem();
                _card.cardData = cards[i];
-               _card.setPos(45*i,22);
+               _card.setPos(45*i,16);
                this.group_handcards.addChild(_card);
                this.hardCardsArray.push(_card);
                i++;
