@@ -22,13 +22,12 @@ namespace gameUI{
    private cardBegin: number = -1;
    private cardEnd: number = -1;
    private btn_back:eui.Image;
-   private playerChairid:number = 0;
+
     public onload():void {
        
         super.onload();
 
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
-        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCard, this);
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         CardLogic.ddzGameLogic.Instance.init();
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
@@ -62,7 +61,6 @@ namespace gameUI{
    public onUnload():void{
         super.onUnload()
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.Standup,this) ;
-        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCard, this);
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
         CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
@@ -87,7 +85,7 @@ namespace gameUI{
          {
              if(players[i].UserId == PlayerManager.Instance.Data.UserId)
               {
-                   this.playerChairid = players[i].ChairId;
+                    CardLogic.ddzGameLogic.Instance.playerChairid = players[i].ChairId;
               }
             
          }
@@ -101,7 +99,7 @@ namespace gameUI{
               }
               else
               {
-                  let chairid = Math.abs(players[i].ChairId - this.playerChairid);
+                  let chairid = Math.abs(players[i].ChairId - CardLogic.ddzGameLogic.Instance.playerChairid);
                   if((players[i].ChairId == this.PlayersNum -1)&&chairid!=this.PlayersNum -1)
                      chairid += 1;
                   if(chairid <this.PlayersNum)
@@ -118,10 +116,6 @@ namespace gameUI{
       CardLogic.ddzGameLogic.Instance.ExitGame();
   }
 
-  private DispatchCard(data):void
-  {
-       let cards = data.cards;
-  }
 
    protected childrenCreated() {
             super.childrenCreated();

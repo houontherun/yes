@@ -13,6 +13,7 @@ export class ddzGameLogic extends Dispatcher {
    private timer:egret.Timer ;
    private players:UserData[] = [];
    private UpdatePlayersEvent:CardLogic.CardEvent;
+   public playerChairid:number = 0;
   
    public static get Instance() {
         if(ddzGameLogic.shared == null) {
@@ -20,7 +21,7 @@ export class ddzGameLogic extends Dispatcher {
         }
         return ddzGameLogic.shared;
     }
-    private allCardList:Array<PokerCard> = [];
+    private hardCardList:Array<PokerCard> = [];
 
 	public constructor() {
           super()
@@ -34,6 +35,7 @@ export class ddzGameLogic extends Dispatcher {
        this.timer.start();
        this.timerTick = Timer.Instance.tick;
        this.UpdatePlayersEvent = new CardLogic.CardEvent(CardLogic.CardEvent.UpdatePlayers);
+       MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCardStart, this);
         
        MessageManager.Instance.addEventListener(constant.msg.SC_TABLE_PLAYER_INFO, this.UpdatePlayers, this); 
        MessageManager.Instance.SendMessage({
@@ -57,6 +59,8 @@ export class ddzGameLogic extends Dispatcher {
     }
 
 
+
+
     public ExitGame()
     {
         this.bStartgame = false;
@@ -64,6 +68,7 @@ export class ddzGameLogic extends Dispatcher {
 
         this.timer.stop();
         MessageManager.Instance.removeEventListener(constant.msg.SC_TABLE_PLAYER_INFO, this.UpdatePlayers, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCardStart, this);
     }
 
     public ResetGame()
@@ -85,9 +90,23 @@ export class ddzGameLogic extends Dispatcher {
 
    }
    
-   public DispatchCardStart()
+   public DispatchCardStart(data)
    {
+       var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade];
        this.bStartgame = true;
+       let cards = data.cards[this.playerChairid];
+       for (var i = 0;i < cards.length;i++)
+	   {
+            if(cards[i] == 0) continue;
+            var iclr = Card.Util.GetCardColor(cards[i]);
+            var color: CardColor = Colorlist[iclr];
+            var index: number = Card.Util.GetCardValue(cards[i]);
+			var card : PokerCard = Card.Util.createPokerCard(index,color);
+            this.hardCardList.push(card);
+	   }
+       var addHardEvent:CardLogic.CardEvent = new CardLogic.CardEvent(CardLogic.CardEvent.AddHard);
+       addHardEvent.paramObj = this.hardCardList;
+       CardLogic.CardEventDispatcher.Instance.dispatchEvent(addHardEvent);
       
    }
 
