@@ -22,6 +22,7 @@ namespace gameUI{
    private cardBegin: number = -1;
    private cardEnd: number = -1;
    private btn_back:eui.Image;
+   private group_btn:eui.Group;
 
     public onload():void {
        
@@ -52,8 +53,8 @@ namespace gameUI{
            });
            
             }, this );
-        this.Changeimg.$touchEnabled =false;  
-        this.prepareimg.$touchEnabled =false;  
+        this.Changeimg.touchEnabled =false;  
+        this.prepareimg.touchEnabled =false;  
        
     }
 
@@ -72,6 +73,8 @@ namespace gameUI{
     {
         this.prepareBtn.parent.removeChild(this.prepareBtn);
         this.prepareimg.parent.removeChild(this.prepareimg);
+        this.ChangeBtn.parent.removeChild(this.ChangeBtn);
+        this.Changeimg.parent.removeChild(this.Changeimg);
     }
  }
 
@@ -115,7 +118,49 @@ namespace gameUI{
       UIManager.Instance.LoadUI(UI.ddzRoom);   
       CardLogic.ddzGameLogic.Instance.ExitGame();
   }
+  
 
+  //明牌处理
+  private OpenDeal()
+  {
+       var img = new eui.Image();
+        var i:number = 4;
+        this.AddClick(img,()=>{
+            MessageManager.Instance.SendSubMessage({
+            sub_protocol:constant.sub_msg.SUB_C_BRIGHT,
+            chair_id:CardLogic.ddzGameLogic.Instance.playerChairid
+        })
+        },this);
+        img.source = RES.getRes("btn1_png");
+        img.width = 185*0.75;
+        img.height = 85*0.75;
+        img.x = this.group_btn.width / 2 +20;
+        img.y = 14;
+        this.group_btn.addChild(img);
+        var textNum =  new eui.Label;
+        textNum.fontFamily = "SimHei";
+       textNum.strokeColor = 0xFF8C00;   //描边颜色
+       textNum.stroke = 2;               //描边宽度
+       textNum.text = "明牌×8";
+       textNum.x = this.group_btn.width / 2 + 30 ;
+       textNum.y = img.y + 10 ;
+       textNum.textAlign = egret.HorizontalAlign.CENTER;
+       this.group_btn.addChild(textNum);
+       var OpenDealTimer =  CardLogic.Timer.Instance.Repeat(1.2,()=>{
+          if(i>0)
+          {
+              textNum.text = "明牌×" + i.toString();
+              i-=2;
+          }
+         else
+          {
+              CardLogic.Timer.Instance.Remove(OpenDealTimer);
+              this.group_btn.removeChild(textNum);
+              this.group_btn.removeChild(img);
+          }
+
+      });
+  }
 
    protected childrenCreated() {
             super.childrenCreated();
@@ -207,7 +252,11 @@ namespace gameUI{
    ///添加手牌
     public AddhardCard(e:CardLogic.CardEvent)
     {
-        this.clearCurGame();
+        if(this.hardCardsArray.length > 0) 
+        {
+           this.removehardCard();
+        }
+        this.OpenDeal();
         var cards:Array<PokerCard> = e.paramObj;
 
         Card.Util.sortCards(cards);
