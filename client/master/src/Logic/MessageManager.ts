@@ -31,7 +31,7 @@ class MessageManager extends Dispatcher {
         var msg = data.protocol
         if (msg != null){
             if(msg == constant.msg.SC_CHILD_GAME_MESSAGE){
-                this.subDispatcher.dispatchEvent(msg, data)
+                this.subDispatcher.dispatchEvent(data.sub_protocol, data)
             }else{
                 this.dispatchEvent(msg, data)
             }
