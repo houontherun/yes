@@ -61,13 +61,13 @@ namespace gameUI{
             super.onUnload()
             UIManager.Instance.Lobby.groupType.visible = true
             UIManager.Instance.Lobby.groupTopMenu.visible = true
-            
+
             RoomManager.Instance.removeEventListener(constant.event.logic.on_self_enter_room, this.onEnterRoom, this)
         }
 
         private onEnterRoom(data):void{
-            UIManager.Instance.LoadUI(UI.ddzRoom)
             this.Close()
+            UIManager.Instance.LoadUI(UI.ddzRoom)
         }
 
     }
