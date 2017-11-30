@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="game_itemSkin" width="277" height="355" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="imgBg" source="pukeitem_png" verticalCenter="0" horizontalCenter="0"/>
-	<e:Image id="imgName" source="QI_png" x="98.5" y="290"/>
-</e:Skin>

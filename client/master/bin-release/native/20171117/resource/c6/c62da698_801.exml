@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="rankItemSkin" width="847" height="63" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="imgBg" source="rank_bg2_png" x="0" y="0"/>
-	<e:Image id="imgIndex" source="rank_1_png" x="2" y="4"/>
-	<e:Label id="txtName" text="咸鸭蛋" x="216.5" y="17.5" anchorOffsetX="0" width="380" verticalAlign="middle" textAlign="center" fontFamily="SimHei"/>
-	<e:Label id="txtValue" text="1000" x="682.5" y="17.5" anchorOffsetX="0" width="153" verticalAlign="middle" textAlign="left" fontFamily="SimHei"/>
-	<e:Label id="txtIndex" text="4" x="2.5" y="19.5" anchorOffsetX="0" width="56" verticalAlign="middle" textAlign="center" fontFamily="SimHei" size="35"/>
-	<e:Image id="imgType" source="rank_fa_png" x="615" y="6.5"/>
-</e:Skin>
