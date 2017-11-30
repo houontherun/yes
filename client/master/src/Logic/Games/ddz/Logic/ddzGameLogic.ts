@@ -92,6 +92,7 @@ export class ddzGameLogic extends Dispatcher {
    
    public DispatchCardStart(data)
    {
+       this.hardCardList = [];
        var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade];
        this.bStartgame = true;
        let cards = data.cards[this.playerChairid];
