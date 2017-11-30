@@ -6,6 +6,10 @@ namespace Card {
        weight:number;  //权值
        name?:string     //名字
    }
+
+   export const MASK_COLOR:number = 0xF0;
+   export const MASK_VALUE:number = 0x0F;
+
    export var PackCards:{ [key: number]: Carddata; } = {
         1: {weight:12,name:"A"},
         2: {weight:13,name:"2"},
@@ -56,6 +60,16 @@ namespace Card {
      }
 
     export class Util {
+
+       public static GetCardValue(cb:number):number
+       {
+           return (cb & MASK_VALUE); 
+       }
+
+       public static GetCardColor(cb:number):number
+       {
+           return (cb & MASK_COLOR); 
+       }
 
         public static createPokerCard(e:number,c?:CardColor):PokerCard{
             var index = e;
