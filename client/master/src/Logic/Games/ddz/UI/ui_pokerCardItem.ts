@@ -38,6 +38,9 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
             _source = "card_back_png";
 		}
 		this.imgsource = _source;
+		
+		if(this.img_card)
+		  this.SetImageUrl(this.img_card,this.imgsource );
 
     }
 
