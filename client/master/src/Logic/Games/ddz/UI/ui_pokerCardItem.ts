@@ -4,15 +4,26 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 	private card : PokerCard;
 	private bSelect:boolean = false;
 	private posY:number;
+
+    private imgsource ;
 	public constructor() {
 		super("resource/custom_skins/ddz_ui/ui_pokerCard.exml");
 		this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_tap,this);
+		this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
 	}
 
+
+    private onload():void {
+            if(this.card == null){
+                return
+            }
+			this.SetImageUrl(this.img_card,this.imgsource );
+		}
 
 	public get cardData():PokerCard{
         return this.card;
     }
+	
     public set cardData(value:PokerCard){
         this.card = value;
 		let index = value.Index;
@@ -26,8 +37,8 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		{
             _source = "card_back_png";
 		}
-		this.SetImageUrl(this.img_card,_source);
-        
+		this.imgsource = _source;
+
     }
 
     public get Selected():boolean{

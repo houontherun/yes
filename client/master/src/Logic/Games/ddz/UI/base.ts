@@ -4,15 +4,9 @@ namespace gameUI{
     export class UIbase extends eui.Component{
         constructor(skin?:any){
             super();
-
-            this.once( eui.UIEvent.COMPLETE, this.onload, this);
             this.skinName = skin;
             
         }
-        public onload():void {
-
-        }
-
 
         public AddClick(img:eui.UIComponent, onClick:Function, thisObject:any):void{
             var scaX = img.scaleX

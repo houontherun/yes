@@ -8,21 +8,26 @@ namespace gameUI{
 
    private prepareBtn:eui.Image;
    private  btn_tuoguan : eui.Image;
-   private ChangeBtn :eui.Image;
-   private Changeimg :eui.Image;
+   private btn1 :eui.Image;
+   private btn2 :eui.Image;
+   private Text_bnt1:eui.Label;
+   private Text_bnt2:eui.Label;
+
    private bStart:boolean;
    private group_handcards:eui.Group;
    private group_Player0:eui.Group;// 4:头像 5：牌 6：牌数
    private txt_PlayerGold:eui.Label;
    private hardCardsArray: Card.ui_pokerCardItem[] = [];
    private PlayersNum:number = 3;
-   private prepareimg :eui.Image;
+
    private cardTotalnum: number;
    private TargetCardsArray: Card.ui_pokerCardItem[] = [];
    private cardBegin: number = -1;
    private cardEnd: number = -1;
    private btn_back:eui.Image;
    private group_btn:eui.Group;
+   private clockCD:Card.ui_ClockCD;
+   private curClockpos:number;
 
     public onload():void {
        
@@ -37,13 +42,13 @@ namespace gameUI{
                  
             }, this );
 
-        this.AddClick(this.prepareBtn, ()=>{   
+        this.AddClick(this.btn2, ()=>{   
             MessageManager.Instance.SendMessage({
               protocol:constant.msg.CS_USER_READY
              });
             }, this );
-
-        this.AddClick(this.ChangeBtn,()=>{
+        this.Text_bnt2.x = 362;
+        this.AddClick(this.btn1,()=>{
             
         },this); 
 
@@ -53,8 +58,7 @@ namespace gameUI{
            });
            
             }, this );
-        this.Changeimg.touchEnabled =false;  
-        this.prepareimg.touchEnabled =false;  
+
        
     }
 
@@ -71,14 +75,65 @@ namespace gameUI{
  {
     if(data.ret == 0)
     {
-        this.prepareBtn.parent.removeChild(this.prepareBtn);
-        this.prepareimg.parent.removeChild(this.prepareimg);
-        this.ChangeBtn.parent.removeChild(this.ChangeBtn);
-        this.Changeimg.parent.removeChild(this.Changeimg);
+       // this.prepareBtn.parent.removeChild(this.prepareBtn);
+       // this.prepareimg.parent.removeChild(this.prepareimg);
+       // this.ChangeBtn.parent.removeChild(this.ChangeBtn);
+       // this.Changeimg.parent.removeChild(this.Changeimg);
+       this.Text_bnt2.text = "已准备";
+       this.Text_bnt1.visible = false;
+       this.btn1.visible = false;
     }
  }
 
-  private SetplayersInfo()
+
+
+  private Standup(data:any):void
+  {
+      UIManager.Instance.UnloadUI(UI.ddzGame);
+      UIManager.Instance.LoadUI(UI.ddzRoom);   
+      CardLogic.ddzGameLogic.Instance.ExitGame();
+  }
+  
+
+  //创建闹钟
+  private countdown(chairid:number)
+  {
+      if(!this.clockCD)
+        this.clockCD = new Card.ui_ClockCD();
+     
+     let group :  eui.Group;
+     var pos: number ;
+     if(CardLogic.ddzGameLogic.Instance.playerChairid == chairid)  
+     {
+         group = this.group_Player0;
+         pos = 0;
+     }
+     else
+     {
+         pos = CardLogic.ddzGameLogic.Instance.playerposInfo[chairid];
+         group = <eui.Group>this.getChildAt(pos+1);
+     }
+
+    if(group&&this.curClockpos!=pos)
+    {
+       let clockpos = group.getChildByName("Label_pos");
+       this.clockCD .x = clockpos.x - 33;
+       this.clockCD .y= clockpos.y - 60;
+       group.addChild(this.clockCD);
+       this.curClockpos = pos;
+    }
+  }
+
+ //倒计时
+  private DelayTimer(delay:number)
+  {
+      if(this.clockCD)
+      {
+          this.clockCD.SetCd(delay);
+      }
+  }
+
+ private SetplayersInfo()
   {
     this.clearOtherPlayers();
     var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
@@ -92,7 +147,6 @@ namespace gameUI{
               }
             
          }
-
 
          for(var i = 0;i<players.length;i++)
          {
@@ -112,22 +166,111 @@ namespace gameUI{
               }
          }
 
-         
      }
   }
 
-  private Standup(data:any):void
-  {
-      UIManager.Instance.UnloadUI(UI.ddzGame);
-      UIManager.Instance.LoadUI(UI.ddzRoom);   
-      CardLogic.ddzGameLogic.Instance.ExitGame();
-  }
-  
-  private countdown(playerpos:number)
-  {
+ public setPlayer(playerNum:number,playername:string,coin:number,head:string)
+    {
+        var group ;
+        if(playerNum>0)
+        {
+           group = <eui.Group>this.getChildAt(playerNum+1);
+        }
+        else
+        {
+            group = this.group_Player0;
+        }
+        
+        if(group)
+        {
+            var txtName = <eui.Label>group.getChildAt(1); 
+            txtName.text = playername;
+            if(playerNum>0)
+            {
+               var txtcoin = <eui.Label>group.getChildAt(2); 
+               txtcoin.text = coin.toString();
+            }
+            else
+            {
+                this.txt_PlayerGold.text = coin.toString();
+            }
+            var img = new eui.Image();
+            //img.mask = this.getChildAt(1);
+            img.source = RES.getRes(head);
+            img.x = 10;
+            group.addChildAt(img,0);
+            group.visible = true;
+        }
        
-  }
+    }
 
+    public dealtoPlayer(playernum:number,seat:Card.Seat)
+    {
+         var group ;
+         var textNum ;
+        if(playernum>0)
+        {
+            group = <eui.Group>this.getChildAt(playernum+1);
+            if(group.numChildren == 7)
+            {
+                 textNum = <eui.Label>group.getChildAt(6);
+                 textNum.text = "1";
+            }
+            else
+            {
+               var backCard = new eui.Image();
+
+               
+               backCard.scaleX = backCard.scaleY = 0.56;
+               backCard.source = RES.getRes("card_back_png");
+               group.addChildAt(backCard,5);
+               textNum = new eui.Label;
+               textNum.fontFamily = "SimHei";
+               textNum.strokeColor = 0x0000ff;   //描边颜色
+               textNum.stroke = 2;               //描边宽度
+               textNum.text = "1";
+               textNum.textAlign = egret.HorizontalAlign.CENTER;
+               
+               if(seat == Card.Seat.Left)
+               {
+                  backCard.x = 250;
+                  backCard.y = 200;
+                  textNum.x = 278;
+                  textNum.y = 240;
+               }
+               else
+               {
+                  backCard.x = 0;
+                  backCard.y = 200;
+                  textNum.x = 30;
+                  textNum.y = 240;
+               }
+               
+               group.addChildAt(textNum,6);
+            }
+            
+            var i:number = 1;
+            if(textNum)
+            {
+               let dealcardTimer = CardLogic.Timer.Instance.Repeat(0.18,()=>{
+                    if(i<this.cardTotalnum )
+                    {
+                       textNum.text = i.toString();
+                       i++;
+                    }
+                    else
+                    {
+                         CardLogic.Timer.Instance.Remove(dealcardTimer);
+                    }
+                    
+                });
+            }
+           
+            
+
+        }
+       
+    }
   //明牌处理
   private OpenDeal()
   {
@@ -310,108 +453,7 @@ namespace gameUI{
          this.hardCardsArray = [];
     }
 
-    public setPlayer(playerNum:number,playername:string,coin:number,head:string)
-    {
-        var group ;
-        if(playerNum>0)
-        {
-           group = <eui.Group>this.getChildAt(playerNum+1);
-        }
-        else
-        {
-            group = this.group_Player0;
-        }
-        
-        if(group)
-        {
-            var txtName = <eui.Label>group.getChildAt(1); 
-            txtName.text = playername;
-            if(playerNum>0)
-            {
-               var txtcoin = <eui.Label>group.getChildAt(2); 
-               txtcoin.text = coin.toString();
-            }
-            else
-            {
-                this.txt_PlayerGold.text = coin.toString();
-            }
-            var img = new eui.Image();
-            //img.mask = this.getChildAt(1);
-            img.source = RES.getRes(head);
-            img.x = 10;
-            group.addChildAt(img,0);
-            group.visible = true;
-        }
-       
-    }
-
-    public dealtoPlayer(playernum:number,seat:Card.Seat)
-    {
-         var group ;
-         var textNum ;
-        if(playernum>0)
-        {
-            group = <eui.Group>this.getChildAt(playernum+1);
-            if(group.numChildren == 7)
-            {
-                 textNum = <eui.Label>group.getChildAt(6);
-                 textNum.text = "1";
-            }
-            else
-            {
-               var backCard = new eui.Image();
-
-               
-               backCard.scaleX = backCard.scaleY = 0.56;
-               backCard.source = RES.getRes("card_back_png");
-               group.addChildAt(backCard,5);
-               textNum = new eui.Label;
-               textNum.fontFamily = "SimHei";
-               textNum.strokeColor = 0x0000ff;   //描边颜色
-               textNum.stroke = 2;               //描边宽度
-               textNum.text = "1";
-               textNum.textAlign = egret.HorizontalAlign.CENTER;
-               
-               if(seat == Card.Seat.Left)
-               {
-                  backCard.x = 250;
-                  backCard.y = 200;
-                  textNum.x = 278;
-                  textNum.y = 240;
-               }
-               else
-               {
-                  backCard.x = 0;
-                  backCard.y = 200;
-                  textNum.x = 30;
-                  textNum.y = 240;
-               }
-               
-               group.addChildAt(textNum,6);
-            }
-            
-            var i:number = 1;
-            if(textNum)
-            {
-               let dealcardTimer = CardLogic.Timer.Instance.Repeat(0.18,()=>{
-                    if(i<this.cardTotalnum )
-                    {
-                       textNum.text = i.toString();
-                       i++;
-                    }
-                    else
-                    {
-                         CardLogic.Timer.Instance.Remove(dealcardTimer);
-                    }
-                    
-                });
-            }
-           
-            
-
-        }
-       
-    }
+   
 
     private clearOtherPlayers()
     {
