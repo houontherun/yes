@@ -14,7 +14,8 @@ export class ddzGameLogic extends Dispatcher {
    private players:UserData[] = [];
    private UpdatePlayersEvent:CardLogic.CardEvent;
    public playerChairid:number = 0;
-  
+   public playerposInfo = {};
+
    public static get Instance() {
         if(ddzGameLogic.shared == null) {
             ddzGameLogic.shared = new ddzGameLogic();
@@ -27,6 +28,7 @@ export class ddzGameLogic extends Dispatcher {
           super()
 	     
 	}
+    
 
    public init()
    {
@@ -57,8 +59,6 @@ export class ddzGameLogic extends Dispatcher {
         }
          CardLogic.CardEventDispatcher.Instance.dispatchEvent( this.UpdatePlayersEvent);
     }
-
-
 
 
     public ExitGame()
