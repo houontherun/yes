@@ -99,6 +99,7 @@ namespace gameUI{
              if(players[i].UserId == PlayerManager.Instance.Data.UserId)
               {
                     this.setPlayer(0,players[i].UserName,players[i].Gold,"face_1_png");
+                    CardLogic.ddzGameLogic.Instance.playerposInfo[players[i].ChairId] = 0;
               }
               else
               {
@@ -107,8 +108,11 @@ namespace gameUI{
                      chairid += 1;
                   if(chairid <this.PlayersNum)
                       this.setPlayer(chairid,players[i].UserName,players[i].Gold,"face_2_png");
+                 CardLogic.ddzGameLogic.Instance.playerposInfo[players[i].ChairId] = chairid;
               }
          }
+
+         
      }
   }
 
@@ -119,6 +123,10 @@ namespace gameUI{
       CardLogic.ddzGameLogic.Instance.ExitGame();
   }
   
+  private countdown(playerpos:number)
+  {
+       
+  }
 
   //明牌处理
   private OpenDeal()
@@ -131,7 +139,7 @@ namespace gameUI{
             chair_id:CardLogic.ddzGameLogic.Instance.playerChairid
         })
         },this);
-        img.source = RES.getRes("btn1_png");
+        img.source = RES.getRes("btn2_png");
         img.width = 185*0.75;
         img.height = 85*0.75;
         img.x = this.group_btn.width / 2 +20;
@@ -139,11 +147,13 @@ namespace gameUI{
         this.group_btn.addChild(img);
         var textNum =  new eui.Label;
         textNum.fontFamily = "SimHei";
-       textNum.strokeColor = 0xFF8C00;   //描边颜色
-       textNum.stroke = 2;               //描边宽度
+        textNum.textColor = 0x0000AA;   //描边颜色
+      // textNum.strokeColor = 0xe2a92b;   //描边颜色
+      // textNum.stroke = 1.2;               //描边宽度
        textNum.text = "明牌×8";
-       textNum.x = this.group_btn.width / 2 + 30 ;
-       textNum.y = img.y + 10 ;
+       textNum.size = 30;
+       textNum.x = this.group_btn.width / 2 + 36 ;
+       textNum.y = img.y + 13.5 ;
        textNum.textAlign = egret.HorizontalAlign.CENTER;
        this.group_btn.addChild(textNum);
        var OpenDealTimer =  CardLogic.Timer.Instance.Repeat(1.2,()=>{

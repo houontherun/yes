@@ -5,7 +5,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 	private bSelect:boolean = false;
 	private posY:number;
 	public constructor() {
-		super("resource/eui_skins/ddz_ui/ui_pokerCard.exml");
+		super("resource/custom_skins/ddz_ui/ui_pokerCard.exml");
 		this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_tap,this);
 	}
 
