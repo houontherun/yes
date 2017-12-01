@@ -129,15 +129,13 @@ namespace gameUI{
                     MessageManager.Instance.SendSubMessage({
                     sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
                     score:1
-                    })
-                     },this);
+                    })},this);
 
                 this.AddClick(this.btn2,()=>{
                     MessageManager.Instance.SendSubMessage({
                     sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
                     score:0
-                    })
-                     },this);      
+                    })},this);      
             }
        }
    }
