@@ -10,6 +10,22 @@ namespace gameUI{
             (<eui.EditableText>this.txtUserName.textDisplay).size = 30;
             (<eui.EditableText>this.txtPassword.textDisplay).size = 30;
             this.btnLogin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
+                // var indexA = this.txtUserName.text.split(',')
+                // var indexB = this.txtPassword.text.split(',')
+                // var pockA = []
+                // var pockB = []
+                // for(var i = 0; i < indexA.length; i++){
+                //     pockA.push(Card.Util.createPokerCard(parseInt(indexA[i])))
+                // }
+                // for(var i = 0; i < indexB.length; i++){
+                //     pockB.push(Card.Util.createPokerCard(parseInt(indexB[i])))
+                // }
+                // var A = new Card.ddzPackCardGroup(pockA)
+                // var B = new Card.ddzPackCardGroup(pockB)
+                // console.log(A.CardType)
+                // console.log(B.CardType)
+                // console.log(A.isPress(B))
+
                 NetworkManager.Instance.addEventListener(constant.event.network.on_connect_succeed, this.onConSucceed, this);
                 NetworkManager.Instance.Connect(constant.connect_ip, constant.connect_port);
 
