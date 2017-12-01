@@ -55,7 +55,7 @@ namespace Card {
         private group = []
         constructor(cards:Array<PokerCard>){
             this.cards = cards.sort(this.sortCard)
-            this.group = this.groupCards()  // 将牌分组格式为：[{index:3, count:2},{index:2, count:1}]
+            this.group = Util.groupCards(this.cards)  // 将牌分组格式为：[{index:3, count:2},{index:2, count:1}]
             this.cardType = this.getCardType()
         }
         private sortCard(a, b){
@@ -107,33 +107,13 @@ namespace Card {
                 }
             }
         }
-        
-        // 将牌分组，按index分组，数量越多，组排的越前
-        private groupCards(){
-            var dic = {}
-            var arr = []
-            for(var i = 0; i < this.cards.length; i++){
-                if(dic[this.cards[i].Index] == undefined){
-                    dic[this.cards[i].Index] = 0
-                }
-                dic[this.cards[i].Index]++                
-            }
-            for(var index in dic){
-                arr.push({
-                    index:index,
-                    count:dic[index],
-                    weight:PackCards[index].weight
-                })
-            }
-            arr = arr.sort(function(a, b){
-                if(a.count != b.count){
-                    return b.count - a.count
-                }else{
-                    return PackCards[a.index].weight - PackCards[b.index].weight
-                }
-            })            
-            return arr
+        public get Cards():Array<PokerCard>{
+            return this.cards
         }
+        public get Group():any{
+            return this.group
+        }
+        
         private getCardType(){
             if(this.isSINGLE_TYPE()) return CardTypes.SINGLE_TYPE
             if(this.isNUKE_TYPE()) return CardTypes.NUKE_TYPE
@@ -156,10 +136,10 @@ namespace Card {
             return this.cards.length == 1
         }
         private isPAIR_TYPE(){ // 是否是对子
-            return this.cards.length == 2 && this.cards[0].Index == this.cards[1].Index
+            return this.cards.length == 2 && this.cards[0].Weight == this.cards[1].Weight
         }
         private isTRIO_TYPE(){ // 是否是三不带
-            return this.cards.length == 3 && this.cards[0].Index == this.cards[1].Index && this.cards[1].Index == this.cards[2].Index
+            return this.cards.length == 3 && this.cards[0].Weight == this.cards[1].Weight && this.cards[1].Weight == this.cards[2].Weight
         }
         private isTRIOSINGLE_TYPE(){ // 是否是三带一
             if(this.cards.length == 4){
@@ -183,11 +163,11 @@ namespace Card {
             }
             var first = this.cards[0]
             var last = this.cards[this.cards.length - 1]
-            if(first.Index < 3 || last.Index > 13){
+            if(first.Weight < 1 || last.Weight > 12){
                 return false
             }
             for(var i = 0; i < this.cards.length - 1; i++){
-                if(this.cards[i].Index != this.cards[i + 1].Index - 1){
+                if(this.cards[i].Weight != this.cards[i + 1].Weight - 1){
                     return false;
                 }
             }
@@ -199,11 +179,11 @@ namespace Card {
             }
             var first = this.cards[0]
             var last = this.cards[this.cards.length - 1]
-            if(first.Index < 3 || last.Index > 13){
+            if(first.Weight < 1 || last.Weight > 12){
                 return false
             }
             for(var i = 0; i < this.cards.length - 2; i += 2){
-                if(this.cards[i].Index != this.cards[i + 1].Index || this.cards[i].Index != this.cards[i + 2].Index - 1){
+                if(this.cards[i].Weight != this.cards[i + 1].Weight || this.cards[i].Weight != this.cards[i + 2].Weight - 1){
                     return false;
                 }
             }
@@ -215,11 +195,11 @@ namespace Card {
             }            
             var first = this.cards[0]
             var last = this.cards[this.cards.length - 1]
-            if(first.Index < 3 || last.Index > 13){
+            if(first.Weight < 1 || last.Weight > 12){
                 return false
             }
             for(var i = 0; i < this.cards.length - 3; i += 3){
-                if(this.cards[i].Index != this.cards[i + 1].Index || this.cards[i + 1].Index != this.cards[i + 2].Index || this.cards[i].Index != this.cards[i + 3].Index - 1){
+                if(this.cards[i].Weight != this.cards[i + 1].Weight || this.cards[i + 1].Weight != this.cards[i + 2].Weight || this.cards[i].Weight != this.cards[i + 3].Weight - 1){
                     return false;
                 }
             }
@@ -232,11 +212,11 @@ namespace Card {
             if(this.group.length < 4){ // 最少是3，3，1，1
                 return false
             }
-            if(this.group[0].index < 3 || this.group[this.group.length - 3].index > 13){
+            if(this.group[0].weight < 1 || this.group[this.group.length - 3].weight > 12){
                 return false
             }
             for(var i = 0; i < this.group.length - 3; i++){
-                if(this.group[i].index != this.group[i + 1].index - 1){
+                if(this.group[i].weight != this.group[i + 1].weight - 1){
                     return false
                 }
             }
@@ -249,11 +229,11 @@ namespace Card {
             if(this.group.length < 4){ // 最少是3，3，2，2
                 return false
             }
-            if(this.group[0].index < 3 || this.group[this.group.length - 3].index > 13){
+            if(this.group[0].weight < 1 || this.group[this.group.length - 3].weight > 12){
                 return false
             }
             for(var i = 0; i < this.group.length - 3; i++){
-                if(this.group[i].index != this.group[i + 1].index - 1){
+                if(this.group[i].weight != this.group[i + 1].weight - 1){
                     return false
                 }
             }
@@ -281,10 +261,10 @@ namespace Card {
             return this.group[0].count == 4 && this.group[1].count == 2 && this.group[2].count == 2
         }
         private isBOMB_TYPE(){ // 炸弹
-            return this.cards.length == 4 && this.cards[0].Index == this.cards[1].Index && this.cards[1].Index == this.cards[2].Index && this.cards[2].Index == this.cards[3].Index
+            return this.cards.length == 4 && this.cards[0].Weight == this.cards[1].Weight && this.cards[1].Weight == this.cards[2].Weight && this.cards[2].Weight == this.cards[3].Weight
         }
         private isNUKE_TYPE(){ // 王炸
-            return this.cards.length == 2 && this.cards[0].Index >= 14 && this.cards[1].Index >= 14
+            return this.cards.length == 2 && this.cards[0].Weight >= 14 && this.cards[1].Weight >= 15
         }
     }
 
@@ -321,6 +301,217 @@ namespace Card {
             return cards.sort(function(a, b){
                 return a.Weight - b.Weight
             })
+        }
+        // 将牌分组，按index分组，数量越多，组排的越前
+        public static groupCards(cards:Array<PokerCard>){
+            var dic = {}
+            var arr = []
+            for(var i = 0; i < cards.length; i++){
+                if(dic[cards[i].Index] == undefined){
+                    dic[cards[i].Index] = 0
+                }
+                dic[cards[i].Index]++                
+            }
+            for(var index in dic){
+                arr.push({
+                    index:index,
+                    count:dic[index],
+                    weight:PackCards[index].weight
+                })
+            }
+            arr = arr.sort(function(a, b){
+                if(a.count != b.count){
+                    return b.count - a.count
+                }else{
+                    return PackCards[a.index].weight - PackCards[b.index].weight
+                }
+            })            
+            return arr
+        }
+        // 从分好组的牌里取特定的部分，如取所有3个、对子、单牌等
+        public static getGroupCards(group, count){
+            var ret = []
+            for(var i = 0; i < group.length; i++){
+                if(group[i].count == count){
+                    ret.push(group[i])
+                }
+            }
+            return ret
+        }
+
+        // 获取炸弹，包括4个的和王炸
+        public static getBOMBGroup(group){
+            var ret = []
+            var kingNum = 0
+            for(var i = 0; i < group.length; i++){
+                if(group[i].count == 4){
+                    ret.push([group[i].index, group[i].index, group[i].index, group[i].index])
+                }else if(group[i].count == 1 && (group[i].index == 14 || group[i].index == 15)){
+                    kingNum++
+                }
+            }
+            if(kingNum == 2){
+                ret.push([14, 15])
+            }
+            return ret
+        }
+
+        // 获取连对
+        public static getPairsGroup(group, startWeight, endWeight){
+            var ret = []
+            for(var i = startWeight; i <= endWeight; i++){
+                var isOK = false
+                for(var j = 0; j < group.length; j++){
+                    if((group[j].count == 2 || group[j].count == 3) && group[j].weight == i){
+                        ret.concat([group[j].index, group[j].index])
+                        isOK = true
+                        break
+                    }
+                }
+                if(!isOK){
+                    return []
+                }
+            }
+            return ret
+        }
+        // 获取顺子
+        public static getStringGroup(group, startWeight, endWeight){
+            var ret = []
+            for(var i = startWeight; i <= endWeight; i++){
+                var isOK = false
+                for(var j = 0; j < group.length; j++){
+                    if((group[j].count == 1 || group[j].count == 2 || group[j].count == 3) && group[j].weight == i){
+                        ret.push(group[j].index)
+                        isOK = true
+                        break
+                    }
+                }
+                if(!isOK){
+                    return []
+                }
+            }
+            return ret  
+        }
+
+        // 输出格式[[index1,index2 ..],[index1, index2 ...], ...]
+        public static getPressedCards(handCards:Array<PokerCard>, target:ddzPackCardGroup){
+            var ret = []
+            var group = Util.groupCards(handCards)
+            if(target.CardType == CardTypes.NUKE_TYPE){
+                return ret
+            }else if(target.CardType == CardTypes.SINGLE_TYPE){ // 单牌
+                var g = Util.getGroupCards(group, 1) // 能压的过的单牌
+                for(var i = 0; i < g.length; i++){
+                    if(g[i].weight > target.Cards[0].Weight){
+                        ret.push([g[i].index])
+                    }
+                }
+                g = Util.getBOMBGroup(group)
+                ret.concat(g)
+                g = Util.getGroupCards(group, 2) 
+                for(var i = 0; i < g.length; i++){
+                    if(g[i].weight > target.Cards[0].Weight){
+                        ret.push([g[i].index])
+                    }
+                }
+            }else if(target.CardType == CardTypes.BOMB_TYPE){// 炸弹
+                var g = Util.getBOMBGroup(group)
+                for(var i = 0; i < g.length; i++){
+                    var wei = PackCards[g[i][0]].weight
+                    if(wei > target.Cards[0].Weight){
+                        ret.push(g[i])
+                    }
+                }                
+            }else if(target.CardType == CardTypes.PAIR_TYPE){ // 对子
+                for(var i = group.length - 1; i >= 0; i--){
+                    if((group[i].count == 2 || group[i].count == 3) && group[i].weight > target.Cards[0].Weight){
+                        ret.push([group[i].index, group[i].index])
+                    }
+                }
+                var g = Util.getBOMBGroup(group)
+                ret.concat(g)
+            }else if(target.CardType == CardTypes.TRIO_TYPE){// 三不带
+                var g = Util.getGroupCards(group, 3)
+                for(var i = 0; i < g.length; i++){
+                    var wei = PackCards[g[i][0]].weight
+                    if(wei > target.Cards[0].Weight){
+                        ret.push(g[i])
+                    }
+                }
+                g = Util.getBOMBGroup(group)
+                ret.concat(g)
+            }else if(target.CardType == CardTypes.TRIOSINGLE_TYPE){// 三带一
+                var single = null
+                for(var i = 0; i < group.length; i++){
+                    if(group[i].count < 3){
+                        if(single == null){
+                            single = group[i]
+                        }else{
+                            if(group[i].count < single){
+                                single = group[i]
+                            }else{
+                                if(group[i].weight < single.weight){
+                                    single = group[i]
+                                }
+                            }
+                        }
+                    }
+                }
+                if(single != null){
+                    for(var i = 0; i < group.length; i++){
+                        if(group[i].count == 3 && group[i].weight > target.Group[0].weight){
+                            ret.push([group[i].index, group[i].index, group[i].index, single.index])
+                        }        
+                    }
+                }
+                            
+                var g = Util.getBOMBGroup(group)
+                ret.concat(g)
+            }else if(target.CardType == CardTypes.TRIODOUBLE_TYPE){// 三带一对
+                var g = Util.getGroupCards(group, 2)
+                if(g.length > 0){
+                    for(var i = 0; i < group.length; i++){
+                        if(group[i].count == 3 && group[i].weight > target.Group[0].weight){
+                            ret.push([group[i].index, group[i].index, group[i].index, g[0].index, g[0].index])
+                        }        
+                    }
+                }
+                            
+                var g = Util.getBOMBGroup(group)
+                ret.concat(g)
+            }else if(target.CardType == CardTypes.STRAIGHT_TYPE){ // 顺子
+                var startWeight = target.Group[0].weight
+                var length = target.Group.length
+                for(var s = startWeight + 1; s <= 12 - length + 1; s++){
+                    var g = Util.getStringGroup(group, s, s + length - 1)
+                    if(g.length > 0){
+                        ret.push(g)
+                    }
+                }
+                g = Util.getBOMBGroup(group)
+                ret.concat(g)
+            }else if(target.CardType == CardTypes.CONPAIR_TYPE){ // 连对
+                var startWeight = target.Group[0].weight
+                var length = target.Group.length
+                for(var s = startWeight + 1; s <= 12 - length + 1; s++){
+                    var g = Util.getPairsGroup(group, s, s + length - 1)
+                    if(g.length > 0){
+                        ret.push(g)
+                    }
+                }
+                g = Util.getBOMBGroup(group)
+                ret.concat(g)
+            }else if(target.CardType == CardTypes.AEROPLANE_TYPE){ // 飞机
+
+            }else if(target.CardType == CardTypes.AEROPLANES_TYPE){// 飞机带单
+
+            }else if(target.CardType == CardTypes.AEROPLANEL_TYPE){// 飞机带对子
+
+            }else if(target.CardType == CardTypes.FOURSINGLE_TYPE){// 四带二单
+
+            }else if(target.CardType == CardTypes.FOURDOUBLE_TYPE){ // 四带二对
+
+            }            
         }
     }
     

@@ -19,6 +19,13 @@ class NetworkManager extends Dispatcher {
         return this.port;
     }
 
+    public get ClientTimestamp():number{
+        return Math.floor(Date.now()/1000)
+    }
+    public get ServerTimestamp():number{
+        return Math.floor(Date.now()/1000)
+    }
+
     private socket:egret.WebSocket;
 
     private initWebSocket():void {
