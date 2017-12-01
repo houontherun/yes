@@ -107,9 +107,9 @@ namespace gameUI{
             }
             img.x = Scorepos.x;
             img.y = Scorepos.y;
-            group.addChildAt(img,9);
+            group.addChildAt(img,10);
             CardLogic.Timer.Instance.Delay(4,()=>{
-                 group.removeChildAt(9);
+                 group.removeChildAt(10);
             });
 
        }
@@ -125,6 +125,7 @@ namespace gameUI{
                 this.Text_bnt2.visible = true;
                 this.btn2.visible = true;
                 this.Text_bnt1.text = "抢地主";
+                this.Text_bnt2.x = 362;
                 this.AddClick(this.btn1,()=>{
                     MessageManager.Instance.SendSubMessage({
                     sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,

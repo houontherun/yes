@@ -8,14 +8,14 @@
 		<e:Label text="小宇宙" x="12" y="170" anchorOffsetX="0" width="116" anchorOffsetY="0" height="22" size="20" fontFamily="SimHei" textColor="0xd6d4d1"/>
 		<e:Label text="100000" x="38" y="201" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" textColor="0xE2A92B" size="20" fontFamily="SimHei"/>
 		<e:Image width="28" height="28" y="196" source="wode-jinbi_png" x="4"/>
-		<e:Label text="" x="289" y="223" anchorOffsetX="0" width="1" anchorOffsetY="0" height="1" name="Label_pos"/>
+		<e:Label text="" x="390" y="220" anchorOffsetX="0" width="1" anchorOffsetY="0" height="1" name="Label_pos"/>
 	</e:Group>
 	<e:Group id="group_Player2" height="370" anchorOffsetX="0" anchorOffsetY="0" y="110" right="0" width="314" visible="false">
 		<e:Image anchorOffsetY="0" scale9Grid="47,3,29,18" width="172" source="beishubeiban_png" scaleX="1" scaleY="1" height="64" y="167" x="155"/>
 		<e:Label text="小宇宙" x="180.5" y="171" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" size="20" fontFamily="SimHei" textColor="0xd6d4d1"/>
 		<e:Label text="0000" x="201.5" y="201" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" textColor="0xE2A92B" size="20" fontFamily="SimHei"/>
 		<e:Image width="28" height="28" y="196" source="wode-jinbi_png" x="170.5"/>
-		<e:Label text="" x="70" y="263" name="Label_pos"/>
+		<e:Label text="" x="-24" y="220" name="Label_pos"/>
 	</e:Group>
 	<e:Group id="group_Player0" width="263" height="333" anchorOffsetX="0" anchorOffsetY="0" left="2" bottom="1">
 		<e:Image height="28" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="71" y="245" scaleX="1" scaleY="1" horizontalCenter="4.5"/>
