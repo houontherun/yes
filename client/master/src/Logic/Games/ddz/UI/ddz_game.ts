@@ -107,9 +107,9 @@ namespace gameUI{
             }
             img.x = Scorepos.x;
             img.y = Scorepos.y;
-            group.addChildAt(img,10);
+            group.addChild(img);
             CardLogic.Timer.Instance.Delay(4,()=>{
-                 group.removeChildAt(10);
+                 group.removeChild(img);
             });
 
        }
