@@ -299,7 +299,7 @@ namespace Card {
 
         public static sortCards(cards:Array<PokerCard>){
             return cards.sort(function(a, b){
-                return a.Weight - b.Weight
+                return b.Weight - a.Weight
             })
         }
         // 将牌分组，按index分组，数量越多，组排的越前
