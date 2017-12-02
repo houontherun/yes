@@ -94,37 +94,45 @@ namespace gameUI{
           return group;
    }
 
+
+  //插入底牌
+   private AddBackCard(backcards)
+   {
+       if(this.hardCardsArray.length > 0) 
+         {
+            this.removehardCard();
+         }
+        let backCards = [];
+        for(var i = 0;i<backcards.length;i++)
+          {
+             backCards.push(CardLogic.ddzGameLogic.Instance.Addcard(backcards[i]));
+          }
+        Card.Util.sortCards(CardLogic.ddzGameLogic.Instance.HandCards);
+        let cards =  CardLogic.ddzGameLogic.Instance.HandCards;
+        for (var i = 0;i < cards.length;i++)
+        {
+            var _card = new Card.ui_pokerCardItem();
+           _card.cardData = cards[i];
+           _card.setPos(45*i,16);
+           this.group_handcards.addChild(_card);
+           this.hardCardsArray.push(_card);
+           let index :number  = backCards.indexOf(cards[i]);
+           if(index >-1)
+            {
+               _card.SetShoot(true);
+               var _backcard = new Card.ui_pokerCardItem();
+               _backcard.cardData = cards[i];
+               this.group_backcards.addChild(_backcard);
+            }
+       }
+   }
+
+
    private StartGame(data)
    {   
         let score :number = data.land_score ;
         this.txt_gamedouble.text = score.toString();
-        if(this.hardCardsArray.length > 0) 
-        {
-           this.removehardCard();
-        }
-       let backCards = [];
-       for(var i = 0;i<data.back_card.length;i++)
-         {
-            backCards.push(CardLogic.ddzGameLogic.Instance.Addcard(data.back_card[i]));
-         }
-       Card.Util.sortCards(CardLogic.ddzGameLogic.Instance.HandCards);
-       let cards =  CardLogic.ddzGameLogic.Instance.HandCards;
-       for (var i = 0;i < cards.length;i++)
-       {
-           var _card = new Card.ui_pokerCardItem();
-          _card.cardData = cards[i];
-          _card.setPos(45*i,16);
-          this.group_handcards.addChild(_card);
-          this.hardCardsArray.push(_card);
-          let index :number  = backCards.indexOf(cards[i]);
-          if(index >-1)
-           {
-              _card.SetShoot(true);
-              var _backcard = new Card.ui_pokerCardItem();
-              _backcard.cardData = cards[i];
-              this.group_backcards.addChild(_backcard);
-           }
-       }
+       
 
         if(data.last_user != constant.INVALID)
        {
@@ -152,7 +160,9 @@ namespace gameUI{
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;     
        if(data.land_user == playerChairid) 
        {
-           this.SetBtnsGame(true);
+           
+            this.AddBackCard(data.back_card);
+            this.SetBtnsGame(true);
             this.Text_bnt1.text = "不出";
             this.Text_bnt2.text = "出牌";
             this.AddClick(this.btn1,()=>{
