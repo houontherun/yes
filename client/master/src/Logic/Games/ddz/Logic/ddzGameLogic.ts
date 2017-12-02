@@ -71,6 +71,22 @@ export class ddzGameLogic extends Dispatcher {
         return  card;
     }
 
+    public Removecard(data):boolean
+    {
+         var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+        var iclr = Card.Util.GetCardColor(data);
+        var color: CardColor = Colorlist[iclr];
+        var index: number = Card.Util.GetCardValue(data);
+		var card : PokerCard = Card.Util.createPokerCard(index,color);
+        let x = this.hardCardList.indexOf(card);
+        if(x>-1)
+          {
+               this.hardCardList.slice(x,x+1);
+               return true;
+          }
+        return false;
+    }
+
     public ExitGame()
     {
         this.bStartgame = false;

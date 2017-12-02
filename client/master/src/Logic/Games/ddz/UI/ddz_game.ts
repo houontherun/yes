@@ -137,11 +137,11 @@ namespace gameUI{
 
    private OutCard(data)
    {
+       this.SetBtnsGame(false);
        this.PlayerOutCard(data.chair_id,data.cards);
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;  
        if(data.current_user == playerChairid) 
        {
-            this.AddBackCard(data.back_card);
             this.SetBtnsGame(true);
             this.Text_bnt1.text = "不出";
             this.Text_bnt2.text = "出牌";
@@ -253,12 +253,13 @@ namespace gameUI{
                     array = [];
                 },this); 
        }
-
-       for(var i = 0;i<data.back_card;i++)
+       
+       var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
+       for(var i = 0;i<cards.length;i++)
        {
            var _backcard = new Card.ui_pokerCardItem();
            _backcard.SetSize(0.7);
-           _backcard.cardData = data.back_card[i];
+           _backcard.cardData = cards[i];
            this.group_backcards.addChild(_backcard);
        }
 
@@ -439,10 +440,10 @@ namespace gameUI{
   }
 
 
-  public PlayerOutCard(chiarid:number,array:any)
+  public PlayerOutCard(chairid:number,array:any)
   {
      var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(array);
-     var group = this.GetGroupChairid(chiarid);
+     var group = this.GetGroupChairid(chairid);
      let Scorepos = group.getChildByName("Label_pos");
      let startposX :number = 0;
      if(Scorepos.x >10)
@@ -457,6 +458,7 @@ namespace gameUI{
           _card.setPos(startposX + 30*i,16);
           _card.SetSize(0.75);
           group.addChild(_card);
+          CardLogic.ddzGameLogic.Instance.Removecard(_card);
           cardItemArray.push(_card);
 	   }
 
@@ -466,6 +468,18 @@ namespace gameUI{
                     group.removeChild(item);
                 }
             });
+     if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
+     {
+        let cards = CardLogic.ddzGameLogic.Instance.HandCards;
+        for (var i = 0;i < cards.length;i++)
+        {
+            var _card = new Card.ui_pokerCardItem();
+           _card.cardData = cards[i];
+           _card.setPos(45*i,16);
+           this.group_handcards.addChild(_card);
+           this.hardCardsArray.push(_card);
+       }
+    }
 
   }
 
