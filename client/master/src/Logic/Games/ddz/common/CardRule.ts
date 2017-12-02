@@ -31,18 +31,18 @@ namespace Card {
     export enum CardTypes{
         PASS_TYPE = -1,     // 过
         ERROR_TYPE = 0,     // 
-        SINGLE_TYPE = 1,    // 单牌..
-        PAIR_TYPE = 2,      // 对子..
-        TRIO_TYPE = 3,      // 三不带..
-        TRIOSINGLE_TYPE = 4,    // 三带一qq
-        TRIODOUBLE_TYPE = 5,    // 三带一对qq
+        SINGLE_TYPE = 1,    // 单牌
+        PAIR_TYPE = 2,      // 对子
+        TRIO_TYPE = 3,      // 三不带
+        TRIOSINGLE_TYPE = 4,    // 三带一
+        TRIODOUBLE_TYPE = 5,    // 三带一对
         STRAIGHT_TYPE = 6,      // 顺子
         CONPAIR_TYPE = 7,       // 连对
         AEROPLANE_TYPE = 8,     // 飞机
         AEROPLANES_TYPE = 9,    // 飞机带单
         AEROPLANEL_TYPE = 10,   // 飞机带对子
-        FOURSINGLE_TYPE = 11,   // 四带二单qq
-        FOURDOUBLE_TYPE = 12,   // 四带二对qq
+        FOURSINGLE_TYPE = 11,   // 四带二单或一对
+        FOURDOUBLE_TYPE = 12,   // 四带二对
         // FAVUS_BOMB_TYPE = 13,   // 癞子炸弹
         BOMB_TYPE = 14,         // 炸弹
         // ALLFAVUS_BOMB_TYPE = 15,// 全癞子炸弹
@@ -205,40 +205,44 @@ namespace Card {
             }
             return true;
         }
-        private isAEROPLANES_TYPE(){// 飞机带2单
+        private isAEROPLANES_TYPE(){// 飞机带单
             if(this.cards.length < 8 || this.cards.length % 4 != 0) {
                 return false;
             }
-            if(this.group.length < 4){ // 最少是3，3，1，1
+            if(this.group.length < 3){ // 最少是3，3，1，1 或 带一对3，3，2
                 return false
             }
-            if(this.group[0].weight < 1 || this.group[this.group.length - 3].weight > 12){
+            var n = this.cards.length / 4
+            if(this.group[0].weight < 1 || this.group[n - 1].weight > 12){
                 return false
             }
-            for(var i = 0; i < this.group.length - 3; i++){
-                if(this.group[i].weight != this.group[i + 1].weight - 1){
+            for(var i = 0; i < n - 1; i++){
+                if(this.group[i].count != 3 || this.group[i + 1].count != 3 || this.group[i].weight != this.group[i + 1].weight - 1){
                     return false
                 }
             }
             return true;
         }
-        private isAEROPLANEL_TYPE(){// 飞机带2对子
+        private isAEROPLANEL_TYPE(){// 飞机带对子
             if(this.cards.length < 10 || this.cards.length % 5 != 0) {
                 return false;
             }
             if(this.group.length < 4){ // 最少是3，3，2，2
                 return false
             }
-            if(this.group[0].weight < 1 || this.group[this.group.length - 3].weight > 12){
+            var n = this.cards.length / 5
+            if(this.group[0].weight < 1 || this.group[n - 1].weight > 12){
                 return false
             }
-            for(var i = 0; i < this.group.length - 3; i++){
-                if(this.group[i].weight != this.group[i + 1].weight - 1){
+            for(var i = 0; i < n - 1; i++){
+                if(this.group[i].count != 3 || this.group[i + 1].count != 3 || this.group[i].weight != this.group[i + 1].weight - 1){
                     return false
                 }
             }
-            if(this.group[this.group.length - 1].count != 2 || this.group[this.group.length - 2].count != 2){
-                return false
+            for(var i = n; i < this.group.length; i++){
+                if(this.group[i].count != 2){
+                    return false
+                }
             }
             return true
         }
@@ -268,6 +272,229 @@ namespace Card {
         }
     }
 
+    class CardsInfo{
+        private count:number
+        private cards:Array<PokerCard>
+        private index:number
+        private weight:number   
+        constructor(count:number, cards:Array<PokerCard>){
+            this.cards = cards
+            this.count = count
+            this.index = cards[0].Index
+            this.weight = PackCards[this.index].weight
+        }
+        public get Cards():Array<PokerCard>{ return this.cards;}
+        public get Count():number{ return this.count;}
+        public get Index():number{ return this.index;}
+        public get Weight():number{ return this.weight;}
+    }
+    // 当前手牌
+    export class ddzHandCards{
+        private cards:Array<PokerCard>
+        private typeOfCards = null // 元素为Array<CardsInfo>
+
+        private groups = null
+
+        constructor(cards:Array<PokerCard>){
+            this.updateCards(cards)
+        }
+        private initTypeOfCards():void{
+            this.typeOfCards = {
+                [CardTypes.SINGLE_TYPE]:null,       // 单牌
+                [CardTypes.PAIR_TYPE]:null,         // 对子
+                [CardTypes.TRIO_TYPE]:null,         // 三不带
+                [CardTypes.TRIOSINGLE_TYPE]:null,   // 三带一
+                [CardTypes.TRIODOUBLE_TYPE]:null,   // 三带一对
+                [CardTypes.STRAIGHT_TYPE]:null,     // 顺子
+                [CardTypes.CONPAIR_TYPE]:null,      // 连对
+                [CardTypes.AEROPLANE_TYPE]:null,    // 飞机
+                [CardTypes.AEROPLANES_TYPE ]:null,  // 飞机带单
+                [CardTypes.AEROPLANEL_TYPE]:null,   // 飞机带对子
+                [CardTypes.FOURSINGLE_TYPE]:null,   // 四带二单或一对
+                [CardTypes.FOURDOUBLE_TYPE]:null,   // 四带二对
+                [CardTypes.BOMB_TYPE]:null,         // 炸弹
+                [CardTypes.NUKE_TYPE]:null,         // 王炸
+            }
+        }
+        public updateCards(cards:Array<PokerCard>):void{
+            this.cards = cards.sort(function(a, b){
+                return a.Weight - b.Weight;
+            })
+            this.initTypeOfCards()
+        }
+        private groupCards(){
+            if(this.cards.length < 1){
+                return
+            }
+            this.groups = {
+                1:[], // 单牌[3,4,5, ...]
+                2:[], // 对子[[3,3],[4,4], ...]
+                3:[], // 三张牌[[3,3,3], ...]
+                4:[], // 四张牌[[3,3,3,3], ...]
+                5:[], // 大小王[14,15]
+            }
+            var currents = [this.cards[0]]
+            for(var i = 1; i < this.cards.length; i++){
+                if(this.cards[i].Index == currents[currents.length - 1].Index || (currents[currents.length - 1].Index == 14 && this.cards[i].Index == 15)){
+                    currents.push(this.cards[i])
+                }else{
+                    this.addToGroup(currents)
+                    currents = []
+                    currents.push(this.cards[i])
+                }
+            } 
+        }
+        private addToGroup(cards:Array<PokerCard>){
+            if(cards.length == 1){
+                this.groups[1].push(cards[0])
+            }else if(cards.length == 2){
+                if(cards[0].Index == 14 || cards[0].Index == 15){
+                    this.groups[5] = cards
+                }else{
+                    this.groups[2].push(cards)
+                }                
+            }else if(cards.length == 3){
+                this.groups[3].push(cards)
+            }else if(cards.length == 4){
+                this.groups[4].push(cards)
+            }
+        }
+        private subCardList(subCards:Array<PokerCard>){
+            var ret = []
+            var subIndex = 0
+            for(var i = 0; i < this.cards.length; i++){
+                if(subCards.length > subIndex && subCards[subIndex].Index == this.cards[i].Index){
+                    subIndex++
+                }else{
+                    ret.push(this.cards[i])
+                }
+            }
+            return ret
+        }
+        // 获取所有的单牌
+        private getSingles():Array<CardsInfo>{
+            var ret = []            
+            for(var i = 0; i < this.groups[1].length; i++){
+                ret.push(new CardsInfo(1, [this.groups[1][i]]))
+            }
+            for(var i = 0; i < this.groups[2].length; i++){
+                ret.push(new CardsInfo(2, [this.groups[2][i][0]]))
+            }
+            for(var i = 0; i < this.groups[3].length; i++){
+                ret.push(new CardsInfo(3, [this.groups[3][i][0]]))
+            }
+            for(var i = 0; i < this.groups[4].length; i++){
+                ret.push(new CardsInfo(4, [this.groups[4][i][0]]))
+            }
+            return ret
+        }
+        private getDoubles():Array<CardsInfo>{
+            var ret = []
+            for(var i = 0; i < this.groups[2].length; i++){
+                ret.push(new CardsInfo(2, this.groups[2][i]))
+            }
+            for(var i = 0; i < this.groups[3].length; i++){
+                ret.push(new CardsInfo(3, [this.groups[3][i][0], this.groups[3][i][1]]))
+            }
+            for(var i = 0; i < this.groups[4].length; i++){
+                ret.push(new CardsInfo(4, [this.groups[4][i][0], this.groups[4][i][1]]))
+            }
+            return ret
+        }
+        private getTrebles():Array<CardsInfo>{
+            var ret = []            
+            for(var i = 0; i < this.groups[3].length; i++){
+                ret.push(new CardsInfo(3, this.groups[3][i]))
+            }
+            for(var i = 0; i < this.groups[4].length; i++){
+                ret.push(new CardsInfo(4, [this.groups[4][i][0], this.groups[4][i][1], this.groups[4][i][2]]))
+            }
+            return ret
+        }
+        private getQuadruple():Array<CardsInfo>{
+            var ret = []
+            for(var i = 0; i < this.groups[4].length; i++){
+                ret.push(new CardsInfo(4, this.groups[4][i]))
+            }
+            return ret
+        }
+        public getCards(type:CardTypes):Array<PokerCard>{
+            if(this.typeOfCards[type] != null){
+                return this.typeOfCards[type]
+            }   
+            this.typeOfCards[type] = []
+            switch(type){
+                case CardTypes.SINGLE_TYPE:{       // 单牌   
+                    var singles = this.getSingles()
+                    for(var i = 0; i < singles.length; i++){
+                        this.typeOfCards[type].push(singles[i].Cards[0])
+                    }
+                    return this.typeOfCards[type]
+                }
+                case CardTypes.PAIR_TYPE:{         // 对子    
+                    var doubles = this.getDoubles()            
+                    for(var i = 0; i < doubles.length; i++){
+                        this.typeOfCards[type].push(doubles[i].Cards)
+                    }
+                    return this.typeOfCards[type]
+                }
+                case CardTypes.TRIO_TYPE:{         // 三不带    
+                    var trebles = this.getTrebles()
+                    for(var i = 0; i < trebles.length; i++){
+                        this.typeOfCards[type].push(trebles[i].Cards)
+                    }
+                    return this.typeOfCards[type]
+                }
+                case CardTypes.TRIOSINGLE_TYPE:{   // 三带一
+                    var treblesSingles = []
+                    var trebles = this.getTrebles()
+                    for(var i = 0; i < trebles.length; i++){
+                        var subCards = trebles[i].Cards
+                        var leftCards = this.subCardList(subCards)
+                        var leftHandCardObj = new ddzHandCards(leftCards)
+                        var leftSingles = leftHandCardObj.getCards(CardTypes.SINGLE_TYPE)
+                        if(leftSingles.length > 0){                            
+                            treblesSingles.concat(subCards)
+                            treblesSingles.push(leftSingles[0])
+                            this.typeOfCards[type].push(treblesSingles)
+                        }
+                        return this.typeOfCards[type]
+                    }
+                    break;
+                }
+                case CardTypes.TRIODOUBLE_TYPE:{   // 三带一对
+                    break;
+                }
+                case CardTypes.STRAIGHT_TYPE:{     // 顺子              
+                    break;
+                }
+                case CardTypes.CONPAIR_TYPE:{      // 连对              
+                    break;
+                }
+                case CardTypes.AEROPLANE_TYPE:{    // 飞机              
+                    break;
+                }
+                case CardTypes.AEROPLANES_TYPE:{  // 飞机带单              
+                    break;
+                }
+                case CardTypes.AEROPLANEL_TYPE:{   // 飞机带对子              
+                    break;
+                }
+                case CardTypes.FOURSINGLE_TYPE:{   // 四带二单或一对              
+                    break;
+                }
+                case CardTypes.FOURDOUBLE_TYPE:{   // 四带二对              
+                    break;
+                }
+                case CardTypes.BOMB_TYPE:{         // 炸弹              
+                    break;
+                }
+                case CardTypes.NUKE_TYPE:{         // 王炸              
+                    break;
+                }
+            }
+        }
+    }
 
      export enum Identity{
          Farmer,           //农民
@@ -328,191 +555,7 @@ namespace Card {
             })            
             return arr
         }
-        // 从分好组的牌里取特定的部分，如取所有3个、对子、单牌等
-        public static getGroupCards(group, count){
-            var ret = []
-            for(var i = 0; i < group.length; i++){
-                if(group[i].count == count){
-                    ret.push(group[i])
-                }
-            }
-            return ret
-        }
-
-        // 获取炸弹，包括4个的和王炸
-        public static getBOMBGroup(group){
-            var ret = []
-            var kingNum = 0
-            for(var i = 0; i < group.length; i++){
-                if(group[i].count == 4){
-                    ret.push([group[i].index, group[i].index, group[i].index, group[i].index])
-                }else if(group[i].count == 1 && (group[i].index == 14 || group[i].index == 15)){
-                    kingNum++
-                }
-            }
-            if(kingNum == 2){
-                ret.push([14, 15])
-            }
-            return ret
-        }
-
-        // 获取连对
-        public static getPairsGroup(group, startWeight, endWeight){
-            var ret = []
-            for(var i = startWeight; i <= endWeight; i++){
-                var isOK = false
-                for(var j = 0; j < group.length; j++){
-                    if((group[j].count == 2 || group[j].count == 3) && group[j].weight == i){
-                        ret.concat([group[j].index, group[j].index])
-                        isOK = true
-                        break
-                    }
-                }
-                if(!isOK){
-                    return []
-                }
-            }
-            return ret
-        }
-        // 获取顺子
-        public static getStringGroup(group, startWeight, endWeight){
-            var ret = []
-            for(var i = startWeight; i <= endWeight; i++){
-                var isOK = false
-                for(var j = 0; j < group.length; j++){
-                    if((group[j].count == 1 || group[j].count == 2 || group[j].count == 3) && group[j].weight == i){
-                        ret.push(group[j].index)
-                        isOK = true
-                        break
-                    }
-                }
-                if(!isOK){
-                    return []
-                }
-            }
-            return ret  
-        }
-
-        // 输出格式[[index1,index2 ..],[index1, index2 ...], ...]
-        public static getPressedCards(handCards:Array<PokerCard>, target:ddzPackCardGroup){
-            var ret = []
-            var group = Util.groupCards(handCards)
-            if(target.CardType == CardTypes.NUKE_TYPE){
-                return ret
-            }else if(target.CardType == CardTypes.SINGLE_TYPE){ // 单牌
-                var g = Util.getGroupCards(group, 1) // 能压的过的单牌
-                for(var i = 0; i < g.length; i++){
-                    if(g[i].weight > target.Cards[0].Weight){
-                        ret.push([g[i].index])
-                    }
-                }
-                g = Util.getBOMBGroup(group)
-                ret.concat(g)
-                g = Util.getGroupCards(group, 2) 
-                for(var i = 0; i < g.length; i++){
-                    if(g[i].weight > target.Cards[0].Weight){
-                        ret.push([g[i].index])
-                    }
-                }
-            }else if(target.CardType == CardTypes.BOMB_TYPE){// 炸弹
-                var g = Util.getBOMBGroup(group)
-                for(var i = 0; i < g.length; i++){
-                    var wei = PackCards[g[i][0]].weight
-                    if(wei > target.Cards[0].Weight){
-                        ret.push(g[i])
-                    }
-                }                
-            }else if(target.CardType == CardTypes.PAIR_TYPE){ // 对子
-                for(var i = group.length - 1; i >= 0; i--){
-                    if((group[i].count == 2 || group[i].count == 3) && group[i].weight > target.Cards[0].Weight){
-                        ret.push([group[i].index, group[i].index])
-                    }
-                }
-                var g = Util.getBOMBGroup(group)
-                ret.concat(g)
-            }else if(target.CardType == CardTypes.TRIO_TYPE){// 三不带
-                var g = Util.getGroupCards(group, 3)
-                for(var i = 0; i < g.length; i++){
-                    var wei = PackCards[g[i][0]].weight
-                    if(wei > target.Cards[0].Weight){
-                        ret.push(g[i])
-                    }
-                }
-                g = Util.getBOMBGroup(group)
-                ret.concat(g)
-            }else if(target.CardType == CardTypes.TRIOSINGLE_TYPE){// 三带一
-                var single = null
-                for(var i = 0; i < group.length; i++){
-                    if(group[i].count < 3){
-                        if(single == null){
-                            single = group[i]
-                        }else{
-                            if(group[i].count < single){
-                                single = group[i]
-                            }else{
-                                if(group[i].weight < single.weight){
-                                    single = group[i]
-                                }
-                            }
-                        }
-                    }
-                }
-                if(single != null){
-                    for(var i = 0; i < group.length; i++){
-                        if(group[i].count == 3 && group[i].weight > target.Group[0].weight){
-                            ret.push([group[i].index, group[i].index, group[i].index, single.index])
-                        }        
-                    }
-                }
-                            
-                var g = Util.getBOMBGroup(group)
-                ret.concat(g)
-            }else if(target.CardType == CardTypes.TRIODOUBLE_TYPE){// 三带一对
-                var g = Util.getGroupCards(group, 2)
-                if(g.length > 0){
-                    for(var i = 0; i < group.length; i++){
-                        if(group[i].count == 3 && group[i].weight > target.Group[0].weight){
-                            ret.push([group[i].index, group[i].index, group[i].index, g[0].index, g[0].index])
-                        }        
-                    }
-                }
-                            
-                var g = Util.getBOMBGroup(group)
-                ret.concat(g)
-            }else if(target.CardType == CardTypes.STRAIGHT_TYPE){ // 顺子
-                var startWeight = target.Group[0].weight
-                var length = target.Group.length
-                for(var s = startWeight + 1; s <= 12 - length + 1; s++){
-                    var g = Util.getStringGroup(group, s, s + length - 1)
-                    if(g.length > 0){
-                        ret.push(g)
-                    }
-                }
-                g = Util.getBOMBGroup(group)
-                ret.concat(g)
-            }else if(target.CardType == CardTypes.CONPAIR_TYPE){ // 连对
-                var startWeight = target.Group[0].weight
-                var length = target.Group.length
-                for(var s = startWeight + 1; s <= 12 - length + 1; s++){
-                    var g = Util.getPairsGroup(group, s, s + length - 1)
-                    if(g.length > 0){
-                        ret.push(g)
-                    }
-                }
-                g = Util.getBOMBGroup(group)
-                ret.concat(g)
-            }else if(target.CardType == CardTypes.AEROPLANE_TYPE){ // 飞机
-
-            }else if(target.CardType == CardTypes.AEROPLANES_TYPE){// 飞机带单
-
-            }else if(target.CardType == CardTypes.AEROPLANEL_TYPE){// 飞机带对子
-
-            }else if(target.CardType == CardTypes.FOURSINGLE_TYPE){// 四带二单
-
-            }else if(target.CardType == CardTypes.FOURDOUBLE_TYPE){ // 四带二对
-
-            }            
-        }
+        
     }
     
 }
