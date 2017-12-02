@@ -142,28 +142,7 @@ namespace gameUI{
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;  
        if(data.current_user == playerChairid) 
        {
-            this.SetBtnsGame(true);
-            this.Text_bnt1.text = "不出";
-            this.Text_bnt2.text = "出牌";
-           
-            this.AddClick(this.btn1,()=>{
-                    MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
-                    })},this);
-
-            this.AddClick(this.btn2,()=>{
-                    let array = [];
-                    for (let _card of this.GetShootCard()) {
-                      array.push(Card.Util.GetSCCarddata(_card));
-                    }
-                    let count = array.length;
-                    MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
-                    cards:array,
-                    card_count:count
-                    })
-                    array = [];
-                },this); 
+            this.PlayermeOutCard();
        }
 
        this.countdown(data.current_user,data.time);
@@ -198,6 +177,33 @@ namespace gameUI{
    {
 
    }
+   //轮到自己出牌
+   private PlayermeOutCard()
+   {
+        
+        this.SetBtnsGame(true);
+        this.Text_bnt1.text = "不出";
+        this.Text_bnt2.text = "出牌";
+       
+        this.AddClick(this.btn1,()=>{
+                MessageManager.Instance.SendSubMessage({
+                sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
+                })},this);
+
+        this.AddClick(this.btn2,()=>{
+                 let array = [];
+                for (let _card of this.GetShootCard()) {
+                  array.push(Card.Util.GetSCCarddata(_card));
+                }
+                let count = array.length;
+                MessageManager.Instance.SendSubMessage({
+                sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
+                cards:array,
+                card_count:count
+                })
+                array = [];
+            },this); 
+   }
 
    private StartGame(data)
    {   
@@ -231,29 +237,10 @@ namespace gameUI{
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;     
        if(data.land_user == playerChairid) 
        {
-            this.AddBackCard(data.back_card);
-            this.SetBtnsGame(true);
-            this.Text_bnt1.text = "不出";
-            this.Text_bnt2.text = "出牌";
-           
-            this.AddClick(this.btn1,()=>{
-                    MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
-                    })},this);
-
-            this.AddClick(this.btn2,()=>{
-                    let array = [];
-                    for (let _card of this.GetShootCard()) {
-                      array.push(Card.Util.GetSCCarddata(_card));
-                    }
-                    MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
-                    cards:array
-                    })
-                    array = [];
-                },this); 
+           this.AddBackCard(data.back_card);
+           this.PlayermeOutCard();
        }
-       
+
        var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
        for(var i = 0;i<cards.length;i++)
        {
@@ -458,7 +445,7 @@ namespace gameUI{
           _card.setPos(startposX + 30*i,16);
           _card.SetSize(0.75);
           group.addChild(_card);
-          CardLogic.ddzGameLogic.Instance.Removecard(_card);
+ 
           cardItemArray.push(_card);
 	   }
 
@@ -468,8 +455,16 @@ namespace gameUI{
                     group.removeChild(item);
                 }
             });
+
+      //更新手牌      
      if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
      {
+        for (let _data of array)
+	    {
+           CardLogic.ddzGameLogic.Instance.Removecard(_data);
+	    }
+         
+        this.group_handcards.removeChildren();
         let cards = CardLogic.ddzGameLogic.Instance.HandCards;
         for (var i = 0;i < cards.length;i++)
         {

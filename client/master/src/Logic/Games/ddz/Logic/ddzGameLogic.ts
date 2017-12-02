@@ -70,18 +70,29 @@ export class ddzGameLogic extends Dispatcher {
         this.hardCardList.push(card);
         return  card;
     }
+  
 
+   private Getindex(data:PokerCard):number
+   {
+       let index :number= -1;
+        for(var i = 0; i < this.hardCardList.length; i++){
+            if(this.hardCardList[i].Index == data.Index && this.hardCardList[i].Suit == data.Suit)
+             return i;
+        }
+
+        return index;
+   }
     public Removecard(data):boolean
     {
-         var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+        var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
         var iclr = Card.Util.GetCardColor(data);
         var color: CardColor = Colorlist[iclr];
         var index: number = Card.Util.GetCardValue(data);
 		var card : PokerCard = Card.Util.createPokerCard(index,color);
-        let x = this.hardCardList.indexOf(card);
+        let x = this.Getindex(card);
         if(x>-1)
           {
-               this.hardCardList.slice(x,x+1);
+               this.hardCardList.splice(x,1);
                return true;
           }
         return false;
