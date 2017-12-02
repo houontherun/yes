@@ -35,6 +35,7 @@
 		"bin-debug/Logic/Games/ddz/Logic/Timer.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/Logic/Games/ddz/UI/ddz_game.js",
+		"bin-debug/Logic/Games/ddz/UI/ui_ClockCD.js",
 		"bin-debug/Logic/Games/ddz/UI/ui_playerItem.js",
 		"bin-debug/Logic/Games/ddz/UI/ui_pokerCardItem.js",
 		"bin-debug/Logic/Util/Util.js",
