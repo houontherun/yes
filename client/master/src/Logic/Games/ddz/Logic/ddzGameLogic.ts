@@ -125,8 +125,25 @@ export class ddzGameLogic extends Dispatcher {
        var addHardEvent:CardLogic.CardEvent = new CardLogic.CardEvent(CardLogic.CardEvent.AddHard);
        addHardEvent.paramObj = this.hardCardList;
        CardLogic.CardEventDispatcher.Instance.dispatchEvent(addHardEvent);
-      
    }
+   
+
+    public GetPokerCards(cards):Array<PokerCard>
+   {
+       let CardList = [];
+       var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+       for (var i = 0;i < cards.length;i++)
+	   {
+            if(cards[i] == 0) continue;
+            var iclr = Card.Util.GetCardColor(cards[i]);
+            var color: CardColor = Colorlist[iclr];
+            var index: number = Card.Util.GetCardValue(cards[i]);
+			var card : PokerCard = Card.Util.createPokerCard(index,color);
+            CardList.push(card);
+	   }
+       return CardList;
+   }
+
 
 }
    

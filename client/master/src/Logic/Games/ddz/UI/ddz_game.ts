@@ -39,6 +39,11 @@ namespace gameUI{
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
         MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_OUT_CARD, this.OutCard, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
+
         CardLogic.ddzGameLogic.Instance.init();
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
@@ -72,6 +77,10 @@ namespace gameUI{
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
         MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_OUT_CARD, this.OutCard, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
         CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
         CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
     }
@@ -121,12 +130,75 @@ namespace gameUI{
             {
                _card.SetShoot(true);
                var _backcard = new Card.ui_pokerCardItem();
+               _backcard.SetSize(0.7);
                _backcard.cardData = cards[i];
                this.group_backcards.addChild(_backcard);
             }
        }
    }
 
+
+   private OutCard(data)
+   {
+       this.PlayerOutCard(data.chair_id,data.cards);
+       let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;  
+       if(data.current_user == playerChairid) 
+       {
+            this.AddBackCard(data.back_card);
+            this.SetBtnsGame(true);
+            this.Text_bnt1.text = "不出";
+            this.Text_bnt2.text = "出牌";
+           
+            this.AddClick(this.btn1,()=>{
+                    MessageManager.Instance.SendSubMessage({
+                    sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
+                    })},this);
+
+            this.AddClick(this.btn2,()=>{
+                    let array = [];
+                    for (let _card of this.GetShootCard()) {
+                      array.push(Card.Util.GetSCCarddata(_card));
+                    }
+                    MessageManager.Instance.SendSubMessage({
+                    sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
+                    cards:array
+                    })
+                    array = [];
+                },this); 
+       }
+
+       this.countdown(data.current_user,data.time);
+       
+   }
+
+   private GameEnd(data)
+   {
+      
+   }
+
+   private PassCard(data)
+   {
+       if(data.chair_id != constant.INVALID)
+       {
+           let group = this.GetGroupChairid(data.chair_id);
+        
+           let Scorepos = group.getChildByName("Label_pos");
+           var img = new eui.Image();
+            img.source = RES.getRes('buchu_png');
+            img.x = Scorepos.x;
+            img.y = Scorepos.y;
+            group.addChild(img);
+            CardLogic.Timer.Instance.Delay(3.2,()=>{
+                 group.removeChild(img);
+            });
+       }
+       this.countdown(data.current_user,data.time);
+   }
+
+   private Trustee(data)
+   {
+
+   }
 
    private StartGame(data)
    {   
@@ -151,7 +223,7 @@ namespace gameUI{
             img.x = Scorepos.x;
             img.y = Scorepos.y;
             group.addChild(img);
-            CardLogic.Timer.Instance.Delay(4,()=>{
+            CardLogic.Timer.Instance.Delay(3.2,()=>{
                  group.removeChild(img);
             });
 
@@ -160,22 +232,30 @@ namespace gameUI{
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;     
        if(data.land_user == playerChairid) 
        {
-           
             this.AddBackCard(data.back_card);
             this.SetBtnsGame(true);
             this.Text_bnt1.text = "不出";
             this.Text_bnt2.text = "出牌";
+           
             this.AddClick(this.btn1,()=>{
                     MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
-                    cards:1
+                    sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
                     })},this);
 
             this.AddClick(this.btn2,()=>{
+                    let array = [];
+                    for (let _card of this.GetShootCard()) {
+                      array.push(Card.Util.GetSCCarddata(_card));
+                    }
                     MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_PASS_CARD,
-                    })},this); 
+                    sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
+                    cards:array
+                    })
+                    array = [];
+                },this); 
        }
+
+       this.countdown(data.land_user,data.time);
    }
 
   private SetBtnsGame(bvisible:boolean)
@@ -184,7 +264,10 @@ namespace gameUI{
        this.btn1.visible = bvisible;
        this.Text_bnt2.visible = bvisible;
        this.btn2.visible = bvisible;
+       this.Text_bnt2.x = 362;
+       this.btn2.x = 323;
    }
+
    //叫地主
    private landScore(data)
    {
@@ -205,7 +288,7 @@ namespace gameUI{
             img.x = Scorepos.x;
             img.y = Scorepos.y;
             group.addChild(img);
-            CardLogic.Timer.Instance.Delay(4,()=>{
+            CardLogic.Timer.Instance.Delay(3.2,()=>{
                  group.removeChild(img);
             });
 
@@ -219,8 +302,7 @@ namespace gameUI{
                 this.Text_bnt2.text = "不抢";
                 this.SetBtnsGame(true);
                 this.Text_bnt1.text = "抢地主";
-                this.Text_bnt2.x = 362;
-                this.btn2.x = 323;
+
                 this.AddClick(this.btn1,()=>{
                     MessageManager.Instance.SendSubMessage({
                     sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
@@ -348,6 +430,38 @@ namespace gameUI{
 
      }
   }
+
+
+  public PlayerOutCard(chiarid:number,array:any)
+  {
+     var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(array);
+     var group = this.GetGroupChairid(chiarid);
+     let Scorepos = group.getChildByName("Label_pos");
+     let startposX :number = 0;
+     if(Scorepos.x >10)
+        startposX = Scorepos.x - 30;
+    else
+       startposX = Scorepos.x + 30;
+     let cardItemArray = [];
+     for (var i = 0;i < array.length;i++)
+	   {
+          var _card = new Card.ui_pokerCardItem();
+          _card.cardData = cards[i];
+          _card.setPos(startposX + 30*i,16);
+          _card.SetSize(0.75);
+          group.addChild(_card);
+          cardItemArray.push(_card);
+	   }
+
+        CardLogic.Timer.Instance.Delay(3.2,()=>{
+                for(let item of cardItemArray)
+                {
+                    group.removeChild(item);
+                }
+            });
+
+  }
+
 
  public setPlayer(playerNum:number,playername:string,coin:number,head:string)
     {
