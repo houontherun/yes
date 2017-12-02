@@ -111,10 +111,10 @@ namespace gameUI{
          {
             this.removehardCard();
          }
-        let backCards = [];
+        let backCardsArray = [];
         for(var i = 0;i<backcards.length;i++)
           {
-             backCards.push(CardLogic.ddzGameLogic.Instance.Addcard(backcards[i]));
+             backCardsArray.push(CardLogic.ddzGameLogic.Instance.Addcard(backcards[i]));
           }
         Card.Util.sortCards(CardLogic.ddzGameLogic.Instance.HandCards);
         let cards =  CardLogic.ddzGameLogic.Instance.HandCards;
@@ -125,14 +125,11 @@ namespace gameUI{
            _card.setPos(45*i,16);
            this.group_handcards.addChild(_card);
            this.hardCardsArray.push(_card);
-           let index :number  = backCards.indexOf(cards[i]);
+           let index :number  = backCardsArray.indexOf(cards[i]);
            if(index >-1)
             {
                _card.SetShoot(true);
-               var _backcard = new Card.ui_pokerCardItem();
-               _backcard.SetSize(0.7);
-               _backcard.cardData = cards[i];
-               this.group_backcards.addChild(_backcard);
+               
             }
        }
    }
@@ -159,9 +156,11 @@ namespace gameUI{
                     for (let _card of this.GetShootCard()) {
                       array.push(Card.Util.GetSCCarddata(_card));
                     }
+                    let count = array.length;
                     MessageManager.Instance.SendSubMessage({
                     sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
-                    cards:array
+                    cards:array,
+                    card_count:count
                     })
                     array = [];
                 },this); 
@@ -253,6 +252,14 @@ namespace gameUI{
                     })
                     array = [];
                 },this); 
+       }
+
+       for(var i = 0;i<data.back_card;i++)
+       {
+           var _backcard = new Card.ui_pokerCardItem();
+           _backcard.SetSize(0.7);
+           _backcard.cardData = data.back_card[i];
+           this.group_backcards.addChild(_backcard);
        }
 
        this.countdown(data.land_user,data.time);
@@ -443,7 +450,7 @@ namespace gameUI{
     else
        startposX = Scorepos.x + 30;
      let cardItemArray = [];
-     for (var i = 0;i < array.length;i++)
+     for (var i = 0;i < cards.length;i++)
 	   {
           var _card = new Card.ui_pokerCardItem();
           _card.cardData = cards[i];
