@@ -59,7 +59,17 @@ export class ddzGameLogic extends Dispatcher {
         }
          CardLogic.CardEventDispatcher.Instance.dispatchEvent( this.UpdatePlayersEvent);
     }
-
+    
+     public Addcard(data):PokerCard
+    {
+        var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+        var iclr = Card.Util.GetCardColor(data);
+        var color: CardColor = Colorlist[iclr];
+        var index: number = Card.Util.GetCardValue(data);
+		var card : PokerCard = Card.Util.createPokerCard(index,color);
+        this.hardCardList.push(card);
+        return  card;
+    }
 
     public ExitGame()
     {
@@ -77,6 +87,8 @@ export class ddzGameLogic extends Dispatcher {
         this.StartgameTick = 0;
         this.timer.reset();
     }
+
+   
      
   private onUpdateFrame()
    {
@@ -88,6 +100,11 @@ export class ddzGameLogic extends Dispatcher {
       }
       this.StartgameTick++;
 
+   }
+
+   public get HandCards():Array<PokerCard>
+   {
+      return this.hardCardList;
    }
    
    public DispatchCardStart(data)
