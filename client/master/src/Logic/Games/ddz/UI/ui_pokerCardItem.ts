@@ -38,11 +38,17 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
             _source = "card_back_png";
 		}
 		this.imgsource = _source;
-		
+
 		if(this.img_card)
 		  this.SetImageUrl(this.img_card,this.imgsource );
 
     }
+
+	public SetSize(scale:number)
+	{
+		this.scaleX = scale;
+		this.scaleY = scale;
+	}
 
     public get Selected():boolean{
 		return this.bSelect;

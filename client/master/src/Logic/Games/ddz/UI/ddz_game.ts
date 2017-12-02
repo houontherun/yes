@@ -28,6 +28,8 @@ namespace gameUI{
    private group_btn:eui.Group;
    private clockCD:Card.ui_ClockCD;
    private curClockpos:number;
+   private group_backcards:eui.Group;
+   private txt_gamedouble:eui.Label;
 
     public onload():void {
        
@@ -35,6 +37,13 @@ namespace gameUI{
 
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_OUT_CARD, this.OutCard, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
+        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
+
         CardLogic.ddzGameLogic.Instance.init();
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
         CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
@@ -59,7 +68,6 @@ namespace gameUI{
            
             }, this );
 
-       
     }
 
 
@@ -67,18 +75,254 @@ namespace gameUI{
         super.onUnload()
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.Standup,this) ;
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_OUT_CARD, this.OutCard, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
+        MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
         CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard,this.AddhardCard,this);
         CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers,this.SetplayersInfo,this);
     }
+
+   private GetGroupChairid(chairid:number):eui.Group
+   {
+        let group :  eui.Group;
+         var pos: number ;
+         if(CardLogic.ddzGameLogic.Instance.playerChairid == chairid)  
+           {
+               group = this.group_Player0;
+               pos = 0;
+         }
+         else
+          {
+             pos = CardLogic.ddzGameLogic.Instance.playerposInfo[chairid];
+             group = <eui.Group>this.getChildAt(pos+1);
+          }
+          let Scorepos = group.getChildByName("Label_pos");
+          return group;
+   }
+
+
+  //插入底牌
+   private AddBackCard(backcards)
+   {
+       if(this.hardCardsArray.length > 0) 
+         {
+            this.removehardCard();
+         }
+        let backCardsArray = [];
+        for(var i = 0;i<backcards.length;i++)
+          {
+             backCardsArray.push(CardLogic.ddzGameLogic.Instance.Addcard(backcards[i]));
+          }
+        Card.Util.sortCards(CardLogic.ddzGameLogic.Instance.HandCards);
+        let cards =  CardLogic.ddzGameLogic.Instance.HandCards;
+        for (var i = 0;i < cards.length;i++)
+        {
+            var _card = new Card.ui_pokerCardItem();
+           _card.cardData = cards[i];
+           _card.setPos(45*i,16);
+           this.group_handcards.addChild(_card);
+           this.hardCardsArray.push(_card);
+           let index :number  = backCardsArray.indexOf(cards[i]);
+           if(index >-1)
+            {
+               _card.SetShoot(true);
+               
+            }
+       }
+   }
+
+
+   private OutCard(data)
+   {
+       this.SetBtnsGame(false);
+       this.PlayerOutCard(data.chair_id,data.cards);
+       let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;  
+       if(data.current_user == playerChairid) 
+       {
+            this.PlayermeOutCard();
+       }
+
+       this.countdown(data.current_user,data.time);
+       
+   }
+
+   private GameEnd(data)
+   {
+      
+   }
+
+   private PassCard(data)
+   {
+       if(data.chair_id != constant.INVALID)
+       {
+           let group = this.GetGroupChairid(data.chair_id);
+        
+           let Scorepos = group.getChildByName("Label_pos");
+           var img = new eui.Image();
+            img.source = RES.getRes('buchu_png');
+            img.x = Scorepos.x;
+            img.y = Scorepos.y;
+            group.addChild(img);
+            CardLogic.Timer.Instance.Delay(3.2,()=>{
+                 group.removeChild(img);
+            });
+       }
+       this.countdown(data.current_user,data.time);
+   }
+
+   private Trustee(data)
+   {
+
+   }
+   //轮到自己出牌
+   private PlayermeOutCard()
+   {
+        
+        this.SetBtnsGame(true);
+        this.Text_bnt1.text = "不出";
+        this.Text_bnt2.text = "出牌";
+       
+        this.AddClick(this.btn1,()=>{
+                MessageManager.Instance.SendSubMessage({
+                sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
+                })},this);
+
+        this.AddClick(this.btn2,()=>{
+                 let array = [];
+                for (let _card of this.GetShootCard()) {
+                  array.push(Card.Util.GetSCCarddata(_card));
+                }
+                let count = array.length;
+                MessageManager.Instance.SendSubMessage({
+                sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
+                cards:array,
+                card_count:count
+                })
+                array = [];
+            },this); 
+   }
+
+   private StartGame(data)
+   {   
+        let score :number = data.land_score ;
+        this.txt_gamedouble.text = score.toString();
+       
+
+        if(data.last_user != constant.INVALID)
+       {
+           let group = this.GetGroupChairid(data.last_user);
+        
+          let Scorepos = group.getChildByName("Label_pos");
+          var img = new eui.Image();
+           if(data.land_score == 1)
+            {
+                img.source = RES.getRes('qiangdizhuzhi_png');
+            }
+            else if(data.land_score == 0)
+            {
+                img.source = RES.getRes("buqiang_png");
+            }
+            img.x = Scorepos.x;
+            img.y = Scorepos.y;
+            group.addChild(img);
+            CardLogic.Timer.Instance.Delay(3.2,()=>{
+                 group.removeChild(img);
+            });
+
+       }
+
+       let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;     
+       if(data.land_user == playerChairid) 
+       {
+           this.AddBackCard(data.back_card);
+           this.PlayermeOutCard();
+       }
+
+       var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
+       for(var i = 0;i<cards.length;i++)
+       {
+           var _backcard = new Card.ui_pokerCardItem();
+           _backcard.SetSize(0.7);
+           _backcard.cardData = cards[i];
+           this.group_backcards.addChild(_backcard);
+       }
+
+       this.countdown(data.land_user,data.time);
+   }
+
+  private SetBtnsGame(bvisible:boolean)
+   {
+       this.Text_bnt1.visible = bvisible;
+       this.btn1.visible = bvisible;
+       this.Text_bnt2.visible = bvisible;
+       this.btn2.visible = bvisible;
+       this.Text_bnt2.x = 362;
+       this.btn2.x = 323;
+   }
+
+   //叫地主
+   private landScore(data)
+   {
+      if(data.land_user != constant.INVALID)
+       {
+           let group = this.GetGroupChairid(data.land_user);
+        
+          let Scorepos = group.getChildByName("Label_pos");
+          var img = new eui.Image();
+           if(data.land_score == 1)
+            {
+                img.source = RES.getRes('qiangdizhuzhi_png');
+            }
+            else if(data.land_score == 0)
+            {
+                img.source = RES.getRes("buqiang_png");
+            }
+            img.x = Scorepos.x;
+            img.y = Scorepos.y;
+            group.addChild(img);
+            CardLogic.Timer.Instance.Delay(3.2,()=>{
+                 group.removeChild(img);
+            });
+
+       }
+
+       if(data.current_user != constant.INVALID)
+       {
+            this.countdown(data.current_user,data.time);
+            if(data.current_user == CardLogic.ddzGameLogic.Instance.playerChairid)
+            {
+                this.Text_bnt2.text = "不抢";
+                this.SetBtnsGame(true);
+                this.Text_bnt1.text = "抢地主";
+
+                this.AddClick(this.btn1,()=>{
+                    MessageManager.Instance.SendSubMessage({
+                    sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
+                    score:1
+                    })},this);
+
+                this.AddClick(this.btn2,()=>{
+                    MessageManager.Instance.SendSubMessage({
+                    sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
+                    score:0
+                    })},this);      
+            }
+
+            else
+            {
+                this.SetBtnsGame(false);
+            }
+       }
+   }
+
 
  private ReadyRet(data)
  {
     if(data.ret == 0)
     {
-       // this.prepareBtn.parent.removeChild(this.prepareBtn);
-       // this.prepareimg.parent.removeChild(this.prepareimg);
-       // this.ChangeBtn.parent.removeChild(this.ChangeBtn);
-       // this.Changeimg.parent.removeChild(this.Changeimg);
        this.Text_bnt2.text = "已准备";
        this.Text_bnt1.visible = false;
        this.btn1.visible = false;
@@ -94,9 +338,10 @@ namespace gameUI{
       CardLogic.ddzGameLogic.Instance.ExitGame();
   }
   
+  
 
   //创建闹钟
-  private countdown(chairid:number)
+  private countdown(chairid:number,cd:number)
   {
       if(!this.clockCD)
         this.clockCD = new Card.ui_ClockCD();
@@ -119,8 +364,20 @@ namespace gameUI{
        let clockpos = group.getChildByName("Label_pos");
        this.clockCD .x = clockpos.x - 33;
        this.clockCD .y= clockpos.y - 60;
+       this.clockCD.visible = true;
        group.addChild(this.clockCD);
        this.curClockpos = pos;
+       let cdTimer = CardLogic.Timer.Instance.Repeat(1,()=>{
+           var sec =  cd - NetworkManager.Instance.ServerTimestamp ;
+            if(sec>0)
+             {
+                this.clockCD.SetCd(sec);
+            }
+            else
+             {
+                 CardLogic.Timer.Instance.Remove(cdTimer);
+                 this.clockCD.visible = false;
+             }  });
     }
   }
 
@@ -169,6 +426,59 @@ namespace gameUI{
      }
   }
 
+
+  public PlayerOutCard(chairid:number,array:any)
+  {
+     var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(array);
+     var group = this.GetGroupChairid(chairid);
+     let Scorepos = group.getChildByName("Label_pos");
+     let startposX :number = 0;
+     if(Scorepos.x >10)
+        startposX = Scorepos.x - 30;
+    else
+       startposX = Scorepos.x + 30;
+     let cardItemArray = [];
+     for (var i = 0;i < cards.length;i++)
+	   {
+          var _card = new Card.ui_pokerCardItem();
+          _card.cardData = cards[i];
+          _card.setPos(startposX + 30*i,16);
+          _card.SetSize(0.75);
+          group.addChild(_card);
+ 
+          cardItemArray.push(_card);
+	   }
+
+        CardLogic.Timer.Instance.Delay(3.2,()=>{
+                for(let item of cardItemArray)
+                {
+                    group.removeChild(item);
+                }
+            });
+
+      //更新手牌      
+     if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
+     {
+        for (let _data of array)
+	    {
+           CardLogic.ddzGameLogic.Instance.Removecard(_data);
+	    }
+         
+        this.group_handcards.removeChildren();
+        let cards = CardLogic.ddzGameLogic.Instance.HandCards;
+        for (var i = 0;i < cards.length;i++)
+        {
+            var _card = new Card.ui_pokerCardItem();
+           _card.cardData = cards[i];
+           _card.setPos(45*i,16);
+           this.group_handcards.addChild(_card);
+           this.hardCardsArray.push(_card);
+       }
+    }
+
+  }
+
+
  public setPlayer(playerNum:number,playername:string,coin:number,head:string)
     {
         var group ;
@@ -211,7 +521,7 @@ namespace gameUI{
         if(playernum>0)
         {
             group = <eui.Group>this.getChildAt(playernum+1);
-            if(group.numChildren == 7)
+            if(group.numChildren == 8)
             {
                  textNum = <eui.Label>group.getChildAt(6);
                  textNum.text = "1";
@@ -274,6 +584,8 @@ namespace gameUI{
   //明牌处理
   private OpenDeal()
   {
+       this.Text_bnt2.visible = false;
+       this.btn2.visible = false;
        var img = new eui.Image();
         var i:number = 4;
         this.AddClick(img,()=>{
@@ -415,7 +727,7 @@ namespace gameUI{
         Card.Util.sortCards(cards);
         this.cardTotalnum = cards.length;
         var i:number = 0;
-         
+        
         let addcardTimer =  CardLogic.Timer.Instance.Repeat(0.18,()=>{
             if(i< this.cardTotalnum )
             {
@@ -465,7 +777,7 @@ namespace gameUI{
                  group.visible = false;
                 
              }
-             if(group.numChildren > 4)
+             if(group.numChildren > 5)
                 group.removeChildAt(0);
 
          }
@@ -480,7 +792,8 @@ namespace gameUI{
            this.removehardCard();
         }
 
-         this.clearOtherPlayers();
+        this.group_backcards.removeChildren();   
+        this.clearOtherPlayers();
     }
     	
 }

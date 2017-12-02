@@ -59,7 +59,44 @@ export class ddzGameLogic extends Dispatcher {
         }
          CardLogic.CardEventDispatcher.Instance.dispatchEvent( this.UpdatePlayersEvent);
     }
+    
+     public Addcard(data):PokerCard
+    {
+        var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+        var iclr = Card.Util.GetCardColor(data);
+        var color: CardColor = Colorlist[iclr];
+        var index: number = Card.Util.GetCardValue(data);
+		var card : PokerCard = Card.Util.createPokerCard(index,color);
+        this.hardCardList.push(card);
+        return  card;
+    }
+  
 
+   private Getindex(data:PokerCard):number
+   {
+       let index :number= -1;
+        for(var i = 0; i < this.hardCardList.length; i++){
+            if(this.hardCardList[i].Index == data.Index && this.hardCardList[i].Suit == data.Suit)
+             return i;
+        }
+
+        return index;
+   }
+    public Removecard(data):boolean
+    {
+        var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+        var iclr = Card.Util.GetCardColor(data);
+        var color: CardColor = Colorlist[iclr];
+        var index: number = Card.Util.GetCardValue(data);
+		var card : PokerCard = Card.Util.createPokerCard(index,color);
+        let x = this.Getindex(card);
+        if(x>-1)
+          {
+               this.hardCardList.splice(x,1);
+               return true;
+          }
+        return false;
+    }
 
     public ExitGame()
     {
@@ -77,6 +114,8 @@ export class ddzGameLogic extends Dispatcher {
         this.StartgameTick = 0;
         this.timer.reset();
     }
+
+   
      
   private onUpdateFrame()
    {
@@ -88,6 +127,11 @@ export class ddzGameLogic extends Dispatcher {
       }
       this.StartgameTick++;
 
+   }
+
+   public get HandCards():Array<PokerCard>
+   {
+      return this.hardCardList;
    }
    
    public DispatchCardStart(data)
@@ -108,8 +152,25 @@ export class ddzGameLogic extends Dispatcher {
        var addHardEvent:CardLogic.CardEvent = new CardLogic.CardEvent(CardLogic.CardEvent.AddHard);
        addHardEvent.paramObj = this.hardCardList;
        CardLogic.CardEventDispatcher.Instance.dispatchEvent(addHardEvent);
-      
    }
+   
+
+    public GetPokerCards(cards):Array<PokerCard>
+   {
+       let CardList = [];
+       var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+       for (var i = 0;i < cards.length;i++)
+	   {
+            if(cards[i] == 0) continue;
+            var iclr = Card.Util.GetCardColor(cards[i]);
+            var color: CardColor = Colorlist[iclr];
+            var index: number = Card.Util.GetCardValue(cards[i]);
+			var card : PokerCard = Card.Util.createPokerCard(index,color);
+            CardList.push(card);
+	   }
+       return CardList;
+   }
+
 
 }
    
