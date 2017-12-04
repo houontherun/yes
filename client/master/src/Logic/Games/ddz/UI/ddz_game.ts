@@ -30,6 +30,7 @@ namespace gameUI{
    private curClockpos:number;
    private group_backcards:eui.Group;
    private txt_gamedouble:eui.Label;
+   private cardItemArray = {};
 
     public onload():void {
        
@@ -146,13 +147,31 @@ namespace gameUI{
             this.PlayermeOutCard();
        }
 
-       this.countdown(data.current_user,data.time);
+      if(data.current_user!= constant.INVALID)
+        this.countdown(data.current_user,data.time);
        
    }
 
    private GameEnd(data)
    {
-      
+      let rankDatatables = [] ;
+      for(var i = 0;i<data.names;i++)
+      {
+         let rankData = new Card.PlayerRankData(data.names[i],data.gold[i],data.base_score[i],data.user_time[i]);
+         rankDatatables.push(rankData);
+      }
+      let settle:Card.ui_GameSettle;
+      settle = new Card.ui_GameSettle(data.result,data.rankDatatables);
+      this.addChild(settle);
+      settle.SetContinueclick(()=>{});
+
+      settle.SetExitClick(()=>{   
+             MessageManager.Instance.SendMessage({
+              protocol:constant.msg.CS_USER_STAND_UP
+           });
+           this.removeChild(settle);
+            });
+     
    }
 
    private PassCard(data)
@@ -164,10 +183,13 @@ namespace gameUI{
            let Scorepos = group.getChildByName("Label_pos");
            var img = new eui.Image();
             img.source = RES.getRes('buchu_png');
-            img.x = Scorepos.x - 20;
+            if(Scorepos.x<10)
+               img.x = Scorepos.x - 60;
+            else
+               img.x = Scorepos.x;
             img.y = Scorepos.y;
             group.addChild(img);
-            CardLogic.Timer.Instance.Delay(3.2,()=>{
+            CardLogic.Timer.Instance.Delay(4,()=>{
                  group.removeChild(img);
             });
        }
@@ -287,7 +309,7 @@ namespace gameUI{
             {
                 img.source = RES.getRes("buqiang_png");
             }
-            img.x = Scorepos.x;
+            img.x = Scorepos.x - 30;
             img.y = Scorepos.y;
             group.addChild(img);
             CardLogic.Timer.Instance.Delay(3.2,()=>{
@@ -441,22 +463,42 @@ namespace gameUI{
      let Scorepos = group.getChildByName("Label_pos");
      let startposX :number = 0;
      startposX = Scorepos.x - 30;
-     let cardItemArray = [];
+     this.cardItemArray[chairid] = []
+ 
+     let posY = 24;
+     startposX = Scorepos.x ;
+     if(startposX < 10)
+     {
+         startposX = startposX  - 30*cards.length;
+     }
+     for(let carditem of this.cardItemArray[chairid])
+     {
+        group.removeChild(carditem);
+     }
+
+     if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
+       posY = Scorepos.y - 25;
+     else
+     {
+        let textNum :eui.Label = <eui.Label>group.getChildAt(6);   //显示剩余牌
+        if(textNum) textNum.text = "1";
+     }
      for (var i = 0;i < cards.length;i++)
 	   {
           var _card = new Card.ui_pokerCardItem();
           _card.cardData = cards[i];
-          _card.setPos(startposX + 30*i,25);
+          _card.setPos(startposX + 30*i,posY);
           _card.SetSize(0.75);
           group.addChild(_card);
  
-          cardItemArray.push(_card);
+          this.cardItemArray[chairid].push(_card);
 	   }
-
-        CardLogic.Timer.Instance.Delay(3.2,()=>{
-                for(let item of cardItemArray)
+        
+        CardLogic.Timer.Instance.Delay(3.6,()=>{
+                for(let item of this.cardItemArray[chairid])
                 {
                     group.removeChild(item);
+                    this.cardItemArray[chairid] = [];
                 }
             });
 
