@@ -171,7 +171,13 @@ namespace gameUI{
                  group.removeChild(img);
             });
        }
+       this.SetBtnsGame(false);
        this.countdown(data.current_user,data.time);
+       let playerChairid =  CardLogic.ddzGameLogic.Instance.playerChairid;  
+       if(data.current_user == playerChairid) 
+       {
+            this.PlayermeOutCard();
+       }
    }
 
    private Trustee(data)
@@ -182,7 +188,6 @@ namespace gameUI{
    //轮到自己出牌
    private PlayermeOutCard()
    {
-        
         this.SetBtnsGame(true);
         this.Text_bnt1.text = "不出";
         this.Text_bnt2.text = "出牌";
@@ -435,10 +440,7 @@ namespace gameUI{
      var group = this.GetGroupChairid(chairid);
      let Scorepos = group.getChildByName("Label_pos");
      let startposX :number = 0;
-     if(Scorepos.x >10)
-        startposX = Scorepos.x - 30;
-    else
-       startposX = Scorepos.x + 30;
+     startposX = Scorepos.x - 30;
      let cardItemArray = [];
      for (var i = 0;i < cards.length;i++)
 	   {
