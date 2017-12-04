@@ -419,6 +419,26 @@ namespace gameUI{
       }
   }
 
+
+
+ private getrelativeChair(Chairid:number):number{
+        var i = 0;
+        var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
+        var playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid 
+        var firstplayer = players[playerChairid];
+        while(i<this.PlayersNum)
+        {
+            if(firstplayer.ChairId == Chairid)
+              return i;
+            else
+            {
+                firstplayer = firstplayer.PrePlayer;
+                i++;
+            }
+        }
+        return -1;
+  }
+
  private SetplayersInfo()
   {
     this.clearOtherPlayers();
@@ -436,6 +456,7 @@ namespace gameUI{
 
          for(var i = 0;i<players.length;i++)
          {
+
              if(players[i].UserId == PlayerManager.Instance.Data.UserId)
               {
                     this.setPlayer(0,players[i].UserName,players[i].Gold,"face_1_png");
@@ -443,22 +464,26 @@ namespace gameUI{
               }
               else
               {
-                  let chairid = Math.abs(players[i].ChairId - CardLogic.ddzGameLogic.Instance.playerChairid);
-                  if((players[i].ChairId == this.PlayersNum -1)&&chairid!=this.PlayersNum -1)
-                     chairid += 1;
-                  if(chairid <this.PlayersNum)
-                      this.setPlayer(chairid,players[i].UserName,players[i].Gold,"face_2_png");
-                 CardLogic.ddzGameLogic.Instance.playerposInfo[players[i].ChairId] = chairid;
+                  let chairid = this.getrelativeChair(players[i].ChairId);
+                  if(chairid > -1)
+                  {
+                     this.setPlayer(chairid,players[i].UserName,players[i].Gold,"face_2_png");
+                     CardLogic.ddzGameLogic.Instance.playerposInfo[players[i].ChairId] = chairid;
+                  }
+                  
               }
          }
 
      }
   }
 
+  
+
 
   public PlayerOutCard(chairid:number,array:any)
   {
      var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(array);
+     
      var group = this.GetGroupChairid(chairid);
      let Scorepos = group.getChildByName("Label_pos");
      let startposX :number = 0;

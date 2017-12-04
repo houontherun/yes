@@ -37,7 +37,7 @@ class UserData{
     private user_name:string //玩家名字
     private face_id:number  // 头像索引
     private gold:number     // 当前金币
-
+    private Previous :UserData;
     public get RoomId():number { return this.room_id }
     public get UserId():number { return this.user_id }
     public get Status():number { return this.status }
@@ -46,6 +46,9 @@ class UserData{
     public get UserName():string { return this.user_name }
     public get FaceId():number { return this.face_id }
     public get Gold():number { return this.gold }
+   
+    public get PrePlayer():UserData { return this.Previous; }
+    public set PrePlayer(value) { this.Previous = value; }
 
     constructor(data){
         this.room_id = data.room_id

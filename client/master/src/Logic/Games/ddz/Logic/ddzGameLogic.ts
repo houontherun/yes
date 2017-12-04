@@ -53,9 +53,20 @@ export class ddzGameLogic extends Dispatcher {
     public UpdatePlayers(data)
     {
         this.players = [];
+        var pre:UserData = null ;
         for(var i = 0; i < data.players.length; i++){
+            
             var ud = new UserData(data.players[i])
-            this.players.push(ud)
+            if(pre)
+            {
+                ud.PrePlayer = pre;
+            }
+            if(i == data.players.length - 1 && i > 0)
+            {
+              this.players[0].PrePlayer = ud;
+            }
+            pre = ud;
+            this.players.push(ud);
         }
          CardLogic.CardEventDispatcher.Instance.dispatchEvent( this.UpdatePlayersEvent);
     }
