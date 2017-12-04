@@ -140,7 +140,7 @@ namespace gameUI{
    private OutCard(data)
    {
        this.SetBtnsGame(false);
-       this.PlayerOutCard(data.chair_id,data.cards);
+       this.PlayerOutCard(data.chair_id,data.cards,data.card_count);
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;  
        if(data.current_user == playerChairid) 
        {
@@ -424,7 +424,7 @@ namespace gameUI{
  private getrelativeChair(Chairid:number):number{
         var i = 0;
         var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
-        var playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid 
+        var playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid ;
         var firstplayer = players[playerChairid];
         while(i<this.PlayersNum)
         {
@@ -480,7 +480,7 @@ namespace gameUI{
   
 
 
-  public PlayerOutCard(chairid:number,array:any)
+  public PlayerOutCard(chairid:number,array:any,remainCount:number)
   {
      var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(array);
      
@@ -503,11 +503,11 @@ namespace gameUI{
      this.cardItemArray[chairid] = []
 
      if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
-       posY = Scorepos.y - 25;
+        posY = Scorepos.y - 25;
      else
      {
         let textNum :eui.Label = <eui.Label>group.getChildAt(6);   //显示剩余牌
-        if(textNum) textNum.text = "1";
+        if(textNum) textNum.text = remainCount.toString();
      }
      for (var i = 0;i < cards.length;i++)
 	   {

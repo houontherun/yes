@@ -37,7 +37,7 @@ class UserData{
     private user_name:string //玩家名字
     private face_id:number  // 头像索引
     private gold:number     // 当前金币
-    private Previous :UserData;
+    private Previous :UserData = null;
     public get RoomId():number { return this.room_id }
     public get UserId():number { return this.user_id }
     public get Status():number { return this.status }
