@@ -124,7 +124,8 @@ namespace gameUI{
            _card.cardData = cards[i];
            _card.setPos(45*i,16);
            this.group_handcards.addChild(_card);
-           this.hardCardsArray.push(_card);
+            this.AddTohardCardsArray(_card);
+
            let index :number  = backCardsArray.indexOf(cards[i]);
            if(index >-1)
             {
@@ -163,24 +164,30 @@ namespace gameUI{
            let Scorepos = group.getChildByName("Label_pos");
            var img = new eui.Image();
             img.source = RES.getRes('buchu_png');
-            img.x = Scorepos.x;
+            img.x = Scorepos.x - 20;
             img.y = Scorepos.y;
             group.addChild(img);
             CardLogic.Timer.Instance.Delay(3.2,()=>{
                  group.removeChild(img);
             });
        }
+       this.SetBtnsGame(false);
        this.countdown(data.current_user,data.time);
+       let playerChairid =  CardLogic.ddzGameLogic.Instance.playerChairid;  
+       if(data.current_user == playerChairid) 
+       {
+            this.PlayermeOutCard();
+       }
    }
 
    private Trustee(data)
    {
 
    }
+
    //轮到自己出牌
    private PlayermeOutCard()
    {
-        
         this.SetBtnsGame(true);
         this.Text_bnt1.text = "不出";
         this.Text_bnt2.text = "出牌";
@@ -433,16 +440,13 @@ namespace gameUI{
      var group = this.GetGroupChairid(chairid);
      let Scorepos = group.getChildByName("Label_pos");
      let startposX :number = 0;
-     if(Scorepos.x >10)
-        startposX = Scorepos.x - 30;
-    else
-       startposX = Scorepos.x + 30;
+     startposX = Scorepos.x - 30;
      let cardItemArray = [];
      for (var i = 0;i < cards.length;i++)
 	   {
           var _card = new Card.ui_pokerCardItem();
           _card.cardData = cards[i];
-          _card.setPos(startposX + 30*i,16);
+          _card.setPos(startposX + 30*i,25);
           _card.SetSize(0.75);
           group.addChild(_card);
  
@@ -459,11 +463,14 @@ namespace gameUI{
       //更新手牌      
      if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
      {
-        for (let _data of array)
-	    {
-           CardLogic.ddzGameLogic.Instance.Removecard(_data);
-	    }
-         
+         for (let _data of array)
+	     {
+            CardLogic.ddzGameLogic.Instance.Removecard(_data);
+	     }
+         if(this.hardCardsArray.length > 0) 
+         {
+            this.removehardCard();
+         }
         this.group_handcards.removeChildren();
         let cards = CardLogic.ddzGameLogic.Instance.HandCards;
         for (var i = 0;i < cards.length;i++)
@@ -472,7 +479,7 @@ namespace gameUI{
            _card.cardData = cards[i];
            _card.setPos(45*i,16);
            this.group_handcards.addChild(_card);
-           this.hardCardsArray.push(_card);
+           this.AddTohardCardsArray(_card);
        }
     }
 
@@ -629,12 +636,16 @@ namespace gameUI{
 
    protected childrenCreated() {
             super.childrenCreated();
-            for(let i = 0;i < this.hardCardsArray.length;i++){
-                 this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.touchBegin,this);
-                this.hardCardsArray[i].addEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchMove,this);
-                this.addEventListener(egret.TouchEvent.TOUCH_END,this.touchEnd,this);
-            }
+            this.addEventListener(egret.TouchEvent.TOUCH_END,this.touchEnd,this);
         }
+
+
+     private AddTohardCardsArray( item :Card.ui_pokerCardItem)
+     {
+         this.hardCardsArray.push(item);
+         item.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.touchBegin,this);
+         item.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchMove,this);
+     }
 
       private  InTargetCards(item:any):number
       {
@@ -735,7 +746,7 @@ namespace gameUI{
                _card.cardData = cards[i];
                _card.setPos(45*i,16);
                this.group_handcards.addChild(_card);
-               this.hardCardsArray.push(_card);
+                this.AddTohardCardsArray(_card);
                i++;
             }
             else
