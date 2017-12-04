@@ -177,14 +177,18 @@ namespace Card {
             if(this.cards.length < 6 || this.cards.length % 2 != 0){
                 return false;
             }
-            var first = this.cards[0]
-            var last = this.cards[this.cards.length - 1]
-            if(first.Weight < 1 || last.Weight > 12){
+            if(this.group.length < 3){
                 return false
             }
-            for(var i = 0; i < this.cards.length - 2; i += 2){
-                if(this.cards[i].Weight != this.cards[i + 1].Weight || this.cards[i].Weight != this.cards[i + 2].Weight - 1){
-                    return false;
+            for(var i = 0; i < this.group.length - 1; i++){
+                if(this.group[i].count != 2 || this.group[i + 1].count != 2){
+                    return false
+                }
+                if(this.group[i].weight > 12 || this.group[i + 1].weight > 12){
+                    return false
+                }
+                if(this.group[i].weight != this.group[i + 1].weight - 1){
+                    return false
                 }
             }
             return true;
@@ -192,18 +196,22 @@ namespace Card {
         private isAEROPLANE_TYPE(){// 飞机
             if(this.cards.length < 6 || this.cards.length % 3 != 0){
                 return false;
-            }            
-            var first = this.cards[0]
-            var last = this.cards[this.cards.length - 1]
-            if(first.Weight < 1 || last.Weight > 12){
+            }
+            if(this.group.length < 2){
                 return false
             }
-            for(var i = 0; i < this.cards.length - 3; i += 3){
-                if(this.cards[i].Weight != this.cards[i + 1].Weight || this.cards[i + 1].Weight != this.cards[i + 2].Weight || this.cards[i].Weight != this.cards[i + 3].Weight - 1){
-                    return false;
+            for(var i = 0; i < this.group.length - 1; i++){
+                if(this.group[i].count != 3 || this.group[i + 1].count != 3){
+                    return false
+                }
+                if(this.group[i].weight > 12 || this.group[i + 1].weight > 12){
+                    return false
+                }
+                if(this.group[i].weight != this.group[i + 1].weight - 1){
+                    return false
                 }
             }
-            return true;
+            return true
         }
         private isAEROPLANES_TYPE(){// 飞机带单
             if(this.cards.length < 8 || this.cards.length % 4 != 0) {
@@ -213,11 +221,14 @@ namespace Card {
                 return false
             }
             var n = this.cards.length / 4
-            if(this.group[0].weight < 1 || this.group[n - 1].weight > 12){
-                return false
-            }
             for(var i = 0; i < n - 1; i++){
-                if(this.group[i].count != 3 || this.group[i + 1].count != 3 || this.group[i].weight != this.group[i + 1].weight - 1){
+                if(this.group[i].count != 3 || this.group[i + 1].count != 3){
+                    return false
+                }
+                if(this.group[i].weight > 12 || this.group[i + 1].weight > 12){
+                    return false
+                }
+                if(this.group[i].weight != this.group[i + 1].weight - 1){
                     return false
                 }
             }
@@ -231,11 +242,14 @@ namespace Card {
                 return false
             }
             var n = this.cards.length / 5
-            if(this.group[0].weight < 1 || this.group[n - 1].weight > 12){
-                return false
-            }
             for(var i = 0; i < n - 1; i++){
-                if(this.group[i].count != 3 || this.group[i + 1].count != 3 || this.group[i].weight != this.group[i + 1].weight - 1){
+                if(this.group[i].count != 3 || this.group[i + 1].count != 3){
+                    return false
+                }
+                if(this.group[i].weight > 12 || this.group[i + 1].weight > 12){
+                    return false
+                }
+                if(this.group[i].weight != this.group[i + 1].weight - 1){
                     return false
                 }
             }
@@ -272,60 +286,34 @@ namespace Card {
         }
     }
 
-    class CardsInfo{
-        private count:number
-        private cards:Array<PokerCard>
-        private index:number
-        private weight:number   
-        constructor(count:number, cards:Array<PokerCard>){
-            this.cards = cards
-            this.count = count
-            this.index = cards[0].Index
-            this.weight = PackCards[this.index].weight
-        }
-        public get Cards():Array<PokerCard>{ return this.cards;}
-        public get Count():number{ return this.count;}
-        public get Index():number{ return this.index;}
-        public get Weight():number{ return this.weight;}
-    }
-    // 当前手牌
+    // 全部手牌
     export class ddzHandCards{
         private cards:Array<PokerCard>
-        private typeOfCards = null // 元素为Array<CardsInfo>
 
         private groups = null
 
         constructor(cards:Array<PokerCard>){
             this.updateCards(cards)
         }
-        private initTypeOfCards():void{
-            this.typeOfCards = {
-                [CardTypes.SINGLE_TYPE]:null,       // 单牌
-                [CardTypes.PAIR_TYPE]:null,         // 对子
-                [CardTypes.TRIO_TYPE]:null,         // 三不带
-                [CardTypes.TRIOSINGLE_TYPE]:null,   // 三带一
-                [CardTypes.TRIODOUBLE_TYPE]:null,   // 三带一对
-                [CardTypes.STRAIGHT_TYPE]:null,     // 顺子
-                [CardTypes.CONPAIR_TYPE]:null,      // 连对
-                [CardTypes.AEROPLANE_TYPE]:null,    // 飞机
-                [CardTypes.AEROPLANES_TYPE ]:null,  // 飞机带单
-                [CardTypes.AEROPLANEL_TYPE]:null,   // 飞机带对子
-                [CardTypes.FOURSINGLE_TYPE]:null,   // 四带二单或一对
-                [CardTypes.FOURDOUBLE_TYPE]:null,   // 四带二对
-                [CardTypes.BOMB_TYPE]:null,         // 炸弹
-                [CardTypes.NUKE_TYPE]:null,         // 王炸
-            }
-        }
         public updateCards(cards:Array<PokerCard>):void{
-            this.cards = cards.sort(function(a, b){
+            this.cards = this.sortSingleCards(cards)
+            this.groupCards()
+        }
+        private sortSingleCards(cards:Array<PokerCard>):Array<PokerCard>{
+            return cards.sort(function(a, b){
                 return a.Weight - b.Weight;
             })
-            this.initTypeOfCards()
+        }
+        private sortArrayCards(cards:Array<Array<PokerCard>>):Array<Array<PokerCard>>{
+            return cards.sort(function(a, b){
+                return a[0].Weight - b[0].Weight;
+            })
         }
         private groupCards(){
             if(this.cards.length < 1){
                 return
             }
+            // 将当前的牌按每张牌个数分组
             this.groups = {
                 1:[], // 单牌[3,4,5, ...]
                 2:[], // 对子[[3,3],[4,4], ...]
@@ -336,18 +324,21 @@ namespace Card {
             var currents = [this.cards[0]]
             for(var i = 1; i < this.cards.length; i++){
                 if(this.cards[i].Index == currents[currents.length - 1].Index || (currents[currents.length - 1].Index == 14 && this.cards[i].Index == 15)){
-                    currents.push(this.cards[i])
+                    currents.push(this.cards[i]) // 如果第i张与第i-1张一样则放到一组 （大小王成对视为一组）
                 }else{
                     this.addToGroup(currents)
                     currents = []
                     currents.push(this.cards[i])
                 }
             } 
+            if(currents.length > 0){
+                this.addToGroup(currents)
+            }
         }
         private addToGroup(cards:Array<PokerCard>){
             if(cards.length == 1){
                 this.groups[1].push(cards[0])
-            }else if(cards.length == 2){
+            }else if(cards.length == 2){ // 大小王成对的话放到第5组
                 if(cards[0].Index == 14 || cards[0].Index == 15){
                     this.groups[5] = cards
                 }else{
@@ -359,11 +350,13 @@ namespace Card {
                 this.groups[4].push(cards)
             }
         }
+        // 从当前的cards里减去subCards返回
         private subCardList(subCards:Array<PokerCard>){
             var ret = []
             var subIndex = 0
+            var subs = this.sortSingleCards(subCards)
             for(var i = 0; i < this.cards.length; i++){
-                if(subCards.length > subIndex && subCards[subIndex].Index == this.cards[i].Index){
+                if(subs.length > subIndex && subs[subIndex].Index == this.cards[i].Index){ // 遍历列表，如果subCards存在，则不添加
                     subIndex++
                 }else{
                     ret.push(this.cards[i])
@@ -371,128 +364,420 @@ namespace Card {
             }
             return ret
         }
+        // 二维级数转一维
+        private toPokerArray(cardArrays):Array<PokerCard>{
+            var cards = []
+            for(var i = 0; i < cardArrays.length; i++){
+                cards = cards.concat(cardArrays[i])
+            }
+            return cards
+        }
+
         // 获取所有的单牌
-        private getSingles():Array<CardsInfo>{
-            var ret = []            
-            for(var i = 0; i < this.groups[1].length; i++){
-                ret.push(new CardsInfo(1, [this.groups[1][i]]))
-            }
-            for(var i = 0; i < this.groups[2].length; i++){
-                ret.push(new CardsInfo(2, [this.groups[2][i][0]]))
-            }
-            for(var i = 0; i < this.groups[3].length; i++){
-                ret.push(new CardsInfo(3, [this.groups[3][i][0]]))
-            }
-            for(var i = 0; i < this.groups[4].length; i++){
-                ret.push(new CardsInfo(4, [this.groups[4][i][0]]))
-            }
-            return ret
-        }
-        private getDoubles():Array<CardsInfo>{
+        private getSingles():Array<PokerCard>{
             var ret = []
+            ret = ret.concat(this.groups[1])
             for(var i = 0; i < this.groups[2].length; i++){
-                ret.push(new CardsInfo(2, this.groups[2][i]))
+                ret.push(this.groups[2][i][0])
             }
             for(var i = 0; i < this.groups[3].length; i++){
-                ret.push(new CardsInfo(3, [this.groups[3][i][0], this.groups[3][i][1]]))
+                ret.push(this.groups[3][i][0])
             }
             for(var i = 0; i < this.groups[4].length; i++){
-                ret.push(new CardsInfo(4, [this.groups[4][i][0], this.groups[4][i][1]]))
+                ret.push(this.groups[4][i][0])
             }
+            ret = ret.concat(this.groups[5])
             return ret
         }
-        private getTrebles():Array<CardsInfo>{
-            var ret = []            
-            for(var i = 0; i < this.groups[3].length; i++){
-                ret.push(new CardsInfo(3, this.groups[3][i]))
-            }
-            for(var i = 0; i < this.groups[4].length; i++){
-                ret.push(new CardsInfo(4, [this.groups[4][i][0], this.groups[4][i][1], this.groups[4][i][2]]))
-            }
-            return ret
-        }
-        private getQuadruple():Array<CardsInfo>{
+        // 获取所有的对子
+        private getPairs():Array<Array<PokerCard>>{
             var ret = []
+            ret = ret.concat(this.groups[2])
+            for(var i = 0; i < this.groups[3].length; i++){
+                ret.push([this.groups[3][i][0], this.groups[3][i][1]])
+            }
             for(var i = 0; i < this.groups[4].length; i++){
-                ret.push(new CardsInfo(4, this.groups[4][i]))
+                ret.push([this.groups[4][i][0], this.groups[4][i][1]])
             }
             return ret
         }
-        public getCards(type:CardTypes):Array<PokerCard>{
-            if(this.typeOfCards[type] != null){
-                return this.typeOfCards[type]
-            }   
-            this.typeOfCards[type] = []
+        // 获取所有的三个的
+        private getTrebles():Array<Array<PokerCard>>{
+            var ret = []
+            ret = ret.concat(this.groups[3])
+            for(var i = 0; i < this.groups[4].length; i++){
+                ret.push([this.groups[4][i][0], this.groups[4][i][1], this.groups[4][i][2]])
+            }
+            return ret
+        }
+        // 获取所有的四个的
+        private getQuadruples():Array<Array<PokerCard>>{
+            var ret = []
+            ret = ret.concat(this.groups[4])
+            return ret
+        }
+        // 获取所有的顺子
+        private getStraights():Array<Array<PokerCard>>{
+            var ret = []
+            var straight = []
+            var singles = this.sortSingleCards(this.getSingles())
+            for(var i = 0; i < singles.length; i++){
+                if(singles[i].Weight >= 1 && singles[i].Weight <= 12){
+                    if(straight.length == 0){
+                        straight.push(singles[i])
+                    }else{
+                        if(straight[straight.length - 1].Weight == singles[i].Weight - 1){
+                            straight.push(singles[i])
+                        }else{
+                            if(straight.length >= 5){
+                                ret.push(straight)
+                            }
+                            straight = []
+                        }
+                    }
+                }
+            }
+            if(straight.length >= 5){
+                ret.push(straight)
+            }
+            straight = []
+            return ret
+        }
+        // 获取所有的连对
+        private getConpairs():Array<Array<PokerCard>>{
+            var ret = []
+            var conpair = []
+            var pairs = this.sortArrayCards(this.getPairs())
+            for(var i = 0; i < pairs.length; i++){
+                if(pairs[i][0].Weight >= 1 && pairs[i][0].Weight <= 12){
+                    if(conpair.length == 0){
+                        conpair.push(pairs[i])
+                    }else{
+                        if(conpair[conpair.length - 1][0].Weight == pairs[i][0].Weight - 1){
+                            conpair.push(pairs[i])
+                        }else{
+                            if(conpair.length >= 3){
+                                ret.push(conpair)
+                            }
+                            conpair = []
+                        }
+                    }
+                }
+            }
+            if(conpair.length >= 3){
+                ret.push(conpair)
+            }
+            conpair = []
+            return ret
+        }
+        // 获取所有的飞机
+        private getAeroplanes():Array<Array<PokerCard>>{
+            var ret = []
+            var aeroplane = []
+            var trebles = this.sortArrayCards(this.getTrebles())
+            for(var i = 0; i < trebles.length; i++){
+                if(trebles[i][0].Weight >= 1 && trebles[i][0].Weight <= 12){
+                    if(aeroplane.length == 0){
+                        aeroplane.push(trebles[i])
+                    }else{
+                        if(aeroplane[aeroplane.length - 1][0].Weight == trebles[i][0].Weight - 1){
+                            aeroplane.push(trebles[i])
+                        }else{
+                            if(aeroplane.length >= 2){
+                                ret.push(aeroplane)
+                            }
+                            aeroplane = []
+                        }
+                    }
+                }
+            }
+            if(aeroplane.length >= 2){
+                ret.push(aeroplane)
+            }
+            aeroplane = []
+            return ret
+        }
+        // 获取所有炸弹，包括王炸
+        private getBombs():Array<Array<PokerCard>>{
+            var ret = []
+            var quadruples = this.getQuadruples()
+            for(var i = 0; i < quadruples.length; i++){
+                ret.push(quadruples[i])
+            }
+            if(this.groups[5].length > 0){
+                ret.push(this.groups[5])
+            }
+            return ret
+        }
+
+        // 获取所有指定类型的牌
+        public getPressedCards(target:ddzPackCardGroup):any{
+            var type = target.CardType
+            var startCard = target.Cards[0]
+            var ret = []
             switch(type){
                 case CardTypes.SINGLE_TYPE:{       // 单牌   
                     var singles = this.getSingles()
                     for(var i = 0; i < singles.length; i++){
-                        this.typeOfCards[type].push(singles[i].Cards[0])
+                        if(singles[i].Weight > startCard.Weight){
+                            ret.push([singles[i]])
+                        }
                     }
-                    return this.typeOfCards[type]
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.PAIR_TYPE:{         // 对子    
-                    var doubles = this.getDoubles()            
-                    for(var i = 0; i < doubles.length; i++){
-                        this.typeOfCards[type].push(doubles[i].Cards)
+                case CardTypes.PAIR_TYPE:{         // 对子 
+                    var pairs = this.getPairs()
+                    for(var i = 0; i < pairs.length; i++){
+                        if(pairs[i][0].Weight > startCard.Weight){
+                            ret.push(pairs[i])
+                        }
                     }
-                    return this.typeOfCards[type]
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.TRIO_TYPE:{         // 三不带    
+                case CardTypes.TRIO_TYPE:{         // 三不带 
                     var trebles = this.getTrebles()
                     for(var i = 0; i < trebles.length; i++){
-                        this.typeOfCards[type].push(trebles[i].Cards)
-                    }
-                    return this.typeOfCards[type]
+                        if(trebles[i][0].Weight > startCard.Weight){
+                            ret.push(trebles[i])
+                        }
+                    } 
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
                 case CardTypes.TRIOSINGLE_TYPE:{   // 三带一
-                    var treblesSingles = []
                     var trebles = this.getTrebles()
                     for(var i = 0; i < trebles.length; i++){
-                        var subCards = trebles[i].Cards
-                        var leftCards = this.subCardList(subCards)
-                        var leftHandCardObj = new ddzHandCards(leftCards)
-                        var leftSingles = leftHandCardObj.getCards(CardTypes.SINGLE_TYPE)
-                        if(leftSingles.length > 0){                            
-                            treblesSingles.concat(subCards)
-                            treblesSingles.push(leftSingles[0])
-                            this.typeOfCards[type].push(treblesSingles)
+                        if(trebles[i][0].Weight > startCard.Weight){
+                            var triosingle = []
+                            var three = trebles[i] // 3张
+                            var leftCards = this.subCardList(three)
+                            var leftHandObj = new ddzHandCards(leftCards)
+                            var singles = leftHandObj.getSingles()
+                            if(singles.length > 0){
+                                triosingle = triosingle.concat(three)
+                                triosingle.push(singles[0])
+                                ret.push(triosingle)
+                            }
                         }
-                        return this.typeOfCards[type]
-                    }
-                    break;
+                    } 
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
                 case CardTypes.TRIODOUBLE_TYPE:{   // 三带一对
-                    break;
+                    var trebles = this.getTrebles()
+                    for(var i = 0; i < trebles.length; i++){
+                        if(trebles[i][0].Weight > startCard.Weight){
+                            var triodouble = []
+                            var three = trebles[i] // 3张
+                            var leftCards = this.subCardList(three)
+                            var leftHandObj = new ddzHandCards(leftCards)
+                            var pairs = leftHandObj.getPairs()
+                            if(pairs.length > 0){
+                                triodouble = triodouble.concat(three)
+                                triodouble = triodouble.concat(pairs[0])
+                                ret.push(triodouble)
+                            }
+                        }
+                    } 
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.STRAIGHT_TYPE:{     // 顺子              
-                    break;
+                case CardTypes.STRAIGHT_TYPE:{     // 顺子
+                    var straights = this.getStraights()
+                    for(var i = 0; i < straights.length; i++){                        
+                        if(straights[i].length >= target.Cards.length){
+                            for(var j = 0; j < straights[i].length; j++){
+                                if(straights[i][j].Weight > startCard.Weight && (straights[i].length - j) >= target.Cards.length){
+                                    var straight = straights[i].slice(j, j + target.Cards.length)
+                                    ret.push(straight)
+                                }
+                            }
+                        }
+                    }
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.CONPAIR_TYPE:{      // 连对              
-                    break;
+                case CardTypes.CONPAIR_TYPE:{      // 连对
+                    var conpairs = this.getConpairs()
+                    var len = target.Cards.length/2
+                    for(var i = 0; i < conpairs.length; i++){
+                        if(conpairs[i].length >= len){
+                            for(var j = 0; j < conpairs[i].length; j++){
+                                if(conpairs[i][j][0].Weight > startCard.Weight && (conpairs[i].length - j) >= len){
+                                    var conpair = conpairs[i].slice(j, j + len)
+                                    ret.push(conpair)
+                                }
+                            }
+                        }
+                    }
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.AEROPLANE_TYPE:{    // 飞机              
-                    break;
+                case CardTypes.AEROPLANE_TYPE:{    // 飞机
+                    var aeroplanes = this.getAeroplanes()
+                    var len = target.Cards.length/3
+                    for(var i = 0; i < aeroplanes.length; i++){
+                        if(aeroplanes[i].length >= len){
+                            for(var j = 0; j < aeroplanes[i].length; j++){
+                                if(aeroplanes[i][j][0].Weight > startCard.Weight && (aeroplanes[i].length - j >= len)){
+                                    var aeroplane = aeroplanes[i].slice(j, j + len)
+                                    ret.push(aeroplane)
+                                }
+                            }
+                        }
+                    }
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.AEROPLANES_TYPE:{  // 飞机带单              
-                    break;
+                case CardTypes.AEROPLANES_TYPE:{  // 飞机带单
+                    var aeroplanes = this.getAeroplanes()
+                    var len = target.Cards.length/4
+                    for(var i = 0; i < aeroplanes.length; i++){
+                        if(aeroplanes[i].length >= len){
+                            for(var j = 0; j < aeroplanes[i].length; j++){
+                                if(aeroplanes[i][j][0].Weight > startCard.Weight && (aeroplanes[i].length - j >= len)){
+                                    var aeroplane = aeroplanes[i].slice(j, j + len)
+                                    var cards = this.toPokerArray(aeroplane)
+                                    var leftCards = this.subCardList(cards)
+                                    var leftHandObj = new ddzHandCards(leftCards)
+                                    var singles = leftHandObj.getSingles()
+                                    if(singles.length >= len){
+                                        var areoplane_single = []
+                                        areoplane_single = areoplane_single.concat(cards)
+                                        areoplane_single = areoplane_single.concat(singles.slice(0, len))
+                                        ret.push(areoplane_single)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.AEROPLANEL_TYPE:{   // 飞机带对子              
-                    break;
+                case CardTypes.AEROPLANEL_TYPE:{   // 飞机带对子
+                    var aeroplanes = this.getAeroplanes()
+                    var len = target.Cards.length/5
+                    for(var i = 0; i < aeroplanes.length; i++){
+                        if(aeroplanes[i].length >= len){
+                            for(var j = 0; j < aeroplanes[i].length; j++){
+                                if(aeroplanes[i][j][0].Weight > startCard.Weight && (aeroplanes[i].length - j >= len)){
+                                    var aeroplane = aeroplanes[i].slice(j, j + len)
+                                    var cards = this.toPokerArray(aeroplane)
+                                    var leftCards = this.subCardList(cards)
+                                    var leftHandObj = new ddzHandCards(leftCards)
+                                    var pairs = leftHandObj.getPairs()
+                                    if(pairs.length >= len){
+                                        var areoplane_pair = []
+                                        areoplane_pair = areoplane_pair.concat(cards)
+                                        areoplane_pair = areoplane_pair.concat(pairs.slice(0, len))
+                                        ret.push(areoplane_pair)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.FOURSINGLE_TYPE:{   // 四带二单或一对              
-                    break;
+                case CardTypes.FOURSINGLE_TYPE:{   // 四带二单或一对
+                    var quadruples = this.getQuadruples()
+                    for(var i = 0; i < quadruples.length; i++){
+                        if(quadruples[i][0].Weight > startCard.Weight){
+                            var cards = quadruples[i]
+                            var leftCards = this.subCardList(cards)
+                            var leftHandObj = new ddzHandCards(leftCards)
+                            var si = []
+                            for(var i = 0; i < leftHandObj.groups[1].length; i++){
+                                if(si.length < 2){
+                                    si.push(leftHandObj.groups[1][i])
+                                }else{
+                                    break
+                                }
+                            }
+                            if(si.length < 2){
+                                for(var g = 2; g <= 4; g++){ // group
+                                    for(var i = 0; i < leftHandObj.groups[g].length; i++){
+                                        for(var j = 0; j < g; j++){
+                                            if(si.length < 2){
+                                                si.push(leftHandObj.groups[g][i][j])
+                                            }else{
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if(si.length < 2){
+                                for(var i = 0; i < leftHandObj.groups[5].length; i++){
+                                    if(si.length < 2){
+                                        si.push(leftHandObj.groups[5][i])
+                                    }else{
+                                        break
+                                    }
+                                }
+                            }
+                            if(si.length >= 2){
+                                var four_pair = []
+                                four_pair = four_pair.concat(cards)
+                                four_pair = four_pair.concat(si)
+                                ret.push(four_pair)
+                            }
+                        }
+                    }
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.FOURDOUBLE_TYPE:{   // 四带二对              
-                    break;
+                case CardTypes.FOURDOUBLE_TYPE:{   // 四带二对
+                    var quadruples = this.getQuadruples()
+                    for(var i = 0; i < quadruples.length; i++){
+                        if(quadruples[i][0].Weight > startCard.Weight){
+                            var cards = quadruples[i]
+                            var leftCards = this.subCardList(cards)
+                            var leftHandObj = new ddzHandCards(leftCards)
+                            var pairs = leftHandObj.getPairs()
+                            if(pairs.length >= 2){
+                                var four_pair2 = []
+                                four_pair2 = four_pair2.concat(cards)
+                                four_pair2 = four_pair2.concat(pairs[0])
+                                four_pair2 = four_pair2.concat(pairs[1])
+                                ret.push(four_pair2)
+                            }
+                        }
+                    }
+                    var bombs = this.getBombs() // 炸弹
+                    ret = ret.concat(bombs)
+                    break
                 }
-                case CardTypes.BOMB_TYPE:{         // 炸弹              
-                    break;
+                case CardTypes.BOMB_TYPE:{         // 炸弹
+                    var quadruples = this.getQuadruples()
+                    for(var i = 0; i < quadruples.length; i++){
+                        if(quadruples[i][0].Weight > startCard.Weight){
+                            ret.push(quadruples[i])
+                        }
+                    }
+                    if(this.groups[5].length > 0){
+                        ret.push[this.groups[5]]
+                    }
+                    break
                 }
                 case CardTypes.NUKE_TYPE:{         // 王炸              
                     break;
                 }
             }
+            return ret
         }
     }
 

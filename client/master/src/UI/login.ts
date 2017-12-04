@@ -22,9 +22,29 @@ namespace gameUI{
                 // }
                 // var A = new Card.ddzPackCardGroup(pockA)
                 // var B = new Card.ddzPackCardGroup(pockB)
-                // console.log(A.CardType)
-                // console.log(B.CardType)
-                // console.log(A.isPress(B))
+                // var msg = A.CardType.toString() + '\r\n'
+                // msg += B.CardType.toString() + '\r\n'
+                // msg += A.isPress(B).toString()
+                // alert(msg)
+
+                // 压死测试
+                // var P = new Card.ddzHandCards(pockB)
+                // var pressed = P.getPressedCards(A)
+                // var allMsg = ''
+                // for(var i = 0; i < pressed.length; i++){
+                //     var msg = ''
+                //     for(var j = 0; j < pressed[i].length; j++){
+                //         if(pressed[i][j] instanceof Array){
+                //             for(var k = 0; k < pressed[i][j].length; k++){
+                //                 msg += pressed[i][j][k].Index.toString()
+                //             }
+                //         }else{
+                //             msg += pressed[i][j].Index.toString()
+                //         }
+                //     }
+                //     allMsg += msg + '\r\n'
+                // }
+                // alert(allMsg)
 
                 NetworkManager.Instance.addEventListener(constant.event.network.on_connect_succeed, this.onConSucceed, this);
                 NetworkManager.Instance.Connect(constant.connect_ip, constant.connect_port);
