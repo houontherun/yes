@@ -463,7 +463,7 @@ namespace gameUI{
      let Scorepos = group.getChildByName("Label_pos");
      let startposX :number = 0;
      startposX = Scorepos.x - 30;
-     this.cardItemArray[chairid] = []
+     
  
      let posY = 24;
      startposX = Scorepos.x ;
@@ -475,6 +475,7 @@ namespace gameUI{
      {
         group.removeChild(carditem);
      }
+     this.cardItemArray[chairid] = []
 
      if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
        posY = Scorepos.y - 25;
