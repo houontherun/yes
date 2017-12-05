@@ -31,6 +31,7 @@ namespace gameUI{
    private group_backcards:eui.Group;
    private txt_gamedouble:eui.Label;
    private cardItemArray = {};
+   private cdTimer = null;
 
     public onload():void {
        
@@ -157,7 +158,7 @@ namespace gameUI{
       let rankDatatables = [] ;
       for(var i = 0;i<data.names.length;i++)
       {
-         let rankData = new Card.PlayerRankData(data.names[i],data.gold[i],data.base_score[i],data.user_time[i]);
+         let rankData = new Card.PlayerRankData(data.names[i],data.golds[i],data.base_score,data.user_time[i]);
          rankDatatables.push(rankData);
       }
       let settle:Card.ui_GameSettle;
@@ -387,7 +388,11 @@ namespace gameUI{
          pos = CardLogic.ddzGameLogic.Instance.playerposInfo[chairid];
          group = <eui.Group>this.getChildAt(pos+1);
      }
-
+    if(this.cdTimer)
+    {
+        CardLogic.Timer.Instance.Remove(this.cdTimer);
+        this.cdTimer = null;
+    }
     if(group&&this.curClockpos!=pos)
     {
        let clockpos = group.getChildByName("Label_pos");
@@ -396,7 +401,7 @@ namespace gameUI{
        this.clockCD.visible = true;
        group.addChild(this.clockCD);
        this.curClockpos = pos;
-       let cdTimer = CardLogic.Timer.Instance.Repeat(1,()=>{
+       this.cdTimer = CardLogic.Timer.Instance.Repeat(1,()=>{
            var sec =  cd - NetworkManager.Instance.ServerTimestamp ;
             if(sec>0)
              {
@@ -404,7 +409,8 @@ namespace gameUI{
             }
             else
              {
-                 CardLogic.Timer.Instance.Remove(cdTimer);
+                 CardLogic.Timer.Instance.Remove(this.cdTimer);
+                 this.cdTimer = null;
                  this.clockCD.visible = false;
              }  });
     }
