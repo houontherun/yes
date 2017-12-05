@@ -4,6 +4,8 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 	private card : PokerCard;
 	private bSelect:boolean = false;
 	private posY:number;
+	private bLandLord:boolean= false;
+    private img_landlord:eui.Image;
 
     private imgsource ;
 	public constructor() {
@@ -18,6 +20,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
                 return
             }
 			this.SetImageUrl(this.img_card,this.imgsource );
+			 this.img_landlord.visible = this.bLandLord;
 		}
 
 	public get cardData():PokerCard{
@@ -85,6 +88,12 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 	   {
            this.y =  this.posY;
 	   }
+	}
+
+	public Setlandlord(bll : boolean)
+	{
+	   this.bLandLord = bll;
+	   this.img_landlord.visible = this.bLandLord;
 	}
  }
 }

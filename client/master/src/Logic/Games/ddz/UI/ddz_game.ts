@@ -263,7 +263,7 @@ namespace gameUI{
             });
 
        }
-
+       CardLogic.ddzGameLogic.Instance.landUser = data.land_user;
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;     
        if(data.land_user == playerChairid) 
        {
@@ -526,7 +526,8 @@ namespace gameUI{
           _card.setPos(startposX + 30*i,posY);
           _card.SetSize(0.75);
           group.addChild(_card);
- 
+          if((i==cards.length-1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
+             _card.Setlandlord(true);
           this.cardItemArray[chairid].push(_card);
 	   }
         

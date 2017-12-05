@@ -15,6 +15,7 @@ export class ddzGameLogic extends Dispatcher {
    private UpdatePlayersEvent:CardLogic.CardEvent;
    public playerChairid:number = 0;
    public playerposInfo = {};
+   public landUser :number = -1;
 
    public static get Instance() {
         if(ddzGameLogic.shared == null) {
