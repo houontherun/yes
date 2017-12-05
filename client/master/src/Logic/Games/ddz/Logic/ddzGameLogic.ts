@@ -49,6 +49,18 @@ export class ddzGameLogic extends Dispatcher {
     {
         return this.players;
     }
+    
+    public GetPlayer(chairid:number):UserData
+    {
+        var _player:UserData = null;
+        for(var i = 0; i < this.players.length; i++)
+        {
+           if(chairid == this.players[i].ChairId)
+            return this.players[i];
+        }
+
+        return _player;
+    }
 
     public UpdatePlayers(data)
     {
@@ -83,15 +95,15 @@ export class ddzGameLogic extends Dispatcher {
     }
   
 
-   private Getindex(data:PokerCard):number
+   private Getindex(index :number,suit:CardColor):number
    {
-       let index :number= -1;
+       let _index :number= -1;
         for(var i = 0; i < this.hardCardList.length; i++){
-            if(this.hardCardList[i].Index == data.Index && this.hardCardList[i].Suit == data.Suit)
+            if(this.hardCardList[i].Index == index && this.hardCardList[i].Suit == suit)
              return i;
         }
 
-        return index;
+        return _index;
    }
     public Removecard(data):boolean
     {
@@ -99,8 +111,7 @@ export class ddzGameLogic extends Dispatcher {
         var iclr = Card.Util.GetCardColor(data);
         var color: CardColor = Colorlist[iclr];
         var index: number = Card.Util.GetCardValue(data);
-		var card : PokerCard = Card.Util.createPokerCard(index,color);
-        let x = this.Getindex(card);
+        let x = this.Getindex(index,color);
         if(x>-1)
           {
                this.hardCardList.splice(x,1);

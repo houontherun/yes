@@ -425,7 +425,8 @@ namespace gameUI{
         var i = 0;
         var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
         var playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid ;
-        var firstplayer = players[playerChairid];
+        var firstplayer = CardLogic.ddzGameLogic.Instance.GetPlayer(playerChairid);
+        if(firstplayer == null) return -1;
         while(i<this.PlayersNum)
         {
             if(firstplayer.ChairId == Chairid)
