@@ -58,11 +58,8 @@ namespace gameUI{
               protocol:constant.msg.CS_USER_READY
              });
             }, this );
-        this.Text_bnt2.x = 362;
-        this.AddClick(this.btn1,()=>{
-            
-        },this); 
-
+        this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
+        this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
         this.AddClick(this.btn_back, ()=>{   
              MessageManager.Instance.SendMessage({
               protocol:constant.msg.CS_USER_STAND_UP
@@ -72,6 +69,58 @@ namespace gameUI{
 
     }
 
+
+   private  SendStandUp():void
+   {
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_USER_STAND_UP
+         }); 
+   }
+
+  private  SendReady():void
+   {
+        MessageManager.Instance.SendMessage({
+              protocol:constant.msg.CS_USER_READY
+             });
+   }
+
+   private  SendSnatchlandLord():void
+   {
+         MessageManager.Instance.SendSubMessage({
+                    sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
+                    score:1
+                    });
+   }
+   
+   private  SendUnSnatchlandLord():void
+   {
+         MessageManager.Instance.SendSubMessage({
+                    sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
+                    score:0
+                    });
+   }
+
+   private Sendpasscard():void
+   {
+        MessageManager.Instance.SendSubMessage({
+                sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
+                });
+   }
+
+   private SendOutcard():void
+   {
+       let array = [];
+       for (let _card of this.GetShootCard()) {
+         array.push(Card.Util.GetSCCarddata(_card));
+       }
+       let count = array.length;
+       MessageManager.Instance.SendSubMessage({
+       sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
+       cards:array,
+       card_count:count
+       });
+       array = [];
+   }
 
    public onUnload():void{
         super.onUnload()
@@ -164,7 +213,11 @@ namespace gameUI{
       let settle:Card.ui_GameSettle;
       settle = new Card.ui_GameSettle(data.result,rankDatatables);
       this.addChild(settle);
-      settle.SetContinueclick(()=>{});
+      settle.SetContinueclick(()=>{
+          this.removeChild(settle);
+          this.clearCurGame();
+          this.restart();
+      });
 
       settle.SetExitClick(()=>{   
              MessageManager.Instance.SendMessage({
@@ -214,25 +267,13 @@ namespace gameUI{
         this.SetBtnsGame(true);
         this.Text_bnt1.text = "不出";
         this.Text_bnt2.text = "出牌";
-       
-        this.AddClick(this.btn1,()=>{
-                MessageManager.Instance.SendSubMessage({
-                sub_protocol:constant.sub_msg.SUB_C_PASS_CARD
-                })},this);
 
-        this.AddClick(this.btn2,()=>{
-                 let array = [];
-                for (let _card of this.GetShootCard()) {
-                  array.push(Card.Util.GetSCCarddata(_card));
-                }
-                let count = array.length;
-                MessageManager.Instance.SendSubMessage({
-                sub_protocol:constant.sub_msg.SUB_C_OUT_CART,
-                cards:array,
-                card_count:count
-                })
-                array = [];
-            },this); 
+        this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendSnatchlandLord,this);
+        this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendUnSnatchlandLord,this);
+        
+        this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.Sendpasscard,this);
+        this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
+
    }
 
    private StartGame(data)
@@ -290,7 +331,6 @@ namespace gameUI{
        this.Text_bnt2.visible = bvisible;
        this.btn2.visible = bvisible;
        this.Text_bnt2.x = 362;
-       this.btn2.x = 323;
    }
 
    //叫地主
@@ -327,18 +367,11 @@ namespace gameUI{
                 this.Text_bnt2.text = "不抢";
                 this.SetBtnsGame(true);
                 this.Text_bnt1.text = "抢地主";
+                this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
+                this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
 
-                this.AddClick(this.btn1,()=>{
-                    MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
-                    score:1
-                    })},this);
-
-                this.AddClick(this.btn2,()=>{
-                    MessageManager.Instance.SendSubMessage({
-                    sub_protocol:constant.sub_msg.SUB_C_LAND_SCORE,
-                    score:0
-                    })},this);      
+                this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendSnatchlandLord,this);
+                this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendUnSnatchlandLord,this);
             }
 
             else
@@ -448,7 +481,7 @@ namespace gameUI{
 
  private SetplayersInfo()
   {
-    this.clearOtherPlayers();
+    this.clearOtherPlayers(true);
     var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
      if(players.length > 0)
      {
@@ -527,16 +560,21 @@ namespace gameUI{
           _card.SetSize(0.75);
           group.addChild(_card);
           if((i==cards.length-1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
-             _card.Setlandlord(true);
+              _card.Setlandlord(true);
           this.cardItemArray[chairid].push(_card);
 	   }
         
         CardLogic.Timer.Instance.Delay(3.6,()=>{
-                for(let item of this.cardItemArray[chairid])
-                {
-                    group.removeChild(item);
-                    this.cardItemArray[chairid] = [];
-                }
+                 if(this.cardItemArray&&this.cardItemArray[chairid]!=null)
+                 {
+                    for(let item of this.cardItemArray[chairid])
+                   {
+                      group.removeChild(item);
+                      this.cardItemArray[chairid] = [];
+                    }
+                 }
+
+                
             });
 
       //更新手牌      
@@ -609,7 +647,7 @@ namespace gameUI{
             group = <eui.Group>this.getChildAt(playernum+1);
             if(group.numChildren == 8)
             {
-                 textNum = <eui.Label>group.getChildAt(6);
+                 textNum = <eui.Label>group.getChildAt(7);
                  textNum.text = "1";
             }
             else
@@ -619,7 +657,7 @@ namespace gameUI{
                
                backCard.scaleX = backCard.scaleY = 0.56;
                backCard.source = RES.getRes("card_back_png");
-               group.addChildAt(backCard,5);
+               group.addChildAt(backCard,6);
                textNum = new eui.Label;
                textNum.fontFamily = "SimHei";
                textNum.strokeColor = 0x0000ff;   //描边颜色
@@ -642,7 +680,7 @@ namespace gameUI{
                   textNum.y = 240;
                }
                
-               group.addChildAt(textNum,6);
+               group.addChildAt(textNum,7);
             }
             
             var i:number = 1;
@@ -857,22 +895,57 @@ namespace gameUI{
 
    
 
-    private clearOtherPlayers()
+    private clearOtherPlayers(bchangePlayer:boolean = false)
     {
+
+        var playerNum : number = 0;
          for(let i =1;i<this.PlayersNum;i++)
          {
              var group = <eui.Group>this.getChildAt(i+1);
-             if(group)
+             if(bchangePlayer)
              {
+               if(group)
+               {
                  group.visible = false;
                 
+               }
+               if(group.numChildren > 5)
+                  group.removeChildAt(0);
+
+                playerNum = 5;
              }
-             if(group.numChildren > 5)
-                group.removeChildAt(0);
-
+             else
+             {
+                 playerNum = 6;
+             }
+             
+              while(group.numChildren > playerNum)
+              {
+                 group.removeChildAt(group.numChildren -1);
+              }
+               
          }
-    }
 
+    }
+   
+   private restart()
+   {
+        this.SetBtnsGame(true);
+        this.Text_bnt1.text = "换桌";
+        this.Text_bnt2.text = "准备";
+       
+        this.AddClick(this.btn2, ()=>{   
+            MessageManager.Instance.SendMessage({
+              protocol:constant.msg.CS_USER_READY
+             });
+            }, this );
+        this.Text_bnt2.x = 362;
+        this.AddClick(this.btn1,()=>{
+            MessageManager.Instance.SendMessage({
+              protocol:constant.msg.CS_USER_STAND_UP
+           });
+        },this); 
+   }
 
     // 清理当前牌局
     private clearCurGame()
@@ -884,6 +957,9 @@ namespace gameUI{
 
         this.group_backcards.removeChildren();   
         this.clearOtherPlayers();
+        this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.Sendpasscard,this);
+        this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
+        this.cardItemArray = {};
     }
     	
 }
