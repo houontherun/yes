@@ -546,7 +546,7 @@ namespace gameUI{
         posY = Scorepos.y - 25;
      else
      {
-        let textNum :eui.Label = <eui.Label>group.getChildAt(6);   //显示剩余牌
+        let textNum :eui.Label = <eui.Label>group.getChildAt(7);   //显示剩余牌
         if(textNum) textNum.text = remainCount.toString();
      }
      for (var i = 0;i < cards.length;i++)
