@@ -204,11 +204,11 @@ namespace gameUI{
          let rankData = new Card.PlayerRankData(data.names[i],data.golds[i],data.base_score,data.user_time[i]);
          rankDatatables.push(rankData);
       }
-      let settle:Card.ui_GameSettle;
-      settle = new Card.ui_GameSettle(data.result,rankDatatables);
+      let settle:Card.ui_GameSettle = new Card.ui_GameSettle(data.result,rankDatatables);
       this.addChild(settle);
       settle.SetContinueclick(()=>{
           this.removeChild(settle);
+          settle = null;
           this.clearCurGame();
           this.restart();
       });
@@ -218,6 +218,7 @@ namespace gameUI{
               protocol:constant.msg.CS_USER_STAND_UP
            });
            this.removeChild(settle);
+           settle = null;
             });
      
    }
