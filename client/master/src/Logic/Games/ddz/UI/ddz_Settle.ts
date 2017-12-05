@@ -90,15 +90,14 @@ namespace Card {
 		   this.list_PlayersRank.itemRenderer = ddz_SettleItemRander;
 	       if(this.gameresult )
 	    	{
-			   this.SetImageUrl(this.img_result_title,"shengli_png");
+			   this.img_result_title.source = "shengli_png";
 			   this.SetImageUrl(this.img_result_bg,"tiaofu_png");
 	    	}
 			else
 			{
-                this.SetImageUrl(this.img_result_title,"sibai_png");
+				this.img_result_title.source = "sibai_png";
 			    this.SetImageUrl(this.img_result_bg,"biaotou_png");
 			}
-		   this.img_result_bg.scaleX = this.img_result_bg.scaleY = 0.7;
            this.list_PlayersRank.dataProvider = new eui.ArrayCollection(this.rankData);
 
 		   this.AddClick(this.btn_continue,()=>{

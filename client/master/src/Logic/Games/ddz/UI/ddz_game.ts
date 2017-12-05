@@ -162,7 +162,7 @@ namespace gameUI{
          rankDatatables.push(rankData);
       }
       let settle:Card.ui_GameSettle;
-      settle = new Card.ui_GameSettle(data.result,data.rankDatatables);
+      settle = new Card.ui_GameSettle(data.result,rankDatatables);
       this.addChild(settle);
       settle.SetContinueclick(()=>{});
 

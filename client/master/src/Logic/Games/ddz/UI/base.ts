@@ -32,7 +32,7 @@ namespace gameUI{
              if(texture)
              {
 		         img.width = texture.textureWidth;
-		         img.height = texture.textureWidth;
+		         img.height = texture.textureHeight;
 	             img.texture = texture;
              }
 
