@@ -71,8 +71,8 @@ namespace Card {
 			
 			this.gameresult = result;
 			this.rankData = data;
-		    this.skinName = "resource/custom_skins/ddz_ui/ui_gameSettle.exml";
 		    this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+		    this.skinName = "resource/custom_skins/ddz_ui/ui_gameSettle.exml";
 	      }
 
 		public SetContinueclick(func)
