@@ -9,20 +9,16 @@ namespace gameUI{
         }
 
         public AddClick(img:eui.UIComponent, onClick:Function, thisObject:any):void{
-            var scaX = img.scaleX
-            var scaY = img.scaleY
-            img.x += img.width/2
-            img.y += img.height/2
-            // img.anchorOffsetX = img.width/2
-            // img.anchorOffsetY = img.height/2            
+           // var scaX = img.scaleX
+           // var scaY = img.scaleY
 
             img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, ()=>{
-                img.scaleX = scaX * 0.8
-                img.scaleY = scaY * 0.8
+               // img.scaleX = scaX * 0.8
+                //img.scaleY = scaY * 0.8
             }, thisObject)
             img.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
-                img.scaleX = scaX
-                img.scaleY = scaY
+                //img.scaleX = scaX
+                //img.scaleY = scaY
                  onClick();
             }, thisObject)
         }

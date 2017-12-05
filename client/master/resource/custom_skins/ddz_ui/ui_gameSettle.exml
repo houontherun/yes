@@ -3,14 +3,14 @@
 	<e:Rect left="0" top="0" right="0" bottom="0" fillAlpha="0.5"/>
 	<e:Rect width="533" height="317" y="207" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.3" strokeAlpha="1" strokeWeight="1.2" horizontalCenter="0"/>
 	<e:Image id="img_result_bg" width="747" height="246" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0.5" scaleX="0.7" scaleY="0.7" source="biaotou_png" y="40"/>
-	<e:List id="list_PlayersRank" width="530" height="265" y="258" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0"/>
-	<e:Label text="昵称" x="440" y="228" size="24" textColor="0xb29a5e" fontFamily="SimHei"/>
-	<e:Label text="底分" x="570" y="228" size="24" textColor="0xB29A5E" fontFamily="SimHei"/>
-	<e:Label text="倍数" x="700" y="228" size="24" textColor="0xB29A5E" fontFamily="SimHei"/>
-	<e:Label text="元宝" x="830" y="228" size="24" textColor="0xB29A5E" fontFamily="SimHei"/>
-	<e:Image id="btn_exit" width="175" height="78" scaleX="0.75" scaleY="0.75" source="btn2_png" x="496" y="525"/>
+	<e:List id="list_PlayersRank" width="530" height="263" y="258" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0"/>
+	<e:Label text="昵称" x="444" y="228" size="25" textColor="0xb29a5e" fontFamily="SimHei" bold="true"/>
+	<e:Label text="底分" x="570" y="228" size="25" textColor="0xB29A5E" fontFamily="SimHei" bold="true"/>
+	<e:Label text="倍数" x="700" y="228" size="25" textColor="0xB29A5E" fontFamily="SimHei" bold="true"/>
+	<e:Label text="元宝" x="825" y="228" size="25" textColor="0xB29A5E" fontFamily="SimHei" bold="true"/>
+	<e:Image id="btn_exit" width="125" height="56" scaleX="1" scaleY="1" source="btn2_png" x="496" y="525"/>
 	<e:Label text="离开房间" x="509" y="538.25" anchorOffsetX="0" width="106" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" textColor="0xE8DD47" stroke="1.5" strokeColor="0x841308" size="24"/>
 	<e:Image id="img_result_title" width="141" height="71" x="593.5" y="125.9" anchorOffsetX="0" anchorOffsetY="0" source="shengli_png"/>
-	<e:Image id="btn_continue" width="175" height="78" horizontalCenter="130.5" scaleX="0.75" scaleY="0.75" y="525" source="btn1_png"/>
+	<e:Image id="btn_continue" width="125" height="56" horizontalCenter="130.5" scaleX="1" scaleY="1" y="525" source="btn1_png"/>
 	<e:Label text="继续游戏" x="748" y="538.25" anchorOffsetX="0" width="106" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x092482" size="24" textColor="0xefefef"/>
 </e:Skin>
