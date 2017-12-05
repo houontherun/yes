@@ -42,7 +42,7 @@
 	<e:Group id="group_btn" width="566" height="92" anchorOffsetX="0" anchorOffsetY="0" verticalCenter="67" horizontalCenter="0">
 		<e:Image id="btn2" width="183" height="76" verticalCenter="0" source="btn2_png" scaleX="0.75" scaleY="0.75" x="323"/>
 		<e:Image id="btn1" width="175" height="78" horizontalCenter="-104.5" verticalCenter="0" scaleX="0.75" scaleY="0.75" source="btn2_png"/>
-		<e:Label id="Text_bnt2" text="准备" x="336.13" y="30" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x841308" size="31" textColor="0xe5d547"/>
+		<e:Label id="Text_bnt2" text="准备" x="336" y="30" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x841308" size="31" textColor="0xe5d547"/>
 		<e:Label id="Text_bnt1" text="换桌" x="126.63" y="27" anchorOffsetX="0" width="106" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" textColor="0xe8dd47" stroke="1.5" strokeColor="0x841308" size="31"/>
 	</e:Group>
 	<e:Group id="group_backcards" width="171.08" height="142.89" y="10" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-3.5" rotation="359.84">

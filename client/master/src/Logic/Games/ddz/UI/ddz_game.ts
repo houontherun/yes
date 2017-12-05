@@ -53,11 +53,6 @@ namespace gameUI{
                  
             }, this );
 
-        this.AddClick(this.btn2, ()=>{   
-            MessageManager.Instance.SendMessage({
-              protocol:constant.msg.CS_USER_READY
-             });
-            }, this );
         this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
         this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
         this.AddClick(this.btn_back, ()=>{   
@@ -66,7 +61,6 @@ namespace gameUI{
            });
            
             }, this );
-
     }
 
 
@@ -329,8 +323,8 @@ namespace gameUI{
        this.Text_bnt1.visible = bvisible;
        this.btn1.visible = bvisible;
        this.Text_bnt2.visible = bvisible;
+    
        this.btn2.visible = bvisible;
-       this.Text_bnt2.x = 362;
    }
 
    //叫地主
@@ -934,17 +928,8 @@ namespace gameUI{
         this.Text_bnt1.text = "换桌";
         this.Text_bnt2.text = "准备";
        
-        this.AddClick(this.btn2, ()=>{   
-            MessageManager.Instance.SendMessage({
-              protocol:constant.msg.CS_USER_READY
-             });
-            }, this );
-        this.Text_bnt2.x = 362;
-        this.AddClick(this.btn1,()=>{
-            MessageManager.Instance.SendMessage({
-              protocol:constant.msg.CS_USER_STAND_UP
-           });
-        },this); 
+        this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
+        this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
    }
 
     // 清理当前牌局
