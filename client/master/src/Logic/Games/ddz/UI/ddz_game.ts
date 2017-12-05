@@ -155,7 +155,7 @@ namespace gameUI{
    private GameEnd(data)
    {
       let rankDatatables = [] ;
-      for(var i = 0;i<data.names;i++)
+      for(var i = 0;i<data.names.length;i++)
       {
          let rankData = new Card.PlayerRankData(data.names[i],data.gold[i],data.base_score[i],data.user_time[i]);
          rankDatatables.push(rankData);
@@ -488,18 +488,21 @@ namespace gameUI{
      let Scorepos = group.getChildByName("Label_pos");
      let startposX :number = 0;
      startposX = Scorepos.x - 30;
-     
- 
+
      let posY = 24;
      startposX = Scorepos.x ;
      if(startposX < 10)
      {
          startposX = startposX  - 30*cards.length;
      }
-     for(let carditem of this.cardItemArray[chairid])
+     if(this.cardItemArray&&this.cardItemArray[chairid]!=null)
      {
-        group.removeChild(carditem);
+        for(let carditem of this.cardItemArray[chairid])
+        {
+           group.removeChild(carditem);
+        }
      }
+    
      this.cardItemArray[chairid] = []
 
      if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
