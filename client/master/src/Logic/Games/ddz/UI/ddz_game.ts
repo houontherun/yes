@@ -960,6 +960,10 @@ namespace gameUI{
         this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.Sendpasscard,this);
         this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
         this.cardItemArray = {};
+        if(this.clockCD)
+        {
+          this.clockCD = null;
+        }
     }
     	
 }
