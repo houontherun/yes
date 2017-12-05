@@ -14,9 +14,9 @@ namespace Card {
     }
 
 	public get Gold():number { return this.gold;}
-    public get UserTime():any{ return this.usertimes }
-    public get Name():any{ return this.Playername; }
-	public get BaseScore():any{ return this.baseScore; }
+    public get UserTime():number{ return this.usertimes }
+    public get Name():string{ return this.Playername; }
+	public get BaseScore():number{ return this.baseScore; }
 
 }
 
@@ -30,7 +30,7 @@ namespace Card {
 	  constructor() {
 			super();
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
-			this.skinName = "resource/custom_skins/ddz_ui/ui_gameSettle.exml";
+			this.skinName = "resource/custom_skins/ddz_ui/PlayerRank.exml";
 		}
 
 		private onload():void {
@@ -47,9 +47,9 @@ namespace Card {
                 return;
 
 			this.text_name.text = this.data.Name;
-			this.text_baseScore.text = this.data.BaseScore;
-			this.text_gold.text = this.data.Gold;
-			this.text_times.text = this.data.UserTime;
+			this.text_baseScore.text = this.data.BaseScore.toString();
+			this.text_gold.text = this.data.Gold.toString();
+			this.text_times.text = this.data.UserTime.toString();
 
 		}
 	}
@@ -87,7 +87,6 @@ namespace Card {
          
         private onload():void 
 	    {
-		   this.list_PlayersRank.itemRenderer = ddz_SettleItemRander;
 	       if(this.gameresult )
 	    	{
 			   this.img_result_title.source = "shengli_png";
@@ -99,6 +98,7 @@ namespace Card {
 			    this.SetImageUrl(this.img_result_bg,"biaotou_png");
 			}
            this.list_PlayersRank.dataProvider = new eui.ArrayCollection(this.rankData);
+		   this.list_PlayersRank.itemRenderer = ddz_SettleItemRander;
 
 		   this.AddClick(this.btn_continue,()=>{
 			   if(this.Continue)
