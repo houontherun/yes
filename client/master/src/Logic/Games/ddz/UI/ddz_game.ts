@@ -238,7 +238,8 @@ namespace gameUI{
             img.y = Scorepos.y;
             group.addChild(img);
             CardLogic.Timer.Instance.Delay(4,()=>{
-                 group.removeChild(img);
+                 if(this.clockCD!=null)
+                   group.removeChild(img);
             });
        }
        this.SetBtnsGame(false);
@@ -430,7 +431,7 @@ namespace gameUI{
        this.curClockpos = pos;
        this.cdTimer = CardLogic.Timer.Instance.Repeat(1,()=>{
            var sec =  cd - NetworkManager.Instance.ServerTimestamp ;
-            if(sec>0)
+            if(sec>0&&this.clockCD)
              {
                 this.clockCD.SetCd(sec);
             }
@@ -438,7 +439,8 @@ namespace gameUI{
              {
                  CardLogic.Timer.Instance.Remove(this.cdTimer);
                  this.cdTimer = null;
-                 this.clockCD.visible = false;
+                 if(this.clockCD)
+                    this.clockCD.visible = false;
              }  });
     }
   }
@@ -475,7 +477,7 @@ namespace gameUI{
 
  private SetplayersInfo()
   {
-    this.clearOtherPlayers(true);
+    this.clearPlayers(true);
     var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
      if(players.length > 0)
      {
@@ -889,7 +891,7 @@ namespace gameUI{
 
    
 
-    private clearOtherPlayers(bchangePlayer:boolean = false)
+    private clearPlayers(bchangePlayer:boolean = false)
     {
 
         var playerNum : number = 0;
@@ -919,6 +921,17 @@ namespace gameUI{
               }
                
          }
+          if(bchangePlayer)
+          {
+             if( this.group_Player0.numChildren > 3)
+                this.group_Player0.removeChildAt(0);     
+              playerNum = 3;  
+          }
+          playerNum = 4;  
+          while(this.group_Player0.numChildren > playerNum)
+          {
+              this.group_Player0.removeChildAt(this.group_Player0.numChildren -1);
+          }
 
     }
    
@@ -939,16 +952,17 @@ namespace gameUI{
         {
            this.removehardCard();
         }
-
         this.group_backcards.removeChildren();   
-        this.clearOtherPlayers();
+        this.clearPlayers();
         this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.Sendpasscard,this);
         this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
         this.cardItemArray = {};
         if(this.clockCD)
         {
-          this.clockCD = null;
+           this.clockCD = null;
         }
+
+
     }
     	
 }
