@@ -11,9 +11,9 @@ namespace gameUI{
         
         constructor() {
             super();
+            this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
             this.skinName = "resource/custom_skins/controls/ScrollviewSkin.exml";
             this.viewport = this.dataList;
-            this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
         }
         private onload():void {
             this.isLoaded = true
