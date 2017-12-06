@@ -15,13 +15,34 @@ class RoomData{
     private player_count:number
     private room_id:number
 
+    private gameId:number
+    private name:string
+    private baseScore:number
+    private limit:number
+
     constructor(room_data){
         this.player_count = room_data.player_count
         this.room_id = room_data.room_id
+        var cfg_room = DataManager.Instance.getJsonData('hall').RoomType
+        for(var key in cfg_room){
+            var r = cfg_room[key]
+            if(r.ID == this.room_id){
+                this.name = r.Name
+                this.limit = r.limit
+                this.gameId = r.gameID
+                this.baseScore = r.BaseScore
+                break
+            }
+        }
     }
 
     public get PlayerCount():number {   return this.player_count  }
     public get RoomId():number {   return this.room_id }
+
+    public get GameId():number {   return this.gameId }
+    public get Name():string {   return this.name }
+    public get BaseScore():number {   return this.baseScore }
+    public get Limit():number {   return this.limit }
     
     public Update(data:any):void{
         if(data.player_count != undefined && data.player_count != null){  this.player_count = data.player_count }
@@ -174,6 +195,7 @@ class RoomManager extends Dispatcher {
     }
 
     private onRoomListRet(data:any):void{
+        this.roomList = []
         for(var i = 0; i < data.room_list.length; i++){
             var rd = new RoomData(data.room_list[i])
             this.roomList.push(rd)

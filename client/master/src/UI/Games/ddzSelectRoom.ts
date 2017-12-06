@@ -2,7 +2,7 @@
 namespace gameUI{
     class ddzSelectRoomItemRander extends eui.ItemRenderer{
         public imgBg:eui.Image;
-        public txtLevel:eui.Label;
+        public txtName:eui.Label;
         public lblState:eui.Label;
         public imgState:eui.Image;
         public txtState:eui.Label;
@@ -25,11 +25,16 @@ namespace gameUI{
         private updateUI():void{
             if(!this.isLoaded || this.data == null)
                 return
+            this.txtName.text = this.data.Name
+            this.txtEnterGold.text = this.data.BaseScore
         }
         private onClick():void {
             // 请求进入房间
-            // console.log('enter room ' + this.data.RoomId)
-            RoomManager.Instance.EnterRoom(this.data.RoomId)
+            if(PlayerManager.Instance.Data.Gold >= this.data.Limit){
+                RoomManager.Instance.EnterRoom(this.data.RoomId)
+            }else{
+                alert('金币不够')
+            }
 		}
 
 		protected dataChanged():void {

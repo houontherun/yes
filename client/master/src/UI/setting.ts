@@ -10,22 +10,28 @@ namespace gameUI{
 			super();
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
 			this.skinName = "resource/custom_skins/settingLanguageItem.exml";
+            this.isLoaded = false
 		}
 
 		private onload():void {
             this.isLoaded = true
+
             this.txtLan.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 var settingUI = UIManager.Instance.GetChild(UI.setting)
                 if(settingUI != null){
                     settingUI.onSelectLanguage(this.data.text)                    
                 }
             }, this)
+            this.updateUI()
 		}
-		protected dataChanged():void {
-            if(!this.isLoaded){
+        private updateUI(){
+            if(!this.isLoaded || this.data == null){
                 return
             }
-            this.txtLan.text = this.data.text            
+            this.txtLan.text = this.data.text       
+        }
+		protected dataChanged():void {
+            this.updateUI()  
 		}
     }
 
@@ -37,9 +43,6 @@ namespace gameUI{
                 this.Close()
             }, this)
 
-            this.svData.visible = false
-            // this.svData.initItemRenderer(settingLanguageItemRander)
-            // this.svData.initItemSkin("resource/custom_skins/settingLanguageItem.exml")
             var languages:Array<Object> = [
                 {text : "中文"},
                 {text : "英文"},
@@ -47,12 +50,13 @@ namespace gameUI{
                 {text : "鸟语"},
                 {text : "兽语"},
             ]
-            this.dataList.dataProvider = new eui.ArrayCollection(languages) 
-            this.dataList.itemRenderer = settingLanguageItemRander
+            this.svData.initItemRenderer(settingLanguageItemRander)
+            this.svData.bindData(languages)
             
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.svData.visible = !this.svData.visible
             }, this)
+            this.svData.visible = false
 
             // console.log(this.sliderMusic.thumb.source)
 
@@ -65,11 +69,7 @@ namespace gameUI{
             this.svData.visible = false            
         }
         public btnClose:eui.Image;
-        // public svData:gameUI.Scrollview;
-        public svData:eui.Scroller;
-
-        public dataList:eui.List;
-
+        public svData:gameUI.Scrollview;
 
         public imgSelect:eui.Image;
         public txtLang:eui.Label;
