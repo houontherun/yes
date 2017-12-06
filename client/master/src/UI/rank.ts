@@ -70,10 +70,8 @@ namespace gameUI{
             this.tabBtns = [this.btnGold, this.btnCredit, this.btnCharm]
             this.tabText = [this.lblGold, this.lblCredit, this.lblCharm]
 
-            // this.svData.initItemRenderer(rankItemRander)
-            // this.svData.initItemSkin("resource/custom_skins/rankItemSkin.exml")
-            this.dataList.itemRenderer = rankItemRander
-            this.dataList.itemRendererSkinName = "resource/custom_skins/rankItemSkin.exml"
+            this.svData.initItemRenderer(rankItemRander)
+            this.svData.initItemSkin("resource/custom_skins/rankItemSkin.exml")
 
             MessageManager.Instance.addEventListener(constant.msg.SC_GET_RANK, this.onGetRankList, this)   
 
@@ -121,7 +119,7 @@ namespace gameUI{
         }
         private onGetRankList(data:any):void{   
             // if(data.ret == 0){ 
-                this.dataList.dataProvider = new eui.ArrayCollection(data.rank) 
+                this.svData.bindData(data.rank)
                 if(data.type == 1){
                     this.txtScore.text = "金币"
                 }
@@ -135,9 +133,7 @@ namespace gameUI{
         private tabText:Array<eui.Label>
 
         public btnClose:eui.Image;
-        // public svData:gameUI.Scrollview;
-        public svData:eui.Scroller;
-        public dataList:eui.List;
+        public svData:gameUI.Scrollview;
         public btnGold:eui.Image;
         public btnCredit:eui.Image;
         public btnCharm:eui.Image;

@@ -13,16 +13,7 @@
 	<e:Image id="btnCharm" source="rank_tab2_png" x="104.86" y="338.75"/>
 	<e:Image source="rank_bg6_png" x="361.18" y="142.6"/>
 	<e:Image source="rank_bg_png" x="370.32" y="207.04"/>
-	<!--<gameUI:Scrollview id="svData" width="858.67" height="476" x="375" y="223" anchorOffsetX="0" anchorOffsetY="0">
-		<e:Group anchorOffsetX="0" width="618.67" anchorOffsetY="0" height="382.67"/>
-	</gameUI:Scrollview>-->
-    <e:Scroller id="svData" width="858.67" height="476" x="375" y="223" scrollPolicyH="off" scrollPolicyV="on">
-        <e:List id="dataList" width="100%" height="100%" x="0" y="0">
-            <e:layout>
-                <e:VerticalLayout />
-            </e:layout>
-        </e:List>
-	</e:Scroller>
+	<gameUI:Scrollview id="svData" width="858.67" height="476" x="375" y="223" anchorOffsetX="0" anchorOffsetY="0" />
 	<e:Label id="lblGold" text="财富榜" x="153.64" y="170.23" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
 	<e:Label id="lblCredit" text="信用榜" x="155.03" y="267.55" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
 	<e:Label id="lblCharm" text="魅力榜" x="150.88" y="363.58" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>

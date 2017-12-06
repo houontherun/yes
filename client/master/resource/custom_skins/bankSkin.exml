@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="bankSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="bankSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameUI="gameUI.*">
     <e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
 	<e:Image source="bg_png" x="81.51" y="90.35" anchorOffsetX="0" width="1168.34" anchorOffsetY="0" height="615" scale9Grid="23,4,676,511"/>
 	<e:Image source="frame2_png" x="88.12" y="103.33" fillMode="repeat" anchorOffsetX="0" width="1152.33"/>
@@ -29,7 +29,7 @@
 		<e:EditableText id="txtInNum" width="461.34" height="34.66" text="" x="283.33000000000004" y="161.66999999999996" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 		<e:EditableText id="txtGSBankPwd" width="461.34" height="34.66" text="" x="283.33000000000004" y="234.83999999999992" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 	</e:Group>
-	<e:Group id="groupGive" width="860" height="361.33" x="228" y="296" anchorOffsetX="0" anchorOffsetY="0" visible="true">
+	<e:Group id="groupGive" width="860" height="361.33" x="228" y="296" anchorOffsetX="0" anchorOffsetY="0" visible="false">
 		<e:Image source="bank_txtBg_png" x="269.28" y="22.73" scaleX="1" scaleY="1"/>
 		<e:Image source="bank_txtBg_png" x="269.28" y="96.02" scaleX="1" scaleY="1"/>
 		<e:EditableText id="txtGiveId" width="461.34" height="34.66" text="" x="292.66" y="29.5" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
@@ -52,18 +52,12 @@
 		<e:Image id="imgGiveOK" source="btnbg2_png" x="546.97" y="289.37" anchorOffsetY="0" height="59.27" anchorOffsetX="0" width="210.03"/>
 		<e:Label text="确认赠送" x="564.82" y="302.5" fontFamily="SimHei" size="25" textColor="0x604524" scaleX="1" scaleY="1" anchorOffsetX="0" width="172" textAlign="center" verticalAlign="middle" anchorOffsetY="0" height="33" touchEnabled="false"/>
 	</e:Group>
-	<e:Group id="groupRecord" width="860" height="361.33" x="238" y="306" anchorOffsetX="0" anchorOffsetY="0" visible="false">
+	<e:Group id="groupRecord" width="860" height="361.33" x="238" y="306" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Label text="交易日期" x="32.65" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
 		<e:Label text="交易金额" x="544.43" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
 		<e:Label text="收款人ID" x="385.76" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
 		<e:Label text="汇款人ID" x="223.83" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
 		<e:Label text="信用评价" x="725.63" y="3" fontFamily="SimHei" textColor="0xbf9d42"/>
-		<e:Scroller id="svData" width="860" height="318.67" x="0" y="42.66" scrollPolicyH="off" scrollPolicyV="on" anchorOffsetY="0">
-			<e:List id="dataList" width="100%" height="316" x="0" y="22.67" anchorOffsetY="0">
-				<e:layout>
-					<e:VerticalLayout />
-				</e:layout>
-			</e:List>
-		</e:Scroller>
+		<gameUI:Scrollview id="svRecords" width="860" height="318.67" x="0" y="42.66" scaleX="1" scaleY="1" />
 	</e:Group>
 </e:Skin>

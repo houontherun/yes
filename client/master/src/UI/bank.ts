@@ -94,8 +94,8 @@ namespace gameUI{
             this.loadTab(0)
 
             // bind oper data
-            this.dataList.itemRenderer = rankItemRander
-            this.dataList.itemRendererSkinName = "resource/custom_skins/bankOperItemSkin.exml"
+            this.svRecords.initItemRenderer(rankItemRander) //list []{guid, ruid, t, gold, id}
+            this.svRecords.initItemSkin("resource/custom_skins/bankOperItemSkin.exml")
             
             PlayerManager.Instance.addEventListener(constant.event.logic.on_player_data_update, this.updateUI, this)
 			this.updateUI(PlayerManager.Instance.Data) 
@@ -139,7 +139,7 @@ namespace gameUI{
         }  
         private onGetBankRecord(data):void{
             if(data.ret == 0){
-                this.dataList.dataProvider = new eui.ArrayCollection(data.list) //list []{guid, ruid, t, gold, id}
+                this.svRecords.bindData(data.list) //list []{guid, ruid, t, gold, id}
             }
         }
 
@@ -179,7 +179,7 @@ namespace gameUI{
         public imgOneYi:eui.Image;
 
         public groupRecord:eui.Group;
-        public svData:eui.Scroller;
-        public dataList:eui.List;
+        public svRecords:gameUI.Scrollview;
+
     }
 }

@@ -38,8 +38,7 @@ namespace gameUI{
     }
 
     export class ddzSelectRoom extends gameUI.base {
-        public svGame:eui.Scroller;
-        public listGames:eui.List;
+        public svGame:gameUI.Scrollview;
         public imgGameBg:eui.Image;
         public btnClose:eui.Image;
         
@@ -48,8 +47,9 @@ namespace gameUI{
             UIManager.Instance.Lobby.groupType.visible = false
             UIManager.Instance.Lobby.groupTopMenu.visible = false            
 
-            this.listGames.itemRenderer = ddzSelectRoomItemRander
-            this.listGames.dataProvider = new eui.ArrayCollection(RoomManager.Instance.RoomList)
+            this.svGame.initScrollLayout(gameUI.ScrollLayout.Horizontal)
+            this.svGame.initItemRenderer(ddzSelectRoomItemRander)
+            this.svGame.bindData(RoomManager.Instance.RoomList)
 
             this.AddClick(this.btnClose, ()=>{
                 this.Close()

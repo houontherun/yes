@@ -43,22 +43,19 @@ namespace gameUI{
 
 			var games = DataManager.Instance.getGames()
 
-			this.svGame.horizontalScrollBar	= null;
-			this.listGames.itemRenderer = game_item;
-			this.listGames.dataProvider = new eui.ArrayCollection(games[1]);
+			this.svGame.initScrollLayout(gameUI.ScrollLayout.Horizontal) 
+			this.svGame.initItemRenderer(game_item)
+			this.svGame.bindData(games[1])
 
 			this.AddClick(this.btnPuke, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(games[1]);
-				this.listGames.validateNow();
+				this.svGame.bindData(games[1])
 			}, this)
 
 			this.AddClick(this.btnMajiang, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(games[2]);
-				this.listGames.validateNow();                
+				this.svGame.bindData(games[2])          
             }, this );
 			this.AddClick(this.btnQilei, ()=>{
-				this.listGames.dataProvider = new eui.ArrayCollection(games[3]);
-				this.listGames.validateNow();                
+				this.svGame.bindData(games[3])           
             }, this );
 
 			// top menu
@@ -159,11 +156,8 @@ namespace gameUI{
 		public txtUserName:eui.Label;
 		public txtCopyId:eui.Label;
 		public txtUsrId:eui.Label;
-
 		
-		private svGame:eui.Scroller;
-		private listGames:eui.List;
-
+		private svGame:gameUI.Scrollview;
 
 		public btnPuke:eui.Image;
 		public btnMajiang:eui.Image;

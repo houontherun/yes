@@ -78,7 +78,8 @@ namespace gameUI{
             UIManager.Instance.Lobby.groupTopMenu.visible = false
             UIManager.Instance.Lobby.imgBg.source = 'background2_png'
 
-            this.listGames.itemRenderer = ddzRoomItemRander
+            this.svGame.initScrollLayout(gameUI.ScrollLayout.Horizontal)
+            this.svGame.initItemRenderer(ddzRoomItemRander)
             this.AddClick(this.btnClose, ()=>{
                 RoomManager.Instance.LevelRoom()
             }, this)
@@ -111,7 +112,7 @@ namespace gameUI{
         private onQueryRoomInfo(data:EnterRoomData):void{
             this.enterRoomData = data
             this.enterRoomData.addEventListener(constant.event.logic.on_table_users_update, this.onTableUserUpdate, this)
-            this.listGames.dataProvider = new eui.ArrayCollection(this.enterRoomData.Tables)
+            this.svGame.bindData(this.enterRoomData.Tables)
         }
         private onSitDown(data):void{
             UIManager.Instance.UnloadUI(UI.ddzRoom);
@@ -123,8 +124,8 @@ namespace gameUI{
             UIManager.Instance.LoadUI(UI.ddzSelectRoom)
         }
         private onTableUserUpdate(table:TableData):void{
-            for(var i = 0; i < this.listGames.numChildren; i++){
-                var tableItem = <ddzRoomItemRander>this.listGames.getChildAt(i)
+            for(var i = 0; i < this.svGame.DataList.numChildren; i++){
+                var tableItem = <ddzRoomItemRander>this.svGame.DataList.getChildAt(i)
                 if(tableItem.data.TableId == table.TableId){
                     tableItem.updateUI()
                 }
@@ -132,8 +133,7 @@ namespace gameUI{
         }
 
         private enterRoomData:EnterRoomData
-        public svGame:eui.Scroller;
-        public listGames:eui.List;
+        public svGame:gameUI.Scrollview
         public btnClose:eui.Image;
         public btnQuickStart:eui.Image;
     }
