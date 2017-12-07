@@ -58,7 +58,8 @@ namespace Card {
 
 		private gameresult:boolean = false;
 		private img_result_title:eui.Image;
-		private img_result_bg:eui.Image;
+		private img_result1_bg:eui.Image;
+		private img_result0_bg:eui.Image;
 		private list_PlayersRank:eui.List;
 		private btn_exit :eui.Image;
 		private btn_continue :eui.Image;
@@ -90,12 +91,14 @@ namespace Card {
 	       if(this.gameresult )
 	    	{
 			   this.img_result_title.source = "shengli_png";
-			   this.SetImageUrl(this.img_result_bg,"tiaofu_png");
+			   this.img_result1_bg.visible = true;
+			   this.img_result0_bg.visible = false;
 	    	}
 			else
 			{
 				this.img_result_title.source = "sibai_png";
-			    this.SetImageUrl(this.img_result_bg,"biaotou_png");
+			    this.img_result0_bg.visible = true;
+			    this.img_result1_bg.visible = false;
 			}
            this.list_PlayersRank.dataProvider = new eui.ArrayCollection(this.rankData);
 		   this.list_PlayersRank.itemRenderer = ddz_SettleItemRander;

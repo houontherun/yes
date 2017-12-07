@@ -276,11 +276,12 @@ namespace gameUI{
    {   
         let score :number = data.land_score ;
         this.txt_gamedouble.text = score.toString();
-       
-
+        CardLogic.ddzGameLogic.Instance.landUser = data.land_user;
+        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;   
+  
         if(data.last_user != constant.INVALID)
        {
-           let group = this.GetGroupChairid(data.last_user);
+          let group = this.GetGroupChairid(data.last_user);
         
           let Scorepos = group.getChildByName("Label_pos");
           var img = new eui.Image();
@@ -298,10 +299,19 @@ namespace gameUI{
             CardLogic.Timer.Instance.Delay(3.2,()=>{
                  group.removeChild(img);
             });
-
        }
-       CardLogic.ddzGameLogic.Instance.landUser = data.land_user;
-       let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;     
+
+       if(data.land_user!= constant.INVALID)
+       {
+          let group = this.GetGroupChairid(data.land_user);
+          var maoimg = new eui.Image();
+          maoimg.source = RES.getRes('dizhumao_png');
+          maoimg.y = 0;
+          maoimg.x = 200;
+          group.addChild(maoimg);
+       }
+
+
        if(data.land_user == playerChairid) 
        {
            this.AddBackCard(data.back_card);

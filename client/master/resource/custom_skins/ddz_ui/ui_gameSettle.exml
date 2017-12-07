@@ -2,7 +2,8 @@
 <e:Skin class="ui_gameSettle" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect left="0" top="0" right="0" bottom="0" fillAlpha="0.5"/>
 	<e:Rect width="533" height="317" y="207" anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.3" strokeAlpha="1" strokeWeight="1.2" horizontalCenter="0"/>
-	<e:Image id="img_result_bg" width="747" height="246" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0.5" scaleX="0.7" scaleY="0.7" source="biaotou_png" y="40"/>
+	<e:Image id="img_result0_bg" width="747" height="246" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.7" scaleY="0.7" y="45.32" horizontalCenter="-0.5" source="biaotou_png"/>
+	<e:Image id="img_result1_bg" width="747" height="129" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.7" scaleY="0.7" y="121.32" horizontalCenter="-0.5" source="tiaofu_png" visible="false"/>
 	<e:List id="list_PlayersRank" width="530" height="263" y="258" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0"/>
 	<e:Label text="昵称" x="444" y="228" size="25" textColor="0xb29a5e" fontFamily="SimHei" bold="true"/>
 	<e:Label text="底分" x="570" y="228" size="25" textColor="0xB29A5E" fontFamily="SimHei" bold="true"/>
