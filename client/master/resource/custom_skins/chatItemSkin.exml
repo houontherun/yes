@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="chatItemSkin" width="847" height="132" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="leftGroup" width="847" height="107" x="-1" y="6" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="imgHeadL" source="touxiang_png" x="11" y="9" scaleX="1" scaleY="1"/>
+		<e:Label id="txtNameL" text="张三" x="113" y="16" fontFamily="SimHei" anchorOffsetX="0" width="198" textColor="0xc6c1b4"/>
+		<e:Image id="imgContentBgL" source="qitarenduihuakuang_png" x="112" y="52" scale9Grid="22,7,349,28" anchorOffsetX="0" width="714"/>
+		<e:Label id="txtContentL" text="你一一五一一" x="134" y="62" textAlign="left" textColor="0xf79d2c" fontFamily="SimHei" size="20"/>
+	</e:Group>
+	<e:Group id="rightGroup" width="847" height="107" x="-1" y="6" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="imgHeadR" source="touxiang_png" x="751" y="9" scaleX="1" scaleY="1"/>
+		<e:Label id="txtNameR" text="张三" x="521" y="16" fontFamily="SimHei" anchorOffsetX="0" width="198" textColor="0xC6C1B4" textAlign="right"/>
+		<e:Image id="imgContentBgR" y="52" anchorOffsetX="0" width="626" source="wode-duihaukuang_png" scale9Grid="22,7,349,28" right="109"/>
+		<e:Label id="txtContentR" text="你一一五一一" x="598" y="62" textAlign="right" fontFamily="SimHei" size="20" textColor="0xf9e5cc"/>
+	</e:Group>
+</e:Skin>

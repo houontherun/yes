@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,com_bg_png,qilei_png,jieji_png,majiang_png,puke_png,QI_png,ZITI_png,mj_png,pk_name_png,mj_name_png,ql_name_png,lobby_bg_png,touxiang_png,headbg_png,fuzhibeijing_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,gengduo_png,goldbg_png,gonggao_png,GUANG_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,majiangkk_png,OO_png,paihangbang_png,paopao_png,pukeitem_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiangbeiban_png,yinhang_png,background_png,mask_png,slider_png,title_png,sliderfg_png,sliderbg_png,combBg_png,flag_png,arrow_png,quit_png,logout_png,btnbg2_png,btnQuit_png,close_png,frame_png,frame2_png,titleBg_png,bank_bank_png,bank_tab_png,bank_cunqu_png,bank_zen_png,bank_cuozuo_png,bank_tab2_png,bank_icon_png,bank_icon2_png,bank_quchu_png,bank_cunru_png,bg_png,bank_txtBg_png,langueageBg_png,rank_rank_png,rank_tab_png,rank_tab2_png,rank_caifu_png,rank_xinyong_png,rank_meili_png,rank_paiming_png,rank_nichen_png,rank_fangka_png,rank_1_png,rank_2_png,rank_3_png,rank_fa_png,rank_index_png,rank_bg_png,rank_bg2_png,rank_bg3_png,rank_bg4_png,rank_bg5_png,rank_bg6_png,fanhui2_png,kuaishukaishi_png,zuozi2_png,touxiangbeiban2_png,zuohaopai_png,background2_png,hall_json,fanhui3_png,kuaishukaishi2_png,touxiangbeiban3_png,zuohaopai2_png,zuozi3_png,background22_png,hall2_json,name_json,name2_json,shengli_png,tiaofu_png,sibai_png,biaotou_png,dizhumao_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,com_bg_png,qilei_png,jieji_png,majiang_png,puke_png,QI_png,ZITI_png,mj_png,pk_name_png,mj_name_png,ql_name_png,lobby_bg_png,touxiang_png,headbg_png,fuzhibeijing_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,gengduo_png,goldbg_png,gonggao_png,GUANG_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,majiangkk_png,OO_png,paihangbang_png,paopao_png,pukeitem_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiangbeiban_png,yinhang_png,background_png,mask_png,slider_png,title_png,sliderfg_png,sliderbg_png,combBg_png,flag_png,arrow_png,quit_png,logout_png,btnbg2_png,btnQuit_png,close_png,frame_png,frame2_png,titleBg_png,bank_bank_png,bank_tab_png,bank_cunqu_png,bank_zen_png,bank_cuozuo_png,bank_tab2_png,bank_icon_png,bank_icon2_png,bank_quchu_png,bank_cunru_png,bg_png,bank_txtBg_png,langueageBg_png,rank_rank_png,rank_tab_png,rank_tab2_png,rank_caifu_png,rank_xinyong_png,rank_meili_png,rank_paiming_png,rank_nichen_png,rank_fangka_png,rank_1_png,rank_2_png,rank_3_png,rank_fa_png,rank_index_png,rank_bg_png,rank_bg2_png,rank_bg3_png,rank_bg4_png,rank_bg5_png,rank_bg6_png,fanhui2_png,kuaishukaishi_png,zuozi2_png,touxiangbeiban2_png,zuohaopai_png,background2_png,hall_json,fanhui3_png,kuaishukaishi2_png,touxiangbeiban3_png,zuohaopai2_png,zuozi3_png,background22_png,hall2_json,name_json,name2_json,shengli_png,tiaofu_png,sibai_png,biaotou_png,dizhumao_png,dizhumao2_png,close2_png,shurukuangbeijing_png,wangjimima_png,weiixn_png,yonghuzhuce_png,zhanghao_png,beiban_png,denglu_png,mima_png,qqdenglu_png,xiabiantiao_png,fanqizhanghao_png,shoujidenglu_png,tengxun_png,weiixn2_png,xinmima_png,chonghzimima_png,jiumima_png,wode-duihaukuang_png,dazhikuang_png,liaotiankuang_png,qitarenduihuakuang_png,shijiepingdao_png",
 			"name": "preload"
 		},
 		{
@@ -39,6 +39,10 @@
 		{
 			"keys": "card_0_1_png,card_0_10_png,card_0_11_png,card_0_12_png,card_0_13_png,card_0_2_png,card_0_3_png,card_0_4_png,card_0_5_png,card_0_6_png,card_0_7_png,card_0_8_png,card_0_9_png,card_1_1_png,card_1_10_png,card_1_11_png,card_1_12_png,card_1_13_png,card_1_2_png,card_1_3_png,card_1_4_png,card_1_5_png,card_1_6_png,card_1_7_png,card_1_8_png,card_1_9_png,card_2_1_png,card_2_10_png,card_2_11_png,card_2_12_png,card_2_13_png,card_2_2_png,card_2_3_png,card_2_4_png,card_2_5_png,card_2_6_png,card_2_7_png,card_2_8_png,card_2_9_png,card_3_1_png,card_3_10_png,card_3_11_png,card_3_12_png,card_3_13_png,card_3_2_png,card_3_3_png,card_3_4_png,card_3_5_png,card_3_6_png,card_3_7_png,card_3_8_png,card_3_9_png,card_4_14_png,card_4_15_png,card_back_png",
 			"name": "poke"
+		},
+		{
+			"keys": "beiban_png,denglu_png,mima_png,qqdenglu_png,shurukuangbeijing_png,wangjimima_png,weiixn_png,yonghuzhuce_png,zhanghao_png",
+			"name": "login"
 		}
 	],
 	"resources": [
@@ -1103,29 +1107,149 @@
 			"name": "buchu_png"
 		},
 		{
-			"name": "shengli_png",
+			"url": "assets/Poker/ddzRes/shengli.png",
 			"type": "image",
-			"url": "assets/Poker/ddzRes/shengli.png"
+			"name": "shengli_png"
 		},
 		{
-			"name": "tiaofu_png",
+			"url": "assets/Poker/ddzRes/tiaofu.png",
 			"type": "image",
-			"url": "assets/Poker/ddzRes/tiaofu.png"
+			"name": "tiaofu_png"
 		},
 		{
-			"name": "sibai_png",
+			"url": "assets/Poker/ddzRes/sibai.png",
 			"type": "image",
-			"url": "assets/Poker/ddzRes/sibai.png"
+			"name": "sibai_png"
 		},
 		{
-			"name": "biaotou_png",
+			"url": "assets/Poker/ddzRes/biaotou.png",
 			"type": "image",
-			"url": "assets/Poker/ddzRes/biaotou.png"
+			"name": "biaotou_png"
 		},
 		{
-			"name": "dizhumao_png",
+			"url": "assets/Poker/ddzRes/dizhumao.png",
 			"type": "image",
-			"url": "assets/Poker/ddzRes/dizhumao.png"
+			"name": "dizhumao_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/dizhumao.png",
+			"type": "image",
+			"name": "dizhumao2_png"
+		},
+		{
+			"url": "assets/Common/close2.png",
+			"type": "image",
+			"name": "close2_png"
+		},
+		{
+			"url": "assets/login/shurukuangbeijing.png",
+			"type": "image",
+			"name": "shurukuangbeijing_png"
+		},
+		{
+			"url": "assets/login/wangjimima.png",
+			"type": "image",
+			"name": "wangjimima_png"
+		},
+		{
+			"url": "assets/login/weiixn.png",
+			"type": "image",
+			"name": "weiixn_png"
+		},
+		{
+			"url": "assets/login/yonghuzhuce.png",
+			"type": "image",
+			"name": "yonghuzhuce_png"
+		},
+		{
+			"url": "assets/login/zhanghao.png",
+			"type": "image",
+			"name": "zhanghao_png"
+		},
+		{
+			"url": "assets/login/beiban.png",
+			"type": "image",
+			"name": "beiban_png"
+		},
+		{
+			"url": "assets/login/denglu.png",
+			"type": "image",
+			"name": "denglu_png"
+		},
+		{
+			"url": "assets/login/mima.png",
+			"type": "image",
+			"name": "mima_png"
+		},
+		{
+			"url": "assets/login/qqdenglu.png",
+			"type": "image",
+			"name": "qqdenglu_png"
+		},
+		{
+			"name": "xiabiantiao_png",
+			"type": "image",
+			"url": "assets/login/xiabiantiao.png"
+		},
+		{
+			"name": "fanqizhanghao_png",
+			"type": "image",
+			"url": "assets/login/fanqizhanghao.png"
+		},
+		{
+			"name": "shoujidenglu_png",
+			"type": "image",
+			"url": "assets/login/shoujidenglu.png"
+		},
+		{
+			"name": "tengxun_png",
+			"type": "image",
+			"url": "assets/login/tengxun.png"
+		},
+		{
+			"name": "weiixn2_png",
+			"type": "image",
+			"url": "assets/login/weiixn2.png"
+		},
+		{
+			"name": "xinmima_png",
+			"type": "image",
+			"url": "assets/login/xinmima.png"
+		},
+		{
+			"name": "chonghzimima_png",
+			"type": "image",
+			"url": "assets/login/chonghzimima.png"
+		},
+		{
+			"name": "jiumima_png",
+			"type": "image",
+			"url": "assets/login/jiumima.png"
+		},
+		{
+			"name": "wode-duihaukuang_png",
+			"type": "image",
+			"url": "assets/chat/wode-duihaukuang.png"
+		},
+		{
+			"name": "dazhikuang_png",
+			"type": "image",
+			"url": "assets/chat/dazhikuang.png"
+		},
+		{
+			"name": "liaotiankuang_png",
+			"type": "image",
+			"url": "assets/chat/liaotiankuang.png"
+		},
+		{
+			"name": "qitarenduihuakuang_png",
+			"type": "image",
+			"url": "assets/chat/qitarenduihuakuang.png"
+		},
+		{
+			"name": "shijiepingdao_png",
+			"type": "image",
+			"url": "assets/chat/shijiepingdao.png"
 		}
 	]
 }

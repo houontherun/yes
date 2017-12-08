@@ -55,8 +55,8 @@
 	</e:Group>
 	<e:Group id="groupMessage" width="745.33" height="69.34" x="288.33" y="108.33" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="imgMsgBg" source="tonggaobeijing_png" x="30.670000000000016" y="14" scaleX="1" scaleY="1"/>
-		<e:Label id="txtFbNum0" text="公告：游戏上线充300送100" x="134.67" y="14" size="20" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="466" verticalAlign="middle" textAlign="center" textColor="0xF4B813"/>
-		<e:Image source="tixing_png" x="81.67" y="14"/>
+		<e:Label id="txtFbNum0" text="公告：游戏上线充300送100" x="134.67" y="14" size="20" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="466" verticalAlign="middle" textAlign="center" textColor="0xF4B813" touchEnabled="false"/>
+		<e:Image source="tixing_png" x="81.67" y="14" touchEnabled="false"/>
 	</e:Group>
 	<e:Group id="groupType" width="1298.72" height="400" x="24" y="208" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="btnPuke" source="puke_png" x="28" y="28" scaleX="1" scaleY="1"/>

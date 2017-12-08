@@ -96,6 +96,10 @@ namespace gameUI{
 			this.AddClick(this.imgCoypBg, ()=>{
 			}, this)
 
+			this.imgMsgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
+                UIManager.Instance.LoadUI(UI.chat)
+            }, this)
+
 			// this.svGame.addEventListener(egret.Event.CHANGE, (event:Event)=>{
 			// 	var offsetX = this.listGames.scrollRect.x //最左边是0
 			// 	// console.log(this.listGames.numElements)
@@ -181,6 +185,8 @@ namespace gameUI{
 		public groupTopMenu:eui.Group;
 		public groupBottomMenu:eui.Group;
 		public groupUserinfo:eui.Group;
+
+		public imgMsgBg:eui.Image;
 
 	}
 }

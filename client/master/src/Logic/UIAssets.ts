@@ -12,4 +12,8 @@ var UI = {
     "ddzSelectRoom":{name:"gameUI.ddzSelectRoom", skin:"resource/custom_skins/games/ddzSelectRoomSkin.exml"}, 
     "ddzRoom":{name:"gameUI.ddzRoom", skin:"resource/custom_skins/games/ddzRoomSkin.exml"}, 
     "ddzGame":{name:"gameUI.ddz_game", skin:"resource/custom_skins/ddz_ui/ui_game.exml"}, 
+    "register":{name:"gameUI.register", skin:"resource/custom_skins/registerSkin.exml"}, 
+    "modifyPwd":{name:"gameUI.modifyPwd", skin:"resource/custom_skins/ModifyPwdSkin.exml"}, 
+    "phoneRegister":{name:"gameUI.phoneRegister", skin:"resource/custom_skins/phoneRegisterSkin.exml"}, 
+    "chat":{name:"gameUI.chat", skin:"resource/custom_skins/chatSkin.exml"}, 
 }
