@@ -19,7 +19,7 @@ namespace gameUI{
         constructor() {
 			super();
 			this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
-			this.skinName = "resource/custom_skins/chatItemSkin.exml";
+			// this.skinName = "resource/custom_skins/chatItemSkin.exml";
             this.isLoaded = false
 		}
 
@@ -31,7 +31,20 @@ namespace gameUI{
         private updateUI(){
             if(!this.isLoaded || this.data == null){
                 return
-            }       
+            }
+            if(this.data.uid == PlayerManager.Instance.Data.UserId){
+                this.leftGroup.visible = false
+                this.rightGroup.visible = true
+                this.txtNameR.text = this.data.name
+                this.txtContentR.text = this.data.content
+                this.imgContentBgR.width = this.txtContentR.width + 20
+            }else{
+                this.leftGroup.visible = true
+                this.rightGroup.visible = false
+                this.txtNameL.text = this.data.name
+                this.txtContentL.text = this.data.content
+                this.imgContentBgL.width = this.txtContentL.width + 20
+            }
         }
 		protected dataChanged():void {
             this.updateUI()  
@@ -39,30 +52,40 @@ namespace gameUI{
     }
 
     export class chat extends gameUI.base {
-
         public onload():void {
             super.onload();
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
 
-            var chatrecords:Array<Object> = [
-                {text : "中文"},
-                {text : "英文"},
-                {text : "日文"},
-                {text : "鸟语"},
-                {text : "兽语"},
-            ]
             this.svData.initItemRenderer(chatItemRander)
-            this.svData.bindData(chatrecords)
+            this.svData.initItemSkin("resource/custom_skins/chatItemSkin.exml")
+            this.svData.bindData(ChatManager.Instance.Messages)
+            this.setScroll()
             
             this.btnSend.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
-                
+                if(this.txtInput.text.trim().length > 0){
+                    ChatManager.Instance.sendMsg(this.txtInput.text)
+                }
             }, this)
-            this.svData.visible = false
-
+            ChatManager.Instance.addEventListener(constant.event.logic.on_new_chat_data, this.onNewChat, this)
+        }
+        public onUnload(){
+            super.onUnload()
+            ChatManager.Instance.removeEventListener(constant.event.logic.on_new_chat_data, this.onNewChat, this)
+        }
+        private setScroll(){
+            var v = this.svData.Scroller.viewport.contentHeight - this.svData.Scroller.viewport.height; 
+            if(v > -115){ // 115为一个item的高度
+                this.svData.Scroller.validateNow(); 
+                this.svData.Scroller.viewport.scrollV = this.svData.Scroller.viewport.contentHeight - this.svData.Scroller.viewport.height
+            }
         }
 
+        private onNewChat(data){
+            this.svData.bindData(ChatManager.Instance.Messages)
+            this.setScroll()
+        }
         public btnClose:eui.Image;
         public svData:gameUI.Scrollview;
         public btnSend:eui.Image;

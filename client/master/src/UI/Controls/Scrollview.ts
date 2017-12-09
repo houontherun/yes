@@ -82,5 +82,8 @@ namespace gameUI{
         public get DataList():eui.List{
             return this.dataList
         }
+        public get Scroller():eui.Scroller{
+            return this.sv
+        }
     }
 }

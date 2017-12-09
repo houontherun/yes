@@ -44,14 +44,23 @@ namespace gameUI{
         public onload():void {
             super.onload();
             this.btnLogin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                NetworkManager.Instance.addEventListener(constant.event.network.on_connect_succeed, this.onConSucceed, this);
-                NetworkManager.Instance.Connect(constant.connect_ip, constant.connect_port);
+                if(ConnectionManager.Instance.isConnected){
+                    this.requestLogin()
+                }else{
+                    ConnectionManager.Instance.connect(constant.connect_ip, constant.connect_port, ()=>{
+                        this.requestLogin()
+                    }, this)
+                }
             }, this );      
 
             var storageUserName = Util.getItem('username')   
             if(storageUserName != null){
                 this.txtAccount.text = storageUserName
             }   
+            var storagePassword = Util.getItem('password')
+            if(storagePassword != null){
+                this.txtPassword.text = storagePassword
+            }
 
             this.btnWeixin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 alert('暂未实现')
@@ -60,32 +69,36 @@ namespace gameUI{
                 alert('暂未实现')
             }, this );   
             this.btnForgetPwd.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                UIManager.Instance.LoadUI(UI.modifyPwd)
+                if(ConnectionManager.Instance.isConnected){
+                    UIManager.Instance.LoadUI(UI.forgetPwd)
+                }else{
+                    ConnectionManager.Instance.connect(constant.connect_ip, constant.connect_port, ()=>{
+                        UIManager.Instance.LoadUI(UI.forgetPwd)
+                    }, this)
+                }
             }, this );   
             this.btnRegister.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                UIManager.Instance.LoadUI(UI.register)
+                if(ConnectionManager.Instance.isConnected){
+                    UIManager.Instance.LoadUI(UI.register)
+                }else{
+                    ConnectionManager.Instance.connect(constant.connect_ip, constant.connect_port, ()=>{
+                        UIManager.Instance.LoadUI(UI.register)
+                    }, this)
+                }
             }, this );
         }
         
-        private onConSucceed():void{
-            NetworkManager.Instance.removeEventListener(constant.event.network.on_connect_succeed, this.onConSucceed, this)
-            this.requestLogin();
-        }
-
         private requestLogin():void{
-            MessageManager.Instance.addEventListener(constant.msg.SC_LOGIN, this.onLoginRet, this)
-            MessageManager.Instance.SendMessage({
-                protocol:constant.msg.CS_LOGIN,
-                openid:this.txtAccount.text
-            })
+            LoginManager.Instance.loginPlatform(this.txtAccount.text, this.txtPassword.text, this.onLoginRet, this)
         }
         
         private onLoginRet(data):void{
             if(data.ret != 0){
-                console.log("login error code=" + data.ret)
+                alert('登录失败code=' + data.ret.toString())
                 return
             }
             Util.setItem('username', this.txtAccount.text)
+            Util.setItem('password', this.txtPassword.text)
             this.Close();
             UIManager.Instance.LoadUI(UI.lobby);
         }

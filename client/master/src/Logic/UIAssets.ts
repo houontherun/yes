@@ -15,5 +15,6 @@ var UI = {
     "register":{name:"gameUI.register", skin:"resource/custom_skins/registerSkin.exml"}, 
     "modifyPwd":{name:"gameUI.modifyPwd", skin:"resource/custom_skins/ModifyPwdSkin.exml"}, 
     "phoneRegister":{name:"gameUI.phoneRegister", skin:"resource/custom_skins/phoneRegisterSkin.exml"}, 
+    "forgetPwd":{name:"gameUI.forgetPwd", skin:"resource/custom_skins/phoneRegisterSkin.exml"}, 
     "chat":{name:"gameUI.chat", skin:"resource/custom_skins/chatSkin.exml"}, 
 }

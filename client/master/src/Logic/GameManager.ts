@@ -4,6 +4,11 @@ class GameManager extends Dispatcher {
     constructor() {
         super();
     }   
+    public Init(){
+        PlayerManager.Instance.Init()
+        RoomManager.Instance.Init()
+        ChatManager.Instance.Init()
+    }
 
     // public downloadGame(game_id:number)
     // {

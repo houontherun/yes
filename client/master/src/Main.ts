@@ -138,16 +138,12 @@ class Main extends eui.UILayer {
     }
     private textfield: egret.TextField;
 
-    private initManagers():void{
-        PlayerManager.Instance.Init()
-        RoomManager.Instance.Init()
-    }
     /**
      * 创建场景界面
      * Create scene interface
      */
     protected startCreateScene(): void {
-        this.initManagers();
+        GameManager.Instance.Init()
         // let sky = this.createBitmapByName("bg_jpg");
         // this.addChild(sky);
         // let stageW = this.stage.stageWidth;

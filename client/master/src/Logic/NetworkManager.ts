@@ -72,4 +72,7 @@ class NetworkManager extends Dispatcher {
         this.socket.writeBytes(byte, 2, byte.bytesAvailable);
         console.log("<<<< " + datastr);
     }
+    public get isConnected():boolean{
+        return this.socket.connected
+    }
 }

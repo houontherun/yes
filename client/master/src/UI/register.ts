@@ -9,11 +9,13 @@ namespace gameUI{
             super.onload();
             
             this.btnRegister.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                if(this.txtAccount.text.length == 0 || this.txtPassword.text.length == 0){
+                this.account = this.txtAccount.text
+                this.password = this.txtPassword.text
+                if(this.account.trim().length == 0 || this.password.trim().length == 0){
                     alert('请输入帐号和密码')
                     return
                 }
-
+                LoginManager.Instance.registerPlatform(this.account, this.password, this.onRegister, this)
             }, this );      
 
             this.btnWeixin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
@@ -38,6 +40,23 @@ namespace gameUI{
                 UIManager.Instance.LoadUI(UI.login)
             }, this ); 
         }
+        private onRegister(data){
+            if(data.ret == 0){
+                LoginManager.Instance.loginPlatform(this.account, this.password, (d)=>{
+                    if(d.ret != 0){
+                        alert('登录失败 code=' + d.ret.toString())
+                        return
+                    }
+                    Util.setItem('username', this.account)
+                    this.Close();
+                    UIManager.Instance.LoadUI(UI.lobby);
+                }, this)
+            }
+        }
+
+        private account:string
+        private password:string
+
         public txtPassword:eui.EditableText;
         public btnRegister:eui.Image;
         public txtAccount:eui.EditableText;

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="chatSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:gameUI="gameUI.*" xmlns:w="http://ns.egret.com/wing" xmlns:gameUIControl="gameUIControl.*">
 	<e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
-	<e:Image x="311.18" y="134.35" scale9Grid="25,0,667,510" source="mask_png" anchorOffsetX="0" width="803.03" anchorOffsetY="0" height="520"/>
+	<e:Image x="311.18" y="134.35" scale9Grid="25,0,667,510" source="mask_png" anchorOffsetX="0" width="795.03" anchorOffsetY="0" height="520"/>
 	<e:Image source="frame2_png" x="307.83" y="128.27" anchorOffsetX="0" width="800.01"/>
 	<e:Image source="frame_png" x="243.39" y="74.35" anchorOffsetX="0" width="888.91"/>
 	<e:Image source="titleBg_png" x="522.69" y="66.77"/>
 	<e:Image id="btnClose" source="close_png" x="1064.8" y="70.77"/>	
-	<gameUI:Scrollview id="svData" width="799.27" height="393.61" x="308.07" y="181.15"  anchorOffsetX="0" anchorOffsetY="0"/>
+	<gameUI:Scrollview id="svData" width="756.61" height="393.61" x="329.4" y="181.15"  anchorOffsetX="0"/>
 	<e:Image source="liaotiankuang_png" x="304.79" y="569.35"/>
 	<e:Image source="dazhikuang_png" x="323.87" y="588.35" anchorOffsetX="0" width="616.79"/>
 	<e:Image id="btnSend" source="btnbg2_png" x="953.25" y="584.48" anchorOffsetX="0" width="138.82" anchorOffsetY="0" height="56.24"/>
 	<e:Label text="发送" x="971" y="588" anchorOffsetX="0" width="104" anchorOffsetY="0" height="46" textAlign="center" verticalAlign="middle" fontFamily="SimHei" stroke="3" strokeColor="0xa36e20" touchEnabled="false"/>
-	<e:EditableText id="txtInput" width="599" height="38" text="Label" x="332" y="594" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle"/>
+	<e:EditableText id="txtInput" width="599" height="38" x="332" y="594" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle" prompt="请输入内容" fontFamily="SimHei"/>
 </e:Skin>

@@ -1,12 +1,15 @@
 // TypeScript file
 
 var constant = {
-    //connect_ip : "192.168.12.3", // 候
-    //connect_ip : "192.168.12.1", // 谭
-    connect_ip:"fanqinet.tpddns.cn",
+    connect_ip : "192.168.12.3", // 候
+    // connect_ip : "192.168.12.1", // 谭
+    // connect_ip:"fanqinet.tpddns.cn",
     connect_port: 8000,
     msg:{
         //客户端->服务端
+        CS_PLATFORM_REGISTER : 1988,   //注册
+        CS_PLATFORM_LOGIN : 1989,      //平台账号密码登录
+        CS_PLATFORM_CHANGE_PWD : 1990,
         CS_LOGIN : 1001,				//登录
         CS_CREATE_ROOM : 1002,			//创建房间
         CS_ENTER_ROOM : 1003,			//玩家进入房间
@@ -24,9 +27,19 @@ var constant = {
         CS_USER_READY : 1011,			//玩家准备
         CS_CHILD_GAME_MESSAGE : 1012,	//子游戏消息
 	    CS_QUERY_ROOM_INFO : 1013,		//查询房间信息
+        CS_MODIFY_USER_INFO : 1023,		//修改玩家信息
+        CS_REENTER_PLAYING : 1025,		//重新进入游戏
+        CS_CREATE_HALL_TABLE : 1026,	//创建大厅桌子
+        CS_JOIN_CUSTOM_TABLE : 1027,	//加入自定义桌子
+        CS_TALK : 1040,
+        CS_CHARGE : 1050,
+        CS_BUY : 1052,
         CS_MAX : 1999,
 
         //服务端->客户端        
+        SC_PLATFORM_REGISTER : 2988,   //注册回包
+        SC_PLATFORM_LOGIN : 2989,      //平台账号密码登录回包
+        SC_PLATFORM_CHANGE_PWD : 2990,
         SC_LOGIN : 2001,				//登录回包			
         SC_CREATE_ROOM : 2002,			//创建房间回包
         SC_ENTER_ROOM : 2003,			//玩家进入房间回包
@@ -52,6 +65,16 @@ var constant = {
 	    SC_GAME_MESSAGE : 2019,			//游戏信息，包括聊天等,显示用
 	    SC_QUERY_ROOM_INFO : 2023,		//推送房间信息
         SC_TABLE_PLAYER_INFO : 2025,	//桌子上玩家信息
+        SC_USER_IS_PLAYING : 2026,		//玩家正在其他桌子玩游戏
+        SC_REENTER_PLAYING : 2027,		//玩家重新进入游戏桌子回包
+        SC_CREATE_HALL_TABLE : 2028,	//创建大厅房间回包
+        SC_JOIN_CUSTOM_TABLE : 2029,	//加入自定义桌子回包
+        SC_NEXT_CUSTOM_TABLE_GAME_START : 2030,	//下一局自定义游戏开始倒计时
+        SC_CUSTOM_GAME_RESULT : 2031,	//自定义桌子游戏记录
+        SC_TALK : 2040,                 //有人发言
+        SC_BROADCAST : 2041,            //跑马灯	
+        SC_CHARGE : 2050,
+        SC_BUY : 2052,
 	    SC_MAX : 2999,
     },
     sub_msg:{
@@ -111,6 +134,7 @@ var constant = {
             on_player_enter_room:"on_player_enter_room",
             on_player_leave_room:"on_player_leave_room",
             on_table_users_update:"on_table_users_update",
+            on_new_chat_data:"on_new_chat_data",
         },
         doudizhu:{
             on_rec:"onrec",
