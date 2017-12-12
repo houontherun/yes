@@ -499,7 +499,7 @@ namespace gameUI{
 
  private SetplayersInfo()
   {
-    this.clearPlayers(true);
+    this.clearPlayers();
     this.group_otherPlayersHead.removeChildren();
     var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
 
@@ -910,29 +910,14 @@ namespace gameUI{
 
    
 
-    private clearPlayers(bchangePlayer:boolean = false)
+    private clearPlayers()
     {
 
         var playerNum : number = 0;
          for(let i =1;i<this.PlayersNum;i++)
          {
              var group = <eui.Group>this.getChildAt(i+2);
-             if(bchangePlayer)
-             {
-               if(group)
-               {
-                 group.visible = false;
-                
-               }
-               if(group.numChildren > 5)
-                  group.removeChildAt(0);
-
-                playerNum = 5;
-             }
-             else
-             {
-                 playerNum = 6;
-             }
+             playerNum = 5;
              
               while(group.numChildren > playerNum)
               {
@@ -940,13 +925,7 @@ namespace gameUI{
               }
                
          }
-          if(bchangePlayer)
-          {
-             if( this.group_Player0.numChildren > 3)
-                this.group_Player0.removeChildAt(0);     
-              playerNum = 3;  
-          }
-          playerNum = 4;  
+         playerNum = 3; 
           while(this.group_Player0.numChildren > playerNum)
           {
               this.group_Player0.removeChildAt(this.group_Player0.numChildren -1);
