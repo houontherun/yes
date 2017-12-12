@@ -797,7 +797,7 @@ namespace Card {
        }
 
        public static GetCardColor(cb:number):number{
-           return (cb & MASK_COLOR) /16; 
+           return (cb & MASK_COLOR)>> 0x04; 
        }
        
        public static GetSCCarddata(card:PokerCard):number{
