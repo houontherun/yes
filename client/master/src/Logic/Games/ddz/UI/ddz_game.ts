@@ -35,6 +35,7 @@ namespace gameUI{
    private group_backcards:eui.Group;
    private txt_gamedouble:eui.Label;
    private cardItemArray = {};
+   private buchuItemArray = {};
    private cdTimer = null;
 
     public onload():void {
@@ -196,6 +197,7 @@ namespace gameUI{
        let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;  
        if(data.current_user == playerChairid) 
        {
+            
             this.PlayermeOutCard();
        }
 
@@ -245,8 +247,14 @@ namespace gameUI{
              }
           }
       
-          this.cardItemArray[chairid] = []
+           this.cardItemArray[chairid] = []
 
+           if(this.buchuItemArray&&this.buchuItemArray[chairid] )
+            {
+                group.removeChild(this.buchuItemArray[chairid]);
+            }
+            this.buchuItemArray[chairid] = null
+          
            let Scorepos = group.getChildByName("Label_pos");
            var img = new eui.Image();
             img.source = RES.getRes('buchu_png');
@@ -255,11 +263,9 @@ namespace gameUI{
             else
                img.x = Scorepos.x;
             img.y = Scorepos.y;
+             
             group.addChild(img);
-            CardLogic.Timer.Instance.Delay(4,()=>{
-                 if(this.clockCD!=null&&img)
-                   group.removeChild(img);
-            });
+            this.buchuItemArray[chairid] = img
 
             if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
             {
@@ -300,7 +306,24 @@ namespace gameUI{
         this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.Sendpasscard,this);
         this.btn0.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
         this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.prompt,this);
+        var playerChairid =  CardLogic.ddzGameLogic.Instance.playerChairid;  
 
+        //去掉上一局的牌或者不出
+        if(this.buchuItemArray&&this.buchuItemArray[playerChairid] )
+            {
+                this.group_Player0.removeChild(this.buchuItemArray[playerChairid]);
+            }
+            this.buchuItemArray[playerChairid] = null
+
+        if(this.cardItemArray&&this.cardItemArray[playerChairid]!=null)
+          {
+            for(let carditem of this.cardItemArray[playerChairid])
+            {
+               this.group_Player0.removeChild(carditem);
+             }
+        }
+    
+        this.cardItemArray[playerChairid] = []   
    }
 
    private StartGame(data)
@@ -594,6 +617,11 @@ namespace gameUI{
     
      this.cardItemArray[chairid] = []
 
+     if(this.buchuItemArray&&this.buchuItemArray[chairid] )
+        {
+            group.removeChild(this.buchuItemArray[chairid]);
+        }
+     this.buchuItemArray[chairid] = null
      if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
         posY = Scorepos.y - 25;
      else
@@ -960,7 +988,7 @@ namespace gameUI{
               {
                  group.removeChildAt(group.numChildren -1);
               }
-               
+           group.visible = false;
          }
 
          playerNum = 4;
@@ -1002,6 +1030,7 @@ namespace gameUI{
         this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.Sendpasscard,this);
         this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
         this.cardItemArray = {};
+        this.buchuItemArray = {};
         if(this.clockCD)
         {
            this.clockCD = null;
