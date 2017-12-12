@@ -15,6 +15,7 @@ namespace gameUI{
 
    private bStart:boolean;
    private group_handcards:eui.Group;
+   private group_otherPlayersHead:eui.Group;
    private group_Player0:eui.Group;// 4:头像 5：牌 6：牌数
    private txt_PlayerGold:eui.Label;
    private hardCardsArray: Card.ui_pokerCardItem[] = [];
@@ -142,7 +143,7 @@ namespace gameUI{
          else
           {
              pos = CardLogic.ddzGameLogic.Instance.playerposInfo[chairid];
-             group = <eui.Group>this.getChildAt(pos+1);
+             group = <eui.Group>this.getChildAt(pos+2);
           }
           let Scorepos = group.getChildByName("Label_pos");
           return group;
@@ -227,8 +228,18 @@ namespace gameUI{
    {
        if(data.chair_id != constant.INVALID)
        {
-           let group = this.GetGroupChairid(data.chair_id);
-        
+           let group = this.GetGroupChairid(chairid);
+           var chairid = data.chair_id;
+          if(this.cardItemArray&&this.cardItemArray[chairid]!=null)
+          {
+            for(let carditem of this.cardItemArray[chairid])
+            {
+               group.removeChild(carditem);
+             }
+          }
+      
+          this.cardItemArray[chairid] = []
+
            let Scorepos = group.getChildByName("Label_pos");
            var img = new eui.Image();
             img.source = RES.getRes('buchu_png');
@@ -307,7 +318,7 @@ namespace gameUI{
           var maoimg = new eui.Image();
           maoimg.source = RES.getRes('dizhumao_png');
           maoimg.y = 0;
-          maoimg.x = 200;
+          maoimg.x = 5;
           group.addChild(maoimg);
        }
 
@@ -425,7 +436,7 @@ namespace gameUI{
      else
      {
          pos = CardLogic.ddzGameLogic.Instance.playerposInfo[chairid];
-         group = <eui.Group>this.getChildAt(pos+1);
+         group = <eui.Group>this.getChildAt(pos+2);
      }
     if(this.cdTimer)
     {
@@ -489,7 +500,9 @@ namespace gameUI{
  private SetplayersInfo()
   {
     this.clearPlayers(true);
+    this.group_otherPlayersHead.removeChildren();
     var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
+
      if(players.length > 0)
      {
          for(var i = 0;i<players.length;i++)
@@ -556,7 +569,7 @@ namespace gameUI{
         posY = Scorepos.y - 25;
      else
      {
-        let textNum :eui.Label = <eui.Label>group.getChildAt(7);   //显示剩余牌
+        let textNum :eui.Label = <eui.Label>group.getChildAt(6);   //显示剩余牌
         if(textNum) textNum.text = remainCount.toString();
      }
      for (var i = 0;i < cards.length;i++)
@@ -571,18 +584,6 @@ namespace gameUI{
           this.cardItemArray[chairid].push(_card);
 	   }
         
-        CardLogic.Timer.Instance.Delay(3.6,()=>{
-                 if(this.cardItemArray&&this.cardItemArray[chairid]!=null)
-                 {
-                    for(let item of this.cardItemArray[chairid])
-                   {
-                      group.removeChild(item);
-                      this.cardItemArray[chairid] = [];
-                    }
-                 }
-
-                
-            });
 
       //更新手牌      
      if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
@@ -615,7 +616,7 @@ namespace gameUI{
         var group ;
         if(playerNum>0)
         {
-           group = <eui.Group>this.getChildAt(playerNum+1);
+           group = <eui.Group>this.getChildAt(playerNum+2);
         }
         else
         {
@@ -635,13 +636,20 @@ namespace gameUI{
             {
                 this.txt_PlayerGold.text = coin.toString();
             }
-            var img = new eui.Image();
-            //img.mask = this.getChildAt(1);
-            img.source = RES.getRes(head);
-            img.x = 10;
-            group.addChildAt(img,0);
             group.visible = true;
         }
+
+         var img = new eui.Image();
+            //img.mask = this.getChildAt(1);
+         img.source = RES.getRes(head);
+         if(playerNum<2)
+           img.x = 10;
+        else
+           img.x = this.group_otherPlayersHead.width - 300;
+        if(playerNum>0)
+            this.group_otherPlayersHead.addChild(img);
+         else
+           group.addChildAt(img,0);
        
     }
 
@@ -651,10 +659,10 @@ namespace gameUI{
          var textNum ;
         if(playernum>0)
         {
-            group = <eui.Group>this.getChildAt(playernum+1);
+            group = <eui.Group>this.getChildAt(playernum+2);
             if(group.numChildren == 8)
             {
-                 textNum = <eui.Label>group.getChildAt(7);
+                 textNum = <eui.Label>group.getChildAt(6);
                  textNum.text = "1";
             }
             else
@@ -664,7 +672,7 @@ namespace gameUI{
                
                backCard.scaleX = backCard.scaleY = 0.56;
                backCard.source = RES.getRes("card_back_png");
-               group.addChildAt(backCard,6);
+               group.addChildAt(backCard,5);
                textNum = new eui.Label;
                textNum.fontFamily = "SimHei";
                textNum.strokeColor = 0x0000ff;   //描边颜色
@@ -687,7 +695,7 @@ namespace gameUI{
                   textNum.y = 240;
                }
                
-               group.addChildAt(textNum,7);
+               group.addChildAt(textNum,6);
             }
             
             var i:number = 1;
@@ -908,7 +916,7 @@ namespace gameUI{
         var playerNum : number = 0;
          for(let i =1;i<this.PlayersNum;i++)
          {
-             var group = <eui.Group>this.getChildAt(i+1);
+             var group = <eui.Group>this.getChildAt(i+2);
              if(bchangePlayer)
              {
                if(group)
