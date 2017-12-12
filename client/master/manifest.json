@@ -11,9 +11,9 @@
 	],
 	"game": [
 		"bin-debug/Logic/Games/Common/GameObject.js",
-		"bin-debug/Logic/Games/Common/Dispatcher.js",
 		"bin-debug/Logic/Games/ddz/UI/base.js",
 		"bin-debug/UI/base.js",
+		"bin-debug/Logic/Games/Common/Dispatcher.js",
 		"bin-debug/Logic/Games/ddz/Logic/Timer.js",
 		"bin-debug/Logic/ChatManager.js",
 		"bin-debug/Logic/ConnectionManager.js",
