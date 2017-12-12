@@ -318,7 +318,7 @@ namespace gameUI{
           var maoimg = new eui.Image();
           maoimg.source = RES.getRes('dizhumao_png');
           maoimg.y = 0;
-          maoimg.x = 5;
+          maoimg.x = 12 ;
           group.addChild(maoimg);
        }
 
@@ -499,7 +499,7 @@ namespace gameUI{
 
  private SetplayersInfo()
   {
-    this.clearPlayers();
+    this.clearPlayers(true);
     this.group_otherPlayersHead.removeChildren();
     var players = CardLogic.ddzGameLogic.Instance.ALLPlayers;
 
@@ -910,7 +910,7 @@ namespace gameUI{
 
    
 
-    private clearPlayers()
+    private clearPlayers(bchangePlayer:boolean = false)
     {
 
         var playerNum : number = 0;
@@ -925,7 +925,15 @@ namespace gameUI{
               }
                
          }
-         playerNum = 3; 
+
+         playerNum = 4;
+         if(bchangePlayer)
+          {
+             if( this.group_Player0.numChildren > 3)
+                this.group_Player0.removeChildAt(0);     
+              playerNum = 3;  
+          }
+          
           while(this.group_Player0.numChildren > playerNum)
           {
               this.group_Player0.removeChildAt(this.group_Player0.numChildren -1);
