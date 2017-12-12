@@ -37,6 +37,8 @@ namespace gameUI{
    private cardItemArray = {};
    private buchuItemArray = {};
    private cdTimer = null;
+   private newCurrentCards:any = [];
+   private promptIndex : number = 0;
 
     public onload():void {
        
@@ -194,10 +196,12 @@ namespace gameUI{
    {
        this.SetBtnsGame(false);
        this.PlayerOutCard(data.chair_id,data.cards,data.card_count);
-       let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;  
+       let playerChairid =   CardLogic.ddzGameLogic.Instance.playerChairid;
+       this.newCurrentCards = data.cards;
        if(data.current_user == playerChairid) 
        {
-            
+            this.promptIndex = 0;
+            CardLogic.ddzGameLogic.Instance.GenPressedCards(this.newCurrentCards);
             this.PlayermeOutCard();
        }
 
@@ -272,12 +276,14 @@ namespace gameUI{
                 this.CancelShootCard();
             }
        }
+    
        this.SetBtnsGame(false);
        this.countdown(data.current_user,data.time);
        let playerChairid =  CardLogic.ddzGameLogic.Instance.playerChairid;  
        if(data.current_user == playerChairid) 
        {
-            this.PlayermeOutCard();
+            CardLogic.ddzGameLogic.Instance.GenPressedCards(this.newCurrentCards);
+            this.PlayermeOutCard(data.new_turn);
        }
    }
 
@@ -289,11 +295,29 @@ namespace gameUI{
    //提示
    private prompt():void
    {
-    
+       var PressedCards = CardLogic.ddzGameLogic.Instance.GetPressedCards();
+       if( PressedCards.length > 0)
+       {
+           for (let i = 0;i < this.hardCardsArray.length;i++) {
+                 this.hardCardsArray[i].SetShoot(false);
+            }
+
+            if(this.promptIndex == PressedCards.length)
+            {
+                this.promptIndex = 0;
+            }
+           for(let j = 0;j<PressedCards[this.promptIndex].length;j++)
+              {
+                   let pokercard = PressedCards[this.promptIndex][j];
+                   var _index = CardLogic.ddzGameLogic.Instance.GetIndex(pokercard);
+                   this.hardCardsArray[_index].SetShoot(true);
+              }
+             this.promptIndex ++; 
+       }
    }
 
    //轮到自己出牌
-   private PlayermeOutCard()
+   private PlayermeOutCard(bFirst:number = 0)
    {
         this.SetBtnsGame(true);
         this.Text_bnt1.text = "不出";
@@ -307,6 +331,28 @@ namespace gameUI{
         this.btn0.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
         this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.prompt,this);
         var playerChairid =  CardLogic.ddzGameLogic.Instance.playerChairid;  
+        
+        if(bFirst == 0)
+        {
+            var PressedCards = CardLogic.ddzGameLogic.Instance.GetPressedCards();
+           if( PressedCards.length <1 )
+           {
+               this.SetBtnsGame(false);
+               this.Text_bnt1.visible = true;
+               this.btn1.visible = true;
+               this.Text_bnt1.x = 330;
+               this.btn1.x = 315;
+           }
+        }
+        else
+        {
+           this.SetBtnsGame(false);
+           this.Text_bnt0.visible = true;
+           this.btn0.visible = true;
+           this.Text_bnt0.x = 330;
+           this.btn0.x = 315;
+        }
+        
 
         //去掉上一局的牌或者不出
         if(this.buchuItemArray&&this.buchuItemArray[playerChairid] )
@@ -369,7 +415,7 @@ namespace gameUI{
        if(data.land_user == playerChairid) 
        {
            this.AddBackCard(data.back_card);
-           this.PlayermeOutCard();
+           this.PlayermeOutCard(1);
        }
 
        var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
@@ -395,6 +441,13 @@ namespace gameUI{
        this.Text_bnt0.visible = bvisible;
     
        this.btn0.visible = bvisible;
+       this.btn0.x = 480;
+       this.btn1.x = 87;
+       this.btn2.x = 315;
+
+       this.Text_bnt0.x = 495;
+       this.Text_bnt1.x = 101;
+       this.Text_bnt2.x = 330;
    }
 
 
@@ -1035,7 +1088,7 @@ namespace gameUI{
         {
            this.clockCD = null;
         }
-
+        this.txt_gamedouble.text = "1";
 
     }
     	

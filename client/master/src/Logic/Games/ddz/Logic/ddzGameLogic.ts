@@ -16,6 +16,7 @@ export class ddzGameLogic extends Dispatcher {
    public playerChairid:number = 0;
    public playerposInfo = {};
    public landUser :number = -1;
+   private PressedCards = [];
 
    public static get Instance() {
         if(ddzGameLogic.shared == null) {
@@ -84,7 +85,7 @@ export class ddzGameLogic extends Dispatcher {
          CardLogic.CardEventDispatcher.Instance.dispatchEvent( this.UpdatePlayersEvent);
     }
     
-     public Addcard(data):PokerCard
+    public Addcard(data):PokerCard
     {
         var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
         var iclr = Card.Util.GetCardColor(data);
@@ -96,7 +97,7 @@ export class ddzGameLogic extends Dispatcher {
     }
   
 
-   private Getindex(index :number,suit:CardColor):number
+   private getindex(index :number,suit:CardColor):number
    {
        let _index :number= -1;
         for(var i = 0; i < this.hardCardList.length; i++){
@@ -106,13 +107,20 @@ export class ddzGameLogic extends Dispatcher {
 
         return _index;
    }
+
+   public GetIndex(pokercard:PokerCard)
+   {
+      var _index =  this.getindex(pokercard.Index,pokercard.Suit);
+      return  _index;
+   }
+
     public Removecard(data):boolean
     {
         var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
         var iclr = Card.Util.GetCardColor(data);
         var color: CardColor = Colorlist[iclr];
         var index: number = Card.Util.GetCardValue(data);
-        let x = this.Getindex(index,color);
+        let x = this.getindex(index,color);
         if(x>-1)
           {
                this.hardCardList.splice(x,1);
@@ -178,7 +186,7 @@ export class ddzGameLogic extends Dispatcher {
    }
    
 
-    public GetPokerCards(cards):Array<PokerCard>
+   public GetPokerCards(cards):Array<PokerCard>
    {
        let CardList = [];
        var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
@@ -194,6 +202,23 @@ export class ddzGameLogic extends Dispatcher {
        return CardList;
    }
 
+   public GetPressedCards():any
+   {
+       return this.PressedCards;
+   }
+   
+   public GenPressedCards(cards)
+   {
+       var LastPokerCards = this.GetPokerCards(cards);
+       if(LastPokerCards.length< 1)
+         return null;
+
+      var packPokercards =  new Card.ddzPackCardGroup(LastPokerCards);
+      var handPockercards = new Card.ddzHandCards(this.hardCardList);
+
+      this.PressedCards =  handPockercards.getPressedCards(packPokercards);
+      Card.Util.sortCards(this.hardCardList);
+   }
 
 }
    
