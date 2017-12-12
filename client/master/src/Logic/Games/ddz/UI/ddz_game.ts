@@ -228,8 +228,8 @@ namespace gameUI{
    {
        if(data.chair_id != constant.INVALID)
        {
-           let group = this.GetGroupChairid(chairid);
            var chairid = data.chair_id;
+           let group = this.GetGroupChairid(chairid);
           if(this.cardItemArray&&this.cardItemArray[chairid]!=null)
           {
             for(let carditem of this.cardItemArray[chairid])
