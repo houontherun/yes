@@ -115,7 +115,6 @@ namespace gameUI{
             this.svGame.bindData(this.enterRoomData.Tables)
         }
         private onSitDown(data):void{
-            UIManager.Instance.UnloadUI(UI.ddzRoom);
             GameManager.Instance.startDDZGame()
         }
 

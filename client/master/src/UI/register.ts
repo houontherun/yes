@@ -48,8 +48,11 @@ namespace gameUI{
                         return
                     }
                     Util.setItem('username', this.account)
-                    this.Close();
-                    UIManager.Instance.LoadUI(UI.lobby);
+                    Util.setItem('password', this.password)
+                    
+                    UIManager.Instance.LoadUI(UI.lobby, null, ()=>{
+                        this.Close();
+                    }, this);
                 }, this)
             }
         }

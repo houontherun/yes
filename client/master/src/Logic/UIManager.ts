@@ -22,22 +22,19 @@ class UIManager extends Dispatcher {
         this.stage = stage;
     }
 
-    public LoadUI(ui:any, data?:any){
+    public LoadUI(ui:any, data?:any, onLoaded?:Function, thisObj?:any){
         if(!egret.hasDefinition(ui.name)){
             console.error('not found ui name:' + ui.name)
             return
         }
-        // var child = this.stage.getChildByName(ui.name)
-        // if(child != null){
-        //     child.visible = true
-        //     // this.stage.removeChild(child)
-        //     // this.stage.addChild(child)
-        // }
-        // else{
-            var cls = egret.getDefinitionByName(ui.name)
-            var view = new cls(ui, data)
-            this.stage.addChild(view);
-        // }
+        var cls = egret.getDefinitionByName(ui.name)
+        var view = new cls(ui, data)
+        this.stage.addChild(view);
+
+        // 加载完成后回调
+        if(onLoaded != null && thisObj != null){
+            view.once( eui.UIEvent.COMPLETE, onLoaded, thisObj);
+        }
     }
 
     public UnloadUI(ui:any){
@@ -46,7 +43,6 @@ class UIManager extends Dispatcher {
             child.onUnload()
             this.stage.removeChild(child);
             child = null
-            // child.visible = false
         }
     }
 

@@ -80,7 +80,7 @@ namespace gameUI{
 			this.AddClick(this.imgShare, ()=>{           
             }, this );
 			this.AddClick(this.imgShop, ()=>{           
-				// this.imgShop.source = "logout_png" 
+				UIManager.Instance.LoadUI(UI.shop)
             }, this );
 			this.AddClick(this.imgSetting, ()=>{    
 				UIManager.Instance.LoadUI(UI.setting)       

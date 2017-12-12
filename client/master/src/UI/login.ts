@@ -99,8 +99,10 @@ namespace gameUI{
             }
             Util.setItem('username', this.txtAccount.text)
             Util.setItem('password', this.txtPassword.text)
-            this.Close();
-            UIManager.Instance.LoadUI(UI.lobby);
+            
+            UIManager.Instance.LoadUI(UI.lobby, null, ()=>{
+                this.Close();
+            });
         }
         public btnWeixin:eui.Image;
         public btnQQ:eui.Image;

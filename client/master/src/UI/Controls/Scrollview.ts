@@ -3,7 +3,8 @@
 namespace gameUI{
     export enum ScrollLayout{
         Vertical = 0,
-        Horizontal = 1
+        Horizontal = 1,
+        Tile = 2,
     }
     export class Scrollview extends eui.Component {
         private dataList:eui.List = null;
@@ -13,7 +14,7 @@ namespace gameUI{
         private data:Array<Object>;
         private sv:eui.Scroller;
 
-        private scrollLayout:ScrollLayout;        
+        private scrollLayout:ScrollLayout;
 
         constructor() {
             super();
@@ -85,5 +86,6 @@ namespace gameUI{
         public get Scroller():eui.Scroller{
             return this.sv
         }
+        
     }
 }

@@ -95,6 +95,8 @@ class PlayerManager extends Dispatcher {
         MessageManager.Instance.addEventListener(constant.msg.SC_GIVE_GOLD_2_OTHER, this.onGiveGoldRet, this)
         MessageManager.Instance.addEventListener(constant.msg.SC_RECV_OTHER_GOLD, this.onReciveGold, this)
         MessageManager.Instance.addEventListener(constant.msg.SC_CHANGE_BANK_PASSWD, this.onModifyBankPwdRet, this)
+        MessageManager.Instance.addEventListener(constant.msg.SC_CHARGE, this.onCharge, this)
+        MessageManager.Instance.addEventListener(constant.msg.SC_BUY, this.onBuyItem, this)
     }
     private onLoginRet(data):void{
         if(data.ret != 0){
@@ -165,6 +167,34 @@ class PlayerManager extends Dispatcher {
         }
         else{
             alert('修改失败')
+        }
+    }
+    // 充值
+    public Charge(id:number):void{
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_CHARGE,
+            id:id
+        })
+    }
+    private onCharge(data:any){
+        if(data.ret == 0){
+            alert('充值成功 gold=' + data.gold)
+        }else{
+            alert('充值失败')
+        }
+    }
+    // 购买道具
+    public BuyItem(id:number){
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_BUY,
+            id:id
+        })
+    }
+    private onBuyItem(data){
+        if(data.ret == 0){
+            alert('购买成功 gold=' + data.gold + ' id=' + data.id)
+        }else{
+            alert('购买失败')
         }
     }
 }

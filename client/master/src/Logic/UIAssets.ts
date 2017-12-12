@@ -17,4 +17,5 @@ var UI = {
     "phoneRegister":{name:"gameUI.phoneRegister", skin:"resource/custom_skins/phoneRegisterSkin.exml"}, 
     "forgetPwd":{name:"gameUI.forgetPwd", skin:"resource/custom_skins/phoneRegisterSkin.exml"}, 
     "chat":{name:"gameUI.chat", skin:"resource/custom_skins/chatSkin.exml"}, 
+    "shop":{name:"gameUI.shop", skin:"resource/custom_skins/shopSkin.exml"}, 
 }
