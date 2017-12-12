@@ -10,6 +10,9 @@ namespace gameUI{
    private  btn_tuoguan : eui.Image;
    private btn1 :eui.Image;
    private btn2 :eui.Image;
+   private btn0 :eui.Image;
+
+   private Text_bnt0:eui.Label;
    private Text_bnt1:eui.Label;
    private Text_bnt2:eui.Label;
 
@@ -62,6 +65,10 @@ namespace gameUI{
            });
            
             }, this );
+
+        this.Text_bnt0.visible = false;
+    
+        this.btn0.visible = false;
     }
 
 
@@ -250,9 +257,14 @@ namespace gameUI{
             img.y = Scorepos.y;
             group.addChild(img);
             CardLogic.Timer.Instance.Delay(4,()=>{
-                 if(this.clockCD!=null)
+                 if(this.clockCD!=null&&img)
                    group.removeChild(img);
             });
+
+            if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
+            {
+                this.CancelShootCard();
+            }
        }
        this.SetBtnsGame(false);
        this.countdown(data.current_user,data.time);
@@ -268,18 +280,26 @@ namespace gameUI{
 
    }
 
+   //提示
+   private prompt():void
+   {
+    
+   }
+
    //轮到自己出牌
    private PlayermeOutCard()
    {
         this.SetBtnsGame(true);
         this.Text_bnt1.text = "不出";
-        this.Text_bnt2.text = "出牌";
+        this.Text_bnt0.text = "出牌";
+        this.Text_bnt2.text = "提示";
 
         this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendSnatchlandLord,this);
-        this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendUnSnatchlandLord,this);
+        this.btn0.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendUnSnatchlandLord,this);
         
         this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.Sendpasscard,this);
-        this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
+        this.btn0.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendOutcard,this);
+        this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.prompt,this);
 
    }
 
@@ -348,7 +368,13 @@ namespace gameUI{
        this.Text_bnt2.visible = bvisible;
     
        this.btn2.visible = bvisible;
+
+       this.Text_bnt0.visible = bvisible;
+    
+       this.btn0.visible = bvisible;
    }
+
+
 
    //叫地主
    private landScore(data)
@@ -384,6 +410,9 @@ namespace gameUI{
                 this.Text_bnt2.text = "不抢";
                 this.SetBtnsGame(true);
                 this.Text_bnt1.text = "抢地主";
+                this.Text_bnt0.visible = false;
+    
+                this.btn0.visible = false;
                 this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
                 this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
 
@@ -854,7 +883,15 @@ namespace gameUI{
                  cards.push(this.hardCardsArray[i].cardData);
             }
         return cards;
-  }
+   }
+
+   private CancelShootCard()
+    {
+        for (let i = 0;i < this.hardCardsArray.length;i++) {
+               if(this.hardCardsArray[i].Selected)
+                 this.hardCardsArray[i].SetShoot(false);
+            }
+   }
         
 
    ///添加手牌
@@ -946,7 +983,9 @@ namespace gameUI{
         this.SetBtnsGame(true);
         this.Text_bnt1.text = "换桌";
         this.Text_bnt2.text = "准备";
-       
+        this.Text_bnt0.visible = false;
+    
+        this.btn0.visible = false;
         this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
         this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
    }
