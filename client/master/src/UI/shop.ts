@@ -43,7 +43,7 @@ namespace gameUI{
                 if(this.data instanceof ChargeData){
                     PlayerManager.Instance.Charge(this.data.rmb)
                 }else if(this.data instanceof ShopData){
-                    
+                    PlayerManager.Instance.BuyItem(this.data.id)
                 }
             }, this)
 		}

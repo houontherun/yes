@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="create_roomSkin" width="1730" height="566" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="imgBg" width="1722" height="558" x="4" y="2" anchorOffsetX="0" anchorOffsetY="0" source="resource/assets/com_bg.png"/>
-	<e:Button id="btnCreateRoom" label="create room" x="710" y="260" anchorOffsetX="0" width="310" anchorOffsetY="0" height="158"/>
-	<e:Label id="lblGame" text="Label" x="763" y="168" anchorOffsetX="0" width="204" anchorOffsetY="0" height="64" verticalAlign="middle" textAlign="center"/>
-	<e:Button id="btnClose" label="" x="1534" y="2" anchorOffsetY="0" height="124" anchorOffsetX="0" width="126">
-		<e:skinName>
-			<e:Skin states="up,down,disabled">
-			<e:Image width="100%" height="100%" source="resource/assets/com_btnclose.png" source.down="resource/assets/com_btnclose.png"/>
-			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
-		</e:skinName>
-	</e:Button>
+<e:Skin class="create_roomSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:gameUI="gameUI.*" xmlns:w="http://ns.egret.com/wing" xmlns:gameUIControl="gameUIControl.*">
+	<e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
+	<e:Image source="bg_png" x="164.18" y="134.35" scale9Grid="25,0,667,510" anchorOffsetX="0" width="1001.33"/>
+	<e:Image source="frame2_png" x="165.5" y="129.83" anchorOffsetX="0" width="993.33"/>
+	<e:Image source="frame_png" x="128.67" y="81" anchorOffsetX="0" width="1036.67"/>
+	<e:Image source="titleBg_png" x="477.5" y="67"/>
+	<e:Image id="btnClose" source="close_png" x="1116.12" y="71.01"/>
+	<e:Image id="btnCreate" source="btnbg2_png" x="673.01" y="563.98" fillMode="clip"/>
+	<e:Group id="groupDDZ" width="694.67" height="336" x="440" y="213.67" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Group width="680" height="62.67" x="4.33" y="9" anchorOffsetY="0" anchorOffsetX="0">
+			<e:Image source="shangpinbeiban_png" x="-6" y="-11" anchorOffsetX="0" width="694.33" scale9Grid="14,12,167,222" anchorOffsetY="0" height="86.33" scaleX="1" scaleY="1"/>
+			<e:RadioButton id="rbtnRound1" label="8局" x="212.68" y="21.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup1"/>
+			<e:Label text="选择局数：" x="18.339999999999918" y="17.169999999999987" textColor="0x754908" fontFamily="SimHei" anchorOffsetX="0" width="156" scaleX="1" scaleY="1"/>
+			<e:RadioButton id="rbtnRound2" label="16局" x="415.6799999999999" y="21.860000000000014" scaleX="1" scaleY="1" groupName="ddzgroup1"/>
+		</e:Group>
+		<e:Group width="685.33" height="84" x="2.67" y="88" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Image source="shangpinbeiban_png" x="-4.66" y="0" anchorOffsetX="0" width="694.33" scale9Grid="14,12,167,222" anchorOffsetY="0" height="86.33" scaleX="1" scaleY="1"/>
+			<e:RadioButton id="rbtnRoommdl2" label="AA开房" x="417.3399999999999" y="32.170000000000016" scaleX="1" scaleY="1" groupName="ddzgroup2"/>
+			<e:Label text="开房模式：" x="20" y="28.170000000000016" textColor="0x754908" fontFamily="SimHei" anchorOffsetX="0" width="156" scaleX="1" scaleY="1"/>
+			<e:RadioButton id="rbtnRoommdl1" label="房主开房" x="212.85000000000002" y="33.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup2"/>
+		</e:Group>
+		<e:Group width="685.33" height="84" x="3.36" y="182.02" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Image source="shangpinbeiban_png" x="-4.66" y="0" anchorOffsetX="0" width="694.33" scale9Grid="14,12,167,222" anchorOffsetY="0" height="86.33" scaleX="1" scaleY="1"/>
+			<e:RadioButton id="rbtntimes2" label="240倍" x="417.3399999999999" y="32.170000000000016" scaleX="1" scaleY="1" groupName="ddzgroup3"/>
+			<e:Label text="倍数上限：" x="20" y="28.170000000000016" textColor="0x754908" fontFamily="SimHei" anchorOffsetX="0" width="156" scaleX="1" scaleY="1"/>
+			<e:RadioButton id="rbtntimes1" label="120倍" x="212.85000000000002" y="33.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup3"/>
+		</e:Group>
+	</e:Group>
+	<e:Label text="创建" x="716" y="584" fontFamily="SimHei" textColor="0xf4a31d" anchorOffsetX="0" width="173.33" anchorOffsetY="0" height="44.67" size="40" textAlign="center" strokeColor="0x5e4406" stroke="1" touchEnabled="false"/>
+	<e:Image source="rank_tab2_png" x="201.01" y="216.69" anchorOffsetX="0" width="218.33"/>
+	<e:Label text="斗地主" x="222.18" y="242.87" fontFamily="SimHei" anchorOffsetX="0" width="173.33" anchorOffsetY="0" height="44.67" size="40" textAlign="center" strokeColor="0x5E4406" textColor="0xf7ebd9" touchEnabled="false"/>	
 </e:Skin>

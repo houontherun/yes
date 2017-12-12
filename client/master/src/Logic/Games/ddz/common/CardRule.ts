@@ -613,7 +613,7 @@ namespace Card {
                             for(var j = 0; j < conpairs[i].length; j++){
                                 if(conpairs[i][j][0].Weight > startCard.Weight && (conpairs[i].length - j) >= len){
                                     var conpair = conpairs[i].slice(j, j + len)
-                                    ret.push(conpair)
+                                    ret.push(this.toPokerArray(conpair))
                                 }
                             }
                         }
@@ -630,7 +630,7 @@ namespace Card {
                             for(var j = 0; j < aeroplanes[i].length; j++){
                                 if(aeroplanes[i][j][0].Weight > startCard.Weight && (aeroplanes[i].length - j >= len)){
                                     var aeroplane = aeroplanes[i].slice(j, j + len)
-                                    ret.push(aeroplane)
+                                    ret.push(this.toPokerArray(aeroplane))
                                 }
                             }
                         }

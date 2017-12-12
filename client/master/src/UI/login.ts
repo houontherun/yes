@@ -5,16 +5,18 @@
 namespace gameUI{
     export class login extends gameUI.base {
         private test(){
-            // var indexA = this.txtUserName.text.split(',')
-            // var indexB = this.txtPassword.text.split(',')
-            // var pockA = []
-            // var pockB = []
-            // for(var i = 0; i < indexA.length; i++){
-            //     pockA.push(Card.Util.createPokerCard(parseInt(indexA[i])))
-            // }
-            // for(var i = 0; i < indexB.length; i++){
-            //     pockB.push(Card.Util.createPokerCard(parseInt(indexB[i])))
-            // }
+            var indexA = this.txtAccount.text.split(',')
+            var indexB = this.txtPassword.text.split(',')
+            var pockA = []
+            var pockB = []
+            for(var i = 0; i < indexA.length; i++){
+                pockA.push(Card.Util.createPokerCard(parseInt(indexA[i])))
+            }
+            for(var i = 0; i < indexB.length; i++){
+                pockB.push(Card.Util.createPokerCard(parseInt(indexB[i])))
+            }
+
+            // 组合测试
             // var A = new Card.ddzPackCardGroup(pockA)
             // var B = new Card.ddzPackCardGroup(pockB)
             // var msg = A.CardType.toString() + '\r\n'
@@ -23,23 +25,18 @@ namespace gameUI{
             // alert(msg)
 
             // 压死测试
-            // var P = new Card.ddzHandCards(pockB)
-            // var pressed = P.getPressedCards(A)
-            // var allMsg = ''
-            // for(var i = 0; i < pressed.length; i++){
-            //     var msg = ''
-            //     for(var j = 0; j < pressed[i].length; j++){
-            //         if(pressed[i][j] instanceof Array){
-            //             for(var k = 0; k < pressed[i][j].length; k++){
-            //                 msg += pressed[i][j][k].Index.toString()
-            //             }
-            //         }else{
-            //             msg += pressed[i][j].Index.toString()
-            //         }
-            //     }
-            //     allMsg += msg + '\r\n'
-            // }
-            // alert(allMsg)
+            var A = new Card.ddzHandCards(pockA)
+            var B = new Card.ddzPackCardGroup(pockB)
+            var pressed = A.getPressedCards(B)
+            var allMsg = ''
+            for(var i = 0; i < pressed.length; i++){
+                var msg = ''
+                for(var j = 0; j < pressed[i].length; j++){
+                    msg += pressed[i][j].Index.toString()
+                }
+                allMsg += msg + '\r\n'
+            }
+            alert(allMsg)
         }
         public onload():void {
             super.onload();
@@ -51,6 +48,7 @@ namespace gameUI{
                         this.requestLogin()
                     }, this)
                 }
+                // this.test()
             }, this );      
 
             var storageUserName = Util.getItem('username')   

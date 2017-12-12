@@ -178,7 +178,8 @@ class PlayerManager extends Dispatcher {
     }
     private onCharge(data:any){
         if(data.ret == 0){
-            alert('充值成功 gold=' + data.gold)
+            this.updateData(data)
+            alert('充值成功')
         }else{
             alert('充值失败')
         }
@@ -192,7 +193,8 @@ class PlayerManager extends Dispatcher {
     }
     private onBuyItem(data){
         if(data.ret == 0){
-            alert('购买成功 gold=' + data.gold + ' id=' + data.id)
+            this.updateData({gold:data.gold})
+            alert('购买成功')
         }else{
             alert('购买失败')
         }

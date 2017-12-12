@@ -5,17 +5,78 @@ namespace gameUI{
         
         public onload():void {
             super.onload()
-            this.btnEnterRoom.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                
+            this.btnCreateRoom.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
+                UIManager.Instance.LoadUI(UI.create_room)
             }, this );
             this.btnClose.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.Close()
             }, this );
+
+            this.btnReinput.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
+                this.numbers = []
+                this.updateUI()
+            }, this );
+            this.btnDel.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
+                if(this.numbers.length > 0){
+                    this.numbers.splice(this.numbers.length - 1, 1)
+                    this.updateUI()
+                }
+            }, this );
+            this.btn0.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(0); }, this);
+            this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(1); }, this);
+            this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(2); }, this);
+            this.btn3.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(3); }, this);
+            this.btn4.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(4); }, this);
+            this.btn5.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(5); }, this);
+            this.btn6.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(6); }, this);
+            this.btn7.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(7); }, this);
+            this.btn8.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(8); }, this);
+            this.btn9.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(9); }, this);
         }
+        private input(i){
+            if(this.numbers.length < 4){
+                this.numbers.push(i)
+                this.updateUI()
+                if(this.numbers.length == 4){
+                    this.enterRoom()
+                }
+            }
+        }
+        private updateUI(){
+            if(this.numbers.length == 0){
+                this.txtRoomNum.text = "输　　入　　房　　号"
+            }else{
+                var s = this.numbers[0].toString()
+                for(var i = 1; i < 4; i++){
+                    if(this.numbers.length > i){
+                        s += '　　 ' + this.numbers[i].toString()
+                    }else{
+                        s += '　　 ' + ' '
+                    }
+                }
+                this.txtRoomNum.text = s
+            }
+        }
+        private enterRoom(){
+
+        }
+        private numbers = []
         
-        private btnEnterRoom:eui.Button;
-        private lblRoomId:eui.Label;
-        private txtRoomId:eui.TextInput;
-        private btnClose:eui.Button;
+        public btn1:eui.Image;
+        public btn4:eui.Image;
+        public btn2:eui.Image;
+        public btn8:eui.Image;
+        public btn5:eui.Image;
+        public btn7:eui.Image;
+        public btn0:eui.Image;
+        public btn6:eui.Image;
+        public btn9:eui.Image;
+        public btn3:eui.Image;
+        public btnReinput:eui.Image;
+        public btnDel:eui.Image;
+        public btnClose:eui.Image;
+        public btnCreateRoom:eui.Image;
+        public txtRoomNum:eui.Label;
+
     }
 }
