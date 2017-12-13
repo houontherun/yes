@@ -106,7 +106,7 @@ namespace gameUI{
                     var groups = [
                         "preload",
                         "lobby",
-                        "common"
+                        "common",
                     ]
                     ResourceManager.Instance.loadGroups(groups, this, ()=>{
                         loadingUI.Close()
