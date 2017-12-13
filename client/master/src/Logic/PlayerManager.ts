@@ -71,6 +71,16 @@ class PlayerData{
     public get Sex():number {
         return this.sex
     }
+    public getResourceNumById(itemId:number):number{
+        switch(itemId){
+            case 1001:
+                return this.gold
+            case 1002:
+                return this.card
+            default:
+                return 0                
+        }
+    }
 }
 
 class PlayerManager extends Dispatcher {

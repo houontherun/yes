@@ -192,6 +192,8 @@ class RoomManager extends Dispatcher {
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_SIT_DOWN,  this.onPlayerSitDown, this)  
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STATUS ,  this.onPlayerStateUpdate, this)  
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP,  this.onPlayerStandup, this)  
+        MessageManager.Instance.addEventListener(constant.msg.SC_CREATE_HALL_TABLE,  this.onCreateCustomTable, this)  
+        MessageManager.Instance.addEventListener(constant.msg.SC_JOIN_CUSTOM_TABLE,  this.onJoinCustomTable, this)  
     }
 
     private onRoomListRet(data:any):void{
@@ -292,5 +294,32 @@ class RoomManager extends Dispatcher {
                 this.dispatchEvent(constant.event.logic.on_player_data_update, user)
             }
         }
+    }
+
+    public CreateCustomTable(game_id:number, ticket_pay_type:number, round_count:number, time_limit:number){
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_CREATE_HALL_TABLE,
+            game_id:game_id, 
+            ticket_pay_type:ticket_pay_type, 
+            round_count:round_count, 
+            time_limit:time_limit
+        })
+    }
+    private onCreateCustomTable(data){
+        // if(data.ret == 0){
+            // alert('房间id:' + data.custom_table_id)
+            this.dispatchEvent(constant.event.logic.on_create_custom_table, data)
+        // }
+    }
+    public JoinCustomTable(custom_table_id:number){
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_CREATE_HALL_TABLE,
+            custom_table_id:custom_table_id
+        })
+    }
+    private onJoinCustomTable(data){
+        // if(data.ret == 0){
+            this.dispatchEvent(constant.event.logic.on_join_custom_table, data)
+        // }        
     }
 }

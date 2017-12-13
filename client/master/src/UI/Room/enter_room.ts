@@ -32,6 +32,11 @@ namespace gameUI{
             this.btn7.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(7); }, this);
             this.btn8.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(8); }, this);
             this.btn9.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{  this.input(9); }, this);
+            RoomManager.Instance.addEventListener(constant.event.logic.on_join_custom_table, this.onJoinCustomTable, this)
+        }
+        public onUnload(){
+            super.onUnload()            
+            RoomManager.Instance.removeEventListener(constant.event.logic.on_join_custom_table, this.onJoinCustomTable, this)
         }
         private input(i){
             if(this.numbers.length < 4){
@@ -58,7 +63,17 @@ namespace gameUI{
             }
         }
         private enterRoom(){
-
+            if(this.numbers.length == 4){
+                var roomId = this.numbers[0] * 1000 + this.numbers[1] * 100 + this.numbers[2] * 10 + this.numbers[3]
+                RoomManager.Instance.JoinCustomTable(roomId)
+            }
+        }
+        private onJoinCustomTable(data){
+            if(data.ret == 0){
+                GameManager.Instance.startDDZGame()
+            }else{
+                alert('加入失败 code=' + data.ret)
+            }
         }
         private numbers = []
         

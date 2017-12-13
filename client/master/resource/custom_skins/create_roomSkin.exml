@@ -10,21 +10,21 @@
 	<e:Group id="groupDDZ" width="694.67" height="336" x="440" y="213.67" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Group width="680" height="62.67" x="4.33" y="9" anchorOffsetY="0" anchorOffsetX="0">
 			<e:Image source="shangpinbeiban_png" x="-6" y="-11" anchorOffsetX="0" width="694.33" scale9Grid="14,12,167,222" anchorOffsetY="0" height="86.33" scaleX="1" scaleY="1"/>
-			<e:RadioButton id="rbtnRound1" label="8局" x="212.68" y="21.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup1"/>
+			<e:RadioButton id="ddzrbtnRound1" label="" x="212.68" y="21.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup1"/>
 			<e:Label text="选择局数：" x="18.339999999999918" y="17.169999999999987" textColor="0x754908" fontFamily="SimHei" anchorOffsetX="0" width="156" scaleX="1" scaleY="1"/>
-			<e:RadioButton id="rbtnRound2" label="16局" x="415.6799999999999" y="21.860000000000014" scaleX="1" scaleY="1" groupName="ddzgroup1"/>
+			<e:RadioButton id="ddzrbtnRound2" label="" x="415.6799999999999" y="21.860000000000014" scaleX="1" scaleY="1" groupName="ddzgroup1"/>
 		</e:Group>
 		<e:Group width="685.33" height="84" x="2.67" y="88" anchorOffsetX="0" anchorOffsetY="0">
 			<e:Image source="shangpinbeiban_png" x="-4.66" y="0" anchorOffsetX="0" width="694.33" scale9Grid="14,12,167,222" anchorOffsetY="0" height="86.33" scaleX="1" scaleY="1"/>
-			<e:RadioButton id="rbtnRoommdl2" label="AA开房" x="417.3399999999999" y="32.170000000000016" scaleX="1" scaleY="1" groupName="ddzgroup2"/>
+			<e:RadioButton id="ddzrbtnRoommdl2" label="" x="417.3399999999999" y="32.170000000000016" scaleX="1" scaleY="1" groupName="ddzgroup2"/>
 			<e:Label text="开房模式：" x="20" y="28.170000000000016" textColor="0x754908" fontFamily="SimHei" anchorOffsetX="0" width="156" scaleX="1" scaleY="1"/>
-			<e:RadioButton id="rbtnRoommdl1" label="房主开房" x="212.85000000000002" y="33.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup2"/>
+			<e:RadioButton id="ddzrbtnRoommdl1" label="" x="212.85000000000002" y="33.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup2"/>
 		</e:Group>
 		<e:Group width="685.33" height="84" x="3.36" y="182.02" anchorOffsetX="0" anchorOffsetY="0">
 			<e:Image source="shangpinbeiban_png" x="-4.66" y="0" anchorOffsetX="0" width="694.33" scale9Grid="14,12,167,222" anchorOffsetY="0" height="86.33" scaleX="1" scaleY="1"/>
-			<e:RadioButton id="rbtntimes2" label="240倍" x="417.3399999999999" y="32.170000000000016" scaleX="1" scaleY="1" groupName="ddzgroup3"/>
+			<e:RadioButton id="ddzrbtntimes2" label="" x="417.3399999999999" y="32.170000000000016" scaleX="1" scaleY="1" groupName="ddzgroup3"/>
 			<e:Label text="倍数上限：" x="20" y="28.170000000000016" textColor="0x754908" fontFamily="SimHei" anchorOffsetX="0" width="156" scaleX="1" scaleY="1"/>
-			<e:RadioButton id="rbtntimes1" label="120倍" x="212.85000000000002" y="33.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup3"/>
+			<e:RadioButton id="ddzrbtntimes1" label="" x="212.85000000000002" y="33.860000000000014" scaleX="1" scaleY="1" selected="true" groupName="ddzgroup3"/>
 		</e:Group>
 	</e:Group>
 	<e:Label text="创建" x="716" y="584" fontFamily="SimHei" textColor="0xf4a31d" anchorOffsetX="0" width="173.33" anchorOffsetY="0" height="44.67" size="40" textAlign="center" strokeColor="0x5e4406" stroke="1" touchEnabled="false"/>

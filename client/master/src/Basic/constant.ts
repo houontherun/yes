@@ -135,6 +135,8 @@ var constant = {
             on_player_enter_room:"on_player_enter_room",
             on_player_leave_room:"on_player_leave_room",
             on_table_users_update:"on_table_users_update",
+            on_create_custom_table:"on_create_custom_table",
+            on_join_custom_table:"on_join_custom_table",
             on_new_chat_data:"on_new_chat_data",
         },
         doudizhu:{
