@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="loadingSkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="loadingbg_jpg" x="0" y="0"/>
+	<e:Image id="loadingBg" source="loadingproBg_png" x="150" y="694.17" scale9Grid="18,2,967,19" width="1000"/>
+	<e:Image id="loadingFg" source="loadingproFg_png" x="150" y="697.32" scale9Grid="11,1,915,13" width="0"/>
+	<e:Label id="txtLoading" text="0%" x="156" y="660.32" anchorOffsetX="0" width="980.67" textAlign="center"/>
+	<e:Image id="loadingPos" source="loadingprof_png" x="150" y="705.45" anchorOffsetY="27.25" height="55" anchorOffsetX="35" width="70"/>
+</e:Skin>

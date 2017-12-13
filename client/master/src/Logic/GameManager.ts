@@ -5,14 +5,13 @@ class GameManager extends Dispatcher {
         super();
     }   
     public Init(){
-        ResourceManager.Instance.Init()
         PlayerManager.Instance.Init()
         RoomManager.Instance.Init()
         ChatManager.Instance.Init()
     }
 
     public startDDZGame():void{
-        ResourceManager.Instance.loadGroups(['ddzRes', 'face', 'poke'], this.onResourceLoadComplete, this)
+        ResourceManager.Instance.loadGroups(['ddzRes', 'face', 'poke'], this, this.onResourceLoadComplete)
     }
 
     private onResourceLoadComplete(): void {

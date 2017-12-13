@@ -42,35 +42,33 @@ class ResourceManager extends Dispatcher {
         // console.log('end load')
     }
 
-    public loadGroups(groups:Array<string>, callback:Function, thisObj:any){
+    public loadGroups(groups:Array<string>, thisObj:any, onComplete:Function, onProgress?:Function, onError?:Function){
         this.preloadList = this.preloadList.concat(groups)
         if(this.current == null){
             this.current = this.preloadList.pop()
             this.startLoad()
         }
+        var total = 0
+        for(var i = 0; i < groups.length; i++){
+            total += RES.getGroupByName(groups[i]).length
+        }
         this.eventList.push({
             groups : groups,
-            callback : callback,
+            total : total,
+            current : 0,
+            complete : onComplete,
+            progress : onProgress,
+            error : onError,
             thisObj : thisObj
         })
     }
 
-    public loadGroup(groupName:string, callback:Function, thisObj:any):void{
-        this.preloadList.push(groupName)
-        if(this.current == null){
-            this.current = this.preloadList.pop()
-            this.startLoad()
-        }
-        this.eventList.push({
-            groups : [groupName],
-            callback : callback,
-            thisObj : thisObj
-        })
+    public loadGroup(groupName:string, thisObj:any, onComplete:Function, onProgress?:Function, onError?:Function):void{
+        this.loadGroups([groupName], thisObj, onComplete, onprogress, onError)
     }
     
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
         if(event.groupName == this.current){
-            // console.log("event.groupName:" + event.groupName)
             for(var i = this.eventList.length - 1; i >= 0; i--){
                 var isLoaded = true
                 for(var j = 0; j < this.eventList[i].groups.length; j++){
@@ -80,11 +78,8 @@ class ResourceManager extends Dispatcher {
                     }
                 }
                 if(isLoaded){
-                    // console.log('load finished')
-                    this.eventList[i].callback.call(this.eventList[i].thisObj)
+                    this.eventList[i].complete.call(this.eventList[i].thisObj)
                     this.eventList.splice(i, 1)
-                }else{
-                    // console.log('loading')
                 }
             }
             if(this.preloadList.length > 0){
@@ -97,15 +92,33 @@ class ResourceManager extends Dispatcher {
     }
 
     private onResourceProgress(event:RES.ResourceEvent):void {
+        if(event.groupName == this.current){
+            for(var i = this.eventList.length - 1; i >= 0; i--){
+                if(this.eventList[i].progress != null && this.eventList[i].groups.indexOf(event.groupName) != -1){
+                    this.eventList[i].current += 1
+                    this.eventList[i].progress.call(this.eventList[i].thisObj, this.eventList[i].current, this.eventList[i].total)
+                }
+            }
+        }
         // console.log("preload资源加载进度 : " + event.itemsLoaded + " / " + event.itemsTotal);
     }
 
+    // 资源组加载失败
     private onResourceLoadError(event:RES.ResourceEvent):void {
-        console.log(event.groupName + "组加载失败");
-        this.onResourceLoadComplete(event);
+        if(event.groupName == this.current){
+            for(var i = this.eventList.length - 1; i >= 0; i--){
+                if(this.eventList[i].error != null && this.eventList[i].groups.indexOf(event.groupName) != -1){
+                    this.eventList[i].error.call(this.eventList[i].thisObj, event.groupName)
+                }
+            }
+            this.onResourceLoadComplete(event);
+        }
     }
 
+    // 资源加载失败
     private onResourceItemLoadError(event:RES.ResourceEvent):void {
-        console.log("项目加载失败,url : " + event.resItem.url);
+        if(event.groupName == this.current){
+            console.log("项目加载失败, url: " + event.resItem.url);
+        }
     }
 }

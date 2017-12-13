@@ -31,7 +31,6 @@ class UIManager extends Dispatcher {
         var view = new cls(ui, data)
         this.stage.addChild(view);
 
-        // 加载完成后回调
         if(onLoaded != null && thisObj != null){
             view.once( eui.UIEvent.COMPLETE, onLoaded, thisObj);
         }

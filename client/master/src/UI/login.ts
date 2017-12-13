@@ -38,14 +38,35 @@ namespace gameUI{
             }
             alert(allMsg)
         }
+        private preloadResource(){
+            this.Close()
+            UIManager.Instance.LoadUI(UI.loading, null, ()=>{
+                var timer = new egret.Timer(500, 1)
+                timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
+                    var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
+                    var groups = [
+                        "preload",
+                        "lobby",
+                        "common"
+                    ]
+                    ResourceManager.Instance.loadGroups(groups, this, ()=>{
+                        this.requestLogin()
+                        loadingUI.Close()
+                    }, (current, total)=>{
+                        loadingUI.setProgress(Math.floor(current * 100 / total))
+                    })
+                }, this);
+                timer.start()                
+            }, this)
+        }
         public onload():void {
             super.onload();
             this.btnLogin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(ConnectionManager.Instance.isConnected){
-                    this.requestLogin()
+                    this.preloadResource()
                 }else{
                     ConnectionManager.Instance.connect(constant.connect_ip, constant.connect_port, ()=>{
-                        this.requestLogin()
+                        this.preloadResource()
                     }, this)
                 }
                 // this.test()
@@ -98,9 +119,7 @@ namespace gameUI{
             Util.setItem('username', this.txtAccount.text)
             Util.setItem('password', this.txtPassword.text)
             
-            UIManager.Instance.LoadUI(UI.lobby, null, ()=>{
-                this.Close();
-            });
+            UIManager.Instance.LoadUI(UI.lobby);
         }
         public btnWeixin:eui.Image;
         public btnQQ:eui.Image;
