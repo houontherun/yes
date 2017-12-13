@@ -313,7 +313,7 @@ class RoomManager extends Dispatcher {
     }
     public JoinCustomTable(custom_table_id:number){
         MessageManager.Instance.SendMessage({
-            protocol:constant.msg.CS_CREATE_HALL_TABLE,
+            protocol:constant.msg.CS_JOIN_CUSTOM_TABLE,
             custom_table_id:custom_table_id
         })
     }
