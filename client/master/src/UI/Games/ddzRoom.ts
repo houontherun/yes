@@ -115,9 +115,6 @@ namespace gameUI{
             this.svGame.bindData(this.enterRoomData.Tables)
         }
         private onSitDown(data):void{
-            GameManager.Instance.once(constant.event.logic.on_start_game, ()=>{
-                this.Close()
-            }, this)
             GameManager.Instance.startDDZGame()
         }
 

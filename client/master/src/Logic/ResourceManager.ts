@@ -44,10 +44,7 @@ class ResourceManager extends Dispatcher {
 
     public loadGroups(groups:Array<string>, thisObj:any, onComplete:Function, onProgress?:Function, onError?:Function){
         this.preloadList = this.preloadList.concat(groups)
-        if(this.current == null){
-            this.current = this.preloadList.pop()
-            this.startLoad()
-        }
+        
         var total = 0
         for(var i = 0; i < groups.length; i++){
             total += RES.getGroupByName(groups[i]).length
@@ -61,6 +58,10 @@ class ResourceManager extends Dispatcher {
             error : onError,
             thisObj : thisObj
         })
+        if(this.current == null){
+            this.current = this.preloadList.pop()
+            this.startLoad()
+        }
     }
 
     public loadGroup(groupName:string, thisObj:any, onComplete:Function, onProgress?:Function, onError?:Function):void{
