@@ -65,7 +65,7 @@ class Main extends eui.UILayer {
 
         let theme = new eui.Theme("resource/default.thm.json", this.stage);
         theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);
-        ResourceManager.Instance.loadGroup("login", this, this.onResourceLoaded)
+        ResourceManager.Instance.loadGroups(["login", "data"], this, this.onResourceLoaded)
     }
 
     private isResourceLoadEnd: boolean = false;

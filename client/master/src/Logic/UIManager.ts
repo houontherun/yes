@@ -29,11 +29,11 @@ class UIManager extends Dispatcher {
         }
         var cls = egret.getDefinitionByName(ui.name)
         var view = new cls(ui, data)
-        this.stage.addChild(view);
-
+        
         if(onLoaded != null && thisObj != null){
             view.once( eui.UIEvent.COMPLETE, onLoaded, thisObj);
         }
+        this.stage.addChild(view);
     }
 
     public UnloadUI(ui:any){

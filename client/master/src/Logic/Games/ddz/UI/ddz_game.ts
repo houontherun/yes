@@ -44,7 +44,6 @@ namespace gameUI{
        
         super.onload();
 
-        MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.Standup, this);
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
         MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
@@ -60,27 +59,19 @@ namespace gameUI{
                  
             }, this );
 
-        this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
         this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
         this.AddClick(this.btn_back, ()=>{   
-             MessageManager.Instance.SendMessage({
-              protocol:constant.msg.CS_USER_STAND_UP
-           });
-           
-            }, this );
+            GameManager.Instance.addEventListener(constant.event.logic.on_exit_game, ()=>{
+                this.Close()
+                CardLogic.ddzGameLogic.Instance.ExitGame();
+            }, this)
+            GameManager.Instance.exitDDZGame()
+        }, this );
 
         this.Text_bnt0.visible = false;
     
         this.btn0.visible = false;
     }
-
-
-   private  SendStandUp():void
-   {
-        MessageManager.Instance.SendMessage({
-            protocol:constant.msg.CS_USER_STAND_UP
-         }); 
-   }
 
   private  SendReady():void
    {
@@ -129,7 +120,6 @@ namespace gameUI{
 
    public onUnload():void{
         super.onUnload()
-        MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.Standup,this) ;
         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
         MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
         MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
@@ -489,7 +479,6 @@ namespace gameUI{
                 this.Text_bnt0.visible = false;
     
                 this.btn0.visible = false;
-                this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
                 this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
 
                 this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendSnatchlandLord,this);
@@ -514,15 +503,6 @@ namespace gameUI{
     }
  }
 
-
-
-  private Standup(data:any):void
-  {
-      UIManager.Instance.UnloadUI(UI.ddzGame);
-      UIManager.Instance.LoadUI(UI.ddzRoom);   
-      CardLogic.ddzGameLogic.Instance.ExitGame();
-  }
-  
   
 
   //创建闹钟
@@ -1067,7 +1047,6 @@ namespace gameUI{
         this.Text_bnt0.visible = false;
     
         this.btn0.visible = false;
-        this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendStandUp,this);
         this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.SendReady,this);
    }
 

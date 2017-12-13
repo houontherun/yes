@@ -1,8 +1,8 @@
 // TypeScript file
 
 var constant = {
-    connect_ip : "192.168.12.3", // 候
-    // connect_ip : "192.168.12.1", // 谭
+    // connect_ip : "192.168.12.3", // 候
+    connect_ip : "192.168.12.1", // 谭
     // connect_ip:"fanqinet.tpddns.cn",
     // connect_ip:"47.96.11.32", // 外网测试服
     connect_port: 8000,
@@ -138,6 +138,8 @@ var constant = {
             on_create_custom_table:"on_create_custom_table",
             on_join_custom_table:"on_join_custom_table",
             on_new_chat_data:"on_new_chat_data",
+            on_start_game:"on_start_game",
+            on_exit_game:"on_exit_game",
         },
         doudizhu:{
             on_rec:"onrec",

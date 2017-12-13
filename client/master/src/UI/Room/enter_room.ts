@@ -70,6 +70,9 @@ namespace gameUI{
         }
         private onJoinCustomTable(data){
             if(data.ret == 0){
+                GameManager.Instance.once(constant.event.logic.on_start_game, ()=>{
+                    this.Close()
+                }, this)
                 GameManager.Instance.startDDZGame()
             }else{
                 alert('加入失败 code=' + data.ret)

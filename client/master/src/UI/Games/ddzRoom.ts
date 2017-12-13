@@ -115,12 +115,14 @@ namespace gameUI{
             this.svGame.bindData(this.enterRoomData.Tables)
         }
         private onSitDown(data):void{
+            GameManager.Instance.once(constant.event.logic.on_start_game, ()=>{
+                this.Close()
+            }, this)
             GameManager.Instance.startDDZGame()
         }
 
         private onLeaveRoom(data):void{
             this.Close()
-            UIManager.Instance.LoadUI(UI.ddzSelectRoom)
         }
         private onTableUserUpdate(table:TableData):void{
             for(var i = 0; i < this.svGame.DataList.numChildren; i++){
