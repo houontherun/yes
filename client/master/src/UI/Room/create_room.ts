@@ -77,7 +77,8 @@ namespace gameUI{
         private onCreateCustomTable(data){
             if(data.ret == 0){
                 alert('创建成功！房间号：' + data.custom_table_id)
-                GameManager.Instance.startDDZGame()
+                // GameManager.Instance.startDDZGame()
+                this.Close()
             }else{
                 alert('创建房间失败 ret=' + data.ret)
             }
