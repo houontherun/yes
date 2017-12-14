@@ -49,10 +49,24 @@ namespace gameUI{
                     }
                     Util.setItem('username', this.account)
                     Util.setItem('password', this.password)
-                    
-                    UIManager.Instance.LoadUI(UI.lobby, null, ()=>{
-                        this.Close();
-                    }, this);
+                    UIManager.Instance.LoadUI(UI.loading, null, ()=>{
+                        var timer = new egret.Timer(500, 1)
+                        timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
+                            var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
+                            var groups = [
+                                "preload",
+                                "lobby",
+                                "common",
+                            ]
+                            ResourceManager.Instance.loadGroups(groups, this, ()=>{
+                                loadingUI.Close()
+                                UIManager.Instance.LoadUI(UI.lobby);
+                            }, (current, total)=>{
+                                loadingUI.setProgress(Math.floor(current * 100 / total))
+                            })
+                        }, this);
+                        timer.start()                
+                    }, this)
                 }, this)
             }
         }

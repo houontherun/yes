@@ -8,6 +8,8 @@ class UIManager extends Dispatcher {
     }   
 
     private stage:eui.UILayer = null;
+    private waitImg:eui.Image = null
+    private waitMask:eui.Image = null
 
     public get Lobby():gameUI.lobby{
         var child = this.GetChild(UI.lobby)
@@ -47,5 +49,36 @@ class UIManager extends Dispatcher {
 
     public GetChild(ui:any):any{
         return this.stage.getChildByName(ui.name)
+    }
+
+    public showWait(){
+        if(this.waitImg == null){
+            this.waitImg = new eui.Image("loading_png")
+            this.waitImg.x = this.stage.width/2
+            this.waitImg.y = this.stage.height/2
+            this.waitImg.anchorOffsetX = 43.5
+            this.waitImg.anchorOffsetY = 43.5
+            this.stage.addChild(this.waitImg)
+            
+            var tween = egret.Tween.get(this.waitImg, {loop:true})
+            tween.to({rotation:360}, 1000)
+
+            this.waitMask = new eui.Image('mask_png')
+            this.waitMask.width = this.stage.width
+            this.waitMask.height = this.stage.height
+            this.waitMask.alpha = 0.01
+            this.stage.addChild(this.waitMask)
+            // this.waitMask.addEventListener(egret.TouchEvent.TOUCH_BEGIN, ()=>{
+            //     UIManager.Instance.hideWait()
+            // }, this)
+        }
+        this.waitImg.visible = true
+        this.waitMask.visible = true
+    }
+    public hideWait(){
+        if(this.waitImg != null){
+            this.waitImg.visible = false
+            this.waitMask.visible = false
+        }
     }
 }

@@ -61,10 +61,12 @@ namespace gameUI{
             }
 
             this.btnWeixin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                alert('暂未实现')
+                // alert('暂未实现')
+                UIManager.Instance.showWait()
             }, this );   
             this.btnQQ.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                alert('暂未实现')
+                // alert('暂未实现')
+                UIManager.Instance.hideWait()
             }, this );   
             this.btnForgetPwd.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(ConnectionManager.Instance.isConnected){

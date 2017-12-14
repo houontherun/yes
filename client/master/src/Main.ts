@@ -53,23 +53,27 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
 
         // 添加logo
-        // var loader:egret.ImageLoader = new egret.ImageLoader();
-        // loader.addEventListener(egret.Event.COMPLETE, (event)=>{
-        //     var loader:egret.ImageLoader = <egret.ImageLoader>event.target;
-        //     var bitmapData:egret.BitmapData = loader.data;
-        //     var texture = new egret.Texture();
-        //     texture.bitmapData = bitmapData;
-        //     this.addChild(new egret.Bitmap(texture));
-        // }, this);
-        // var url:string = "resource/assets/logo.jpg";
-        // loader.load(url);
+        var loader:egret.ImageLoader = new egret.ImageLoader();
+        loader.addEventListener(egret.Event.COMPLETE, (event)=>{
+            var loader:egret.ImageLoader = <egret.ImageLoader>event.target;
+            var bitmapData:egret.BitmapData = loader.data;
+            var texture = new egret.Texture();
+            texture.bitmapData = bitmapData;
+            var bit = new egret.Bitmap(texture)
+            bit.alpha = 0;
+            this.addChild(bit);
+            var tween = egret.Tween.get(bit)
+            tween.to({alpha:1}, 1000)
+        }, this);
+        var url:string = "resource/assets/logo.jpg";
+        loader.load(url);
 
-        // var timer = new egret.Timer(500, 1)
-        // timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
+        var timer = new egret.Timer(1500, 1)
+        timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
             RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
             RES.loadConfig("resource/default.res.json", "resource/");
-        // }, this);
-        // timer.start()  
+        }, this);
+        timer.start()  
 
     }
 

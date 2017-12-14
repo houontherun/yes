@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="chatItemSkin" width="774" height="115" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group id="leftGroup" width="765" height="107" x="-1" y="6" anchorOffsetX="0" anchorOffsetY="0">
-		<e:Image id="imgHeadL" source="touxiang_png" x="11" y="9" scaleX="1" scaleY="1"/>
+		<e:Image id="imgHeadL" source="touxiang_png" x="11" y="9" scaleX="1" scaleY="1" anchorOffsetX="0"/>
 		<e:Label id="txtNameL" text="张三" x="109" y="16" fontFamily="SimHei" anchorOffsetX="0" width="198" textColor="0xc6c1b4" size="25"/>
 		<e:Image id="imgContentBgL" source="qitarenduihuakuang_png" x="107" y="52" scale9Grid="22,7,349,28" anchorOffsetX="0" width="638"/>
 		<e:Label id="txtContentL" text="你一一五一一" y="62" textAlign="left" textColor="0xf79d2c" fontFamily="SimHei" size="20" left="120"/>

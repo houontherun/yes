@@ -65,6 +65,7 @@ var constant = {
         SC_CHILD_GAME_MESSAGE : 2018,	//子游戏消息
 	    SC_GAME_MESSAGE : 2019,			//游戏信息，包括聊天等,显示用
 	    SC_QUERY_ROOM_INFO : 2023,		//推送房间信息
+        SC_MODIFY_USER_INFO : 2024,		//修改玩家信息回包
         SC_TABLE_PLAYER_INFO : 2025,	//桌子上玩家信息
         SC_USER_IS_PLAYING : 2026,		//玩家正在其他桌子玩游戏
         SC_REENTER_PLAYING : 2027,		//玩家重新进入游戏桌子回包
@@ -145,4 +146,34 @@ var constant = {
             on_rec:"onrec",
         }
     }
+}
+
+var msg_data = {
+    [constant.msg.CS_PLATFORM_REGISTER]:{ret:constant.msg.SC_PLATFORM_REGISTER},
+    [constant.msg.CS_PLATFORM_LOGIN]:{ret:constant.msg.SC_PLATFORM_LOGIN},
+    [constant.msg.CS_PLATFORM_CHANGE_PWD]:{ret:constant.msg.SC_PLATFORM_CHANGE_PWD},
+    [constant.msg.CS_LOGIN]:{ret:constant.msg.SC_LOGIN},
+    [constant.msg.CS_CREATE_ROOM]:{ret:constant.msg.SC_CREATE_ROOM},
+    [constant.msg.CS_ENTER_ROOM]:{ret:constant.msg.SC_ENTER_ROOM},
+    [constant.msg.CS_LEAVE_ROOM]:{ret:constant.msg.SC_LEAVE_ROOM},
+    [constant.msg.CS_LOGOUT]:{ret:constant.msg.SC_LOGOUT},
+    [constant.msg.CS_SAVE_MONEY]:{ret:constant.msg.SC_SAVE_MONEY},
+    [constant.msg.CS_WITHDRAW_MONEY]:{ret:constant.msg.SC_WITHDRAW_MONEY},
+    [constant.msg.CS_GIVE_GOLD_2_OTHER]:{ret:constant.msg.SC_GIVE_GOLD_2_OTHER},
+    [constant.msg.CS_CHANGE_BANK_PASSWD]:{ret:constant.msg.SC_CHANGE_BANK_PASSWD},
+    [constant.msg.CS_GET_BANK_RECORD]:{ret:constant.msg.SC_GET_BANK_RECORD},
+    [constant.msg.CS_GET_RANK]:{ret:constant.msg.SC_GET_RANK},
+    [constant.msg.CS_QUERY_TABLE_USER_INFO]:{ret:constant.msg.SC_TABLE_PLAYER_INFO},
+    [constant.msg.CS_USER_SIT_DOWN]:{ret:constant.msg.SC_USER_SIT_DOWN},
+    [constant.msg.CS_USER_STAND_UP]:{ret:constant.msg.SC_USER_STAND_UP},
+    // [constant.msg.CS_USER_READY]:{ret:constant.msg.SC_USER_READY},
+    [constant.msg.CS_CHILD_GAME_MESSAGE]:{ret:constant.msg.SC_CHILD_GAME_MESSAGE},
+    [constant.msg.CS_QUERY_ROOM_INFO]:{ret:constant.msg.SC_QUERY_ROOM_INFO},
+    [constant.msg.CS_MODIFY_USER_INFO]:{ret:constant.msg.SC_MODIFY_USER_INFO},
+    [constant.msg.CS_REENTER_PLAYING]:{ret:constant.msg.SC_REENTER_PLAYING},
+    [constant.msg.CS_CREATE_HALL_TABLE]:{ret:constant.msg.SC_CREATE_HALL_TABLE},
+    [constant.msg.CS_JOIN_CUSTOM_TABLE]:{ret:constant.msg.SC_JOIN_CUSTOM_TABLE},
+    [constant.msg.CS_TALK]:{ret:constant.msg.SC_TALK},
+    [constant.msg.CS_CHARGE]:{ret:constant.msg.SC_CHARGE},
+    [constant.msg.CS_BUY]:{ret:constant.msg.SC_BUY},
 }
