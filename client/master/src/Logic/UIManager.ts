@@ -35,6 +35,8 @@ class UIManager extends Dispatcher {
         if(onLoaded != null && thisObj != null){
             view.once( eui.UIEvent.COMPLETE, onLoaded, thisObj);
         }
+        view.percentHeight = 100
+        view.percentWidth = 100
         this.stage.addChild(view);
     }
 
@@ -49,6 +51,17 @@ class UIManager extends Dispatcher {
 
     public GetChild(ui:any):any{
         return this.stage.getChildByName(ui.name)
+    }
+
+    public showError(errorId){
+        if(error_data[errorId] == undefined){
+            alert('没有找到错误描述 error=' + errorId.toString())
+            return
+        }
+        alert(error_data[errorId].msg)
+    }
+    public showNotice(msg){
+        alert(msg)
     }
 
     public showWait(){

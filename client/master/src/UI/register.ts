@@ -12,19 +12,19 @@ namespace gameUI{
                 this.account = this.txtAccount.text
                 this.password = this.txtPassword.text
                 if(this.account.trim().length == 0 || this.password.trim().length == 0){
-                    alert('请输入帐号和密码')
+                    UIManager.Instance.showNotice('请输入帐号和密码')
                     return
                 }
                 LoginManager.Instance.registerPlatform(this.account, this.password, this.onRegister, this)
             }, this );      
 
             this.btnWeixin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                alert('暂未实现')
+                UIManager.Instance.showNotice('暂未实现')
             }, this );  
 
             
             this.btnQQ.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                alert('暂未实现')
+                UIManager.Instance.showNotice('暂未实现')
             }, this );  
             
             this.btnPhone.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
@@ -32,7 +32,7 @@ namespace gameUI{
             }, this );  
             
             this.btnFanqi.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                alert('暂未实现')
+                UIManager.Instance.showNotice('暂未实现')
             }, this );  
             
             this.btnClose.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
@@ -41,35 +41,35 @@ namespace gameUI{
             }, this ); 
         }
         private onRegister(data){
-            if(data.ret == 0){
-                LoginManager.Instance.loginPlatform(this.account, this.password, (d)=>{
-                    if(d.ret != 0){
-                        alert('登录失败 code=' + d.ret.toString())
-                        return
-                    }
-                    Util.setItem('username', this.account)
-                    Util.setItem('password', this.password)
-                    UIManager.Instance.LoadUI(UI.loading, null, ()=>{
-                        var timer = new egret.Timer(500, 1)
-                        timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
-                            var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
-                            var groups = [
-                                "preload",
-                                "lobby",
-                                "common",
-                            ]
-                            ResourceManager.Instance.loadGroups(groups, this, ()=>{
-                                loadingUI.Close()
-                                UIManager.Instance.LoadUI(UI.lobby);
-                            }, (current, total)=>{
-                                loadingUI.setProgress(Math.floor(current * 100 / total))
-                            })
-                        }, this);
-                        timer.start()                
-                    }, this)
-                }, this)
+            if(data.ret != 0){
+                return
             }
-        }
+            LoginManager.Instance.loginPlatform(this.account, this.password, (d)=>{
+                if(d.ret != 0){
+                    return
+                }
+                Util.setItem('username', this.account)
+                Util.setItem('password', this.password)
+                UIManager.Instance.LoadUI(UI.loading, null, ()=>{
+                    var timer = new egret.Timer(500, 1)
+                    timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
+                        var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
+                        var groups = [
+                            "preload",
+                            "lobby",
+                            "common",
+                        ]
+                        ResourceManager.Instance.loadGroups(groups, this, ()=>{
+                            loadingUI.Close()
+                            UIManager.Instance.LoadUI(UI.lobby);
+                        }, (current, total)=>{
+                            loadingUI.setProgress(Math.floor(current * 100 / total))
+                        })
+                    }, this);
+                    timer.start()                
+                }, this)
+            }, this)
+        }        
 
         private account:string
         private password:string

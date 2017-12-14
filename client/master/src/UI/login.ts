@@ -22,7 +22,7 @@ namespace gameUI{
             // var msg = A.CardType.toString() + '\r\n'
             // msg += B.CardType.toString() + '\r\n'
             // msg += A.isPress(B).toString()
-            // alert(msg)
+            // UIManager.Instance.showNotice(msg)
 
             // 压死测试
             var A = new Card.ddzHandCards(pockA)
@@ -36,7 +36,7 @@ namespace gameUI{
                 }
                 allMsg += msg + '\r\n'
             }
-            alert(allMsg)
+            UIManager.Instance.showNotice(allMsg)
         }
         public onload():void {
             super.onload();
@@ -61,12 +61,10 @@ namespace gameUI{
             }
 
             this.btnWeixin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                // alert('暂未实现')
-                UIManager.Instance.showWait()
+                UIManager.Instance.showNotice('暂未实现')
             }, this );   
             this.btnQQ.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
-                // alert('暂未实现')
-                UIManager.Instance.hideWait()
+                UIManager.Instance.showNotice('暂未实现')
             }, this );   
             this.btnForgetPwd.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(ConnectionManager.Instance.isConnected){
@@ -94,7 +92,6 @@ namespace gameUI{
         
         private onLoginRet(data):void{
             if(data.ret != 0){
-                alert('登录失败code=' + data.ret.toString())
                 return
             }
             Util.setItem('username', this.txtAccount.text)

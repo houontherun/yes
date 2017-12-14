@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="loginSkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameControl="gameControl.*">
+	<e:Image source="background_png" x="0" y="0"/>
+	<e:Image source="beiban_png" x="279.99" y="180"/>
+	<e:Label text="帐号" x="289.48" y="247.81" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="104.06" stroke="1" strokeColor="0x755F41" touchEnabled="false" blendMode="normal" border="false" textColor="0xE5C195"/>
+	<e:Label text="密码" x="293.01" y="356.81" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="104.06" stroke="1" strokeColor="0x755F41" touchEnabled="false" blendMode="normal" border="false" textColor="0xE5C195"/>
+	<e:Image source="shurukuangbeijing_png" x="394.84" y="231.31"/>
+	<e:Image id="btnWeixin" source="weiixn_png" x="420.82" y="549"/>
+	<e:Image id="btnQQ" source="qqdenglu_png" x="701.66" y="549"/>
+	<e:Image id="btnForgetPwd" source="wangjimima_png" x="730.16" y="434.64"/>
+	<e:Image id="btnRegister" source="yonghuzhuce_png" x="420.82" y="434.64"/>
+	<e:Image source="shurukuangbeijing_png" x="394.84" y="340.31"/>
+	<e:EditableText id="txtPassword" width="457.34" height="64" x="415.32" y="344.3" anchorOffsetX="0" anchorOffsetY="0" textColor="0xBCBCBC" verticalAlign="middle" fontFamily="SimHei" prompt="请输入密码"/>
+	<e:Image id="btnLogin" source="denglu_png" x="906.17" y="229.98"/>
+	<e:Label text="登录" x="924.5" y="302.3" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="81.33" stroke="2" strokeColor="0x999595" touchEnabled="false"/>
+	<e:EditableText id="txtAccount" width="457.34" height="64" x="417.32" y="234.31" anchorOffsetX="0" anchorOffsetY="0" textColor="0xbcbcbc" verticalAlign="middle" fontFamily="SimHei" prompt="请输入帐号"/>
+</e:Skin>

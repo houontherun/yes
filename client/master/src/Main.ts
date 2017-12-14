@@ -34,6 +34,14 @@ class Main extends eui.UILayer {
      */
     protected createChildren(): void {
         super.createChildren();
+        // var scaleX = egret.Capabilities.boundingClientWidth/this.stage.stageWidth
+        // var scaleY = egret.Capabilities.boundingClientHeight/this.stage.stageHeight
+        
+        // if(scaleX > 1 && scaleY > 1){
+        //     var scale = scaleX < scaleY ? scaleX : scaleY
+        //     this.scaleX = this.scaleY = scale
+        // }
+        this.scaleX = this.scaleY = 1.438
         
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin

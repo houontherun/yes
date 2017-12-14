@@ -74,8 +74,6 @@ namespace gameUI{
                     this.Close()
                 }, this)
                 GameManager.Instance.startDDZGame()
-            }else{
-                alert('加入失败 code=' + data.ret)
             }
         }
         private numbers = []

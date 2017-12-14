@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="registerSkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameControl="gameControl.*">
+	<e:Image source="background_png" x="0" y="0"/>
+	<e:Label text="微信" x="287.81" y="647" fontFamily="SimHei" size="35" textAlign="center"/>
+	<e:Label text="QQ" x="499.48" y="647" fontFamily="SimHei" size="35" anchorOffsetX="0" width="72.34" textAlign="center"/>
+	<e:Label text="手机" x="711.15" y="647" fontFamily="SimHei" size="35" textAlign="center"/>
+	<e:Label text="平台" x="923.29" y="647" fontFamily="SimHei" size="35" textAlign="center"/>
+	<e:Image source="beiban_png" x="261.29" y="180" anchorOffsetY="0" height="283"/>
+	<e:Label text="帐号" x="270.78" y="265.11" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="104.06" stroke="1" strokeColor="0x755F41" touchEnabled="false" blendMode="normal" border="false" textColor="0xE5C195"/>
+	<e:Label text="密码" x="274.31" y="374.11" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="104.06" stroke="1" strokeColor="0x755F41" touchEnabled="false" blendMode="normal" border="false" textColor="0xE5C195"/>
+	<e:Image source="shurukuangbeijing_png" x="376.14" y="248.61"/>
+	<e:Image source="shurukuangbeijing_png" x="374.81" y="357.61"/>
+	<e:EditableText id="txtPassword" width="457.34" height="64" x="395.29" y="361.6" anchorOffsetX="0" anchorOffsetY="0" textColor="0xBCBCBC" verticalAlign="middle" fontFamily="SimHei" prompt="请输入密码"/>
+	<e:Image id="btnRegister" source="denglu_png" x="886.14" y="243.29"/>
+	<e:Label text="注册" x="905.8" y="315.61" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="81.33" stroke="2" strokeColor="0x999595" touchEnabled="false"/>
+	<e:EditableText id="txtAccount" width="457.34" height="64" x="395.96" y="251.61" anchorOffsetX="0" anchorOffsetY="0" textColor="0xbcbcbc" verticalAlign="middle" fontFamily="SimHei" prompt="请输入帐号"/>
+	<e:Image source="xiabiantiao_png" x="256.3" y="495"/>
+	<e:Image source="xiabiantiao_png" x="732.96" y="495"/>
+	<e:Label text="其他帐号登录" x="549.66" y="482.34" fontFamily="SimHei"/>
+	<e:Image id="btnWeixin" source="weiixn2_png" x="271.65" y="530"/>
+	<e:Image id="btnQQ" source="tengxun_png" x="483.3" y="530"/>
+	<e:Image id="btnPhone" source="shoujidenglu_png" x="695.3" y="530"/>
+	<e:Image id="btnFanqi" source="fanqizhanghao_png" x="907.13" y="530"/>
+	<e:Image id="btnClose" source="close2_png" x="972.3" y="192.31"/>
+</e:Skin>

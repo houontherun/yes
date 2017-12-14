@@ -40,7 +40,7 @@ class LoginManager extends Dispatcher {
         if(data.ret == 0){
             this.login(data.openid)
         }else{
-            alert('登录平台失败 code=' + data.ret.toString())
+            
         }
     }
 

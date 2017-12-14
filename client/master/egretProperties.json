@@ -1,7 +1,7 @@
 {
 	"native": {
 		"path_ignore": [],
-		"android_as_path": "../../../client_android/android_20171124_1"
+		"android_as_path": "../../../client_android/android_20171214_1"
 	},
 	"publish": {
 		"web": 0,

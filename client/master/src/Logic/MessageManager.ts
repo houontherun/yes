@@ -60,16 +60,20 @@ class MessageManager extends Dispatcher {
     }
     
     public DispatchMessage(data):void{
+        for(var i = this.sendingList.length - 1; i >= 0; i--){
+            if(this.sendingList[i].ret_protocol == data.protocol){
+                this.sendingList[i].is_get_ret = true
+            }
+        }
+        if(data.ret != 0){
+            UIManager.Instance.showError(data.ret)
+            return
+        }
         var msg = data.protocol
         if (msg != null){
             if(msg == constant.msg.SC_CHILD_GAME_MESSAGE){
                 this.subDispatcher.dispatchEvent(data.sub_protocol, data)
             }else{
-                for(var i = this.sendingList.length - 1; i >= 0; i--){
-                    if(this.sendingList[i].ret_protocol == msg){
-                        this.sendingList[i].is_get_ret = true
-                    }
-                }
                 this.dispatchEvent(msg, data)
             }
         }
