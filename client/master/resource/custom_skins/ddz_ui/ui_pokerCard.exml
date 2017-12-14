@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="ui_pokerCard" width="118" height="160" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="img_card" left="0" top="0" bottom="0" right="0" source="card_0_3_png"/>
+	<e:Image id="img_card" source="bk_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" width="118" x="0" height="160" y="0"/>
 	<e:Image id="img_landlord" width="121" height="129" anchorOffsetX="0" anchorOffsetY="0" source="Type_Land_png" scaleX="0.7" scaleY="0.7" right="0" top="0" touchEnabled="false" visible="false"/>
+	<e:Image id="img_index" width="30" height="38" x="7" y="5" anchorOffsetX="0" anchorOffsetY="0" source="black_1_png"/>
+	<e:Image id="img_suit" width="32" height="36" x="6" y="60.3" anchorOffsetX="0" anchorOffsetY="0" source="Suit_1_png"/>
 </e:Skin>
