@@ -12,7 +12,21 @@ class GameManager extends Dispatcher {
 
     public startDDZGame():void{
         MessageManager.Instance.once(constant.msg.SC_USER_STAND_UP, this.onStandUp, this);
-        ResourceManager.Instance.loadGroups(['ddzRes', 'face', 'poke'], this, this.onResourceLoadComplete)
+        
+        UIManager.Instance.LoadUI(UI.loading, null, ()=>{
+            var timer = new egret.Timer(500, 1)
+            timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
+                var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
+                ResourceManager.Instance.loadGroups(['ddzRes', 'face', 'poke'], this, ()=>{
+                    loadingUI.Close()
+                    UIManager.Instance.LoadUI(UI.ddz_game);
+                    this.dispatchEvent(constant.event.logic.on_start_game)
+                }, (current, total)=>{
+                    loadingUI.setProgress(Math.floor(current * 100 / total))
+                })
+            }, this);
+            timer.start()                
+        }, this)
     }
     public exitDDZGame():void{
         MessageManager.Instance.SendMessage({
@@ -21,10 +35,5 @@ class GameManager extends Dispatcher {
     }
     private onStandUp(){
         this.dispatchEvent(constant.event.logic.on_exit_game)
-    }
-
-    private onResourceLoadComplete(): void {
-        UIManager.Instance.LoadUI(UI.ddz_game);
-        this.dispatchEvent(constant.event.logic.on_start_game)
     }
 }

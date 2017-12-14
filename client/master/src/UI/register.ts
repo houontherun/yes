@@ -58,6 +58,10 @@ namespace gameUI{
                             "preload",
                             "lobby",
                             "common",
+                            "setting",
+                            "bank",
+                            "rank",
+                            "ddz_lobby",
                         ]
                         ResourceManager.Instance.loadGroups(groups, this, ()=>{
                             loadingUI.Close()
