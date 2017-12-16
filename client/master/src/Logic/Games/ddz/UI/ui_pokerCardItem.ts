@@ -2,6 +2,8 @@ namespace Card {
 export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent {
     private img_index:eui.Image;
 	private img_suit:eui.Image;
+	private img_index0:eui.Image;
+	private img_suit0:eui.Image;
 	private img_card:eui.Image;
 	private card : PokerCard;
 	private bSelect:boolean = false;
@@ -70,7 +72,13 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		 if(this.imgindex)
     	 {
     		 this.img_index.visible = true;
-    		  this.SetImageUrl(this.img_index,this.imgindex );
+    		 this.SetImageUrl(this.img_index,this.imgindex );
+			 this.SetImageUrl(this.img_index0,this.imgindex );
+             if(this.img_index.width > 42)
+			  {
+				  this.img_index.width  = 42;
+				  this.img_index0.width  = 42;
+			  }
     	 }
     	 else
     	 {
@@ -80,6 +88,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
     	 if(this.imgsuit)
     	 {
     		  this.SetImageUrl(this.img_suit,this.imgsuit );
+			  this.SetImageUrl(this.img_suit0,this.imgsuit );
     		  this.img_suit.visible = true;
     	 }
     	 else
@@ -96,8 +105,14 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 
 	public SetSize(scale:number)
 	{
-		this.scaleX = scale;
-		this.scaleY = scale;
+		this.img_card.scaleX = scale;
+		this.img_card.scaleY = scale;
+
+		if(scale < 0.9)
+		{
+			this.img_index0.visible  = false;
+			this.img_suit0.visible = false;
+		}
 	}
 
     public get Selected():boolean{

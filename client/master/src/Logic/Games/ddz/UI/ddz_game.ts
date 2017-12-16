@@ -369,7 +369,7 @@ namespace gameUI {
             var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
             for (var i = 0; i < cards.length; i++) {
                 var _backcard = new Card.ui_pokerCardItem();
-                _backcard.SetSize(0.7);
+                _backcard.SetSize(0.65);
                 _backcard.cardData = cards[i];
                 this.group_backcards.addChild(_backcard);
             }
@@ -430,7 +430,6 @@ namespace gameUI {
 
                     this.btn0.visible = false;
                     this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
-
                     this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendSnatchlandLord, this);
                     this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendUnSnatchlandLord, this);
                 }
@@ -447,6 +446,7 @@ namespace gameUI {
                 this.Text_bnt2.text = "已准备";
                 this.Text_bnt1.visible = false;
                 this.btn1.visible = false;
+                this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
             }
         }
 
@@ -588,8 +588,8 @@ namespace gameUI {
             for (var i = 0; i < cards.length; i++) {
                 var _card = new Card.ui_pokerCardItem();
                 _card.cardData = cards[i];
-                _card.setPos(startposX + 30 * i, posY);
-                _card.SetSize(0.5);
+                _card.setPos(startposX + 34 * i, posY);
+                _card.SetSize(0.65);
                 group.addChild(_card);
                 if ((i == cards.length - 1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
                     _card.Setlandlord(true);
@@ -668,7 +668,7 @@ namespace gameUI {
                     var backCard = new eui.Image();
 
 
-                    backCard.scaleX = backCard.scaleY = 0.3;
+                    backCard.scaleX = backCard.scaleY = 0.5;
                     backCard.source = RES.getRes("card_back_png");
                     group.addChildAt(backCard, 5);
                     textNum = new eui.Label;
@@ -681,14 +681,14 @@ namespace gameUI {
                     if (seat == Card.Seat.Left) {
                         backCard.x = 260;
                         backCard.y = 240;
-                        textNum.x = 288;
-                        textNum.y = 280;
+                        textNum.x = 270;
+                        textNum.y = 270;
                     }
                     else {
                         backCard.x = -10;
                         backCard.y = 240;
                         textNum.x = 20;
-                        textNum.y = 280;
+                        textNum.y = 270;
                     }
 
                     group.addChildAt(textNum, 6);

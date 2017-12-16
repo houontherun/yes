@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,logo2_jpg,red_13_png,red_1_png,red_2_png,red_3_png,red_4_png,red_5_png,red_6_png,red_7_png,red_8_png,red_9_png,red_10_png,red_11_png,red_12_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,logo2_jpg",
 			"name": "preload"
 		},
 		{
@@ -33,7 +33,7 @@
 			"name": "face"
 		},
 		{
-			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,score_bg0_png,tuoguan_png,weixinliaotian_png,wode-jinbi_png,yizhunbei_png,yuyin_png,zhunbei_png,zuozi_png,buchu_png,buqiang_png,qiangdizhuzhi_png",
+			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,score_bg0_png,tuoguan_png,weixinliaotian_png,wode-jinbi_png,yizhunbei_png,yuyin_png,zhunbei_png,zuozi_png,buchu_png,buqiang_png,qiangdizhuzhi_png,dizhumao_png",
 			"name": "ddzRes"
 		},
 		{
@@ -841,11 +841,6 @@
 			"url": "assets/Poker/ddzRes/dizhumao.png",
 			"type": "image",
 			"name": "dizhumao_png"
-		},
-		{
-			"url": "assets/Poker/ddzRes/dizhumao.png",
-			"type": "image",
-			"name": "dizhumao2_png"
 		},
 		{
 			"url": "assets/Common/close2.png",
