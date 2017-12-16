@@ -8,6 +8,8 @@ class UIManager extends Dispatcher {
     }   
 
     private stage:eui.UILayer = null;
+    private waitImg:eui.Image = null
+    private waitMask:eui.Image = null
 
     public get Lobby():gameUI.lobby{
         var child = this.GetChild(UI.lobby)
@@ -29,11 +31,17 @@ class UIManager extends Dispatcher {
         }
         var cls = egret.getDefinitionByName(ui.name)
         var view = new cls(ui, data)
+        this.stage.addChild(view)
         
-        if(onLoaded != null && thisObj != null){
-            view.once( eui.UIEvent.COMPLETE, onLoaded, thisObj);
+        if(onLoaded != null && thisObj != null){            
+            if(view.skin == null){
+                view.once( eui.UIEvent.COMPLETE, onLoaded, thisObj);
+            }
+            else{
+                onLoaded.call(thisObj)
+            }
+            
         }
-        this.stage.addChild(view);
     }
 
     public UnloadUI(ui:any){
@@ -47,5 +55,47 @@ class UIManager extends Dispatcher {
 
     public GetChild(ui:any):any{
         return this.stage.getChildByName(ui.name)
+    }
+
+    public showError(errorId){
+        if(error_data[errorId] == undefined){
+            alert('没有找到错误描述 error=' + errorId.toString())
+            return
+        }
+        alert(error_data[errorId].msg)
+    }
+    public showNotice(msg){
+        alert(msg)
+    }
+
+    public showWait(){
+        if(this.waitImg == null){
+            this.waitImg = new eui.Image("loading_png")
+            this.waitImg.x = this.stage.width/2
+            this.waitImg.y = this.stage.height/2
+            this.waitImg.anchorOffsetX = 43.5
+            this.waitImg.anchorOffsetY = 43.5
+            this.stage.addChild(this.waitImg)
+            
+            var tween = egret.Tween.get(this.waitImg, {loop:true})
+            tween.to({rotation:360}, 1000)
+
+            this.waitMask = new eui.Image('mask_png')
+            this.waitMask.width = this.stage.width
+            this.waitMask.height = this.stage.height
+            this.waitMask.alpha = 0.01
+            this.stage.addChild(this.waitMask)
+            // this.waitMask.addEventListener(egret.TouchEvent.TOUCH_BEGIN, ()=>{
+            //     UIManager.Instance.hideWait()
+            // }, this)
+        }
+        this.waitImg.visible = true
+        this.waitMask.visible = true
+    }
+    public hideWait(){
+        if(this.waitImg != null){
+            this.waitImg.visible = false
+            this.waitMask.visible = false
+        }
     }
 }

@@ -15,7 +15,6 @@ namespace gameUI{
 
 		private onload():void {
             this.isLoaded = true
-
             this.txtLan.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 var settingUI = UIManager.Instance.GetChild(UI.setting)
                 if(settingUI != null){

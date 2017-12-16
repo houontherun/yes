@@ -2,9 +2,9 @@
 
 var constant = {
     // connect_ip : "192.168.12.3", // 候
-    connect_ip : "192.168.12.1", // 谭
+    // connect_ip : "192.168.12.1", // 谭
     // connect_ip:"fanqinet.tpddns.cn",
-    // connect_ip:"47.96.11.32", // 外网测试服
+    connect_ip:"47.96.11.32", // 外网测试服
     connect_port: 8000,
     msg:{
         //客户端->服务端
@@ -65,6 +65,7 @@ var constant = {
         SC_CHILD_GAME_MESSAGE : 2018,	//子游戏消息
 	    SC_GAME_MESSAGE : 2019,			//游戏信息，包括聊天等,显示用
 	    SC_QUERY_ROOM_INFO : 2023,		//推送房间信息
+        SC_MODIFY_USER_INFO : 2024,		//修改玩家信息回包
         SC_TABLE_PLAYER_INFO : 2025,	//桌子上玩家信息
         SC_USER_IS_PLAYING : 2026,		//玩家正在其他桌子玩游戏
         SC_REENTER_PLAYING : 2027,		//玩家重新进入游戏桌子回包
@@ -101,9 +102,9 @@ var constant = {
     },
     error_code:{
         ERROR_OK : 0,
-        ERROR_NOT_ENOUTH_GOLD : 1,
-        ERROR_NOT_ENOUTH_BANK_GOLD : 2,
-        ERROR_INVAID_UID : 3,
+        ERROR_NOT_ENOUTH_GOLD : 1,                      //金币不足
+        ERROR_NOT_ENOUTH_BANK_GOLD : 2,                 //银行金币不足
+        ERROR_INVAID_UID : 3,                           //错误的id
         ERROR_ROOM_IS_NOT_EXIST : 4,					//房间不存在
         ERROR_ROOM_IS_IN_ROOM : 5,						//玩家已在这个房间
         ERROR_ROOM_PLAYER_IS_FULL : 6,					//房间玩家已满
@@ -114,6 +115,25 @@ var constant = {
         ERROR_GAME_IS_STARTED : 11,						//游戏已经开始，不能进入
         ERROR_CHAIR_IS_SITTING : 12,					//这个位置已被别人捷足先登了
         ERROR_GOLD_IS_NOT_ENOUGH : 13,					//金币不足，无法进入
+        ERROR_LENGTH_TOO_LONG : 14,                     //获取记录长度过长
+        ERROR_RATE_TIMEOUT : 15,                        //评价超时
+        ERROR_RATE_REPEAT : 16,                         //重复评价
+        ERROR_NAME_BAN_WORD : 17,						//名字包含非法字符
+        ERROR_PWD_WRONG : 18,                           //密码错误
+        ERROR_ACCOUNT_EXIST : 19,                       //帐号已存在
+        ERROR_CHAR_UNQUALIFIED : 20,                    //非法字符
+        ERROR_INVAID_ACCOUNT : 21,                      //帐号不合法
+        ERROR_IS_PLAYING : 22,							//有游戏在进行中
+        ERROR_GAME_IS_OVER : 23,						//游戏已结束
+        ERROR_CREATE_TABLE_PLEASE_CHAIR : 24,			//请先离开座位再创建房间
+        ERROR_CREATE_HALL_TABLE_IS_NOT_OPEN : 25,		//此游戏未开放开房间功能
+        ERROR_SERVER_IS_BUSY : 26,						//服务器繁忙
+        ERROR_CARD_IS_NOT_ENOUGH : 27,					//房卡不足
+        ERROR_TABLE_IS_DISSOLVE : 28,					//房间已解散
+        ERROR_PLEASE_STANDUP : 29,						//请先离开座位
+        ERROR_TABLE_IS_FULL : 30,						//桌子人数已满
+        ERROR_TICKET_IS_NOT_ENOUGH : 31,				//门票不足
+        ERROR_CUSTOM_TABLE_IS_START : 32,				//游戏已开始,不能加入
     },
     INVALID:0xFFFF,								//无效椅子
     event:{
@@ -145,4 +165,68 @@ var constant = {
             on_rec:"onrec",
         }
     }
+}
+
+var msg_data = {
+    [constant.msg.CS_PLATFORM_REGISTER]:{ret:constant.msg.SC_PLATFORM_REGISTER},
+    [constant.msg.CS_PLATFORM_LOGIN]:{ret:constant.msg.SC_PLATFORM_LOGIN},
+    [constant.msg.CS_PLATFORM_CHANGE_PWD]:{ret:constant.msg.SC_PLATFORM_CHANGE_PWD},
+    [constant.msg.CS_LOGIN]:{ret:constant.msg.SC_LOGIN},
+    [constant.msg.CS_CREATE_ROOM]:{ret:constant.msg.SC_CREATE_ROOM},
+    [constant.msg.CS_ENTER_ROOM]:{ret:constant.msg.SC_ENTER_ROOM},
+    [constant.msg.CS_LEAVE_ROOM]:{ret:constant.msg.SC_LEAVE_ROOM},
+    [constant.msg.CS_LOGOUT]:{ret:constant.msg.SC_LOGOUT},
+    [constant.msg.CS_SAVE_MONEY]:{ret:constant.msg.SC_SAVE_MONEY},
+    [constant.msg.CS_WITHDRAW_MONEY]:{ret:constant.msg.SC_WITHDRAW_MONEY},
+    [constant.msg.CS_GIVE_GOLD_2_OTHER]:{ret:constant.msg.SC_GIVE_GOLD_2_OTHER},
+    [constant.msg.CS_CHANGE_BANK_PASSWD]:{ret:constant.msg.SC_CHANGE_BANK_PASSWD},
+    [constant.msg.CS_GET_BANK_RECORD]:{ret:constant.msg.SC_GET_BANK_RECORD},
+    [constant.msg.CS_GET_RANK]:{ret:constant.msg.SC_GET_RANK},
+    [constant.msg.CS_QUERY_TABLE_USER_INFO]:{ret:constant.msg.SC_TABLE_PLAYER_INFO},
+    [constant.msg.CS_USER_SIT_DOWN]:{ret:constant.msg.SC_USER_SIT_DOWN},
+    [constant.msg.CS_USER_STAND_UP]:{ret:constant.msg.SC_USER_STAND_UP},
+    // [constant.msg.CS_USER_READY]:{ret:constant.msg.SC_USER_READY},
+    [constant.msg.CS_CHILD_GAME_MESSAGE]:{ret:constant.msg.SC_CHILD_GAME_MESSAGE},
+    [constant.msg.CS_QUERY_ROOM_INFO]:{ret:constant.msg.SC_QUERY_ROOM_INFO},
+    [constant.msg.CS_MODIFY_USER_INFO]:{ret:constant.msg.SC_MODIFY_USER_INFO},
+    [constant.msg.CS_REENTER_PLAYING]:{ret:constant.msg.SC_REENTER_PLAYING},
+    [constant.msg.CS_CREATE_HALL_TABLE]:{ret:constant.msg.SC_CREATE_HALL_TABLE},
+    [constant.msg.CS_JOIN_CUSTOM_TABLE]:{ret:constant.msg.SC_JOIN_CUSTOM_TABLE},
+    [constant.msg.CS_TALK]:{ret:constant.msg.SC_TALK},
+    [constant.msg.CS_CHARGE]:{ret:constant.msg.SC_CHARGE},
+    [constant.msg.CS_BUY]:{ret:constant.msg.SC_BUY},
+}
+var error_data = {
+    [constant.error_code.ERROR_NOT_ENOUTH_GOLD] : {msg:"金币不足"},
+    [constant.error_code.ERROR_NOT_ENOUTH_BANK_GOLD] : {msg:"银行金币不足"},
+    [constant.error_code.ERROR_INVAID_UID] : {msg:"错误的id"},
+    [constant.error_code.ERROR_ROOM_IS_NOT_EXIST] : {msg:"房间不存在"},
+    [constant.error_code.ERROR_ROOM_IS_IN_ROOM] : {msg:"玩家已在这个房间"},
+    [constant.error_code.ERROR_ROOM_PLAYER_IS_FULL] : {msg:"房间玩家已满"},
+    [constant.error_code.ERROR_USER_PLAYING] : {msg:"正在游戏进行中"},
+    [constant.error_code.ERROR_NO_TABLE] : {msg:"没有这个桌子"},
+    [constant.error_code.ERROR_OTHER_TABLE_SIT] : {msg:"你正在其他桌子，无法坐下"},
+    [constant.error_code.ERROR_TABLE_BAN_SIT_DOWN] : {msg:"当前桌子禁止用户进入"},
+    [constant.error_code.ERROR_GAME_IS_STARTED] : {msg:"游戏已经开始，不能进入"},
+    [constant.error_code.ERROR_CHAIR_IS_SITTING] : {msg:"这个位置已被别人捷足先登了"},
+    [constant.error_code.ERROR_GOLD_IS_NOT_ENOUGH] : {msg:"金币不足，无法进入"},
+    [constant.error_code.ERROR_LENGTH_TOO_LONG] : {msg:"获取记录长度过长"},
+    [constant.error_code.ERROR_RATE_TIMEOUT] : {msg:"评价超时"},
+    [constant.error_code.ERROR_RATE_REPEAT] : {msg:"重复评价"},
+    [constant.error_code.ERROR_NAME_BAN_WORD] : {msg:"名字包含非法字符"},
+    [constant.error_code.ERROR_PWD_WRONG]: {msg:"密码错误"},
+    [constant.error_code.ERROR_ACCOUNT_EXIST] : {msg:"帐号已存在"},
+    [constant.error_code.ERROR_CHAR_UNQUALIFIED] : {msg:"非法字符"},
+    [constant.error_code.ERROR_INVAID_ACCOUNT]: {msg:"帐号不合法，长度必须不小于6位"},
+    [constant.error_code.ERROR_IS_PLAYING] : {msg:"有游戏在进行中"},
+    [constant.error_code.ERROR_GAME_IS_OVER] : {msg:"游戏已结束"},
+    [constant.error_code.ERROR_CREATE_TABLE_PLEASE_CHAIR] : {msg:"请先离开座位再创建房间"},
+    [constant.error_code.ERROR_CREATE_HALL_TABLE_IS_NOT_OPEN] : {msg:"此游戏未开放开房间功能"},
+    [constant.error_code.ERROR_SERVER_IS_BUSY] : {msg:"服务器繁忙"},
+    [constant.error_code.ERROR_CARD_IS_NOT_ENOUGH] : {msg:"房卡不足"},
+    [constant.error_code.ERROR_TABLE_IS_DISSOLVE] : {msg:"房间已解散"},
+    [constant.error_code.ERROR_PLEASE_STANDUP] : {msg:"请先离开座位"},
+    [constant.error_code.ERROR_TABLE_IS_FULL] : {msg:"桌子人数已满"},
+    [constant.error_code.ERROR_TICKET_IS_NOT_ENOUGH] : {msg:"门票不足"},
+    [constant.error_code.ERROR_CUSTOM_TABLE_IS_START] : {msg:"游戏已开始,不能加入"}
 }

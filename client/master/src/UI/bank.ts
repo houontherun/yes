@@ -47,7 +47,7 @@ namespace gameUI{
             if(PlayerManager.Instance.Data.Gold >= num){ 
                 this.txtGiveNum.text = num.toString() 
             }else{
-                alert("金币不够")
+                UIManager.Instance.showNotice("金币不够")
             }
         } 
         public onload():void {
@@ -62,7 +62,7 @@ namespace gameUI{
             }, this)
             this.AddClick(this.imgGiveOK, ()=>{
                 if(this.txtGiveId.text == null || this.txtGiveId.text == "" || this.txtGiveNum.text == null || this.txtGiveNum.text == ""){
-                    alert("请填写ID或金额")
+                    UIManager.Instance.showNotice("请填写ID或金额")
                     return
                 }
                 var id = parseInt(this.txtGiveId.text)

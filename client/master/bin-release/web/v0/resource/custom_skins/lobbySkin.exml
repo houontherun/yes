@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="lobbySkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameUI="gameUI.*">
+	<e:Image id="imgBg" width="1334" height="750" x="0" y="0" source="background_png"/>
+	<e:Group id="groupUserinfo" width="811.67" height="105" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="imgFbBg" source="goldbg_png" x="330" y="30"/>
+		<e:Image id="imgFbIcon" source="fangka_png" x="336.84" y="24"/>
+		<e:Image id="imgAddFb" source="jia_png" x="492" y="33"/>
+		<e:Image id="imgGoldBg" source="goldbg_png" x="563" y="30"/>
+		<e:Image id="imgGold" x="572" y="25" source="jinbi_png"/>
+		<e:Image id="imgGoldAdd" source="jia_png" x="725" y="33"/>
+		<e:Image id="imgNameBg" source="headbg_png" x="77.79" y="17.29" anchorOffsetX="0" width="234"/>
+		<e:Image id="imgHeadbg" source="touxiangbeiban_png" x="17.29" y="17.29"/>
+		<e:Image id="imgHeadIcon" width="89.33" height="89.34" x="18.29" y="18.62" anchorOffsetX="0" anchorOffsetY="0" source="touxiang_png"/>
+		<e:Label id="txtGoldNum" text="100" x="619" y="30.34" size="25" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="104" verticalAlign="middle" textAlign="center" textColor="0xf4b813"/>
+		<e:Label id="txtFbNum" text="100" x="394" y="30.67" size="25" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="91.33" verticalAlign="middle" textAlign="center" textColor="0xf4b813"/>
+		<e:Image id="imgCoypBg" source="fuzhibeijing_png" x="210.79" y="61.29"/>
+		<e:Label id="txtUserName" text="咸鸭蛋" x="123.79" y="33.29" anchorOffsetX="0" width="91" anchorOffsetY="0" height="29" size="20" textAlign="left" verticalAlign="middle"/>
+		<e:Label id="txtCopyId" text="复制ID" x="222.29" y="65.79" size="15" anchorOffsetY="0" height="16" scaleX="1" scaleY="1" touchEnabled="false"/>
+		<e:Label id="txtUsrId" text="ID:10001" x="125.96" y="60.79" anchorOffsetX="0" width="71" anchorOffsetY="0" height="26" size="15" verticalAlign="middle" textAlign="left"/>
+	</e:Group>
+	<e:Group id="groupBottomMenu" width="1328.66" height="117.82" x="2.67" y="632.18" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image source="dibu_png" x="-6.66" y="-10.18"/>
+		<e:Image id="imgBank" source="yinhang_png" x="81.5" y="16.7"/>
+		<e:Image id="imgSetting" source="shezi_png" x="1036" y="16.7"/>
+		<e:Image id="btnEnter" source="jiarufangjian_png" x="1152.02" y="-41.81"/>
+		<e:Image id="imgRank" source="paihangbang_png" x="272" y="16.7"/>
+		<e:Image id="imgCommunity" source="shequ_png" x="463" y="16.7"/>
+		<e:Image id="imgShare" source="fenxiang_png" x="654" y="16.7"/>
+		<e:Image id="imgShop" source="shangdian_png" x="845" y="16.7"/>
+		<e:Image source="shuxian_png" x="207.65" y="40"/>
+		<e:Image source="shuxian_png" x="399.15" y="40"/>
+		<e:Image source="shuxian_png" x="590.65" y="40"/>
+		<e:Image source="shuxian_png" x="782.15" y="40"/>
+		<e:Image source="shuxian_png" x="974.04" y="40"/>
+		<e:Label text="银行" x="82.5" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" anchorOffsetX="0" width="58" textAlign="center" textColor="0xd6c391"/>
+		<e:Label text="排行" x="273.7" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
+		<e:Label text="社区" x="464.9" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
+		<e:Label text="分享" x="656.0999999999999" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
+		<e:Label text="商城" x="847.3" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
+		<e:Label text="设置" x="1038" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
+	</e:Group>
+	<e:Group id="groupTopMenu" width="501.81" height="84.85" x="832.19" y="7.15" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="imgMore" source="paopao_png" x="379.69" y="5" scaleX="1" scaleY="1"/>
+		<e:Image id="imgNotice" source="paopao_png" x="285.17" y="5" scaleX="1" scaleY="1"/>
+		<e:Image id="imgActivity" source="paopao_png" x="189.9" y="5" scaleX="1" scaleY="1"/>
+		<e:Image id="imgHelp" source="paopao_png" x="94.81" y="5" scaleX="1" scaleY="1"/>
+		<e:Image source="kefu_png" x="108.81" y="10" touchEnabled="false"/>
+		<e:Image source="liwu_png" x="203.9" y="10" touchEnabled="false"/>
+		<e:Image source="gonggao_png" x="299.17" y="10" touchEnabled="false"/>
+		<e:Image source="gengduo_png" x="393.69" y="10" touchEnabled="false"/>
+		<e:Label text="客服" x="110.81" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9e957b" touchEnabled="false"/>
+		<e:Label text="活动" x="206.47666666666666" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false"/>
+		<e:Label text="公告" x="302.1433333333333" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false"/>
+		<e:Label text="更多" x="397.69" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false"/>
+	</e:Group>
+	<e:Group id="groupMessage" width="745.33" height="69.34" x="288.33" y="108.33" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="imgMsgBg" source="tonggaobeijing_png" x="30.670000000000016" y="14" scaleX="1" scaleY="1"/>
+		<e:Label id="txtFbNum0" text="公告：游戏上线充300送100" x="134.67" y="14" size="20" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="466" verticalAlign="middle" textAlign="center" textColor="0xF4B813" touchEnabled="false"/>
+		<e:Image source="tixing_png" x="81.67" y="14" touchEnabled="false"/>
+	</e:Group>
+	<e:Group id="groupType" width="1298.72" height="400" x="24" y="208" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="btnPuke" source="puke_png" x="28" y="28" scaleX="1" scaleY="1"/>
+		<e:Image id="btnMajiang" source="majiang_png" x="29" y="148" scaleX="1" scaleY="1"/>
+		<e:Image id="btnQilei" source="qilei_png" x="28" y="268" scaleX="1" scaleY="1"/>
+		<e:Image source="mj_name_png" x="86" y="159.33" touchEnabled="false"/>
+		<e:Image source="ql_name_png" x="86" y="279.99" touchEnabled="false"/>
+		<e:Image source="pk_name_png" x="86" y="38" anchorOffsetX="0.5" anchorOffsetY="0.5" touchEnabled="false"/>
+		<gameUI:Scrollview id="svGame" width="994.21" anchorOffsetX="0" anchorOffsetY="0" left="292" height="374.06" y="3.15" x="303" />
+	</e:Group>
+</e:Skin>

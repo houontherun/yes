@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ModifyPwdSkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameControl="gameControl.*">
+	<e:Image source="background_png" x="3" y="8"/>
+	<e:Image source="beiban_png" x="245.33" y="137.33" anchorOffsetY="0" height="455.91"/>
+	<e:Image source="shurukuangbeijing_png" x="420.18" y="389.74"/>
+	<e:EditableText id="txtNewPwd" width="457.34" height="64" x="440.66" y="393.73" anchorOffsetX="0" anchorOffsetY="0" textColor="0xBCBCBC" verticalAlign="middle" fontFamily="SimHei" prompt="请输入新密码"/>
+	<e:Label text="旧密码" x="264.27" y="304.75" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="132" stroke="1" strokeColor="0x755F41" touchEnabled="false" blendMode="normal" border="false" textColor="0xE5C195"/>
+	<e:Label text="新密码" x="265.54" y="406.11" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="131.33" stroke="1" strokeColor="0x755F41" touchEnabled="false" blendMode="normal" border="false" textColor="0xE5C195"/>
+	<e:Image source="shurukuangbeijing_png" x="422.2" y="486.36"/>
+	<e:EditableText id="txtNewPwd2" width="457.34" height="64" x="442.68" y="490.35" anchorOffsetX="0" anchorOffsetY="0" textColor="0xBCBCBC" verticalAlign="middle" fontFamily="SimHei" prompt="请输入新密码"/>
+	<e:Label text="重复密码" x="250.23" y="502.73" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="168.66" stroke="1" strokeColor="0x755F41" touchEnabled="false" blendMode="normal" border="false" textColor="0xE5C195"/>
+	<e:Label text="帐号" x="279.18" y="202.7" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="104.06" stroke="1" strokeColor="0x755f41" touchEnabled="false" blendMode="normal" border="false" textColor="0xe5c195"/>
+	<e:Image source="shurukuangbeijing_png" x="420.82" y="187.7" anchorOffsetX="0" width="500.48"/>
+	<e:Image source="shurukuangbeijing_png" x="420.85" y="287.84"/>
+	<e:EditableText id="txtOldPwd" width="457.34" height="64" x="441.33" y="291.83" anchorOffsetX="0" anchorOffsetY="0" textColor="0xBCBCBC" verticalAlign="middle" fontFamily="SimHei" prompt="请输入密码"/>
+	<e:EditableText id="txtAccount" width="457.34" height="64" x="443.3" y="190.7" anchorOffsetX="0" anchorOffsetY="0" textColor="0xbcbcbc" verticalAlign="middle" fontFamily="SimHei" prompt="请输入帐号"/>
+	<e:Image id="btnClose" source="close2_png" x="956.24" y="156.66"/>
+	<e:Image id="btnModify" source="btnbg2_png" x="497.65" y="601.63"/>
+	<e:Label text="确认修改" x="541.52" y="625.13" fontFamily="SimHei" size="35" textAlign="center" anchorOffsetX="0" width="176.78" stroke="2" strokeColor="0x4F6D70" touchEnabled="false" blendMode="normal" border="false" textColor="0xFFFFFF"/>
+</e:Skin>

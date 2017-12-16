@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="shopSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameUI="gameUI.*">
+    <e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
+	<e:Image source="rank_bg6_png" x="361.18" y="142.6"/>
+	<e:Image source="bg_png" x="83.33" y="65.06" anchorOffsetX="0" width="1185.67" anchorOffsetY="0" height="661.67" scale9Grid="23,4,676,511"/>
+	<e:Image source="rank_bg5_png" x="91.21" y="131.04"/>
+	<e:Image source="yupeng_png" x="61.31" y="80.66"/>
+	<e:Image source="frame_png" x="67.82" y="25.71" scale9Grid="73,7,713,46" anchorOffsetX="0" width="1212.66"/>
+	<e:Image source="titleBg_png" x="479.32" y="21.76"/>
+	<e:Image id="btnClose" source="close_png" x="1229" y="24.54"/>
+	<e:Image id="btnCharge" source="shopbtnTab_png" x="104.86" y="169.38"/>
+	<e:Image id="btnBuy" source="goumaidaoju_png" x="105.66" y="267.98"/>
+	<e:Label id="lblCgarge" text="金币充值" x="127.02" y="191.96" anchorOffsetX="0" width="194" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
+	<e:Label id="lblbuy" text="购买道具" x="121.7" y="290.21" anchorOffsetX="0" width="199.33" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
+	<e:Image source="youxishangcheng_png" x="569" y="37.26" width="197" height="57"/>
+	<e:Scroller id="listView" width="864" height="525.33" x="380" y="180.05" anchorOffsetX="0" anchorOffsetY="0">
+		<e:List id="dataList" width="100%" height="100%" x="0" y="0">
+        </e:List>
+	</e:Scroller>
+</e:Skin>

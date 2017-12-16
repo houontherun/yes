@@ -63,7 +63,7 @@ namespace gameUI{
                 if(PlayerManager.Instance.Data.getResourceNumById(costId) >= costNum){
                     RoomManager.Instance.CreateCustomTable(this.ddzSettdata.gameId, room, round, multiple)
                 }else{
-                    alert("道具不足")
+                    UIManager.Instance.showNotice("道具不足")
                 }
                 
             }, this );
@@ -76,11 +76,9 @@ namespace gameUI{
         }
         private onCreateCustomTable(data){
             if(data.ret == 0){
-                alert('创建成功！房间号：' + data.custom_table_id)
+                UIManager.Instance.showNotice('创建成功！房间号：' + data.custom_table_id)
                 // GameManager.Instance.startDDZGame()
                 this.Close()
-            }else{
-                alert('创建房间失败 ret=' + data.ret)
             }
         }
 

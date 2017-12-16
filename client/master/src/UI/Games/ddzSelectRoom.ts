@@ -33,7 +33,7 @@ namespace gameUI{
             if(PlayerManager.Instance.Data.Gold >= this.data.Limit){
                 RoomManager.Instance.EnterRoom(this.data.RoomId)
             }else{
-                alert('金币不够')
+                UIManager.Instance.showNotice('金币不够')
             }
 		}
 

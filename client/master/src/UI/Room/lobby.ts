@@ -18,7 +18,7 @@ namespace gameUI{
 			if(this.data.ID == 101){ // 斗地主
 				UIManager.Instance.LoadUI(UI.ddzSelectRoom)
 			}else{
-				alert("暂未开放功能")
+				UIManager.Instance.showNotice("暂未开放功能")
 			}
 		}
 

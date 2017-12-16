@@ -36,7 +36,7 @@ namespace gameUI{
 		}
         private sitDown(chair_id:number):void{
             if(this.data.Users[chair_id] != null && this.data.Users[chair_id] != undefined){
-                alert('有人坐了，请选其他位置')
+                UIManager.Instance.showNotice('有人坐了，请选其他位置')
                 return
             }
             RoomManager.Instance.SitDown(this.data.TableId, chair_id)

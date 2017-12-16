@@ -769,7 +769,7 @@ namespace Card {
                         }
                     }
                     if(this.groups[5].length > 0){
-                        ret.push[this.groups[5]]
+                        ret.push(this.groups[5])
                     }
                     break
                 }

@@ -306,10 +306,7 @@ class RoomManager extends Dispatcher {
         })
     }
     private onCreateCustomTable(data){
-        // if(data.ret == 0){
-            // alert('房间id:' + data.custom_table_id)
-            this.dispatchEvent(constant.event.logic.on_create_custom_table, data)
-        // }
+        this.dispatchEvent(constant.event.logic.on_create_custom_table, data)
     }
     public JoinCustomTable(custom_table_id:number){
         MessageManager.Instance.SendMessage({
@@ -318,8 +315,6 @@ class RoomManager extends Dispatcher {
         })
     }
     private onJoinCustomTable(data){
-        // if(data.ret == 0){
-            this.dispatchEvent(constant.event.logic.on_join_custom_table, data)
-        // }        
+        this.dispatchEvent(constant.event.logic.on_join_custom_table, data)
     }
 }
