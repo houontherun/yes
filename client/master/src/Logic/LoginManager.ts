@@ -9,11 +9,12 @@ class LoginManager extends Dispatcher {
 
     private onLoginCallback:Function
     private loginObj:any
-    private login(openid:string):void{
+    private login(openid:string,tocken:string):void{
         MessageManager.Instance.addEventListener(constant.msg.SC_LOGIN, this.onLoginRet, this)
         MessageManager.Instance.SendMessage({
             protocol:constant.msg.CS_LOGIN,
-            openid:openid
+            openid:openid,
+            tocken:tocken
         })
     }
     private onLoginRet(data):void{
@@ -38,7 +39,7 @@ class LoginManager extends Dispatcher {
     private onLoginPlatform(data){
         MessageManager.Instance.removeEventListener(constant.msg.SC_PLATFORM_LOGIN, this.onLoginPlatform, this)
         if(data.ret == 0){
-            this.login(data.openid)
+            this.login(data.openid,data.tocken)
         }else{
             alert('登录平台失败 code=' + data.ret.toString())
         }
