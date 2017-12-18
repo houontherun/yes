@@ -16,7 +16,7 @@
 		<e:Label text="小宇宙" x="180.5" y="171" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" size="20" fontFamily="SimHei" textColor="0xd6d4d1"/>
 		<e:Label text="0000" x="201.5" y="201" anchorOffsetX="0" width="109" anchorOffsetY="0" height="22" textColor="0xE2A92B" size="20" fontFamily="SimHei"/>
 		<e:Image width="28" height="28" y="196" source="wode-jinbi_png" x="170.5"/>
-		<e:Label text="" x="-6" y="210" name="Label_pos"/>
+		<e:Label text="" x="0" y="210" name="Label_pos"/>
 	</e:Group>
 	<e:Group id="group_Player0" width="263" height="333" anchorOffsetX="0" anchorOffsetY="0" left="2" bottom="1">
 		<e:Image height="28" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="71" y="245" scaleX="1" scaleY="1" horizontalCenter="4.5"/>
