@@ -180,6 +180,7 @@ export class ddzGameLogic extends Dispatcher {
        let chairId = 0;
        for(var chairCards of cards)
        {
+          this.allPokerCards[chairId] = [] 
          for (var i = 0;i < chairCards.length;i++)
 	     {
              if(chairCards[i] == 0) continue;
