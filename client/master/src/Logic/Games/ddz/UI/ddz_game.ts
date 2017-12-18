@@ -25,7 +25,7 @@ namespace gameUI {
         private PlayersNum: number = 3;
 
         private cardTotalnum: number;
-        private TargetCardsArray: Card.ui_pokerCardItem[] = [];
+        private TargetCardsArray: Card.ui_pokerCardItem[] = [];  //滑动选牌
         private cardBegin: number = -1;
         private cardEnd: number = -1;
         private btn_back: eui.Image;
@@ -39,6 +39,7 @@ namespace gameUI {
         private cdTimer = null;
         private newCurrentCards: any = [];
         private promptIndex: number = 0;
+        private BrightCardsArray = {};
 
         public onload(): void {
 
@@ -51,6 +52,7 @@ namespace gameUI {
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
+             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_C_BRIGHT, this.Bright, this);
 
             CardLogic.ddzGameLogic.Instance.init();
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
@@ -253,6 +255,44 @@ namespace gameUI {
         }
 
         private Trustee(data) {
+           
+        }
+        
+        private Bright(data)
+        {
+            let chairid = data.chair_id
+  
+            var cards =  CardLogic.ddzGameLogic.Instance.GetPlayerCards(chairid);
+            Card.Util.sortCards(cards);
+            this.cardTotalnum = cards.length;
+            var i: number = 0;
+            var group = this.GetGroupChairid(chairid);
+            let Scorepos = group.getChildByName("Label_pos");
+            let startposX: number = 0;
+            let posY = 60;
+            startposX = Scorepos.x;
+            if (startposX < 10) {
+                startposX = startposX - 34 * cards.length;
+            }
+
+            let addcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
+                if (i < this.cardTotalnum) {
+                    var _card = new Card.ui_pokerCardItem();
+                    _card.cardData = cards[i];
+                    _card.SetSize(0.6);
+                    if (i<10)
+                        _card.setPos(startposX +34 * i, posY -18);
+                    else
+                        _card.setPos(startposX +34 * i, posY + 18);
+                    this.group_handcards.addChild(_card);
+                    this.BrightCardsArray[chairid].push(_card);
+                    i++;
+                }
+                else {
+                    CardLogic.Timer.Instance.Remove(addcardTimer);
+                }
+            })
+
 
         }
 
@@ -414,7 +454,10 @@ namespace gameUI {
                 else if (data.land_score == 0) {
                     img.source = RES.getRes("buqiang_png");
                 }
-                img.x = Scorepos.x - 30;
+                 if (Scorepos.x < 10)
+                    img.x = Scorepos.x - 70;
+                else
+                    img.x = Scorepos.x - 30;
                 img.y = Scorepos.y;
                 group.addChild(img);
                 CardLogic.Timer.Instance.Delay(3.2, () => {
@@ -606,7 +649,14 @@ namespace gameUI {
                     _card.Setlandlord(true);
                 this.cardItemArray[chairid].push(_card);
             }
-
+            
+            if(this.BrightCardsArray[chairid])
+             {
+                  for (var i = 0; i < this.BrightCardsArray[chairid].length; i++)
+                  {
+                     group.removeChild(this.BrightCardsArray[chairid][i]);
+                  }
+            }
 
             //更新手牌      
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid) {
@@ -618,7 +668,7 @@ namespace gameUI {
                 }
                 this.group_handcards.removeChildren();
                 let cards = CardLogic.ddzGameLogic.Instance.HandCards;
-                let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 40;
+                let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 45;
                 for (var i = 0; i < cards.length; i++) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
@@ -697,9 +747,9 @@ namespace gameUI {
                         textNum.y = 260;
                     }
                     else {
-                        backCard.x = -20;
+                        backCard.x = 25;
                         backCard.y = 240;
-                        textNum.x = -4;
+                        textNum.x = 32;
                         textNum.y = 260;
                     }
 
