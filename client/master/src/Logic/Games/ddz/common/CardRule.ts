@@ -513,13 +513,13 @@ namespace Card {
         // 获取所有指定类型的牌
         public getPressedCards(target:ddzPackCardGroup):any{
             var type = target.CardType
-            var startCard = target.Cards[0]
+            var targetWeight = target.Group[0].weight
             var ret = []
             switch(type){
                 case CardTypes.SINGLE_TYPE:{       // 单牌   
                     var singles = this.getSingles()
                     for(var i = 0; i < singles.length; i++){
-                        if(singles[i].Weight > startCard.Weight){
+                        if(singles[i].Weight > targetWeight){
                             ret.push([singles[i]])
                         }
                     }
@@ -530,7 +530,7 @@ namespace Card {
                 case CardTypes.PAIR_TYPE:{         // 对子 
                     var pairs = this.getPairs()
                     for(var i = 0; i < pairs.length; i++){
-                        if(pairs[i][0].Weight > startCard.Weight){
+                        if(pairs[i][0].Weight > targetWeight){
                             ret.push(pairs[i])
                         }
                     }
@@ -541,7 +541,7 @@ namespace Card {
                 case CardTypes.TRIO_TYPE:{         // 三不带 
                     var trebles = this.getTrebles()
                     for(var i = 0; i < trebles.length; i++){
-                        if(trebles[i][0].Weight > startCard.Weight){
+                        if(trebles[i][0].Weight > targetWeight){
                             ret.push(trebles[i])
                         }
                     } 
@@ -552,7 +552,7 @@ namespace Card {
                 case CardTypes.TRIOSINGLE_TYPE:{   // 三带一
                     var trebles = this.getTrebles()
                     for(var i = 0; i < trebles.length; i++){
-                        if(trebles[i][0].Weight > startCard.Weight){
+                        if(trebles[i][0].Weight > targetWeight){
                             var triosingle = []
                             var three = trebles[i] // 3张
                             var leftCards = this.subCardList(three)
@@ -572,7 +572,7 @@ namespace Card {
                 case CardTypes.TRIODOUBLE_TYPE:{   // 三带一对
                     var trebles = this.getTrebles()
                     for(var i = 0; i < trebles.length; i++){
-                        if(trebles[i][0].Weight > startCard.Weight){
+                        if(trebles[i][0].Weight > targetWeight){
                             var triodouble = []
                             var three = trebles[i] // 3张
                             var leftCards = this.subCardList(three)
@@ -594,7 +594,7 @@ namespace Card {
                     for(var i = 0; i < straights.length; i++){                        
                         if(straights[i].length >= target.Cards.length){
                             for(var j = 0; j < straights[i].length; j++){
-                                if(straights[i][j].Weight > startCard.Weight && (straights[i].length - j) >= target.Cards.length){
+                                if(straights[i][j].Weight > targetWeight && (straights[i].length - j) >= target.Cards.length){
                                     var straight = straights[i].slice(j, j + target.Cards.length)
                                     ret.push(straight)
                                 }
@@ -611,7 +611,7 @@ namespace Card {
                     for(var i = 0; i < conpairs.length; i++){
                         if(conpairs[i].length >= len){
                             for(var j = 0; j < conpairs[i].length; j++){
-                                if(conpairs[i][j][0].Weight > startCard.Weight && (conpairs[i].length - j) >= len){
+                                if(conpairs[i][j][0].Weight > targetWeight && (conpairs[i].length - j) >= len){
                                     var conpair = conpairs[i].slice(j, j + len)
                                     ret.push(this.toPokerArray(conpair))
                                 }
@@ -628,7 +628,7 @@ namespace Card {
                     for(var i = 0; i < aeroplanes.length; i++){
                         if(aeroplanes[i].length >= len){
                             for(var j = 0; j < aeroplanes[i].length; j++){
-                                if(aeroplanes[i][j][0].Weight > startCard.Weight && (aeroplanes[i].length - j >= len)){
+                                if(aeroplanes[i][j][0].Weight > targetWeight && (aeroplanes[i].length - j >= len)){
                                     var aeroplane = aeroplanes[i].slice(j, j + len)
                                     ret.push(this.toPokerArray(aeroplane))
                                 }
@@ -645,7 +645,7 @@ namespace Card {
                     for(var i = 0; i < aeroplanes.length; i++){
                         if(aeroplanes[i].length >= len){
                             for(var j = 0; j < aeroplanes[i].length; j++){
-                                if(aeroplanes[i][j][0].Weight > startCard.Weight && (aeroplanes[i].length - j >= len)){
+                                if(aeroplanes[i][j][0].Weight > targetWeight && (aeroplanes[i].length - j >= len)){
                                     var aeroplane = aeroplanes[i].slice(j, j + len)
                                     var cards = this.toPokerArray(aeroplane)
                                     var leftCards = this.subCardList(cards)
@@ -671,7 +671,7 @@ namespace Card {
                     for(var i = 0; i < aeroplanes.length; i++){
                         if(aeroplanes[i].length >= len){
                             for(var j = 0; j < aeroplanes[i].length; j++){
-                                if(aeroplanes[i][j][0].Weight > startCard.Weight && (aeroplanes[i].length - j >= len)){
+                                if(aeroplanes[i][j][0].Weight > targetWeight && (aeroplanes[i].length - j >= len)){
                                     var aeroplane = aeroplanes[i].slice(j, j + len)
                                     var cards = this.toPokerArray(aeroplane)
                                     var leftCards = this.subCardList(cards)
@@ -694,7 +694,7 @@ namespace Card {
                 case CardTypes.FOURSINGLE_TYPE:{   // 四带二单或一对
                     var quadruples = this.getQuadruples()
                     for(var i = 0; i < quadruples.length; i++){
-                        if(quadruples[i][0].Weight > startCard.Weight){
+                        if(quadruples[i][0].Weight > targetWeight){
                             var cards = quadruples[i]
                             var leftCards = this.subCardList(cards)
                             var leftHandObj = new ddzHandCards(leftCards)
@@ -743,7 +743,7 @@ namespace Card {
                 case CardTypes.FOURDOUBLE_TYPE:{   // 四带二对
                     var quadruples = this.getQuadruples()
                     for(var i = 0; i < quadruples.length; i++){
-                        if(quadruples[i][0].Weight > startCard.Weight){
+                        if(quadruples[i][0].Weight > targetWeight){
                             var cards = quadruples[i]
                             var leftCards = this.subCardList(cards)
                             var leftHandObj = new ddzHandCards(leftCards)
@@ -764,7 +764,7 @@ namespace Card {
                 case CardTypes.BOMB_TYPE:{         // 炸弹
                     var quadruples = this.getQuadruples()
                     for(var i = 0; i < quadruples.length; i++){
-                        if(quadruples[i][0].Weight > startCard.Weight){
+                        if(quadruples[i][0].Weight > targetWeight){
                             ret.push(quadruples[i])
                         }
                     }
