@@ -182,7 +182,7 @@ export class ddzGameLogic extends Dispatcher {
        {
          for (var i = 0;i < chairCards.length;i++)
 	     {
-             if(cards[i] == 0) continue;
+             if(chairCards[i] == 0) continue;
              var iclr = Card.Util.GetCardColor(chairCards[i]);
              var color: CardColor = Colorlist[iclr];
              var index: number = Card.Util.GetCardValue(chairCards[i]);
