@@ -25,9 +25,9 @@ namespace gameUI{
             // UIManager.Instance.showNotice(msg)
 
             // 压死测试
-            var A = new Card.ddzHandCards(pockA)
-            var B = new Card.ddzPackCardGroup(pockB)
-            var pressed = A.getPressedCards(B)
+            var A = new Card.ddzPackCardGroup(pockA)
+            var B = new Card.ddzHandCards(pockB)
+            var pressed = B.getPressedCards(A)
             var allMsg = ''
             for(var i = 0; i < pressed.length; i++){
                 var msg = ''
