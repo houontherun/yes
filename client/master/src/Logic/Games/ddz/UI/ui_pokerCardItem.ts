@@ -100,6 +100,8 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		 {
 			 this.img_index.width = 28;
 			 this.img_index.height = 158;
+			 this.img_index0.visible  = false;
+			 this.img_suit0.visible = false;
 		 }
 	}
 
@@ -112,7 +114,16 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		{
 			this.img_index0.visible  = false;
 			this.img_suit0.visible = false;
+
+		 if(this.isJoker)
+		  {
+			  this.img_index.scaleX = 0.55;
+			  this.img_index.scaleY = 0.55;
+			  
+		  }
 		}
+
+		
 	}
 
     public get Selected():boolean{

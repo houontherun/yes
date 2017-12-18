@@ -589,7 +589,7 @@ namespace gameUI {
                 var _card = new Card.ui_pokerCardItem();
                 _card.cardData = cards[i];
                 _card.setPos(startposX + 34 * i, posY);
-                _card.SetSize(0.65);
+                _card.SetSize(0.6);
                 group.addChild(_card);
                 if ((i == cards.length - 1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
                     _card.Setlandlord(true);
@@ -667,27 +667,27 @@ namespace gameUI {
                 else {
                     var backCard = new eui.Image();
 
-
-                    backCard.scaleX = backCard.scaleY = 0.5;
                     backCard.source = RES.getRes("card_back_png");
+                    backCard.scaleX = backCard.scaleY = 0.25;
                     group.addChildAt(backCard, 5);
                     textNum = new eui.Label;
                     textNum.fontFamily = "SimHei";
-                    textNum.strokeColor = 0x0000ff;   //描边颜色
-                    textNum.stroke = 2;               //描边宽度
+                    textNum.strokeColor = 0x587ABC;   //描边颜色
+                    textNum.stroke = 1;               //描边宽度
                     textNum.text = "1";
+                    textNum.size = 26;
                     textNum.textAlign = egret.HorizontalAlign.CENTER;
 
                     if (seat == Card.Seat.Left) {
-                        backCard.x = 260;
+                        backCard.x = 240;
                         backCard.y = 240;
-                        textNum.x = 270;
+                        textNum.x = 246;
                         textNum.y = 270;
                     }
                     else {
-                        backCard.x = -10;
+                        backCard.x = -20;
                         backCard.y = 240;
-                        textNum.x = 20;
+                        textNum.x = -4;
                         textNum.y = 270;
                     }
 

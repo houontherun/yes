@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="ui_pokerCard" width="118" height="160" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="img_card" source="bk_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" width="118" x="0" height="160" y="0"/>
-	<e:Image id="img_index" width="30" height="38" x="7" y="7" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" source="black_1_png"/>
+	<e:Image id="img_card" source="bk_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" width="110" x="0" height="150" y="0"/>
+	<e:Image id="img_index" width="28" height="32" x="7" y="7" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" source="black_4_png"/>
 	<e:Image id="img_suit" width="32" height="36" x="4" y="42.3" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" source="Suit_3_png"/>
-	<e:Image id="img_landlord" width="121" height="124" anchorOffsetX="0" anchorOffsetY="0" source="Type_Land_png" scaleX="0.38" scaleY="0.38" top="0" touchEnabled="false" x="30" visible="false"/>
-	<e:Image id="img_index0" width="30" height="38" x="111.5" y="153" anchorOffsetX="0" anchorOffsetY="0" scaleX="-0.9" scaleY="-0.9" source="black_10_png"/>
-	<e:Image id="img_suit0" width="32" height="36" x="82.5" y="113.3" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="-0.9" source="Suit_3_png"/>
+	<e:Image id="img_landlord" width="121" height="124" anchorOffsetX="0" anchorOffsetY="0" source="Type_Land_png" scaleX="0.37" scaleY="0.37" top="0" touchEnabled="false" x="21" visible="false"/>
+	<e:Image id="img_index0" width="28" height="32" x="105.5" y="146" anchorOffsetX="0" anchorOffsetY="0" scaleX="-0.9" scaleY="-0.9" source="black_10_png"/>
+	<e:Image id="img_suit0" width="30" height="36" x="77.5" y="109.3" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="-0.9" source="Suit_3_png"/>
 </e:Skin>
