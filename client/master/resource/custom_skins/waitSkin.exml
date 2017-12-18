@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="loginSkin" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameControl="gameControl.*">
+	<e:Image source="mask_png" x="0" y="0" anchorOffsetX="0" width="100%" anchorOffsetY="0" height="100%" alpha="0.01"/>
+	<e:Image id="imgWait" source="loading_png" x="667" y="375" anchorOffsetX="43.5" anchorOffsetY="43.5"/>
+	
+</e:Skin>
