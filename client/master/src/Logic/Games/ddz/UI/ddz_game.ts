@@ -335,7 +335,7 @@ namespace gameUI {
             if (data.last_user != constant.INVALID) {
                 let group = this.GetGroupChairid(data.last_user);
 
-                let Scorepos = group.getChildByName("Label_pos");
+                let startpos = group.getChildByName("Label_pos");
                 var img = new eui.Image();
                 if (data.land_score == 1) {
                     img.source = RES.getRes('qiangdizhuzhi_png');
@@ -343,8 +343,11 @@ namespace gameUI {
                 else if (data.land_score == 0) {
                     img.source = RES.getRes("buqiang_png");
                 }
-                img.x = Scorepos.x;
-                img.y = Scorepos.y;
+                if (startpos.x < 10) {
+                    startpos.x = startpos.x - 35;
+                }
+                img.x = startpos.x;
+                img.y = startpos.y;
                 group.addChild(img);
                 CardLogic.Timer.Instance.Delay(3.2, () => {
                     group.removeChild(img);
@@ -369,7 +372,7 @@ namespace gameUI {
             var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
             for (var i = 0; i < cards.length; i++) {
                 var _backcard = new Card.ui_pokerCardItem();
-                _backcard.SetSize(0.65);
+                _backcard.SetSize(0.6);
                 _backcard.cardData = cards[i];
                 this.group_backcards.addChild(_backcard);
             }
@@ -560,8 +563,6 @@ namespace gameUI {
             var group = this.GetGroupChairid(chairid);
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
-            startposX = Scorepos.x - 30;
-
             let posY = Scorepos.y;
             startposX = Scorepos.x;
             if (startposX < 10) {
@@ -588,7 +589,14 @@ namespace gameUI {
             for (var i = 0; i < cards.length; i++) {
                 var _card = new Card.ui_pokerCardItem();
                 _card.cardData = cards[i];
-                _card.setPos(startposX + 34 * i, posY);
+                if(i<10)
+                {
+                   _card.setPos(startposX + 34 * i, posY - 20);
+                }
+                else
+                {
+                  _card.setPos(startposX + 34 * i, posY + 20);
+                }
                 _card.SetSize(0.6);
                 group.addChild(_card);
                 if ((i == cards.length - 1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
@@ -607,10 +615,11 @@ namespace gameUI {
                 }
                 this.group_handcards.removeChildren();
                 let cards = CardLogic.ddzGameLogic.Instance.HandCards;
+                let startposx = this.group_handcards.width / 2 - cards.length*45/2;
                 for (var i = 0; i < cards.length; i++) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
-                    _card.setPos(45 * i, 16);
+                    _card.setPos(startposx + 45 * i, 16);
                     this.group_handcards.addChild(_card);
                     this.AddTohardCardsArray(_card);
                 }
@@ -668,7 +677,7 @@ namespace gameUI {
                     var backCard = new eui.Image();
 
                     backCard.source = RES.getRes("card_back_png");
-                    backCard.scaleX = backCard.scaleY = 0.25;
+                    backCard.scaleX = backCard.scaleY = 0.35;
                     group.addChildAt(backCard, 5);
                     textNum = new eui.Label;
                     textNum.fontFamily = "SimHei";
@@ -682,13 +691,13 @@ namespace gameUI {
                         backCard.x = 240;
                         backCard.y = 240;
                         textNum.x = 246;
-                        textNum.y = 270;
+                        textNum.y = 260;
                     }
                     else {
                         backCard.x = -20;
                         backCard.y = 240;
                         textNum.x = -4;
-                        textNum.y = 270;
+                        textNum.y = 260;
                     }
 
                     group.addChildAt(textNum, 6);
@@ -866,7 +875,7 @@ namespace gameUI {
                 if (i < this.cardTotalnum) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
-                    _card.setPos(48 * i, 16);
+                    _card.setPos(45 * i, 16);
                     this.group_handcards.addChild(_card);
                     this.AddTohardCardsArray(_card);
                     i++;
