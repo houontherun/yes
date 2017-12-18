@@ -566,7 +566,7 @@ namespace gameUI {
             let posY = Scorepos.y;
             startposX = Scorepos.x;
             if (startposX < 10) {
-                startposX = startposX - 30 * cards.length;
+                startposX = startposX - 34 * cards.length;
             }
             if (this.cardItemArray && this.cardItemArray[chairid] != null) {
                 for (let carditem of this.cardItemArray[chairid]) {
@@ -581,7 +581,10 @@ namespace gameUI {
             }
             this.buchuItemArray[chairid] = null
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
-                posY = Scorepos.y - 25;
+            {
+               posY = Scorepos.y - 10;
+               startposX = startposX - 34 * cards.length/2;
+            }
             else {
                 let textNum: eui.Label = <eui.Label>group.getChildAt(6);   //显示剩余牌
                 if (textNum) textNum.text = remainCount.toString();
@@ -615,7 +618,7 @@ namespace gameUI {
                 }
                 this.group_handcards.removeChildren();
                 let cards = CardLogic.ddzGameLogic.Instance.HandCards;
-                let startposx = this.group_handcards.width / 2 - cards.length*45/2;
+                let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 40;
                 for (var i = 0; i < cards.length; i++) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
@@ -684,7 +687,7 @@ namespace gameUI {
                     textNum.strokeColor = 0x587ABC;   //描边颜色
                     textNum.stroke = 1;               //描边宽度
                     textNum.text = "1";
-                    textNum.size = 26;
+                    textNum.size = 35;
                     textNum.textAlign = egret.HorizontalAlign.CENTER;
 
                     if (seat == Card.Seat.Left) {
