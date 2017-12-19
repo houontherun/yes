@@ -305,7 +305,7 @@ namespace gameUI {
             this.BrightCardsArray[chairid] = [];
             var cards =  CardLogic.ddzGameLogic.Instance.GetPokerCards(data.cards);
             Card.Util.sortCards(cards);
-            this.cardTotalnum = cards.length;
+            let Totalnum = cards.length;
             var i: number = 0;
             var group = this.GetGroupChairid(chairid);
             let Scorepos = group.getChildByName("Label_pos");
@@ -318,7 +318,7 @@ namespace gameUI {
             }
 
             let addBrightcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
-                if (i < this.cardTotalnum) {
+                if (i < Totalnum) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
                     _card.SetSize(0.6);
@@ -326,7 +326,7 @@ namespace gameUI {
                     if (i<10)
                         _card.setPos(startposX +34 * i, posY -18);
                     else
-                        _card.setPos(startposX +34 * i, posY + 18);
+                        _card.setPos(startposX +34 * (i-10), posY + 18);
                      this.BrightCardsArray[chairid].push(_card);
                     i++;
                 }
