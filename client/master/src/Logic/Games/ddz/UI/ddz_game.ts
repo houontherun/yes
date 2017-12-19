@@ -205,7 +205,7 @@ namespace gameUI {
           for(let chairid in this.readyUIArray)
           {
               let group = this.GetGroupChairid(chairid);
-               group.addChild(this.readyUIArray[chairid]);
+              group.removeChild(this.readyUIArray[chairid]);
           }
        }
 
@@ -299,6 +299,7 @@ namespace gameUI {
         private Bright(data)
         {
             let chairid = data.chair_id
+            if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid) return;
             this.BrightCardsArray[chairid] = [];
             var cards =  CardLogic.ddzGameLogic.Instance.GetPokerCards(data.cards);
             Card.Util.sortCards(cards);
@@ -308,6 +309,7 @@ namespace gameUI {
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
             let posY = 60;
+            
             startposX = Scorepos.x;
             if (startposX < 10) {
                 startposX = startposX - 34 * cards.length;
@@ -318,12 +320,12 @@ namespace gameUI {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
                     _card.SetSize(0.6);
+                    group.addChild(_card);
                     if (i<10)
                         _card.setPos(startposX +34 * i, posY -18);
                     else
                         _card.setPos(startposX +34 * i, posY + 18);
-                    this.group_handcards.addChild(_card);
-                    this.BrightCardsArray[chairid].push(_card);
+                     this.BrightCardsArray[chairid].push(_card);
                     i++;
                 }
                 else {
@@ -409,7 +411,7 @@ namespace gameUI {
             this.txt_gamedouble.text = score.toString();
             CardLogic.ddzGameLogic.Instance.landUser = data.land_user;
             let playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid;
-            this.removeallready();
+            
             if (data.last_user != constant.INVALID) {
                 let group = this.GetGroupChairid(data.last_user);
 
@@ -962,6 +964,7 @@ namespace gameUI {
             if (this.hardCardsArray.length > 0) {
                 this.removehardCard();
             }
+            this.removeallready();
             this.OpenDeal();
             var cards: Array<PokerCard> = e.paramObj;
 
