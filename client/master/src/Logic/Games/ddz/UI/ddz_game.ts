@@ -182,6 +182,7 @@ namespace gameUI {
              let pos = group.getChildByName("Label_pos");
              var img = new eui.Image();
              img.source = RES.getRes("yizunbei_png");
+             img.scaleY = img.scaleX = 0.8;
              if (pos.x < 10) {
                 pos.x = pos.x - 35;
             }
@@ -207,6 +208,7 @@ namespace gameUI {
               let group = this.GetGroupChairid(chairid);
               group.removeChild(this.readyUIArray[chairid]);
           }
+          this.readyUIArray = {};
        }
 
         private OutCard(data) {
@@ -298,7 +300,7 @@ namespace gameUI {
         
         private Bright(data)
         {
-            let chairid = data.chair_id
+            let chairid = data.chair_id;
             if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid) return;
             this.BrightCardsArray[chairid] = [];
             var cards =  CardLogic.ddzGameLogic.Instance.GetPokerCards(data.cards);
@@ -315,7 +317,7 @@ namespace gameUI {
                 startposX = startposX - 34 * cards.length;
             }
 
-            let addcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
+            let addBrightcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
                 if (i < this.cardTotalnum) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
@@ -329,7 +331,7 @@ namespace gameUI {
                     i++;
                 }
                 else {
-                    CardLogic.Timer.Instance.Remove(addcardTimer);
+                    CardLogic.Timer.Instance.Remove(addBrightcardTimer);
                 }
             })
 
