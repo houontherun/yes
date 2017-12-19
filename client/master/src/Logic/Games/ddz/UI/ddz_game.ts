@@ -321,7 +321,43 @@ namespace gameUI {
            }
             
         }
-        
+
+
+        //明牌的处理
+        private AddBrightArray(chairid:number)
+        {
+            for (var i = 0; i < this.BrightCardsArray[chairid].length; i++)
+            {
+               group.removeChild(this.BrightCardsArray[chairid][i]);
+            }
+            this.BrightCardsArray[chairid] = [];
+            var group = this.GetGroupChairid(chairid);
+            let Scorepos = group.getChildByName("Label_pos");
+            let startposX: number = 0;
+            let posY = 60;
+            
+            startposX = Scorepos.x;
+            
+            let BrightCards =  CardLogic.ddzGameLogic.Instance.GetBrightCards(chairid);
+            Card.Util.sortCards(BrightCards);
+            if (startposX < 10) {
+                startposX = startposX - 34 * BrightCards.length;
+            }
+            for(let i = 0;i<BrightCards.length;i++)
+             {
+                  var _card = new Card.ui_pokerCardItem();
+                  _card.cardData = BrightCards[i];
+                  _card.SetSize(0.6);
+                 group.addChild(_card);
+                 if (i<10)
+                     _card.setPos(startposX +34 * i, posY -18);
+                 else
+                     _card.setPos(startposX +34 * (i-10), posY + 18);
+                  this.BrightCardsArray[chairid].push(_card);
+             }
+        }
+
+        //明牌协议
         private Bright(data)
         {
             let chairid = data.chair_id;
@@ -340,7 +376,7 @@ namespace gameUI {
             if (startposX < 10) {
                 startposX = startposX - 34 * cards.length;
             }
-
+            
             let addBrightcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
                 if (i < Totalnum) {
                     var _card = new Card.ui_pokerCardItem();
@@ -473,6 +509,15 @@ namespace gameUI {
                 maoimg.y = 0;
                 maoimg.x = 12;
                 group.addChild(maoimg);
+
+                if(this.BrightCardsArray[data.land_user]&&this.BrightCardsArray[data.land_user].length > 0)
+                {
+                     for (var i = 0; i < data.back_card.length; i++)
+                      {
+                        CardLogic.ddzGameLogic.Instance.AddBrightCard(data.land_user,data.back_card[i]);
+                     }
+                    this.AddBrightArray(data.land_user);
+               }
             }
 
 
@@ -727,13 +772,15 @@ namespace gameUI {
                     _card.Setlandlord(true);
                 this.cardItemArray[chairid].push(_card);
             }
+
             
-            if(this.BrightCardsArray[chairid])
+            //明牌处理
+            if(this.BrightCardsArray[chairid]&&this.BrightCardsArray[chairid].length > 0)
              {
-                  for (var i = 0; i < this.BrightCardsArray[chairid].length; i++)
-                  {
-                     group.removeChild(this.BrightCardsArray[chairid][i]);
+                  for (let _data of array) {
+                     CardLogic.ddzGameLogic.Instance.RemoveBrightCards(chairid,_data);
                   }
+                   this.AddBrightArray(chairid);
             }
 
             //更新手牌      
