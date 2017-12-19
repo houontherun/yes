@@ -174,8 +174,9 @@ namespace gameUI {
             }
         }
 
-        private UpdatePlayersStatus(data)
+        private UpdatePlayersStatus(e: CardLogic.CardEvent)
         {
+            var data = e.paramObj;
             if(data.status == constant.playerStatus.US_READY)
             {
                 let group = this.GetGroupChairid(data.chair_id);
@@ -186,7 +187,7 @@ namespace gameUI {
                     pos.x = pos.x - 35;
                 }
                 img.x = pos.x;
-                img.y = pos.y;
+                img.y = pos.y - 20;
                 group.addChild(img);
                 this.readyUIArray[data.chair_id] = img;
             }
@@ -519,9 +520,10 @@ namespace gameUI {
 
         private ReadyRet(data) {
             if (data.ret == 0) {
-                this.Text_bnt2.text = "已准备";
-                this.Text_bnt1.visible = false;
-                this.btn1.visible = false;
+                this.Text_bnt2.visible = false;
+                this.Text_bnt1.visible = true;
+                this.btn1.visible = true;
+                this.btn2.visible = false;
                 this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
             }
         }
