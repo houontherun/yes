@@ -778,6 +778,7 @@ namespace gameUI {
             }
 
         }
+        
         //明牌处理
         private OpenDeal() {
             this.Text_bnt2.visible = false;
@@ -800,8 +801,6 @@ namespace gameUI {
             var textNum = new eui.Label;
             textNum.fontFamily = "SimHei";
             textNum.textColor = 0x0000AA;   //描边颜色
-            // textNum.strokeColor = 0xe2a92b;   //描边颜色
-            // textNum.stroke = 1.2;               //描边宽度
             textNum.text = "明牌×8";
             textNum.size = 30;
             textNum.x = this.group_btn.width / 2 + 36;
