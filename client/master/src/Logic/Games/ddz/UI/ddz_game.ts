@@ -47,8 +47,7 @@ namespace gameUI {
             super.onload();
 
             MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
-            MessageManager.Instance.addEventListener(constant.msg.SC_USER_STATUS, this.UpdatePlayerStatus, this);
-            MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
+             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_OUT_CARD, this.OutCard, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
@@ -127,7 +126,7 @@ namespace gameUI {
             MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
             MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
             MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
-            MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_C_BRIGHT, this.Bright, this);
+            MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_USER_BRIGHT, this.Bright, this);
 
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
@@ -526,15 +525,6 @@ namespace gameUI {
                 this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
             }
         }
-
-
-       private UpdatePlayerStatus(data)
-       {
-           if(data.status == constant.playerStatus.US_READY)
-           {
-              let group = this.GetGroupChairid(data.chair_id)
-           }
-       }
 
 
         //创建闹钟
