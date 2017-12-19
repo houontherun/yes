@@ -174,22 +174,29 @@ namespace gameUI {
             }
         }
 
+
+        ///设置已准备
+        private setReadyUI(chairid)
+        {
+             let group = this.GetGroupChairid(chairid);
+             let pos = group.getChildByName("Label_pos");
+             var img = new eui.Image();
+             img.source = RES.getRes("yizunbei_png");
+             if (pos.x < 10) {
+                pos.x = pos.x - 35;
+            }
+            img.x = pos.x;
+            img.y = pos.y - 20;
+            group.addChild(img);
+            this.readyUIArray[chairid] = img;
+        }
+
         private UpdatePlayersStatus(e: CardLogic.CardEvent)
         {
             var data = e.paramObj;
             if(data.status == constant.playerStatus.US_READY)
             {
-                let group = this.GetGroupChairid(data.chair_id);
-                let pos = group.getChildByName("Label_pos");
-                var img = new eui.Image();
-                 img.source = RES.getRes("yizunbei_png");
-                if (pos.x < 10) {
-                    pos.x = pos.x - 35;
-                }
-                img.x = pos.x;
-                img.y = pos.y - 20;
-                group.addChild(img);
-                this.readyUIArray[data.chair_id] = img;
+               this.setReadyUI(data.chair_id);
             }
         }
        
@@ -613,18 +620,21 @@ namespace gameUI {
                 }
 
                 for (var i = 0; i < players.length; i++) {
-
                     if (players[i].UserId == PlayerManager.Instance.Data.UserId) {
                         this.setPlayer(0, players[i].UserName, players[i].Gold, "face_1_png");
                         CardLogic.ddzGameLogic.Instance.playerposInfo[players[i].ChairId] = 0;
                     }
                     else {
-                        let chairid = this.getrelativeChair(players[i].ChairId);
-                        if (chairid > -1) {
-                            this.setPlayer(chairid, players[i].UserName, players[i].Gold, "face_2_png");
-                            CardLogic.ddzGameLogic.Instance.playerposInfo[players[i].ChairId] = chairid;
+                        let relativechairid = this.getrelativeChair(players[i].ChairId);
+                        if (relativechairid > -1) {
+                            this.setPlayer(relativechairid, players[i].UserName, players[i].Gold, "face_2_png");
+                            CardLogic.ddzGameLogic.Instance.playerposInfo[players[i].ChairId] = relativechairid;
                         }
 
+                    }
+                     if(players[i].Status == constant.playerStatus.US_READY)
+                     {
+                          this.setReadyUI(players[i].ChairId);
                     }
                 }
 
