@@ -904,7 +904,7 @@ namespace gameUI {
             this.Text_bnt2.visible = false;
             this.btn2.visible = false;
             var img = new eui.Image();
-            var idouble: number = 8;
+            var idouble: number = 6;
            
             img.source = RES.getRes("btn2_png");
             img.width = 185 * 0.75;
@@ -917,13 +917,13 @@ namespace gameUI {
                 MessageManager.Instance.SendSubMessage({
                     sub_protocol: constant.sub_msg.SUB_C_BRIGHT,
                     chair_id: CardLogic.ddzGameLogic.Instance.playerChairid,
-                    type:(8-idouble)
+                    type:(6-idouble)
                 })
             },this);
             var textNum = new eui.Label;
             textNum.fontFamily = "SimHei";
             textNum.textColor = 0x0000AA;   //描边颜色
-            textNum.text = "明牌×8";
+            textNum.text = "明牌×6";
             textNum.size = 30;
             textNum.x = this.group_btn.width / 2 + 36;
             textNum.y = img.y + 13.5;
