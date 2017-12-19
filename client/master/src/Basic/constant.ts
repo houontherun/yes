@@ -138,6 +138,17 @@ var constant = {
         ERROR_TICKET_IS_NOT_ENOUGH : 31,				//门票不足
         ERROR_CUSTOM_TABLE_IS_START : 32,				//游戏已开始,不能加入
     },
+    playerStatus:
+    {
+        US_NULL:0x00,								 //没有状态
+        US_FREE:0x01,								 //站立状态
+        US_SIT:0x02,							     //坐下状态
+        US_READY:0x03,							     //同意状态
+        US_LOOKON:0x04,							     //旁观状态
+        US_PLAYING:0x05,							 //游戏状态
+        US_OFFLINE:	0x06,							 //断线状态
+
+    },
     INVALID:0xFFFF,								//无效椅子
     event:{
         network:{

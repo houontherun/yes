@@ -46,17 +46,19 @@ namespace gameUI {
             super.onload();
 
             MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
+            MessageManager.Instance.addEventListener(constant.msg.SC_USER_STATUS, this.UpdatePlayerStatus, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_OUT_CARD, this.OutCard, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
-            MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_C_BRIGHT, this.Bright, this);
+            MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_USER_BRIGHT, this.Bright, this);
 
             CardLogic.ddzGameLogic.Instance.init();
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
+            CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
             this.AddClick(this.btn_tuoguan, () => {
 
             }, this);
@@ -128,6 +130,7 @@ namespace gameUI {
 
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
+            CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
         }
 
         private GetGroupChairid(chairid: number): eui.Group {
@@ -141,7 +144,6 @@ namespace gameUI {
                 pos = CardLogic.ddzGameLogic.Instance.playerposInfo[chairid];
                 group = <eui.Group>this.getChildAt(pos + 2);
             }
-            let Scorepos = group.getChildByName("Label_pos");
             return group;
         }
 
@@ -172,6 +174,25 @@ namespace gameUI {
             }
         }
 
+        private UpdatePlayersStatus(data)
+        {
+            if(data.status == constant.playerStatus.US_READY)
+            {
+                let group = this.GetGroupChairid(data.chair_id);
+                let pos = group.getChildByName("Label_pos");
+                var img = new eui.Image();
+                 img.source = RES.getRes("yizunbei_png");
+                if (pos.x < 10) {
+                    pos.x = pos.x - 35;
+                }
+                img.x = pos.x;
+                img.y = pos.y;
+                group.addChild(img);
+                CardLogic.Timer.Instance.Delay(3, () => {
+                    group.removeChild(img);
+                });
+            }
+        }
 
         private OutCard(data) {
             this.SetBtnsGame(false);
@@ -263,7 +284,7 @@ namespace gameUI {
         private Bright(data)
         {
             let chairid = data.chair_id
-            this.BrightCardsArray[chairid] = 0;
+            this.BrightCardsArray[chairid] = [];
             var cards =  CardLogic.ddzGameLogic.Instance.GetPokerCards(data.cards);
             Card.Util.sortCards(cards);
             this.cardTotalnum = cards.length;
@@ -498,6 +519,14 @@ namespace gameUI {
             }
         }
 
+
+       private UpdatePlayerStatus(data)
+       {
+           if(data.status == constant.playerStatus.US_READY)
+           {
+              let group = this.GetGroupChairid(data.chair_id)
+           }
+       }
 
 
         //创建闹钟
@@ -775,8 +804,6 @@ namespace gameUI {
                     });
                 }
 
-
-
             }
 
         }
@@ -795,13 +822,13 @@ namespace gameUI {
             img.y = 14;
             this.group_btn.addChild(img);
             img.touchEnabled = true;
-            this.AddClick(img, () => {
+            img.addEventListener(egret.TouchEvent.TOUCH_TAP,() => {
                 MessageManager.Instance.SendSubMessage({
                     sub_protocol: constant.sub_msg.SUB_C_BRIGHT,
                     chair_id: CardLogic.ddzGameLogic.Instance.playerChairid,
                     type:(8-idouble)
                 })
-            }, this);
+            },this);
             var textNum = new eui.Label;
             textNum.fontFamily = "SimHei";
             textNum.textColor = 0x0000AA;   //描边颜色

@@ -18,6 +18,7 @@ export class ddzGameLogic extends Dispatcher {
    public landUser :number = -1;
    private PressedCards = [];
    private allPokerCards = {}
+   private tableid:number = -1;
 
    public static get Instance() {
         if(ddzGameLogic.shared == null) {
@@ -39,9 +40,11 @@ export class ddzGameLogic extends Dispatcher {
        this.timer.start();
        this.timerTick = Timer.Instance.tick;
        this.UpdatePlayersEvent = new CardLogic.CardEvent(CardLogic.CardEvent.UpdatePlayers);
+
        MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_SEND_CARD, this.DispatchCardStart, this);
         
-       MessageManager.Instance.addEventListener(constant.msg.SC_TABLE_PLAYER_INFO, this.UpdatePlayers, this); 
+       MessageManager.Instance.addEventListener(constant.msg.SC_TABLE_PLAYER_INFO, this.UpdatePlayers, this);
+       MessageManager.Instance.addEventListener(constant.msg.SC_USER_STATUS, this.UpdatePlayerStatus, this); 
        MessageManager.Instance.SendMessage({
             protocol:constant.msg.CS_QUERY_TABLE_USER_INFO,
         })  
@@ -68,6 +71,7 @@ export class ddzGameLogic extends Dispatcher {
     {
         this.players = [];
         var pre:UserData = null ;
+        this.tableid = data.table_id;
         for(var i = 0; i < data.players.length; i++){
             
             var ud = new UserData(data.players[i])
@@ -83,6 +87,16 @@ export class ddzGameLogic extends Dispatcher {
             this.players.push(ud);
         }
          CardLogic.CardEventDispatcher.Instance.dispatchEvent( this.UpdatePlayersEvent);
+    }
+
+    private UpdatePlayerStatus(data)
+    {
+      if(this.tableid == data.table_id)
+      {
+          let UpdatePlayersStatusEvent : CardLogic.CardEvent = new CardLogic.CardEvent(CardLogic.CardEvent.UpdatePlayersStatus);
+          UpdatePlayersStatusEvent.paramObj = data;
+          CardLogic.CardEventDispatcher.Instance.dispatchEvent(UpdatePlayersStatusEvent);
+      }
     }
     
     public Addcard(data):PokerCard
