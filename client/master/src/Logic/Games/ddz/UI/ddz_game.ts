@@ -17,13 +17,14 @@ namespace gameUI {
         private Text_bnt2: eui.Label;
 
         private bStart: boolean;
+        private bTrustee:boolean;
         private group_handcards: eui.Group;
         private group_otherPlayersHead: eui.Group;
         private group_Player0: eui.Group;// 4:头像 5：牌 6：牌数
         private txt_PlayerGold: eui.Label;
         private hardCardsArray: Card.ui_pokerCardItem[] = [];
         private PlayersNum: number = 3;
-
+    
         private cardTotalnum: number;
         private TargetCardsArray: Card.ui_pokerCardItem[] = [];  //滑动选牌
         private cardBegin: number = -1;
@@ -41,6 +42,7 @@ namespace gameUI {
         private promptIndex: number = 0;
         private BrightCardsArray = {};
         private readyUIArray = {};
+        private tuoguanUIArray = {};
 
         public onload(): void {
 
@@ -295,7 +297,29 @@ namespace gameUI {
         }
 
         private Trustee(data) {
-           
+           if(data.chair_id == CardLogic.ddzGameLogic.Instance.playerChairid && data.trustee == 1)
+           {
+                this.bTrustee = (data.trustee == 1);
+           }
+           if(data.trustee == 1)
+           {
+              let group = this.GetGroupChairid(data.chair_id);
+              var tupguanimg = new eui.Image();
+              tupguanimg.source = RES.getRes('tuoguan_other_png');
+              tupguanimg.y = 0;
+              tupguanimg.x = 250;
+              group.addChild(tupguanimg);
+              this.tuoguanUIArray[data.chair_id] = tupguanimg;
+           }
+           else
+           {
+               if( this.tuoguanUIArray[data.chair_id])
+               {
+                    let group = this.GetGroupChairid(data.chair_id);
+                    group.removeChild(this.tuoguanUIArray[data.chair_id]);
+               }
+           }
+            
         }
         
         private Bright(data)
@@ -406,6 +430,12 @@ namespace gameUI {
             }
 
             this.cardItemArray[playerChairid] = []
+
+            if(this.bTrustee)
+            {
+                this.prompt();
+                this.SendOutcard();
+            }
         }
 
         private StartGame(data) {
@@ -1060,7 +1090,7 @@ namespace gameUI {
                 this.clockCD = null;
             }
             this.txt_gamedouble.text = "1";
-
+            this.tuoguanUIArray = {};
         }
 
     }

@@ -33,7 +33,7 @@
 			"name": "face"
 		},
 		{
-			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,score_bg0_png,tuoguan_png,weixinliaotian_png,wode-jinbi_png,yuyin_png,zhunbei_png,zuozi_png,buchu_png,buqiang_png,qiangdizhuzhi_png,dizhumao_png,yizunbei_png",
+			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,score_bg0_png,tuoguan_png,weixinliaotian_png,wode-jinbi_png,yuyin_png,zhunbei_png,zuozi_png,buchu_png,buqiang_png,qiangdizhuzhi_png,dizhumao_png,yizunbei_png,tuoguan_other_png",
 			"name": "ddzRes"
 		},
 		{
@@ -1376,6 +1376,11 @@
 			"url": "assets/Poker/ddzRes/yizunbei.png",
 			"type": "image",
 			"name": "yizunbei_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/tuoguan_other.png",
+			"type": "image",
+			"name": "tuoguan_other_png"
 		}
 	]
 }
