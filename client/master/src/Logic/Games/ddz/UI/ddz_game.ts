@@ -727,13 +727,34 @@ namespace gameUI {
                     _card.Setlandlord(true);
                 this.cardItemArray[chairid].push(_card);
             }
+
             
-            if(this.BrightCardsArray[chairid])
+            //明牌处理
+            if(this.BrightCardsArray[chairid]&&this.BrightCardsArray[chairid].length > 0)
              {
+                 
                   for (var i = 0; i < this.BrightCardsArray[chairid].length; i++)
                   {
                      group.removeChild(this.BrightCardsArray[chairid][i]);
                   }
+                  this.BrightCardsArray[chairid] = [];
+                   for (let _data of array) {
+                     CardLogic.ddzGameLogic.Instance.RemoveBrightCards(chairid,_data);
+                  }
+                  let BrightCards =  CardLogic.ddzGameLogic.Instance.GetBrightCards(chairid);
+                  for(let i = 0;i<BrightCards.length;i++)
+                  {
+                       var _card = new Card.ui_pokerCardItem();
+                       _card.cardData = BrightCards[i];
+                       _card.SetSize(0.6);
+                      group.addChild(_card);
+                      if (i<10)
+                          _card.setPos(startposX +34 * i, posY -18);
+                      else
+                          _card.setPos(startposX +34 * (i-10), posY + 18);
+                       this.BrightCardsArray[chairid].push(_card);
+                  }
+                   
             }
 
             //更新手牌      

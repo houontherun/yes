@@ -19,6 +19,7 @@ export class ddzGameLogic extends Dispatcher {
    private PressedCards = [];
    private allPokerCards = {}
    private tableid:number = -1;
+   private BrightCards = {};
 
    public static get Instance() {
         if(ddzGameLogic.shared == null) {
@@ -160,7 +161,51 @@ export class ddzGameLogic extends Dispatcher {
         this.timer.reset();
     }
 
-   
+   public AddBrightCards(chairid:number,cards)
+   {
+       this.BrightCards[chairid] = [];
+       var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+       for (var i = 0;i < cards.length;i++)
+	   {
+            if(cards[i] == 0) continue;
+            var iclr = Card.Util.GetCardColor(cards[i]);
+            var color: CardColor = Colorlist[iclr];
+            var index: number = Card.Util.GetCardValue(cards[i]);
+			var card : PokerCard = Card.Util.createPokerCard(index,color);
+            this.BrightCards[chairid].push(card);
+	   }
+   }
+
+   public GetBrightCards(chairid:number)
+   {
+       return this.BrightCards[chairid];
+   }
+
+    private getBrightCardsindex(chairid:number,index :number,suit:CardColor):number
+   {
+       let _index :number= -1;
+        for(var i = 0; i < this.BrightCards[chairid].length; i++){
+            if( this.BrightCards[chairid][i].Index == index && this.HandCards[i].Suit == suit)
+             return i;
+        }
+
+        return _index;
+   }
+
+   public RemoveBrightCards(chairid:number,data):boolean
+   {
+        var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
+        var iclr = Card.Util.GetCardColor(data);
+        var color: CardColor = Colorlist[iclr];
+        var index: number = Card.Util.GetCardValue(data);
+        let x = this.getBrightCardsindex(chairid,index,color);
+        if(x>-1)
+          {
+               this.BrightCards[chairid].splice(x,1);
+               return true;
+          }
+        return false;
+   }
      
   private onUpdateFrame()
    {
