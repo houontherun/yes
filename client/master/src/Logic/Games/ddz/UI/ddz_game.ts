@@ -261,8 +261,8 @@ namespace gameUI {
         private Bright(data)
         {
             let chairid = data.chair_id
-  
-            var cards =  CardLogic.ddzGameLogic.Instance.GetPlayerCards(chairid);
+            this.BrightCardsArray[chairid] = 0;
+            var cards =  CardLogic.ddzGameLogic.Instance.GetPokerCards(data.cards);
             Card.Util.sortCards(cards);
             this.cardTotalnum = cards.length;
             var i: number = 0;
@@ -521,6 +521,9 @@ namespace gameUI {
                 let clockpos = group.getChildByName("Label_pos");
                 this.clockCD.x = clockpos.x - 33;
                 this.clockCD.y = clockpos.y - 60;
+                if (clockpos.x < 10) {
+                   this.clockCD.x =  clockpos.x ;
+                }
                 this.clockCD.visible = true;
                 group.addChild(this.clockCD);
                 this.curClockpos = pos;
@@ -780,11 +783,12 @@ namespace gameUI {
             this.Text_bnt2.visible = false;
             this.btn2.visible = false;
             var img = new eui.Image();
-            var i: number = 4;
+            var idouble: number = 8;
             this.AddClick(img, () => {
                 MessageManager.Instance.SendSubMessage({
                     sub_protocol: constant.sub_msg.SUB_C_BRIGHT,
-                    chair_id: CardLogic.ddzGameLogic.Instance.playerChairid
+                    chair_id: CardLogic.ddzGameLogic.Instance.playerChairid,
+                    type:(8-idouble)
                 })
             }, this);
             img.source = RES.getRes("btn2_png");
@@ -805,9 +809,9 @@ namespace gameUI {
             textNum.textAlign = egret.HorizontalAlign.CENTER;
             this.group_btn.addChild(textNum);
             var OpenDealTimer = CardLogic.Timer.Instance.Repeat(1.2, () => {
-                if (i > 0) {
-                    textNum.text = "明牌×" + i.toString();
-                    i -= 2;
+                if (idouble > 0) {
+                    textNum.text = "明牌×" + idouble.toString();
+                    idouble -= 2;
                 }
                 else {
                     CardLogic.Timer.Instance.Remove(OpenDealTimer);

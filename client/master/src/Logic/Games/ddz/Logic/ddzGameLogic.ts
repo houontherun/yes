@@ -177,7 +177,7 @@ export class ddzGameLogic extends Dispatcher {
        this.bStartgame = true;
        let cards = data.cards;
 
-       let chairId = 0;
+       var chairId:number = 0;
        for(var chairCards of cards)
        {
           this.allPokerCards[chairId] = [] 

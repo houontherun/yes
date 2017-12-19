@@ -115,6 +115,8 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 			this.img_index0.visible  = false;
 			this.img_suit0.visible = false;
             this.img_index.scaleX = 0.75;
+			this.img_suit.scaleX = 0.75;
+			this.img_index.scaleY = 0.75;
 			this.img_suit.scaleY = 0.75;
 		   if(this.isJoker)
 		   {
