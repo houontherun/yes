@@ -52,7 +52,7 @@ namespace gameUI {
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
-             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_C_BRIGHT, this.Bright, this);
+            MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_C_BRIGHT, this.Bright, this);
 
             CardLogic.ddzGameLogic.Instance.init();
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
@@ -124,6 +124,8 @@ namespace gameUI {
             MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
             MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
             MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
+            MessageManager.Instance.removeSubEventListener(constant.sub_msg.SUB_C_BRIGHT, this.Bright, this);
+
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
         }
@@ -785,6 +787,14 @@ namespace gameUI {
             this.btn2.visible = false;
             var img = new eui.Image();
             var idouble: number = 8;
+           
+            img.source = RES.getRes("btn2_png");
+            img.width = 185 * 0.75;
+            img.height = 85 * 0.75;
+            img.x = this.group_btn.width / 2 + 20;
+            img.y = 14;
+            this.group_btn.addChild(img);
+            img.touchEnabled = true;
             this.AddClick(img, () => {
                 MessageManager.Instance.SendSubMessage({
                     sub_protocol: constant.sub_msg.SUB_C_BRIGHT,
@@ -792,12 +802,6 @@ namespace gameUI {
                     type:(8-idouble)
                 })
             }, this);
-            img.source = RES.getRes("btn2_png");
-            img.width = 185 * 0.75;
-            img.height = 85 * 0.75;
-            img.x = this.group_btn.width / 2 + 20;
-            img.y = 14;
-            this.group_btn.addChild(img);
             var textNum = new eui.Label;
             textNum.fontFamily = "SimHei";
             textNum.textColor = 0x0000AA;   //描边颜色
@@ -806,6 +810,7 @@ namespace gameUI {
             textNum.x = this.group_btn.width / 2 + 36;
             textNum.y = img.y + 13.5;
             textNum.textAlign = egret.HorizontalAlign.CENTER;
+            textNum.touchEnabled = false;
             this.group_btn.addChild(textNum);
             var OpenDealTimer = CardLogic.Timer.Instance.Repeat(1.2, () => {
                 if (idouble > 0) {
