@@ -40,6 +40,7 @@ namespace gameUI {
         private newCurrentCards: any = [];
         private promptIndex: number = 0;
         private BrightCardsArray = {};
+        private readyUIArray = {};
 
         public onload(): void {
 
@@ -133,7 +134,7 @@ namespace gameUI {
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
         }
 
-        private GetGroupChairid(chairid: number): eui.Group {
+        private GetGroupChairid(chairid: any): eui.Group {
             let group: eui.Group;
             var pos: number;
             if (CardLogic.ddzGameLogic.Instance.playerChairid == chairid) {
@@ -188,11 +189,18 @@ namespace gameUI {
                 img.x = pos.x;
                 img.y = pos.y;
                 group.addChild(img);
-                CardLogic.Timer.Instance.Delay(3, () => {
-                    group.removeChild(img);
-                });
+                this.readyUIArray[data.chair_id] = img;
             }
         }
+       
+       private removeallready()
+       {
+          for(let chairid in this.readyUIArray)
+          {
+              let group = this.GetGroupChairid(chairid);
+               group.addChild(this.readyUIArray[chairid]);
+          }
+       }
 
         private OutCard(data) {
             this.SetBtnsGame(false);
@@ -394,7 +402,7 @@ namespace gameUI {
             this.txt_gamedouble.text = score.toString();
             CardLogic.ddzGameLogic.Instance.landUser = data.land_user;
             let playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid;
-
+            this.removeallready();
             if (data.last_user != constant.INVALID) {
                 let group = this.GetGroupChairid(data.last_user);
 
