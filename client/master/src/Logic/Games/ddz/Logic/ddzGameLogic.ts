@@ -281,10 +281,13 @@ export class ddzGameLogic extends Dispatcher {
 	   {
             if(cards[i] == 0) continue;
             var iclr = Card.Util.GetCardColor(cards[i]);
-            var color: CardColor = Colorlist[iclr];
             var index: number = Card.Util.GetCardValue(cards[i]);
-			var card : PokerCard = Card.Util.createPokerCard(index,color);
-            CardList.push(card);
+            if ((index > 0 && index < 16) && (iclr >= 0 && iclr <= 4))
+            {
+                var color: CardColor = Colorlist[iclr];
+		    	var card : PokerCard = Card.Util.createPokerCard(index,color);
+                CardList.push(card);
+            }
 	   }
        return CardList;
    }

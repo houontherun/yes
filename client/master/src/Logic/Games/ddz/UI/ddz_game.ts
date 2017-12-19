@@ -326,12 +326,13 @@ namespace gameUI {
         //明牌的处理
         private AddBrightArray(chairid:number)
         {
+            var group = this.GetGroupChairid(chairid);
             for (var i = 0; i < this.BrightCardsArray[chairid].length; i++)
             {
                group.removeChild(this.BrightCardsArray[chairid][i]);
             }
             this.BrightCardsArray[chairid] = [];
-            var group = this.GetGroupChairid(chairid);
+            
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
             let posY = 60;
@@ -369,12 +370,12 @@ namespace gameUI {
             var i: number = 0;
             var group = this.GetGroupChairid(chairid);
             let Scorepos = group.getChildByName("Label_pos");
-            let startposX: number = 0;
+            let startposX: number = -10;
             let posY = 60;
             
             startposX = Scorepos.x;
             if (startposX < 10) {
-                startposX = startposX - 34 * cards.length;
+                startposX = startposX - 34 * Totalnum;
             }
             
             let addBrightcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
