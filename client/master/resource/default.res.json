@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,logo2_jpg",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png",
 			"name": "preload"
 		},
 		{
@@ -59,6 +59,10 @@
 		{
 			"keys": "hall_json,items_json,name_json",
 			"name": "data"
+		},
+		{
+			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,lose_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,lose_json,shibai_json,zhadan_json",
+			"name": "ddzEffect"
 		}
 	],
 	"resources": [
@@ -1193,11 +1197,6 @@
 			"name": "logo_jpg"
 		},
 		{
-			"url": "assets/logo.jpg",
-			"type": "image",
-			"name": "logo2_jpg"
-		},
-		{
 			"url": "assets/Poker/poke/bk.png",
 			"type": "image",
 			"name": "bk_png"
@@ -1381,6 +1380,86 @@
 			"url": "assets/Poker/ddzRes/tuoguan_other.png",
 			"type": "image",
 			"name": "tuoguan_other_png"
+		},
+		{
+			"url": "Effect/ddz/baozha.png",
+			"type": "image",
+			"name": "baozha_png"
+		},
+		{
+			"url": "Effect/ddz/chuntian.png",
+			"type": "image",
+			"name": "chuntian_png"
+		},
+		{
+			"url": "Effect/ddz/hongdeng.png",
+			"type": "image",
+			"name": "hongdeng_png"
+		},
+		{
+			"url": "Effect/ddz/huode.png",
+			"type": "image",
+			"name": "huode_png"
+		},
+		{
+			"url": "Effect/ddz/lose.png",
+			"type": "image",
+			"name": "lose_png"
+		},
+		{
+			"url": "Effect/ddz/shibai.png",
+			"type": "image",
+			"name": "shibai_png"
+		},
+		{
+			"url": "Effect/ddz/sli.png",
+			"type": "image",
+			"name": "sli_png"
+		},
+		{
+			"url": "Effect/ddz/zhadan.png",
+			"type": "image",
+			"name": "zhadan_png"
+		},
+		{
+			"url": "Effect/ddz/chuntian.json",
+			"type": "json",
+			"name": "chuntian_json"
+		},
+		{
+			"url": "Effect/ddz/hongdeng.json",
+			"type": "json",
+			"name": "hongdeng_json"
+		},
+		{
+			"url": "Effect/ddz/baozha.json",
+			"type": "json",
+			"name": "baozha_json"
+		},
+		{
+			"url": "Effect/ddz/huode.json",
+			"type": "json",
+			"name": "huode_json"
+		},
+		{
+			"url": "Effect/ddz/sli.json",
+			"type": "json",
+			"name": "sli_json"
+		},
+		{
+			"url": "Effect/ddz/lose.json",
+			"type": "json",
+			"name": "lose_json"
+		},
+		{
+			"url": "Effect/ddz/shibai.json",
+			"type": "json",
+			"name": "shibai_json"
+		},
+		{
+			"url": "Effect/ddz/zhadan.json",
+			"type": "json",
+			"name": "zhadan_json"
 		}
 	]
 }

@@ -40,8 +40,12 @@
 			"path": "./promise"
 		},
 		{
+         "name": "game"
+        },
+		{
 			"name": "jszip",
 			"path": "../libs/jszip"
 		}
+		
 	]
 }

@@ -17,7 +17,7 @@ class GameManager extends Dispatcher {
             var timer = new egret.Timer(500, 1)
             timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
                 var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
-                ResourceManager.Instance.loadGroups(['ddzRes', 'face', 'poke'], this, ()=>{
+                ResourceManager.Instance.loadGroups(['ddzRes', 'face', 'poke','ddzEffect'], this, ()=>{
                     loadingUI.Close()
                     UIManager.Instance.LoadUI(UI.ddz_game);
                     this.dispatchEvent(constant.event.logic.on_start_game)

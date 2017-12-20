@@ -468,6 +468,10 @@ namespace gameUI {
                     this.btn1.visible = true;
                     this.Text_bnt1.x = 330;
                     this.btn1.x = 315;
+                    if(this.bTrustee)
+                    {
+                        this.Sendpasscard();
+                    }
                 }
             }
             else {
@@ -771,6 +775,12 @@ namespace gameUI {
                 for (let carditem of this.cardItemArray[chairid]) {
                     group.removeChild(carditem);
                 }
+            }
+            var packPokercards =  new Card.ddzPackCardGroup(CardLogic.ddzGameLogic.Instance.GetPokerCards(array));
+            if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE || packPokercards.CardType == Card.CardTypes.NUKE_TYPE)
+            {
+              let mc : egret.MovieClip;
+              this.addChild( mc = this.PlayEffect('zhadan',()=>{this.removeChild(mc)}));
             }
 
             this.cardItemArray[chairid] = []

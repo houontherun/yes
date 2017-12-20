@@ -47,7 +47,7 @@
 		<e:Image id="btn1" width="175" height="78" verticalCenter="0.5" scaleX="0.75" scaleY="0.75" source="btn2_png" x="87"/>
 		<e:Label id="Text_bnt2" text="准备" x="330" y="27" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x841308" size="31" textColor="0xe5d547"/>
 		<e:Label id="Text_bnt0" text="出牌" x="494" y="27" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x3b69bf" size="31" textColor="0xffffff"/>
-		<e:Label id="Text_bnt1" text="换桌" x="101" y="27" anchorOffsetX="0" width="106" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" textColor="0xe8dd47" stroke="1.5" strokeColor="0x841308" size="31"/>
+		<e:Label id="Text_bnt1" text="换桌" x="101" y="30" anchorOffsetX="0" width="106" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" textColor="0xe8dd47" stroke="1.5" strokeColor="0x841308" size="31"/>
 	</e:Group>
 	<e:Group id="group_backcards" width="140" height="120" y="10" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-3.5" rotation="359.84">
 		<e:layout>
