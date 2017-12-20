@@ -27,6 +27,7 @@ namespace gameUI {
         private txt_PlayerGold: eui.Label;
         private hardCardsArray: Card.ui_pokerCardItem[] = [];
         private PlayersNum: number = 3;
+        private curOutcardPlayerid:number = -1;
     
         private cardTotalnum: number;
         private TargetCardsArray: Card.ui_pokerCardItem[] = [];  //滑动选牌
@@ -231,10 +232,11 @@ namespace gameUI {
 
         private OutCard(data) {
             this.SetBtnsGame(false);
+            this.curOutcardPlayerid = data.current_user;
             this.PlayerOutCard(data.chair_id, data.cards, data.card_count);
             let playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid;
             this.newCurrentCards = data.cards;
-            if (data.current_user == playerChairid) {
+            if (this.curOutcardPlayerid == playerChairid) {
                 CardLogic.ddzGameLogic.Instance.GenPressedCards(this.newCurrentCards);
                 this.PlayermeOutCard();
             }
@@ -319,6 +321,11 @@ namespace gameUI {
                 if(this.bTrustee)
                 {
                    this.group_tuoguan.visible = true;
+                   if (this.curOutcardPlayerid == CardLogic.ddzGameLogic.Instance.playerChairid)
+                   {
+                       this.prompt();
+                       this.SendOutcard();
+                   }
                 }
                 else
                 {
@@ -334,6 +341,7 @@ namespace gameUI {
               tuoguanimg.x = 250;
               group.addChild(tuoguanimg);
               this.tuoguanUIArray[data.chair_id] = tuoguanimg;
+              
            }
            else
            {
@@ -343,6 +351,8 @@ namespace gameUI {
                     group.removeChild(this.tuoguanUIArray[data.chair_id]);
                }
            }
+
+           
             
         }
 
@@ -789,7 +799,7 @@ namespace gameUI {
                     group.removeChild(carditem);
                 }
             }
-
+            this.PlayGameEffect(array);
             this.cardItemArray[chairid] = []
 
             if (this.buchuItemArray && this.buchuItemArray[chairid]) {
