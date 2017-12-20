@@ -277,6 +277,8 @@ namespace gameUI {
                        settle = null;
                    });
               }); });
+
+            mc.x = this.width /3;
             this.addChild(mc);
 
         }
@@ -786,7 +788,7 @@ namespace gameUI {
             {
                let mc : egret.MovieClip;
                mc = this.PlayEffect('zhadan',()=>{
-                   CardLogic.Timer.Instance.Delay(1.2, () => {
+                   CardLogic.Timer.Instance.Delay(0.6, () => {
                     this.removeChild(mc);
                 }); });
 

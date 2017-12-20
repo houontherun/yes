@@ -11,7 +11,7 @@ class GameManager extends Dispatcher {
     }
 
     public startDDZGame():void{
-        MessageManager.Instance.once(constant.msg.SC_USER_STAND_UP, this.onStandUp, this);
+        MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.onStandUp, this);
         
         UIManager.Instance.LoadUI(UI.loading, null, ()=>{
             var timer = new egret.Timer(500, 1)
@@ -32,6 +32,7 @@ class GameManager extends Dispatcher {
         MessageManager.Instance.SendMessage({
             protocol:constant.msg.CS_USER_STAND_UP
         });
+         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.onStandUp, this);
     }
     private onStandUp(){
         this.dispatchEvent(constant.event.logic.on_exit_game)
