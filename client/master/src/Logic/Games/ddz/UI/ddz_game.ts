@@ -359,9 +359,9 @@ namespace gameUI {
             
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
-            let posY = 55;
+            let posY = 40;
             
-            startposX = Scorepos.x-10;
+            startposX = Scorepos.x-25;
             
             let BrightCards =  CardLogic.ddzGameLogic.Instance.GetBrightCards(chairid);
             Card.Util.sortCards(BrightCards);
@@ -396,9 +396,9 @@ namespace gameUI {
             var group = this.GetGroupChairid(chairid);
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
-            let posY = 55;
+            let posY = 40;
             
-            startposX = Scorepos.x-15;
+            startposX = Scorepos.x-25;
             if (startposX < 10) {
                 startposX = startposX - 34 * Totalnum;
             }
