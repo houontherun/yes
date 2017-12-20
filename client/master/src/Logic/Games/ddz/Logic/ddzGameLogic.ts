@@ -198,7 +198,7 @@ export class ddzGameLogic extends Dispatcher {
    {
        let _index :number= -1;
         for(var i = 0; i < this.BrightCards[chairid].length; i++){
-            if( this.BrightCards[chairid][i].Index == index && this.HandCards[i].Suit == suit)
+            if( this.BrightCards[chairid][i].Index == index && this.BrightCards[chairid][i].Suit == suit)
              return i;
         }
 
