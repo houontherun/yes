@@ -11,10 +11,13 @@ namespace gameUI {
         private btn1: eui.Image;
         private btn2: eui.Image;
         private btn0: eui.Image;
+        private btn3: eui.Image;
 
         private Text_bnt0: eui.Label;
         private Text_bnt1: eui.Label;
         private Text_bnt2: eui.Label;
+        private Text_bnt3: eui.Label;
+        private group_tuoguan:eui.Group;
 
         private bStart: boolean;
         private bTrustee:boolean;
@@ -62,7 +65,7 @@ namespace gameUI {
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
             this.AddClick(this.btn_tuoguan, () => {
-
+               
             }, this);
 
             this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
@@ -73,10 +76,15 @@ namespace gameUI {
                 }, this)
                 GameManager.Instance.exitDDZGame()
             }, this);
-
+               
             this.Text_bnt0.visible = false;
-
+            
             this.btn0.visible = false;
+            this.Text_bnt3.touchEnabled = false;
+
+             this.btn3.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
+                 this.SendTurstee(0);
+             }, this);
         }
 
         private SendReady(): void {
@@ -89,6 +97,14 @@ namespace gameUI {
             MessageManager.Instance.SendSubMessage({
                 sub_protocol: constant.sub_msg.SUB_C_LAND_SCORE,
                 score: 1
+            });
+        }
+
+        private SendTurstee(btrustee:number):void{
+             MessageManager.Instance.SendSubMessage({
+                sub_protocol: constant.sub_msg.SUB_C_TRUSTEE,
+                chair_id: CardLogic.ddzGameLogic.Instance.playerChairid,
+                trustee:btrustee
             });
         }
 
@@ -300,16 +316,24 @@ namespace gameUI {
            if(data.chair_id == CardLogic.ddzGameLogic.Instance.playerChairid && data.trustee == 1)
            {
                 this.bTrustee = (data.trustee == 1);
+                if(this.bTrustee)
+                {
+                   this.group_tuoguan.visible = true;
+                }
+                else
+                {
+                     this.group_tuoguan.visible = false;
+                }
            }
            if(data.trustee == 1)
            {
               let group = this.GetGroupChairid(data.chair_id);
-              var tupguanimg = new eui.Image();
-              tupguanimg.source = RES.getRes('tuoguan_other_png');
-              tupguanimg.y = 0;
-              tupguanimg.x = 250;
-              group.addChild(tupguanimg);
-              this.tuoguanUIArray[data.chair_id] = tupguanimg;
+              var tuoguanimg = new eui.Image();
+              tuoguanimg.source = RES.getRes('tuoguan_other_png');
+              tuoguanimg.y = 0;
+              tuoguanimg.x = 250;
+              group.addChild(tuoguanimg);
+              this.tuoguanUIArray[data.chair_id] = tuoguanimg;
            }
            else
            {
@@ -918,7 +942,7 @@ namespace gameUI {
                 MessageManager.Instance.SendSubMessage({
                     sub_protocol: constant.sub_msg.SUB_C_BRIGHT,
                     chair_id: CardLogic.ddzGameLogic.Instance.playerChairid,
-                    type:(6-idouble)
+                    type:((8-idouble)/2)
                 })
             },this);
             var textNum = new eui.Label;
@@ -931,10 +955,10 @@ namespace gameUI {
             textNum.textAlign = egret.HorizontalAlign.CENTER;
             textNum.touchEnabled = false;
             this.group_btn.addChild(textNum);
-            var OpenDealTimer = CardLogic.Timer.Instance.Repeat(1.2, () => {
-                if (idouble > 0) {
-                    textNum.text = "明牌×" + idouble.toString();
+            var OpenDealTimer = CardLogic.Timer.Instance.Repeat(1.4, () => {
+                if (idouble > 2) {
                     idouble -= 2;
+                    textNum.text = "明牌×" + idouble.toString();
                 }
                 else {
                     CardLogic.Timer.Instance.Remove(OpenDealTimer);

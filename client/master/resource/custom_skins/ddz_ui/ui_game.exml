@@ -38,7 +38,8 @@
 	<e:Image id="btn_back" width="69" height="66" anchorOffsetX="0" anchorOffsetY="0" left="8" top="25" source="fanhui_png"/>
 	<e:Group id="group_tuoguan" height="277" bottom="0" left="0" right="0" anchorOffsetY="0" visible="false">
 		<e:Rect anchorOffsetX="0" anchorOffsetY="0" fillAlpha="0.64" left="0" right="0" bottom="0" top="0"/>
-		<e:Image width="86" height="30" anchorOffsetX="0" anchorOffsetY="0" source="Type_trust_png" horizontalCenter="0" x="263" scaleX="1" scaleY="1" verticalCenter="0"/>
+		<e:Image id="btn3" width="183" height="76" scaleX="0.75" scaleY="0.75" source="btn1_png" horizontalCenter="0" y="111"/>
+		<e:Label id="Text_bnt3" text="取消托管" y="123" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x3B69BF" size="26" textColor="0xFFFFFF" horizontalCenter="0"/>
 	</e:Group>
 	<e:Group id="group_btn" width="630" height="92" anchorOffsetX="0" anchorOffsetY="0" x="399" y="401">
 		<e:Image id="btn2" width="183" height="76" source="btn2_png" scaleX="0.75" scaleY="0.75" x="315" y="18"/>
