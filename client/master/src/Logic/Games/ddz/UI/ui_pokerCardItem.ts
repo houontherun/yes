@@ -113,6 +113,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		if(scale < 0.9)
 		{
 			this.touchEnabled = false;
+			this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_tap,this);
 			this.img_index0.visible  = false;
 			this.img_suit0.visible = false;
             this.img_index.scaleX = 0.75;

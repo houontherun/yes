@@ -252,22 +252,32 @@ namespace gameUI {
                 let rankData = new Card.PlayerRankData(data.names[i], data.golds[i], data.base_score, data.user_time[i]);
                 rankDatatables.push(rankData);
             }
-            let settle: Card.ui_GameSettle = new Card.ui_GameSettle(data.result, rankDatatables);
-            this.addChild(settle);
-            settle.SetContinueclick(() => {
-                this.removeChild(settle);
-                settle = null;
-                this.clearCurGame();
-                this.restart();
-            });
-
-            settle.SetExitClick(() => {
-                MessageManager.Instance.SendMessage({
-                    protocol: constant.msg.CS_USER_STAND_UP
-                });
-                this.removeChild(settle);
-                settle = null;
-            });
+            let effect = "shibai";
+            if(data.result)
+            {
+               effect = "sli";
+            }
+            let mc : egret.MovieClip;
+             mc = this.PlayEffect(effect,()=>{
+                 CardLogic.Timer.Instance.Delay(0.4, () => {
+                  this.removeChild(mc);
+                  let settle: Card.ui_GameSettle = new Card.ui_GameSettle(data.result, rankDatatables);
+                   this.addChild(settle);
+                   settle.SetContinueclick(() => {
+                       this.removeChild(settle);
+                       settle = null;
+                       this.clearCurGame();
+                       this.restart();
+                   });
+                  settle.SetExitClick(() => {
+                       MessageManager.Instance.SendMessage({
+                           protocol: constant.msg.CS_USER_STAND_UP
+                       });
+                       this.removeChild(settle);
+                       settle = null;
+                   });
+              }); });
+            this.addChild(mc);
 
         }
 
@@ -774,11 +784,13 @@ namespace gameUI {
             var packPokercards =  new Card.ddzPackCardGroup(CardLogic.ddzGameLogic.Instance.GetPokerCards(array));
             if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE || packPokercards.CardType == Card.CardTypes.NUKE_TYPE)
             {
-              let mc : egret.MovieClip;
-              this.addChild( mc = this.PlayEffect('zhadan',()=>{
-                   CardLogic.Timer.Instance.Delay(2, () => {
+               let mc : egret.MovieClip;
+               mc = this.PlayEffect('zhadan',()=>{
+                   CardLogic.Timer.Instance.Delay(1.2, () => {
                     this.removeChild(mc);
-                }); }));
+                }); });
+
+              this.addChild(mc);
             }
         }
 
@@ -1194,6 +1206,7 @@ namespace gameUI {
             }
             this.group_backcards.removeChildren();
             this.clearPlayers();
+            this.group_tuoguan.visible = false;
             this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.Sendpasscard, this);
             this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendOutcard, this);
             this.cardItemArray = {};
