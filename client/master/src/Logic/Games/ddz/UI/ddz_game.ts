@@ -1141,11 +1141,17 @@ namespace gameUI {
                 var group = <eui.Group>this.getChildAt(i + 2);
                 playerNum = 5;
 
-                while (group.numChildren > playerNum) {
+                if(bchangePlayer)
+                    group.visible = false;
+                else
+                  {
+                     playerNum = 6;
+                  }
+                  while (group.numChildren > playerNum) {
                     group.removeChildAt(group.numChildren - 1);
                 }
-                group.visible = false;
             }
+            
 
             playerNum = 4;
             if (bchangePlayer) {
