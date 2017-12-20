@@ -67,11 +67,10 @@ namespace gameUI{
              var mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( data, txtr );
              var mc:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData(effectName));
              mc.addEventListener(egret.Event.COMPLETE,(e:egret.MovieClipEvent)=>{onComplete()},this);
-             mc.y =200;
              mc.scaleX = 1.2;
              mc.scaleY = 1.2;
              mc.gotoAndPlay(1);
-             mc.frameRate = 25*rate;
+             mc.frameRate = 20*rate;
              return mc;
         }
 

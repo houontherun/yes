@@ -758,6 +758,19 @@ namespace gameUI {
         }
 
 
+         //特效
+        private PlayGameEffect(array: any)
+        {
+            var packPokercards =  new Card.ddzPackCardGroup(CardLogic.ddzGameLogic.Instance.GetPokerCards(array));
+            if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE || packPokercards.CardType == Card.CardTypes.NUKE_TYPE)
+            {
+              let mc : egret.MovieClip;
+              this.addChild( mc = this.PlayEffect('zhadan',()=>{
+                   CardLogic.Timer.Instance.Delay(2, () => {
+                    this.removeChild(mc);
+                }); }));
+            }
+        }
 
 
         public PlayerOutCard(chairid: number, array: any, remainCount: number) {
@@ -775,12 +788,6 @@ namespace gameUI {
                 for (let carditem of this.cardItemArray[chairid]) {
                     group.removeChild(carditem);
                 }
-            }
-            var packPokercards =  new Card.ddzPackCardGroup(CardLogic.ddzGameLogic.Instance.GetPokerCards(array));
-            if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE || packPokercards.CardType == Card.CardTypes.NUKE_TYPE)
-            {
-              let mc : egret.MovieClip;
-              this.addChild( mc = this.PlayEffect('zhadan',()=>{this.removeChild(mc)}));
             }
 
             this.cardItemArray[chairid] = []
