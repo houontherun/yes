@@ -313,7 +313,7 @@ namespace gameUI {
         }
 
         private Trustee(data) {
-           if(data.chair_id == CardLogic.ddzGameLogic.Instance.playerChairid && data.trustee == 1)
+           if(data.chair_id == CardLogic.ddzGameLogic.Instance.playerChairid)
            {
                 this.bTrustee = (data.trustee == 1);
                 if(this.bTrustee)
@@ -495,7 +495,14 @@ namespace gameUI {
 
             if(this.bTrustee)
             {
-                this.prompt();
+                if(bFirst)
+                {
+                    this.hardCardsArray[this.hardCardsArray.length -1].SetShoot(true);
+                }
+                else
+                {
+                   this.prompt();
+                }
                 this.SendOutcard();
             }
         }
@@ -555,8 +562,8 @@ namespace gameUI {
             var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
             for (var i = 0; i < cards.length; i++) {
                 var _backcard = new Card.ui_pokerCardItem();
-                _backcard.SetSize(0.6);
                 _backcard.cardData = cards[i];
+                _backcard.SetSize(0.6);
                 this.group_backcards.addChild(_backcard);
             }
 
