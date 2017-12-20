@@ -180,7 +180,6 @@ export class ddzGameLogic extends Dispatcher {
 
    public AddBrightCard(chairid:number,card)
    {
-        this.BrightCards[chairid] = [];
         var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
         if(card== 0) return;
          var iclr = Card.Util.GetCardColor(card);
