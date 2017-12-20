@@ -361,7 +361,7 @@ namespace gameUI {
             let startposX: number = 0;
             let posY = 40;
             
-            startposX = Scorepos.x-25;
+            startposX = Scorepos.x-30;
             
             let BrightCards =  CardLogic.ddzGameLogic.Instance.GetBrightCards(chairid);
             Card.Util.sortCards(BrightCards);
@@ -398,7 +398,7 @@ namespace gameUI {
             let startposX: number = 0;
             let posY = 40;
             
-            startposX = Scorepos.x-25;
+            startposX = Scorepos.x-30;
             if (startposX < 10) {
                 startposX = startposX - 34 * Totalnum;
             }
@@ -779,7 +779,7 @@ namespace gameUI {
             var group = this.GetGroupChairid(chairid);
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
-            let posY = Scorepos.y;
+            let posY = Scorepos.y - 10;
             startposX = Scorepos.x;
             if (startposX < 10) {
                 startposX = startposX - 34 * cards.length;
@@ -798,7 +798,6 @@ namespace gameUI {
             this.buchuItemArray[chairid] = null
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
             {
-               posY = Scorepos.y - 10;
                startposX = startposX - 34 * cards.length/2;
             }
             else {
@@ -814,7 +813,7 @@ namespace gameUI {
                 }
                 else
                 {
-                  _card.setPos(startposX + 34 * i, posY + 20);
+                  _card.setPos(startposX + 34 * (10-i), posY + 20);
                 }
                 _card.SetSize(0.6);
                 group.addChild(_card);
@@ -1183,6 +1182,7 @@ namespace gameUI {
             this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendOutcard, this);
             this.cardItemArray = {};
             this.buchuItemArray = {};
+            this.BrightCardsArray = {}
             if (this.clockCD) {
                 this.clockCD = null;
             }
