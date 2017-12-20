@@ -99,6 +99,9 @@ var constant = {
         SUB_S_USER_DOUBLE:107,           //用户加倍
         SUB_S_SET_BASESCORE:108,         //设置基数
         SUB_S_TRUSTEE:109,               //玩家托管
+        SUB_S_STATUS_FREE:110,			//当前桌子空闲状态信息
+        SUB_S_STATUS_SCORE:111,		    //当前桌子叫分状态信息
+        SUB_S_STATUS_PLAYING:112		//当前桌子进行中状态信息
     },
     error_code:{
         ERROR_OK : 0,
@@ -134,6 +137,17 @@ var constant = {
         ERROR_TABLE_IS_FULL : 30,						//桌子人数已满
         ERROR_TICKET_IS_NOT_ENOUGH : 31,				//门票不足
         ERROR_CUSTOM_TABLE_IS_START : 32,				//游戏已开始,不能加入
+    },
+    playerStatus:
+    {
+        US_NULL:0x00,								 //没有状态
+        US_FREE:0x01,								 //站立状态
+        US_SIT:0x02,							     //坐下状态
+        US_READY:0x03,							     //同意状态
+        US_LOOKON:0x04,							     //旁观状态
+        US_PLAYING:0x05,							 //游戏状态
+        US_OFFLINE:	0x06,							 //断线状态
+
     },
     INVALID:0xFFFF,								//无效椅子
     event:{

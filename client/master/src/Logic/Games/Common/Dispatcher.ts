@@ -40,6 +40,8 @@ class Dispatcher extends GameObject{
 
     public removeEventListener(eventID: any, callback: Function, thisObj: any): void {
         var list: Array<any> = this._eventMap[eventID];
+        if (!list) 
+            return ;
         var len: number = list.length;
         for (var idx = 0; idx < len; idx++) {
             var eventData = list[idx];
