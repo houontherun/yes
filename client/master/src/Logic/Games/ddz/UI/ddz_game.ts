@@ -65,7 +65,7 @@ namespace gameUI {
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
             this.AddClick(this.btn_tuoguan, () => {
-               
+                this.SendTurstee(1);
             }, this);
 
             this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
