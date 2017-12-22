@@ -1,7 +1,7 @@
 {
 	"native": {
 		"path_ignore": [],
-		"android_as_path": "../../../client_android/android_20171214_1"
+		"android_as_path": "../../../client_android/android_20171222_1"
 	},
 	"publish": {
 		"web": 0,
@@ -40,12 +40,11 @@
 			"path": "./promise"
 		},
 		{
-         "name": "game"
-        },
+			"name": "game"
+		},
 		{
 			"name": "jszip",
 			"path": "../libs/jszip"
 		}
-		
 	]
 }

@@ -32,9 +32,9 @@ class GameManager extends Dispatcher {
         MessageManager.Instance.SendMessage({
             protocol:constant.msg.CS_USER_STAND_UP
         });
-         MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.onStandUp, this);
     }
     private onStandUp(){
         this.dispatchEvent(constant.event.logic.on_exit_game)
+        MessageManager.Instance.removeEventListener(constant.msg.SC_USER_STAND_UP, this.onStandUp, this);
     }
 }

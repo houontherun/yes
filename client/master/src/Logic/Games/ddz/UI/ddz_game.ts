@@ -53,7 +53,7 @@ namespace gameUI {
             super.onload();
 
             MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
-             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
+            MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_START, this.StartGame, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_OUT_CARD, this.OutCard, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_PASS_CARD, this.PassCard, this);
@@ -65,16 +65,14 @@ namespace gameUI {
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
+
+            GameManager.Instance.addEventListener(constant.event.logic.on_exit_game, this.onExitDDZGame, this)
             this.AddClick(this.btn_tuoguan, () => {
                 this.SendTurstee(1);
             }, this);
 
             this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
             this.AddClick(this.btn_back, () => {
-                GameManager.Instance.addEventListener(constant.event.logic.on_exit_game, () => {
-                    this.Close()
-                    CardLogic.ddzGameLogic.Instance.ExitGame();
-                }, this)
                 GameManager.Instance.exitDDZGame()
             }, this);
                
@@ -86,6 +84,11 @@ namespace gameUI {
              this.btn3.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
                  this.SendTurstee(0);
              }, this);
+        }
+
+        private onExitDDZGame(){
+            this.Close()
+            CardLogic.ddzGameLogic.Instance.ExitGame();
         }
 
         private SendReady(): void {
@@ -150,6 +153,9 @@ namespace gameUI {
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
             CardLogic.CardEventDispatcher.Instance.removeEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
+
+            
+            GameManager.Instance.removeEventListener(constant.event.logic.on_exit_game, this.onExitDDZGame, this)
         }
 
         private GetGroupChairid(chairid: any): eui.Group {

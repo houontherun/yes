@@ -61,7 +61,7 @@
 			"name": "data"
 		},
 		{
-			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,lose_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,lose_json,shibai_json,zhadan_json",
+			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,shibai_json,zhadan_json",
 			"name": "ddzEffect"
 		}
 	],
@@ -1402,11 +1402,6 @@
 			"name": "huode_png"
 		},
 		{
-			"url": "Effect/ddz/lose.png",
-			"type": "image",
-			"name": "lose_png"
-		},
-		{
 			"url": "Effect/ddz/shibai.png",
 			"type": "image",
 			"name": "shibai_png"
@@ -1445,11 +1440,6 @@
 			"url": "Effect/ddz/sli.json",
 			"type": "json",
 			"name": "sli_json"
-		},
-		{
-			"url": "Effect/ddz/lose.json",
-			"type": "json",
-			"name": "lose_json"
 		},
 		{
 			"url": "Effect/ddz/shibai.json",
