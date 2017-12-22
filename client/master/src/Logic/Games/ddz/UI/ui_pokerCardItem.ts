@@ -113,6 +113,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		if(scale < 0.9)
 		{
 			this.touchEnabled = false;
+			this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_tap,this);
 			this.img_index0.visible  = false;
 			this.img_suit0.visible = false;
             this.img_index.scaleX = 0.75;
@@ -121,8 +122,8 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 			this.img_suit.scaleY = 0.75;
 		   if(this.isJoker)
 		   {
-			  this.img_index.scaleX = 0.52;
-			  this.img_index.scaleY = 0.52;
+			  this.img_index.scaleX = 0.5;
+			  this.img_index.scaleY = 0.5;
 			  
 		   }
 		}

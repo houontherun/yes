@@ -180,7 +180,6 @@ export class ddzGameLogic extends Dispatcher {
 
    public AddBrightCard(chairid:number,card)
    {
-        this.BrightCards[chairid] = [];
         var Colorlist:CardColor[] = [CardColor.Diamond, CardColor.Heart, CardColor.Club,CardColor.Spade,CardColor.SK];
         if(card== 0) return;
          var iclr = Card.Util.GetCardColor(card);
@@ -199,7 +198,7 @@ export class ddzGameLogic extends Dispatcher {
    {
        let _index :number= -1;
         for(var i = 0; i < this.BrightCards[chairid].length; i++){
-            if( this.BrightCards[chairid][i].Index == index && this.HandCards[i].Suit == suit)
+            if( this.BrightCards[chairid][i].Index == index && this.BrightCards[chairid][i].Suit == suit)
              return i;
         }
 

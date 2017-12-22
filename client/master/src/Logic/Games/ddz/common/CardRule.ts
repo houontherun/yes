@@ -114,7 +114,7 @@ namespace Card {
             return this.group
         }
         
-        private getCardType(){
+        public getCardType(){
             if(this.isSINGLE_TYPE()) return CardTypes.SINGLE_TYPE
             if(this.isNUKE_TYPE()) return CardTypes.NUKE_TYPE
             if(this.isBOMB_TYPE()) return CardTypes.BOMB_TYPE

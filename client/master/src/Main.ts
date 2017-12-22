@@ -48,11 +48,15 @@ class Main extends eui.UILayer {
         })
 
         egret.lifecycle.onPause = () => {
+<<<<<<< HEAD
             // egret.ticker.pause();
+=======
+           // egret.ticker.pause();
+>>>>>>> d0e6fcb5a460ba496f55d5c322d497af29070c9b
         }
 
         egret.lifecycle.onResume = () => {
-            egret.ticker.resume();
+           // egret.ticker.resume();
         }
 
         //注入自定义的素材解析器

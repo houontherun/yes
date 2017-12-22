@@ -7,6 +7,7 @@
 		"libs/modules/tween/tween.js",
 		"libs/modules/socket/socket.js",
 		"promise/bin/promise.js",
+		"libs/modules/game/game.js",
 		"libs/modules/jszip/jszip.js"
 	],
 	"game": [
@@ -55,6 +56,7 @@
 		"bin-debug/UI/register.js",
 		"bin-debug/UI/setting.js",
 		"bin-debug/UI/shop.js",
+		"bin-debug/UI/wait.js",
 		"bin-debug/UI/Controls/Scrollview.js",
 		"bin-debug/UI/Controls/Slider.js",
 		"bin-debug/UI/Games/ddzRoom.js",

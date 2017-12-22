@@ -27,6 +27,7 @@ namespace gameUI {
         private txt_PlayerGold: eui.Label;
         private hardCardsArray: Card.ui_pokerCardItem[] = [];
         private PlayersNum: number = 3;
+        private curOutcardPlayerid:number = -1;
     
         private cardTotalnum: number;
         private TargetCardsArray: Card.ui_pokerCardItem[] = [];  //滑动选牌
@@ -65,7 +66,7 @@ namespace gameUI {
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayers, this.SetplayersInfo, this);
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.UpdatePlayersStatus, this.UpdatePlayersStatus, this);
             this.AddClick(this.btn_tuoguan, () => {
-               
+                this.SendTurstee(1);
             }, this);
 
             this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
@@ -231,10 +232,11 @@ namespace gameUI {
 
         private OutCard(data) {
             this.SetBtnsGame(false);
+            this.curOutcardPlayerid = data.current_user;
             this.PlayerOutCard(data.chair_id, data.cards, data.card_count);
             let playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid;
             this.newCurrentCards = data.cards;
-            if (data.current_user == playerChairid) {
+            if (this.curOutcardPlayerid == playerChairid) {
                 CardLogic.ddzGameLogic.Instance.GenPressedCards(this.newCurrentCards);
                 this.PlayermeOutCard();
             }
@@ -250,22 +252,34 @@ namespace gameUI {
                 let rankData = new Card.PlayerRankData(data.names[i], data.golds[i], data.base_score, data.user_time[i]);
                 rankDatatables.push(rankData);
             }
-            let settle: Card.ui_GameSettle = new Card.ui_GameSettle(data.result, rankDatatables);
-            this.addChild(settle);
-            settle.SetContinueclick(() => {
-                this.removeChild(settle);
-                settle = null;
-                this.clearCurGame();
-                this.restart();
-            });
+            let effect = "shibai";
+            if(data.result)
+            {
+               effect = "sli";
+            }
+            let mc : egret.MovieClip;
+             mc = this.PlayEffect(effect,()=>{
+                 CardLogic.Timer.Instance.Delay(0.4, () => {
+                  this.removeChild(mc);
+                  let settle: Card.ui_GameSettle = new Card.ui_GameSettle(data.result, rankDatatables);
+                   this.addChild(settle);
+                   settle.SetContinueclick(() => {
+                       this.removeChild(settle);
+                       settle = null;
+                       this.clearCurGame();
+                       this.restart();
+                   });
+                  settle.SetExitClick(() => {
+                       MessageManager.Instance.SendMessage({
+                           protocol: constant.msg.CS_USER_STAND_UP
+                       });
+                       this.removeChild(settle);
+                       settle = null;
+                   });
+              }); });
 
-            settle.SetExitClick(() => {
-                MessageManager.Instance.SendMessage({
-                    protocol: constant.msg.CS_USER_STAND_UP
-                });
-                this.removeChild(settle);
-                settle = null;
-            });
+            mc.x = this.width /3;
+            this.addChild(mc);
 
         }
 
@@ -313,12 +327,17 @@ namespace gameUI {
         }
 
         private Trustee(data) {
-           if(data.chair_id == CardLogic.ddzGameLogic.Instance.playerChairid && data.trustee == 1)
+           if(data.chair_id == CardLogic.ddzGameLogic.Instance.playerChairid)
            {
                 this.bTrustee = (data.trustee == 1);
                 if(this.bTrustee)
                 {
                    this.group_tuoguan.visible = true;
+                   if (this.curOutcardPlayerid == CardLogic.ddzGameLogic.Instance.playerChairid)
+                   {
+                       this.prompt();
+                       this.SendOutcard();
+                   }
                 }
                 else
                 {
@@ -334,6 +353,7 @@ namespace gameUI {
               tuoguanimg.x = 250;
               group.addChild(tuoguanimg);
               this.tuoguanUIArray[data.chair_id] = tuoguanimg;
+              
            }
            else
            {
@@ -343,6 +363,8 @@ namespace gameUI {
                     group.removeChild(this.tuoguanUIArray[data.chair_id]);
                }
            }
+
+           
             
         }
 
@@ -359,9 +381,9 @@ namespace gameUI {
             
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
-            let posY = 60;
+            let posY = 40;
             
-            startposX = Scorepos.x;
+            startposX = Scorepos.x-30;
             
             let BrightCards =  CardLogic.ddzGameLogic.Instance.GetBrightCards(chairid);
             Card.Util.sortCards(BrightCards);
@@ -388,16 +410,17 @@ namespace gameUI {
             let chairid = data.chair_id;
             if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid) return;
             this.BrightCardsArray[chairid] = [];
-            var cards =  CardLogic.ddzGameLogic.Instance.GetPokerCards(data.cards);
-            Card.Util.sortCards(cards);
-            let Totalnum = cards.length;
+            CardLogic.ddzGameLogic.Instance.AddBrightCards(chairid,data.cards);
+            let BrightCards =  CardLogic.ddzGameLogic.Instance.GetBrightCards(chairid);
+            Card.Util.sortCards(BrightCards);
+            let Totalnum = BrightCards.length;
             var i: number = 0;
             var group = this.GetGroupChairid(chairid);
             let Scorepos = group.getChildByName("Label_pos");
-            let startposX: number = -10;
-            let posY = 60;
+            let startposX: number = 0;
+            let posY = 40;
             
-            startposX = Scorepos.x;
+            startposX = Scorepos.x-30;
             if (startposX < 10) {
                 startposX = startposX - 34 * Totalnum;
             }
@@ -405,7 +428,7 @@ namespace gameUI {
             let addBrightcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
                 if (i < Totalnum) {
                     var _card = new Card.ui_pokerCardItem();
-                    _card.cardData = cards[i];
+                    _card.cardData = BrightCards[i];
                     _card.SetSize(0.6);
                     group.addChild(_card);
                     if (i<10)
@@ -467,6 +490,10 @@ namespace gameUI {
                     this.btn1.visible = true;
                     this.Text_bnt1.x = 330;
                     this.btn1.x = 315;
+                    if(this.bTrustee)
+                    {
+                        this.Sendpasscard();
+                    }
                 }
             }
             else {
@@ -494,7 +521,14 @@ namespace gameUI {
 
             if(this.bTrustee)
             {
-                this.prompt();
+                if(bFirst)
+                {
+                    this.hardCardsArray[this.hardCardsArray.length -1].SetShoot(true);
+                }
+                else
+                {
+                   this.prompt();
+                }
                 this.SendOutcard();
             }
         }
@@ -554,8 +588,8 @@ namespace gameUI {
             var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(data.back_card);
             for (var i = 0; i < cards.length; i++) {
                 var _backcard = new Card.ui_pokerCardItem();
-                _backcard.SetSize(0.6);
                 _backcard.cardData = cards[i];
+                _backcard.SetSize(0.6);
                 this.group_backcards.addChild(_backcard);
             }
 
@@ -746,6 +780,21 @@ namespace gameUI {
         }
 
 
+         //特效
+        private PlayGameEffect(array: any)
+        {
+            var packPokercards =  new Card.ddzPackCardGroup(CardLogic.ddzGameLogic.Instance.GetPokerCards(array));
+            if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE || packPokercards.CardType == Card.CardTypes.NUKE_TYPE)
+            {
+               let mc : egret.MovieClip;
+               mc = this.PlayEffect('zhadan',()=>{
+                   CardLogic.Timer.Instance.Delay(0.6, () => {
+                    this.removeChild(mc);
+                }); });
+
+              this.addChild(mc);
+            }
+        }
 
 
         public PlayerOutCard(chairid: number, array: any, remainCount: number) {
@@ -754,7 +803,7 @@ namespace gameUI {
             var group = this.GetGroupChairid(chairid);
             let Scorepos = group.getChildByName("Label_pos");
             let startposX: number = 0;
-            let posY = Scorepos.y;
+            let posY = Scorepos.y - 10;
             startposX = Scorepos.x;
             if (startposX < 10) {
                 startposX = startposX - 34 * cards.length;
@@ -764,7 +813,7 @@ namespace gameUI {
                     group.removeChild(carditem);
                 }
             }
-
+            this.PlayGameEffect(array);
             this.cardItemArray[chairid] = []
 
             if (this.buchuItemArray && this.buchuItemArray[chairid]) {
@@ -773,7 +822,6 @@ namespace gameUI {
             this.buchuItemArray[chairid] = null
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
             {
-               posY = Scorepos.y - 10;
                startposX = startposX - 34 * cards.length/2;
             }
             else {
@@ -789,7 +837,7 @@ namespace gameUI {
                 }
                 else
                 {
-                  _card.setPos(startposX + 34 * i, posY + 20);
+                  _card.setPos(startposX + 34 * (10-i), posY + 20);
                 }
                 _card.SetSize(0.6);
                 group.addChild(_card);
@@ -1117,11 +1165,17 @@ namespace gameUI {
                 var group = <eui.Group>this.getChildAt(i + 2);
                 playerNum = 5;
 
-                while (group.numChildren > playerNum) {
+                if(bchangePlayer)
+                    group.visible = false;
+                else
+                  {
+                     playerNum = 6;
+                  }
+                  while (group.numChildren > playerNum) {
                     group.removeChildAt(group.numChildren - 1);
                 }
-                group.visible = false;
             }
+            
 
             playerNum = 4;
             if (bchangePlayer) {
@@ -1154,10 +1208,12 @@ namespace gameUI {
             }
             this.group_backcards.removeChildren();
             this.clearPlayers();
+            this.group_tuoguan.visible = false;
             this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.Sendpasscard, this);
             this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendOutcard, this);
             this.cardItemArray = {};
             this.buchuItemArray = {};
+            this.BrightCardsArray = {}
             if (this.clockCD) {
                 this.clockCD = null;
             }

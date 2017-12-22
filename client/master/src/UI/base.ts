@@ -60,6 +60,20 @@ namespace gameUI{
 
         }
 
+        public PlayEffect(effectName:string,onComplete:Function,rate:number = 1):egret.MovieClip
+        {
+             var data = RES.getRes(effectName+'_json');
+             var txtr = RES.getRes(effectName+'_png');
+             var mcFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory( data, txtr );
+             var mc:egret.MovieClip = new egret.MovieClip( mcFactory.generateMovieClipData(effectName));
+             mc.addEventListener(egret.Event.COMPLETE,(e:egret.MovieClipEvent)=>{onComplete()},this);
+             mc.scaleX = 1.2;
+             mc.scaleY = 1.2;
+             mc.gotoAndPlay(1);
+             mc.frameRate = 24*rate;
+             return mc;
+        }
+
         private uidata:any;
         private data:any;
     }
