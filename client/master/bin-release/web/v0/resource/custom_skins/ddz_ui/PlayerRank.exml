@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="PlayerRank" width="530" height="60" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Label id="text_name" text="yyan" x="45" y="18" size="24" textColor="0xB29A5E" fontFamily="SimHei"/>
-	<e:Label id="text_baseScore" text="300" x="175" y="18" size="24" textColor="0xB29A5E" fontFamily="SimHei"/>
-	<e:Label id="text_times" text="0" x="305" y="18" size="24" textColor="0xB29A5E" fontFamily="SimHei"/>
-	<e:Label id="text_gold" text="300" x="435" y="18" size="24" textColor="0xB29A5E" fontFamily="SimHei"/>
-</e:Skin>

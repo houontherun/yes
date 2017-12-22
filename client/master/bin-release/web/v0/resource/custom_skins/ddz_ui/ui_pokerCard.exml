@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="ui_pokerCard" width="118" height="160" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="img_card" left="0" top="0" bottom="0" right="0" source="card_0_3_png"/>
-	<e:Image id="img_landlord" width="121" height="129" anchorOffsetX="0" anchorOffsetY="0" source="Type_Land_png" scaleX="0.7" scaleY="0.7" right="0" top="0" touchEnabled="false" visible="false"/>
-</e:Skin>

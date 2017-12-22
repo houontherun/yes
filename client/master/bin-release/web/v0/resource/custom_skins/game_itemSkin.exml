@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="game_itemSkin" width="277" height="355" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="imgBg" source="pukeitem_png" verticalCenter="0" horizontalCenter="0"/>
-	<e:Label id="txtName" text="斗地主" x="30.5" y="293" anchorOffsetX="0" width="219" textAlign="center" verticalAlign="middle" fontFamily="SimHei" textColor="0xf2ddb8"/>
-</e:Skin>
