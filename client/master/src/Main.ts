@@ -52,7 +52,7 @@ class Main extends eui.UILayer {
         }
 
         egret.lifecycle.onResume = () => {
-           // egret.ticker.resume();
+            egret.ticker.resume();
         }
 
         //注入自定义的素材解析器
