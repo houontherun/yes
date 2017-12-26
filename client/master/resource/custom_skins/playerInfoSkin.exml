@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="playerInfoSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:gameUI="gameUI.*" xmlns:w="http://ns.egret.com/wing" xmlns:gameUIControl="gameUIControl.*">
+	<e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
+	<e:Image source="bg_png" x="304.18" y="134.35" scale9Grid="25,0,667,510" anchorOffsetY="0" height="488.33"/>
+	<e:Label id="txtGameId" text="10000001" x="648.84" y="338" textColor="0x82633A" fontFamily="SimHei" size="40" textAlign="left" verticalAlign="middle" anchorOffsetX="0" width="320.01" anchorOffsetY="0" height="46.67"/>
+	<e:Label id="txtLevel" text="21" x="648.86" y="419.19" textColor="0x82633A" fontFamily="SimHei" size="40" textAlign="left" verticalAlign="middle" anchorOffsetX="0" width="320.01" anchorOffsetY="0" height="46.67"/>
+	<e:Label id="lblLevel" text="等级:" x="467.55" y="419.19" textColor="0x82633A" fontFamily="SimHei" size="40" anchorOffsetX="0" width="165.33" textAlign="right" verticalAlign="middle"/>
+	<e:Label id="lblUsername" text="用户名:" x="462.28" y="248.99" textColor="0x82633A" fontFamily="SimHei" size="40" anchorOffsetX="0" width="172" textAlign="right"/>
+	<e:Image source="frame2_png" x="310.83" y="129.83"/>
+	<e:Image source="frame_png" x="254" y="81" anchorOffsetX="0" width="798"/>
+	<e:Image source="titleBg_png" x="477.5" y="67"/>
+	<e:Image id="btnClose" source="close_png" x="1012" y="71"/>
+	<e:Image id="btnModifyBankPwd" source="btnbg2_png" x="672.31" y="500" fillMode="clip"/>
+	<e:Label id="lblGameId" text="游戏ID:" x="467.99" y="338" textColor="0x82633a" fontFamily="SimHei" size="40" textAlign="right" verticalAlign="middle" anchorOffsetX="0" width="165.34"/>
+	<e:Image id="btnModifyLoginPwd" source="btnQuit_png" x="391.86" y="500"/>
+	<e:Label id="txtTitle" text="个人中心" x="533.64" y="87.01" fontFamily="SimHei" size="50" anchorOffsetX="0" width="265.34" textAlign="center" bold="true" stroke="3" strokeColor="0x5b3403" touchEnabled="false"/>
+	<e:Label id="txtModifyLoginPwd" text="修改登录密码" x="402.53" y="522.17" fontFamily="SimHei" size="35" anchorOffsetX="0" width="240.01" textAlign="center" stroke="3" strokeColor="0x0a3791" touchEnabled="false" bold="true"/>
+	<e:Label id="txtModifyBankPwd" text="修改银行密码" x="678.31" y="523.5" fontFamily="SimHei" size="35" anchorOffsetX="0" width="246.68" textAlign="center" bold="true" stroke="3" strokeColor="0x5B3403" touchEnabled="false"/>
+	<e:Image source="zibeijing_png" x="634.28" y="235.99"/>
+	<e:Image id="btnModifyUsername" source="btnbg2_png" x="828.6" y="238.98" fillMode="scale" scale9Grid="60,14,122,56" anchorOffsetX="0" width="151.66" scaleX="0.7" scaleY="0.7"/>
+	<e:Image id="imghead" source="touxiang2_png" x="359" y="220.99"/>
+	<e:Label id="txtModifyUsername" text="修改" x="831.65" y="242.33" anchorOffsetY="0" height="51.34" anchorOffsetX="0" width="102.66" textAlign="center" verticalAlign="middle" size="30" fontFamily="SimHei" strokeColor="0x6d4307" stroke="2"/>
+	<e:Image id="btnModifyHead" source="btnbg2_png" x="355.28" y="318.81" fillMode="scale" scale9Grid="60,14,122,56" anchorOffsetX="0" width="151.66" scaleX="0.7" scaleY="0.7"/>
+	<e:Label id="txtModifyHead" text="修改" x="358.33" y="322.16" anchorOffsetY="0" height="51.34" anchorOffsetX="0" width="102.66" textAlign="center" verticalAlign="middle" size="30" fontFamily="SimHei" strokeColor="0x6D4307" stroke="2"/>
+	<e:Label id="txtUsername" text="一二三四五六七" x="638.99" y="245.67" anchorOffsetX="0" width="191.33" anchorOffsetY="0" height="44.66" textAlign="center" verticalAlign="middle" size="25" fontFamily="SimHei" textColor="0x72450b"/>	
+</e:Skin>

@@ -20,4 +20,5 @@ var UI = {
     "shop":{name:"gameUI.shop", skin:"resource/custom_skins/shopSkin.exml"}, 
     "loading":{name:"gameUI.loading", skin:"resource/custom_skins/loadingSkin.exml"}, 
     "wait":{name:"gameUI.wait", skin:"resource/custom_skins/waitSkin.exml"}, 
+    "playerInfo":{name:"gameUI.playerInfo", skin:"resource/custom_skins/playerInfoSkin.exml"}, 
 }

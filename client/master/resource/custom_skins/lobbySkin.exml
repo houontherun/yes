@@ -14,9 +14,9 @@
 		<e:Label id="txtGoldNum" text="100" x="619" y="30.34" size="25" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="104" verticalAlign="middle" textAlign="center" textColor="0xf4b813"/>
 		<e:Label id="txtFbNum" text="100" x="394" y="30.67" size="25" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="91.33" verticalAlign="middle" textAlign="center" textColor="0xf4b813"/>
 		<e:Image id="imgCoypBg" source="fuzhibeijing_png" x="210.79" y="61.29"/>
-		<e:Label id="txtUserName" text="咸鸭蛋" x="123.79" y="33.29" anchorOffsetX="0" width="91" anchorOffsetY="0" height="29" size="20" textAlign="left" verticalAlign="middle"/>
+		<e:Label id="txtUserName" text="名字最长七个字" x="115.79" y="33.29" anchorOffsetX="0" width="161" anchorOffsetY="0" height="29" size="20" textAlign="left" verticalAlign="middle"/>
 		<e:Label id="txtCopyId" text="复制ID" x="222.29" y="65.79" size="15" anchorOffsetY="0" height="16" scaleX="1" scaleY="1" touchEnabled="false"/>
-		<e:Label id="txtUsrId" text="ID:10001" x="125.96" y="60.79" anchorOffsetX="0" width="71" anchorOffsetY="0" height="26" size="15" verticalAlign="middle" textAlign="left"/>
+		<e:Label id="txtUsrId" text="ID:100000001" x="117.96" y="60.79" anchorOffsetX="0" width="91" anchorOffsetY="0" height="26" size="15" verticalAlign="middle" textAlign="left"/>
 	</e:Group>
 	<e:Group id="groupBottomMenu" width="1328.66" height="117.82" x="2.67" y="632.18" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image source="dibu_png" x="-6.66" y="-10.18"/>

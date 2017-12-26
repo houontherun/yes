@@ -126,6 +126,11 @@ namespace gameUI{
                 else if(data.type == 2){
                     this.txtScore.text = "信用"
                 }
+                if(data.rank.length == 0){
+                    this.txtNoData.visible = true
+                }else{
+                    this.txtNoData.visible = false
+                }
             // }
         }
 
@@ -145,6 +150,7 @@ namespace gameUI{
         public txtRank:eui.Label;
         public txtName:eui.Label;
         public txtScore:eui.Label;
+        public txtNoData:eui.Label;
     }
 
 }

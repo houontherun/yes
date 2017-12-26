@@ -10,14 +10,15 @@
 	<e:Image source="rank_bg5_png" x="91.21" y="131.04"/>
 	<e:Image id="btnGold" source="rank_tab_png" x="102.17" y="145.39"/>
 	<e:Image id="btnCredit" source="rank_tab2_png" x="104.86" y="242.71"/>
-	<e:Image id="btnCharm" source="rank_tab2_png" x="104.86" y="338.75"/>
+	<e:Image id="btnCharm" source="rank_tab2_png" x="104.86" y="338.75" visible="false"/>
 	<e:Image source="rank_bg6_png" x="361.18" y="142.6"/>
 	<e:Image source="rank_bg_png" x="370.32" y="207.04"/>
 	<gameUI:Scrollview id="svData" width="858.67" height="476" x="375" y="223" anchorOffsetX="0" anchorOffsetY="0" />
 	<e:Label id="lblGold" text="财富榜" x="153.64" y="170.23" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
 	<e:Label id="lblCredit" text="信用榜" x="155.03" y="267.55" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
-	<e:Label id="lblCharm" text="魅力榜" x="150.88" y="363.58" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false"/>
+	<e:Label id="lblCharm" text="魅力榜" x="150.88" y="363.58" anchorOffsetX="0" width="136.67" anchorOffsetY="0" height="43.33" size="39" fontFamily="SimHei" verticalAlign="middle" textAlign="center" textColor="0x775022" touchEnabled="false" visible="false"/>
 	<e:Label id="txtRank" text="排名" x="407.32" y="164" textColor="0xa37a28" fontFamily="SimHei" size="35" bold="true"/>
 	<e:Label id="txtName" text="昵称" x="747.6" y="164" textColor="0xA37A28" fontFamily="SimHei" size="35" bold="true"/>
 	<e:Label id="txtScore" text="金币" x="1076.18" y="164" textColor="0xA37A28" fontFamily="SimHei" size="35" bold="true"/>
+	<e:Label id="txtNoData" text="暂无数据" x="383.67" y="238.21" anchorOffsetX="0" width="840.67" textAlign="center" fontFamily="SimHei" textColor="0x9b8f6c"/>
 </e:Skin>

@@ -20,7 +20,6 @@ namespace gameUI{
                 UIManager.Instance.showNotice('假设已经发送了....')
             }, this );  
 
-            
             this.btnClose.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.Close()
                 UIManager.Instance.LoadUI(UI.register)

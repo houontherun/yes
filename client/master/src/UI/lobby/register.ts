@@ -11,8 +11,12 @@ namespace gameUI{
             this.btnRegister.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.account = this.txtAccount.text
                 this.password = this.txtPassword.text
-                if(this.account.trim().length == 0 || this.password.trim().length == 0){
-                    UIManager.Instance.showNotice('请输入帐号和密码')
+                if(this.account.trim().length < 6){
+                    UIManager.Instance.showNotice('账号长度至少6位')
+                    return
+                }
+                if(this.password.trim().length < 6){
+                    UIManager.Instance.showNotice('密码长度至少6位')
                     return
                 }
                 LoginManager.Instance.registerPlatform(this.account, this.password, this.onRegister, this)
