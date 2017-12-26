@@ -35,9 +35,18 @@ namespace gameUI{
     }
 
     export class setting extends gameUI.base {
+        private initText(){
+            this.txtTitle.text = this.text(1102019)
+            this.lblLogout.text = this.text(1102070)
+            this.lblQuitGame.text = this.text(1102069)
 
+            this.lblLan.text = this.text(1102064)
+            this.lblMus.text = this.text(1102062)
+            this.lblEff.text = this.text(1102063)
+        }
         public onload():void {
             super.onload();
+            this.initText()
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
@@ -72,9 +81,18 @@ namespace gameUI{
 
         public imgSelect:eui.Image;
         public txtLang:eui.Label;
+        public txtTitle:eui.Label;
         
+        public lblQuitGame:eui.Label;
+        public lblLogout:eui.Label;
+ 
         public sliderMusic:gameUIControl.Slider;
         public sliderEffect:gameUIControl.Slider;
+        
+        public lblLan:eui.Label;
+        public lblMus:eui.Label;
+        public lblEff:eui.Label;
+
     }
 
 }

@@ -18,6 +18,8 @@ namespace gameUI{
 
 		private onload():void {
             this.isLoaded = true
+            this.lblState.text = Util.uiText(1102087)
+            this.txtState.text = Util.uiText(1102088)
 			this.imgBg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
             this.updateUI()
 		}

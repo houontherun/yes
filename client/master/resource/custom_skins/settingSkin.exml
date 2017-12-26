@@ -2,19 +2,19 @@
 <e:Skin class="settingSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:gameUI="gameUI.*" xmlns:w="http://ns.egret.com/wing" xmlns:gameUIControl="gameUIControl.*">
 	<e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
 	<e:Image source="bg_png" x="304.18" y="134.35" scale9Grid="25,0,667,510"/>
-	<e:Label text="语言:" x="418" y="411.85" id="txtMusic2" textColor="0x82633A" fontFamily="SimHei" size="40"/>
-	<e:Label text="音乐:" x="408" y="264.67" id="txtMusic0" textColor="0x82633A" fontFamily="SimHei" size="40"/>
+	<e:Label id="lblLan" text="语言:" x="359.36" y="411.85" textColor="0x82633A" fontFamily="SimHei" size="40" anchorOffsetX="0" width="149.33" textAlign="right"/>
+	<e:Label id="lblMus" text="音乐:" x="356" y="264.67" textColor="0x82633A" fontFamily="SimHei" size="40" anchorOffsetX="0" width="152" textAlign="right"/>
 	<e:Image source="frame2_png" x="310.83" y="129.83"/>
 	<e:Image source="frame_png" x="254" y="81" anchorOffsetX="0" width="798"/>
 	<e:Image source="titleBg_png" x="477.5" y="67"/>
+	<e:Label id="txtTitle" text="设置" x="534.32" y="87.2" fontFamily="SimHei" size="50" anchorOffsetX="0" width="265.34" textAlign="center" bold="true" stroke="3" strokeColor="0x5B3403" touchEnabled="false"/>
 	<e:Image id="btnClose" source="close_png" x="1012" y="71"/>
 	<e:Image source="btnbg2_png" x="672.31" y="500" fillMode="clip"/>
-	<e:Image source="title_png" x="614.31" y="87.98"/>
-	<e:Label id="txtMusic" text="音效:" x="408" y="333.5" textColor="0x82633a" fontFamily="SimHei" size="40"/>
+	<e:Label id="lblEff" text="音效:" x="354.67" y="333.5" textColor="0x82633a" fontFamily="SimHei" size="40" anchorOffsetX="0" width="153.33" textAlign="right"/>
 	<e:Image source="btnQuit_png" x="391.86" y="500"/>
-	<e:Image source="logout_png" x="724.81" y="518.5"/>
-	<e:Image source="quit_png" x="444.36" y="518.5"/>
-	<e:Image x="544" y="400" source="langueageBg_png" anchorOffsetY="0" height="50"/>	
+	<e:Image x="544" y="400" source="langueageBg_png" anchorOffsetY="0" height="50"/>
+	<e:Label id="lblQuitGame" text="退出游戏" x="402.53" y="522.17" fontFamily="SimHei" size="35" anchorOffsetX="0" width="240.01" textAlign="center" stroke="3" strokeColor="0x0A3791" touchEnabled="false" bold="true"/>
+	<e:Label id="lblLogout" text="注销帐号" x="679.66" y="522.17" fontFamily="SimHei" size="35" anchorOffsetX="0" width="240.01" textAlign="center" stroke="3" strokeColor="0x0A3791" touchEnabled="false" bold="true"/>	
 	<e:Image source="flag_png" x="818" y="403"/>
 	<e:Image id="imgSelect" source="arrow_png" x="848" y="412"/>
 	<e:Label id="txtLang" text="中文" x="563.81" y="406.5" fontFamily="SimHei" size="30" anchorOffsetX="0" width="237" textAlign="right" textColor="0xaa712a"/>

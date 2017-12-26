@@ -60,9 +60,18 @@ namespace gameUI{
     const unSelectColor = 0x775022
 
     export class rank extends gameUI.base {
-
+        private initText(){
+            this.txtTitle.text = this.text(1102015)
+            this.lblGold.text = this.text(1102051)
+            this.lblCredit.text = this.text(1102054)
+            this.lblCharm.text = this.text(1102056)
+            this.txtRank.text = this.text(1102052)
+            this.txtName.text = this.text("昵称")
+            this.txtNoData.text = this.text("暂无数据")
+        }
         public onload():void {
             super.onload();
+            this.initText()
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
@@ -121,10 +130,10 @@ namespace gameUI{
             // if(data.ret == 0){ 
                 this.svData.bindData(data.rank)
                 if(data.type == 1){
-                    this.txtScore.text = "金币"
+                    this.txtScore.text = this.text(1102053)
                 }
                 else if(data.type == 2){
-                    this.txtScore.text = "信用"
+                    this.txtScore.text = this.text(1102055)
                 }
                 if(data.rank.length == 0){
                     this.txtNoData.visible = true
@@ -151,6 +160,7 @@ namespace gameUI{
         public txtName:eui.Label;
         public txtScore:eui.Label;
         public txtNoData:eui.Label;
+        public txtTitle:eui.Label;
     }
 
 }

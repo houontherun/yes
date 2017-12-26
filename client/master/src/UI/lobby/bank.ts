@@ -50,8 +50,37 @@ namespace gameUI{
                 UIManager.Instance.showNotice("金币不够")
             }
         } 
+        private initText(){
+            this.txtTitle.text = this.text(1102014)
+            this.txtTabGS.text = this.text(1102031)
+            this.txtTabGive.text = this.text(1102036)
+            this.txtTabRecord.text = this.text(1102045)
+            this.lblInOUtNum.text = this.text(1102032)
+            this.lblBankPwd.text = this.text(1102033)
+            this.txtInNum.prompt = this.text('存入不需要输入密码')
+            this.txtGSBankPwd.prompt = this.text('默认密码123456')
+            this.lblGiveId.text = this.text(1102037)
+            this.txtBankPwd.prompt = this.text('默认密码123456')
+            this.lblBankPwd2.text = this.text(1102033)
+            this.lblGiveNum.text = this.text(1102038)
+            this.lblTenW.text = this.text(1102039)
+            this.lblOneQW.text = this.text(1102042)
+            this.lblFiveBW.text = this.text(1102041)
+            this.lblOneBaiW.text = this.text(1102040)
+            this.lblOneYi.text = this.text(1102043)
+            this.lblGiveOk.text = this.text(1102044)
+            this.lblDate.text = this.text(1102046)
+            this.lblGiveNum2.text = this.text(1102014)
+            this.lblSendId.text = this.text(1102047)
+            this.lblRecvId.text = this.text(1102048)
+            this.lblRemke.text = this.text(1102050)
+            this.lblIn.text = this.text(1102034)
+            this.lblOut.text = this.text(1102035)
+            this.lblNoRecords.text = this.text('暂无记录')
+        }
         public onload():void {
             super.onload();
+            this.initText()
             this.AddClick(this.imgIn, ()=>{
                 var num = parseInt(this.txtInNum.text) 
                 PlayerManager.Instance.SaveGold(num)
@@ -139,7 +168,13 @@ namespace gameUI{
         }  
         private onGetBankRecord(data):void{
             if(data.ret == 0){
-                this.svRecords.bindData(data.list) //list []{guid, ruid, t, gold, id}
+                if(data.list.length > 0){
+                    this.svRecords.bindData(data.list) //list []{guid, ruid, t, gold, id}
+                    this.lblNoRecords.visible = false
+                }
+                else{
+                    this.lblNoRecords.visible = true
+                }
             }
         }
 
@@ -148,38 +183,53 @@ namespace gameUI{
         private tabText:Array<eui.Label>
         private tabGroup:Array<eui.Group>
         
-        public btnClose:eui.Image;
-        
-        public imgTabGS:eui.Image;
-        public imgTabGive:eui.Image;
-        public imgTabRecord:eui.Image;
+        public txtTitle:eui.Label;
         public txtTabGS:eui.Label;
         public txtTabGive:eui.Label;
         public txtTabRecord:eui.Label;
-
-        public groupGS:eui.Group;
         public txtCurrent:eui.Label;
         public txtTotel:eui.Label;
-        public txtNum:eui.Label;
-        public txtPwd:eui.Label;
-        public imgOut:eui.Image;
-        public imgIn:eui.Image;
+        public lblInOUtNum:eui.Label;
+        public lblBankPwd:eui.Label;
         public txtInNum:eui.EditableText;
         public txtGSBankPwd:eui.EditableText;
-
-        public imgGiveOK:eui.Image;
-        public groupGive:eui.Group;
         public txtGiveId:eui.EditableText;
         public txtGiveNum:eui.EditableText;
+        public lblGiveId:eui.Label;
         public txtBankPwd:eui.EditableText;
-        public imgTenW:eui.Image;
-        public imgOneQW:eui.Image;
-        public imgTenFiveBW:eui.Image;
-        public imgOneBaiW:eui.Image;
-        public imgOneYi:eui.Image;
+        public lblBankPwd2:eui.Label;
+        public lblGiveNum:eui.Label;
+        public lblTenW:eui.Label;
+        public lblOneQW:eui.Label;
+        public lblFiveBW:eui.Label;
+        public lblOneBaiW:eui.Label;
+        public lblOneYi:eui.Label;
+        public lblGiveOk:eui.Label;
+        public lblDate:eui.Label;
+        public lblGiveNum2:eui.Label;
+        public lblRecvId:eui.Label;
+        public lblSendId:eui.Label;
+        public lblOut:eui.Label;
+        public lblIn:eui.Label;
 
-        public groupRecord:eui.Group;
+        public lblRemke:eui.Label;
+
         public svRecords:gameUI.Scrollview;
-
+        public groupRecord:eui.Group;
+        public imgGiveOK:eui.Image;
+        public imgOneYi:eui.Image;
+        public imgOneBaiW:eui.Image;
+        public imgTenFiveBW:eui.Image;
+        public imgOneQW:eui.Image;
+        public imgTenW:eui.Image;
+        public groupGive:eui.Group;
+        public imgOut:eui.Image;
+        public imgIn:eui.Image;
+        public groupGS:eui.Group;
+        public btnClose:eui.Image;
+        public imgTabGS:eui.Image;
+        public imgTabGive:eui.Image;
+        public imgTabRecord:eui.Image;
+        public lblNoRecords:eui.Label;
     }
 }

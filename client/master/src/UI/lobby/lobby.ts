@@ -38,8 +38,26 @@ namespace gameUI{
 	}
 
 	export class lobby extends gameUI.base{
+		private initText(){
+			this.lblBank.text = this.text(1102014)
+			this.lblRank.text = this.text(1102015)
+			this.lblCom.text = this.text(1102016)
+			this.lblShare.text = this.text(1102017)
+			this.lblShop.text = this.text(1102018)
+			this.lblSetting.text = this.text(1102019)
+			this.txtCopyId.text = this.text(1102002)
+			this.lblHelp.text = this.text(1102003)
+			this.lblActivity.text = this.text(1102004)
+			this.lblNotify.text = this.text(1102005)
+			this.lblMore.text = this.text(1102006)
+
+			this.lblPoke.text = this.text(1102007)
+			this.lblMajiang.text = this.text(1102008)
+			this.lblQilei.text = this.text(1102010)
+		}
 		public onload():void {
 			super.onload()
+			this.initText()
 
 			var games = DataManager.Instance.getGames()
 
@@ -91,7 +109,7 @@ namespace gameUI{
 
 			// 个人信息
 			this.imgHeadIcon.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
-                
+                UIManager.Instance.LoadUI(UI.playerInfo)
             }, this)
 			this.AddClick(this.imgCoypBg, ()=>{
 			}, this)
@@ -144,7 +162,22 @@ namespace gameUI{
 		// }
 		public defaultBackground = "background_png"
 
+		public groupBottomMenu:eui.Group;
+		public imgBank:eui.Image;
+		public imgSetting:eui.Image;
+		public btnEnter:eui.Image;
+		public imgRank:eui.Image;
+		public imgCommunity:eui.Image;
+		public imgShare:eui.Image;
+		public imgShop:eui.Image;
+		public lblBank:eui.Label;
+		public lblRank:eui.Label;
+		public lblCom:eui.Label;
+		public lblShare:eui.Label;
+		public lblShop:eui.Label;
+		public lblSetting:eui.Label;
 		public imgBg:eui.Image;
+		public groupUserinfo:eui.Group;
 		public imgFbBg:eui.Image;
 		public imgFbIcon:eui.Image;
 		public imgAddFb:eui.Image;
@@ -160,33 +193,26 @@ namespace gameUI{
 		public txtUserName:eui.Label;
 		public txtCopyId:eui.Label;
 		public txtUsrId:eui.Label;
-		
-		private svGame:gameUI.Scrollview;
-
-		public btnPuke:eui.Image;
-		public btnMajiang:eui.Image;
-		public btnQilei:eui.Image;
-
+		public groupTopMenu:eui.Group;
 		public imgMore:eui.Image;
 		public imgNotice:eui.Image;
 		public imgActivity:eui.Image;
 		public imgHelp:eui.Image;
-
-		public imgBank:eui.Image;
-		public imgSetting:eui.Image;
-		public imgRank:eui.Image;
-		public imgCommunity:eui.Image;
-		public imgShare:eui.Image;
-		public imgShop:eui.Image;
-		public btnEnter:eui.Image;
-
-		public groupType:eui.Group;
+		public lblHelp:eui.Label;
+		public lblActivity:eui.Label;
+		public lblNotify:eui.Label;
+		public lblMore:eui.Label;
 		public groupMessage:eui.Group;
-		public groupTopMenu:eui.Group;
-		public groupBottomMenu:eui.Group;
-		public groupUserinfo:eui.Group;
-
 		public imgMsgBg:eui.Image;
+		public txtNotify:eui.Label;
+		public groupType:eui.Group;
+		public btnPuke:eui.Image;
+		public btnMajiang:eui.Image;
+		public btnQilei:eui.Image;
+		public svGame:gameUI.Scrollview;
+		public lblPoke:eui.Label;
+		public lblMajiang:eui.Label;
+		public lblQilei:eui.Label;
 
 	}
 }

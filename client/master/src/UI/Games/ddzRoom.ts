@@ -57,11 +57,11 @@ namespace gameUI{
                     isReady = false
                 }
             }
-            this.txtTableNum.text = this.data.TableId.toString() + "号桌"
+            this.txtTableNum.text = this.data.TableId.toString() + Util.uiText(1102091)
             if(isReady){
-                this.txtStatus.text = '进行中'
+                this.txtStatus.text = Util.uiText('进行中')
             }else{
-                this.txtStatus.text = '等待中'
+                this.txtStatus.text = Util.uiText('等待中')
             }            
         }
 
@@ -70,10 +70,14 @@ namespace gameUI{
 		}
     }
 
-    export class ddzRoom extends gameUI.base{        
+    export class ddzRoom extends gameUI.base{   
+        private initText(){
+            this.lblQuickstart.text = this.text(1102090)
+        }     
         public onload():void {
             super.onload();
-
+            this.initText()
+            
             UIManager.Instance.Lobby.groupType.visible = false
             UIManager.Instance.Lobby.groupTopMenu.visible = false
             UIManager.Instance.Lobby.imgBg.source = 'background2_png'
@@ -134,5 +138,7 @@ namespace gameUI{
         public svGame:gameUI.Scrollview
         public btnClose:eui.Image;
         public btnQuickStart:eui.Image;
+        public lblQuickstart:eui.Label;
+
     }
 }

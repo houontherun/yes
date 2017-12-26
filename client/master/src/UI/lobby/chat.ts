@@ -52,8 +52,14 @@ namespace gameUI{
     }
 
     export class chat extends gameUI.base {
+        private initText(){
+            this.txtInput.prompt = this.text(1102029)
+            this.lblSend.text = this.text(1102030)
+            this.txtTitle.text = this.text(1102028)
+        }
         public onload():void {
             super.onload();
+            this.initText()
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
@@ -90,6 +96,10 @@ namespace gameUI{
         public svData:gameUI.Scrollview;
         public btnSend:eui.Image;
         public txtInput:eui.EditableText;
+
+        public lblSend:eui.Label;
+        public txtTitle:eui.Label;
+
     }
 
 }

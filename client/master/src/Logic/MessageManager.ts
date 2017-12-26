@@ -65,7 +65,7 @@ class MessageManager extends Dispatcher {
                 this.sendingList[i].is_get_ret = true
             }
         }
-        if(data.ret != 0){
+        if(data.ret != undefined && data.ret != 0){
             UIManager.Instance.showError(data.ret)
             return
         }

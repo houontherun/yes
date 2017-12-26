@@ -74,6 +74,10 @@ namespace gameUI{
              return mc;
         }
 
+        public text(id):string{
+            return Util.uiText(id)
+        }
+
         private uidata:any;
         private data:any;
     }

@@ -57,12 +57,16 @@
 			"name": "loading"
 		},
 		{
-			"keys": "hall_json,items_json,name_json",
+			"keys": "hall_json,items_json,name_json,text_json",
 			"name": "data"
 		},
 		{
 			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,shibai_json,zhadan_json",
 			"name": "ddzEffect"
+		},
+		{
+			"keys": "touxiang_2_png,zibeijing_png",
+			"name": "playerInfo"
 		}
 	],
 	"resources": [
@@ -802,6 +806,11 @@
 			"name": "name_json"
 		},
 		{
+			"url": "config/text.json",
+			"type": "json",
+			"name": "text_json"
+		},
+		{
 			"url": "assets/Poker/ddzRes/qiangdizhuzhi.png",
 			"type": "image",
 			"name": "qiangdizhuzhi_png"
@@ -1450,6 +1459,16 @@
 			"url": "Effect/ddz/zhadan.json",
 			"type": "json",
 			"name": "zhadan_json"
+		},
+		{
+			"url": "assets/playerInfo/touxiang_2.png",
+			"type": "image",
+			"name": "touxiang_2_png"
+		},
+		{
+			"url": "assets/playerInfo/zibeijing.png",
+			"type": "image",
+			"name": "zibeijing_png"
 		}
 	]
 }

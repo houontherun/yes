@@ -38,8 +38,18 @@ namespace gameUI{
             }
             UIManager.Instance.showNotice(allMsg)
         }
+        private initText(){
+            this.lblAccount.text = this.text(1101001)
+            this.lblPassword.text = this.text(1101002)
+            this.btnRegister.text = this.text(1101004)
+            this.btnForgetPwd.text = this.text(1101008)
+            this.lblLogin.text = this.text(1101003)
+            this.txtAccount.prompt = this.text("请输入用户名")
+            this.txtPassword.prompt = this.text("请输入用密码")
+        }
         public onload():void {
             super.onload();
+            this.initText()
             this.btnLogin.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(ConnectionManager.Instance.isConnected){
                     this.requestLogin()
@@ -110,6 +120,7 @@ namespace gameUI{
                         "bank",
                         "rank",
                         "ddz_lobby",
+                        "playerInfo",
                     ]
                     ResourceManager.Instance.loadGroups(groups, this, ()=>{
                         loadingUI.Close()
@@ -121,13 +132,17 @@ namespace gameUI{
                 timer.start()                
             }, this)
         }
+        public btnRegister:eui.Label;
+        public lblAccount:eui.Label;
+        public lblPassword:eui.Label;
         public btnWeixin:eui.Image;
         public btnQQ:eui.Image;
-        public btnForgetPwd:eui.Image;
-        public btnRegister:eui.Image;
         public txtPassword:eui.EditableText;
         public btnLogin:eui.Image;
+        public lblLogin:eui.Label;
         public txtAccount:eui.EditableText;
+        public btnForgetPwd:eui.Label;
+
 
     }
 }

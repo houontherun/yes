@@ -54,7 +54,7 @@ namespace gameUI{
             }
             if(this.data instanceof ChargeData){
                 this.txtTitle.text = this.data.num.toString()
-                this.txtNum.text = this.data.rmb.toString() + "元"
+                this.txtNum.text = this.data.rmb.toString() + Util.uiText(1102060)
                 this.txtPresent.text = "额外赠送" + this.data.giveNum + this.data.giveItem.name
                 this.lblHot.text = "限时"
                 this.imgItem.source = this.getImg(this.data.item.id)
@@ -85,9 +85,14 @@ namespace gameUI{
     const unSelectColor = 0x775022
 
     export class shop extends gameUI.base {
-
+        private initText(){
+            this.lblbuy.text = this.text(1102061)
+            this.lblCgarge.text = this.text(1102059)
+            this.txtTitle.text = this.text(1102058)
+        }
         public onload():void {
             super.onload();
+            this.initText();
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
@@ -164,6 +169,7 @@ namespace gameUI{
         public lblbuy:eui.Label;
         public listView:eui.Scroller;
         public dataList:eui.List;
+        public txtTitle:eui.Label;
 
         private currentTabIndex:number = -1
 

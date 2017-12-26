@@ -3,7 +3,6 @@
 class Util{
     // 格式化数字: 123456.12 => 123,456.12
     public static formatNum(num:number):string {
-        console.log('num:' + num)
         var integer = Math.floor(num) // 四舍五入
         var float = Math.floor((num - integer)*100)
 
@@ -20,7 +19,6 @@ class Util{
         if(float > 0){
             res += "." + float.toString()
         }
-        console.log('res ' + res)
         return res
     }
 
@@ -31,4 +29,29 @@ class Util{
     public static setItem(key:string, value:string){
         return egret.localStorage.setItem(key, value) 
     } 
+
+    public static uiText(id):string{
+        var cfg = DataManager.Instance.getJsonData("text")
+        if(cfg.UIText[id]){
+            return cfg.UIText[id].NR
+        }else{
+            return id
+        }
+    }
+    public static backText(id):string{
+        var cfg = DataManager.Instance.getJsonData("text")
+        if(cfg.BackText[id]){
+            return cfg.UIText[id].NR
+        }else{
+            return id
+        }
+    }
+    public static tableText(id):string{
+        var cfg = DataManager.Instance.getJsonData("text")
+        if(cfg.UIText[id]){
+            return cfg.TableText[id].NR
+        }else{
+            return id
+        }
+    }
 }

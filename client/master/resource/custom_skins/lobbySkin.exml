@@ -15,7 +15,7 @@
 		<e:Label id="txtFbNum" text="100" x="394" y="30.67" size="25" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="91.33" verticalAlign="middle" textAlign="center" textColor="0xf4b813"/>
 		<e:Image id="imgCoypBg" source="fuzhibeijing_png" x="210.79" y="61.29"/>
 		<e:Label id="txtUserName" text="名字最长七个字" x="115.79" y="33.29" anchorOffsetX="0" width="161" anchorOffsetY="0" height="29" size="20" textAlign="left" verticalAlign="middle"/>
-		<e:Label id="txtCopyId" text="复制ID" x="222.29" y="65.79" size="15" anchorOffsetY="0" height="16" scaleX="1" scaleY="1" touchEnabled="false"/>
+		<e:Label id="txtCopyId" text="复制ID" x="210.29" y="65.79" size="15" anchorOffsetY="0" height="16" scaleX="1" scaleY="1" touchEnabled="false" anchorOffsetX="0" width="66.33" textAlign="center"/>
 		<e:Label id="txtUsrId" text="ID:100000001" x="117.96" y="60.79" anchorOffsetX="0" width="91" anchorOffsetY="0" height="26" size="15" verticalAlign="middle" textAlign="left"/>
 	</e:Group>
 	<e:Group id="groupBottomMenu" width="1328.66" height="117.82" x="2.67" y="632.18" anchorOffsetX="0" anchorOffsetY="0">
@@ -32,12 +32,12 @@
 		<e:Image source="shuxian_png" x="590.65" y="40"/>
 		<e:Image source="shuxian_png" x="782.15" y="40"/>
 		<e:Image source="shuxian_png" x="974.04" y="40"/>
-		<e:Label text="银行" x="82.5" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" anchorOffsetX="0" width="58" textAlign="center" textColor="0xd6c391"/>
-		<e:Label text="排行" x="273.7" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
-		<e:Label text="社区" x="464.9" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
-		<e:Label text="分享" x="656.0999999999999" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
-		<e:Label text="商城" x="847.3" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
-		<e:Label text="设置" x="1038" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="58" textAlign="center"/>
+		<e:Label id="lblBank" text="银行" x="71.17" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" anchorOffsetX="0" width="79.33" textAlign="center" textColor="0xd6c391"/>
+		<e:Label id="lblRank" text="排行" x="265.03" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="75.34" textAlign="center"/>
+		<e:Label id="lblCom" text="社区" x="453.57" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="77.33" textAlign="center"/>
+		<e:Label id="lblShare" text="分享" x="650.1" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="71.33" textAlign="center"/>
+		<e:Label id="lblShop" text="商城" x="841.97" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="66.66" textAlign="center"/>
+		<e:Label id="lblSetting" text="设置" x="1031.33" y="74" size="25" anchorOffsetY="0" height="24.67" fontFamily="SimHei" textColor="0xD6C391" anchorOffsetX="0" width="72.67" textAlign="center"/>
 	</e:Group>
 	<e:Group id="groupTopMenu" width="501.81" height="84.85" x="832.19" y="7.15" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="imgMore" source="paopao_png" x="379.69" y="5" scaleX="1" scaleY="1"/>
@@ -48,23 +48,23 @@
 		<e:Image source="liwu_png" x="203.9" y="10" touchEnabled="false"/>
 		<e:Image source="gonggao_png" x="299.17" y="10" touchEnabled="false"/>
 		<e:Image source="gengduo_png" x="393.69" y="10" touchEnabled="false"/>
-		<e:Label text="客服" x="110.81" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9e957b" touchEnabled="false"/>
-		<e:Label text="活动" x="206.47666666666666" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false"/>
-		<e:Label text="公告" x="302.1433333333333" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false"/>
-		<e:Label text="更多" x="397.69" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false"/>
+		<e:Label id="lblHelp" text="客服" x="102.81" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9e957b" touchEnabled="false" anchorOffsetX="0" width="58" textAlign="center"/>
+		<e:Label id="lblActivity" text="活动" x="194.48" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false" anchorOffsetX="0" width="62" textAlign="center"/>
+		<e:Label id="lblNotify" text="公告" x="288.14" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false" anchorOffsetX="0" width="66" textAlign="center"/>
+		<e:Label id="lblMore" text="更多" x="384.36" y="50" size="20" anchorOffsetY="0" height="16" fontFamily="SimHei" textColor="0x9E957B" touchEnabled="false" anchorOffsetX="0" width="63.33" textAlign="center"/>
 	</e:Group>
 	<e:Group id="groupMessage" width="745.33" height="69.34" x="288.33" y="108.33" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="imgMsgBg" source="tonggaobeijing_png" x="30.670000000000016" y="14" scaleX="1" scaleY="1"/>
-		<e:Label id="txtFbNum0" text="公告：游戏上线充300送100" x="134.67" y="14" size="20" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="466" verticalAlign="middle" textAlign="center" textColor="0xF4B813" touchEnabled="false"/>
+		<e:Label id="txtNotify" text="公告：游戏上线充300送100" x="134.67" y="14" size="20" anchorOffsetY="0" height="39.33" fontFamily="SimHei" anchorOffsetX="0" width="466" verticalAlign="middle" textAlign="center" textColor="0xF4B813" touchEnabled="false"/>
 		<e:Image source="tixing_png" x="81.67" y="14" touchEnabled="false"/>
 	</e:Group>
 	<e:Group id="groupType" width="1298.72" height="400" x="24" y="208" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Image id="btnPuke" source="puke_png" x="28" y="28" scaleX="1" scaleY="1"/>
 		<e:Image id="btnMajiang" source="majiang_png" x="29" y="148" scaleX="1" scaleY="1"/>
 		<e:Image id="btnQilei" source="qilei_png" x="28" y="268" scaleX="1" scaleY="1"/>
-		<e:Image source="mj_name_png" x="86" y="159.33" touchEnabled="false"/>
-		<e:Image source="ql_name_png" x="86" y="279.99" touchEnabled="false"/>
-		<e:Image source="pk_name_png" x="86" y="38" anchorOffsetX="0.5" anchorOffsetY="0.5" touchEnabled="false"/>
 		<gameUI:Scrollview id="svGame" width="994.21" anchorOffsetX="0" anchorOffsetY="0" left="292" height="374.06" y="3.15" x="303" />
+		<e:Label id="lblPoke" text="扑克" x="52.33" y="48.33" anchorOffsetX="0" width="162" anchorOffsetY="0" height="40.67" textAlign="center" fontFamily="SimHei" textColor="0xa37716" stroke="1" strokeColor="0xe28a8a" verticalAlign="middle" touchEnabled="false"/>
+		<e:Label id="lblMajiang" text="麻将" x="55.12" y="168.51" anchorOffsetX="0" width="162" anchorOffsetY="0" height="40.67" textAlign="center" fontFamily="SimHei" textColor="0xA37716" stroke="1" strokeColor="0xE28A8A" verticalAlign="middle" touchEnabled="false"/>
+		<e:Label id="lblQilei" text="棋类" x="56.32" y="292.98" anchorOffsetX="0" width="162" anchorOffsetY="0" height="40.67" textAlign="center" fontFamily="SimHei" textColor="0xA37716" stroke="1" strokeColor="0xE28A8A" verticalAlign="middle" touchEnabled="false"/>
 	</e:Group>
 </e:Skin>
