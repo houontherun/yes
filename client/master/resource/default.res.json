@@ -1,11 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,touxiang_empty_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,touxiang_empty_png,touxiang_empty2_png,touxiang_22_png,zibeijing2_png,text2_json,card_14_png,card_15_png",
 			"name": "preload"
 		},
 		{
-			"keys": "jieji_png,majiang_png,puke_png,qilei_png,ZITI_png,QI_png,GUANG_png,OO_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,fuzhibeijing_png,gengduo_png,goldbg_png,gonggao_png,headbg_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,majiangkk_png,mj_png,mj_name_png,paihangbang_png,paopao_png,pk_name_png,pukeitem_png,ql_name_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiang_png,touxiangbeiban_png,yinhang_png,background22_png,touxiang_empty_png",
+			"keys": "jieji_png,majiang_png,puke_png,qilei_png,ZITI_png,QI_png,GUANG_png,OO_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,fuzhibeijing_png,gengduo_png,goldbg_png,gonggao_png,headbg_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,majiangkk_png,mj_png,mj_name_png,paihangbang_png,paopao_png,pk_name_png,pukeitem_png,ql_name_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiang_png,touxiangbeiban_png,yinhang_png,touxiang_empty_png,background2_png",
 			"name": "lobby"
 		},
 		{
@@ -37,7 +37,7 @@
 			"name": "ddzRes"
 		},
 		{
-			"keys": "card_back_png,bk_png,Suit_0_png,Suit_3_png,Suit_2_png,Suit_1_png,joker_14_png,joker_15_png,card_14_png,card_15_png,black_1_png,black_6_png,black_2_png,black_5_png,black_11_png,black_10_png,black_9_png,black_8_png,black_7_png,black_4_png,black_12_png,black_13_png,black_3_png,red_13_png,red_1_png,red_2_png,red_3_png,red_4_png,red_5_png,red_6_png,red_7_png,red_8_png,red_9_png,red_10_png,red_11_png,red_12_png",
+			"keys": "card_back_png,bk_png,Suit_0_png,Suit_3_png,Suit_2_png,Suit_1_png,joker_14_png,joker_15_png,black_1_png,black_6_png,black_2_png,black_5_png,black_11_png,black_10_png,black_9_png,black_8_png,black_7_png,black_4_png,black_12_png,black_13_png,black_3_png,red_13_png,red_1_png,red_2_png,red_3_png,red_4_png,red_5_png,red_6_png,red_7_png,red_8_png,red_9_png,red_10_png,red_11_png,red_12_png",
 			"name": "poke"
 		},
 		{
@@ -798,7 +798,7 @@
 		{
 			"url": "assets/lobby/background2.png",
 			"type": "image",
-			"name": "background22_png"
+			"name": "background2_png"
 		},
 		{
 			"url": "config/name.json",
@@ -1241,16 +1241,6 @@
 			"name": "joker_15_png"
 		},
 		{
-			"url": "assets/Poker/poke/card_14.png",
-			"type": "image",
-			"name": "card_14_png"
-		},
-		{
-			"url": "assets/Poker/poke/card_15.png",
-			"type": "image",
-			"name": "card_15_png"
-		},
-		{
 			"url": "assets/Poker/poke/black_1.png",
 			"type": "image",
 			"name": "black_1_png"
@@ -1474,6 +1464,36 @@
 			"url": "assets/lobby/touxiang_empty.png",
 			"type": "image",
 			"name": "touxiang_empty_png"
+		},
+		{
+			"url": "assets/lobby/touxiang_empty.png",
+			"type": "image",
+			"name": "touxiang_empty2_png"
+		},
+		{
+			"url": "assets/playerInfo/touxiang_2.png",
+			"type": "image",
+			"name": "touxiang_22_png"
+		},
+		{
+			"url": "assets/playerInfo/zibeijing.png",
+			"type": "image",
+			"name": "zibeijing2_png"
+		},
+		{
+			"url": "config/text.json",
+			"type": "json",
+			"name": "text2_json"
+		},
+		{
+			"url": "assets/Poker/poke/card_14.png",
+			"type": "image",
+			"name": "card_14_png"
+		},
+		{
+			"url": "assets/Poker/poke/card_15.png",
+			"type": "image",
+			"name": "card_15_png"
 		}
 	]
 }
