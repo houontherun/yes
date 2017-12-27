@@ -23,9 +23,17 @@ namespace gameUI{
         }
     }
     export class create_room extends gameUI.base{
-
+        private initText(){
+            this.lblCreate.text = this.text(1102083)
+            this.lblCount.text = this.text(1102076)
+            this.lblMode.text = this.text(1102078)
+            this.lblTimes.text = this.text(1102081)
+            this.lblDdz.text = this.text(1102011)     
+            this.txtTitle.text = this.text(1102075)
+        }
         public onload():void {	
             super.onload()
+            this.initText()
 
             var hall = DataManager.Instance.getJsonData('hall')
             this.ddzSettdata = new DdzSettingData(hall.Game[101])
@@ -63,7 +71,7 @@ namespace gameUI{
                 if(PlayerManager.Instance.Data.getResourceNumById(costId) >= costNum){
                     RoomManager.Instance.CreateCustomTable(this.ddzSettdata.gameId, room, round, multiple)
                 }else{
-                    UIManager.Instance.showNotice("道具不足")
+                    UIManager.Instance.showNotice(Util.uiText("道具不足"))
                 }
                 
             }, this );
@@ -83,29 +91,32 @@ namespace gameUI{
         }
 
         private initDDZUI(){
-            this.ddzrbtnRound1.label = this.ddzSettdata.rounds[0] + '局'
-            this.ddzrbtnRound2.label = this.ddzSettdata.rounds[1] + '局'
+            this.ddzrbtnRound1.label = this.ddzSettdata.rounds[0] + this.text(1102077)
+            this.ddzrbtnRound2.label = this.ddzSettdata.rounds[1] + this.text(1102077)
 
-            this.ddzrbtnRoommdl1.label = '房主开房'
-            this.ddzrbtnRoommdl2.label = 'AA开房'
+            this.ddzrbtnRoommdl1.label = this.text(1102079) //'房主开房'
+            this.ddzrbtnRoommdl2.label = this.text(1102080) //AA开房
 
-            this.ddzrbtntimes1.label = this.ddzSettdata.multiple[0] + '倍'
-            this.ddzrbtntimes2.label = this.ddzSettdata.multiple[1] + '倍'
+            this.ddzrbtntimes1.label = this.ddzSettdata.multiple[0] + this.text(1102082) //'倍'
+            this.ddzrbtntimes2.label = this.ddzSettdata.multiple[1] + this.text(1102082) //'倍'
         }
         private ddzSettdata : DdzSettingData
 
+        public lblCreate:eui.Label;
         public btnClose:eui.Image;
         public btnCreate:eui.Image;
         public groupDDZ:eui.Group;
         public ddzrbtnRound1:eui.RadioButton;
+        public lblCount:eui.Label;
         public ddzrbtnRound2:eui.RadioButton;
-
-        public ddzrbtnRoommdl1:eui.RadioButton;
         public ddzrbtnRoommdl2:eui.RadioButton;
-
+        public lblMode:eui.Label;
+        public ddzrbtnRoommdl1:eui.RadioButton;
         public ddzrbtntimes2:eui.RadioButton;
+        public lblTimes:eui.Label;
         public ddzrbtntimes1:eui.RadioButton;
+        public lblDdz:eui.Label;        
+        public txtTitle:eui.Label;
 
-        
     }
 }

@@ -4,10 +4,7 @@
 	<e:Image source="zuohaopai_png" x="170" y="101" touchEnabled="false"/>
 	<e:Label id="txtTableNum" text="008号桌" x="177" y="106.5" size="20" verticalAlign="middle" textAlign="center" fontFamily="SimHei" touchEnabled="false" anchorOffsetX="0" width="90"/>
 	<e:Label id="txtStatus" text="进行中" x="108" y="138" anchorOffsetX="0" width="230" verticalAlign="middle" textAlign="center" fontFamily="SimHei" size="25" touchEnabled="false"/>
-	<e:Image id="btnEnter1" source="touxiangbeiban2_png" x="13" y="9"/>
-	<e:Image id="btnEnter2" source="touxiangbeiban2_png" x="327" y="9"/>
-	<e:Image id="btnEnter3" source="touxiangbeiban2_png" x="176" y="280.5"/>
-	<e:Image id="imgUser1" source="touxiang_png" x="16" y="11" touchEnabled="false"/>
-	<e:Image id="imgUser3" source="touxiang_png" x="179" y="283.5" touchEnabled="false"/>
-	<e:Image source="touxiang_png" x="330" y="11" id="imgUser2" touchEnabled="false"/>
+	<e:Image id="btnEnter1" x="22" y="13" source="touxiang_png"/>
+	<e:Image id="btnEnter2" x="324" y="15" source="touxiang_empty_png"/>
+	<e:Image id="btnEnter3" source="touxiangbeiban2_png" x="176" y="270.5"/>
 </e:Skin>

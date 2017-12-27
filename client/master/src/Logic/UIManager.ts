@@ -23,6 +23,15 @@ class UIManager extends Dispatcher {
         this.stage = stage;
     }
 
+    public get Orientation(){
+        return this.stage.stage.orientation
+    }
+    // egret.OrientationMode.LANDSCAPE 横屏
+    // egret.OrientationMode.PORTRAIT  竖屏
+    public set Orientation(o){
+        this.stage.stage.orientation = o
+    }
+
     public LoadUI(ui:any, data?:any, onLoaded?:Function, thisObj?:any){
         if(!egret.hasDefinition(ui.name)){
             console.error('not found ui name:' + ui.name)

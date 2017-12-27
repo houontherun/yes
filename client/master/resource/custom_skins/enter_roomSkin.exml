@@ -17,6 +17,7 @@
 	<e:Image source="frame2_png" x="310.83" y="73.7"/>
 	<e:Image source="frame_png" x="254" y="24.87" anchorOffsetX="0" width="798"/>
 	<e:Image source="titleBg_png" x="477.5" y="10.87"/>
+	<e:Label id="txtTitle" text="加入房间" x="534.16" y="32.34" fontFamily="SimHei" size="50" anchorOffsetX="0" width="265.34" textAlign="center" bold="true" stroke="3" strokeColor="0x5B3403" touchEnabled="false"/>
 	<e:Image id="btnClose" source="close_png" x="1012" y="14.87"/>
 	<e:Image id="btnCreateRoom" source="btnQuit_png" x="529.47" y="624.23"/>
 	<e:Image source="roomtextbg_png" x="471.81" y="138.89"/>
@@ -29,12 +30,11 @@
 	<e:Label text="5" x="579.71" y="325.38" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="60" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
 	<e:Label text="9" x="787.64" y="424.49" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="60" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
 	<e:Label text="6" x="786.12" y="326.13" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="60" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
-	<e:Label text="删除" x="787.71" y="519.72" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="50" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
+	<e:Label id="lblDelete" text="删除" x="787.71" y="519.72" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="50" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
 	<e:Label text="3" x="787.71" y="228.25" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="60" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
 	<e:Label text="2" x="580.48" y="227.76" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="60" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
-	<e:Label text="重输" x="373.31" y="521.17" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="50" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
-	<e:Label text="我要开房" x="551.82" y="624.23" anchorOffsetX="0" width="217.94" anchorOffsetY="0" height="72.43" size="35" textAlign="center" verticalAlign="middle" fontFamily="Microsoft YaHei" touchEnabled="false" textColor="0xfcfcfc" strokeColor="0x0b4954" stroke="3.6"/>
-	<e:Image source="roomtitle_png" x="571.52" y="23.33"/>
+	<e:Label id="lblReinput" text="重输" x="373.31" y="521.17" anchorOffsetX="0" width="157.33" anchorOffsetY="0" height="72.43" size="50" textAlign="center" verticalAlign="middle" textColor="0x000000" fontFamily="Microsoft YaHei" touchEnabled="false"/>
+	<e:Label id="lblCreateroom" text="我要开房" x="551.82" y="624.23" anchorOffsetX="0" width="217.94" anchorOffsetY="0" height="72.43" size="35" textAlign="center" verticalAlign="middle" fontFamily="Microsoft YaHei" touchEnabled="false" textColor="0xfcfcfc" strokeColor="0x0b4954" stroke="3.6"/>
 	<e:Image source="roomdivide_png" x="656.7" y="146.02"/>
 	<e:Image source="roomdivide_png" x="563.02" y="146.02"/>
 	<e:Image source="roomdivide_png" x="751.01" y="146.02"/>	

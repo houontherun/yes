@@ -2,9 +2,15 @@
 
 namespace gameUI{
     export class enter_room extends gameUI.base {
-        
+        private initText(){
+            this.lblDelete.text = this.text(1102073)
+            this.lblReinput.text = this.text(1102072)
+            this.lblCreateroom.text = this.text(1102074)
+            this.txtTitle.text = this.text(1102020)
+        }
         public onload():void {
             super.onload()
+            this.initText()
             this.btnCreateRoom.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 UIManager.Instance.LoadUI(UI.create_room)
             }, this );
@@ -93,6 +99,9 @@ namespace gameUI{
         public btnClose:eui.Image;
         public btnCreateRoom:eui.Image;
         public txtRoomNum:eui.Label;
-
+        public lblDelete:eui.Label;
+        public lblReinput:eui.Label;
+        public lblCreateroom:eui.Label;
+        public txtTitle:eui.Label;
     }
 }

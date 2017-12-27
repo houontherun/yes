@@ -1,11 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,touxiang_empty_png",
 			"name": "preload"
 		},
 		{
-			"keys": "jieji_png,majiang_png,puke_png,qilei_png,ZITI_png,QI_png,GUANG_png,OO_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,fuzhibeijing_png,gengduo_png,goldbg_png,gonggao_png,headbg_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,majiangkk_png,mj_png,mj_name_png,paihangbang_png,paopao_png,pk_name_png,pukeitem_png,ql_name_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiang_png,touxiangbeiban_png,yinhang_png,background22_png",
+			"keys": "jieji_png,majiang_png,puke_png,qilei_png,ZITI_png,QI_png,GUANG_png,OO_png,beibansan_png,dibu_png,fangka_png,fenxiang_png,fuzhibeijing_png,gengduo_png,goldbg_png,gonggao_png,headbg_png,jia_png,jiarufangjian_png,jinbi_png,kefu_png,liaotian_png,liwu_png,majiangkk_png,mj_png,mj_name_png,paihangbang_png,paopao_png,pk_name_png,pukeitem_png,ql_name_png,shangdian_png,shequ_png,shezi_png,shuxian_png,tixing_png,tonggaobeijing_png,touxiang_png,touxiangbeiban_png,yinhang_png,background22_png,touxiang_empty_png",
 			"name": "lobby"
 		},
 		{
@@ -1469,6 +1469,11 @@
 			"url": "assets/playerInfo/zibeijing.png",
 			"type": "image",
 			"name": "zibeijing_png"
+		},
+		{
+			"url": "assets/lobby/touxiang_empty.png",
+			"type": "image",
+			"name": "touxiang_empty_png"
 		}
 	]
 }

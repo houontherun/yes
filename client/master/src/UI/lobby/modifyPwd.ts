@@ -22,24 +22,24 @@ namespace gameUI{
             this.initText()
             this.btnModify.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(this.txtAccount.text.trim() == ""){
-                    UIManager.Instance.showNotice('请输入帐号')
+                    UIManager.Instance.showNotice(this.text('请输入帐号'))
                     return
                 }
                 if(this.txtOldPwd.text.trim() == ""){
-                    UIManager.Instance.showNotice('请输入原始密码')
+                    UIManager.Instance.showNotice(this.text('请输入原始密码'))
                     return
                 }
                 if(this.txtNewPwd.text.trim() == ""){
-                    UIManager.Instance.showNotice('请输入新密码')
+                    UIManager.Instance.showNotice(this.text('请输入新密码'))
                     return
                 }
                 if(this.txtNewPwd2.text.trim() == ""){
-                    UIManager.Instance.showNotice('请再次输入新密码')
+                    UIManager.Instance.showNotice(this.text('请再次输入新密码'))
                     return
                 }
                 LoginManager.Instance.changePlatformPwd(this.txtAccount.text.trim(), this.txtOldPwd.text.trim(), this.txtNewPwd.text.trim(), (data)=>{
                     if(data.ret == 0){
-                        UIManager.Instance.showNotice('修改成功')
+                        UIManager.Instance.showNotice(this.text('修改成功'))
                     }
                 }, this)
             }, this );      

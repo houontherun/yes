@@ -77,9 +77,9 @@ namespace gameUI{
             }, this );
 
 			// top menu
-			this.AddClick(this.imgMore, ()=>{            
+			this.AddClick(this.imgMore, ()=>{      
             }, this );
-			this.AddClick(this.imgNotice, ()=>{           
+			this.AddClick(this.imgNotice, ()=>{ 
             }, this );
 			this.AddClick(this.imgActivity, ()=>{         
             }, this );
@@ -103,9 +103,16 @@ namespace gameUI{
 			this.AddClick(this.imgSetting, ()=>{    
 				UIManager.Instance.LoadUI(UI.setting)       
             }, this );
-            this.AddClick(this.btnEnter, ()=>{
+            this.AddClick(this.btnEnter, ()=>{    
                 UIManager.Instance.LoadUI(UI.enter_room)				
             }, this );
+
+			this.imgGoldAdd.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
+                UIManager.Instance.LoadUI(UI.shop, 'charge')
+            }, this)
+			this.imgAddFb.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
+                UIManager.Instance.LoadUI(UI.shop, 'shop')
+            }, this)
 
 			// 个人信息
 			this.imgHeadIcon.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{

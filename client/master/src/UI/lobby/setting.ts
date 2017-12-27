@@ -51,15 +51,9 @@ namespace gameUI{
                 this.Close()
             }, this)
 
-            var languages:Array<Object> = [
-                {text : "中文"},
-                {text : "英文"},
-                {text : "日文"},
-                {text : "鸟语"},
-                {text : "兽语"},
-            ]
+            
             this.svData.initItemRenderer(settingLanguageItemRander)
-            this.svData.bindData(languages)
+            this.svData.bindData(this.getLanguageData())
             
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.svData.visible = !this.svData.visible
@@ -72,6 +66,16 @@ namespace gameUI{
             // this.addChild(slidr)
         }
 
+        private getLanguageData():Array<Object>{
+            var languages:Array<Object> = [
+                {text : "中文"},
+                {text : "英文"},
+                {text : "日文"},
+                {text : "鸟语"},
+                {text : "兽语"},
+            ]
+            return languages
+        }
         public onSelectLanguage(txt:string){
             this.txtLang.text = txt;
             this.svData.visible = false            

@@ -8,6 +8,7 @@ namespace gameUI{
         public txtRecvId:eui.Label;
         public txtNumber:eui.Label;
         public imgRemark:eui.Image;
+        public lblRemark:eui.Label;
 
         private isLoaded = false
 
@@ -19,6 +20,7 @@ namespace gameUI{
 
 		private onload():void {
             this.isLoaded = true
+            this.lblRemark.text = Util.uiText('评价')
             this.updateUI()
 		}
 
@@ -47,7 +49,7 @@ namespace gameUI{
             if(PlayerManager.Instance.Data.Gold >= num){ 
                 this.txtGiveNum.text = num.toString() 
             }else{
-                UIManager.Instance.showNotice("金币不够")
+                UIManager.Instance.showNotice(this.text("金币不够"))
             }
         } 
         private initText(){
@@ -91,7 +93,7 @@ namespace gameUI{
             }, this)
             this.AddClick(this.imgGiveOK, ()=>{
                 if(this.txtGiveId.text == null || this.txtGiveId.text == "" || this.txtGiveNum.text == null || this.txtGiveNum.text == ""){
-                    UIManager.Instance.showNotice("请填写ID或金额")
+                    UIManager.Instance.showNotice(Util.uiText("请填写ID或金额"))
                     return
                 }
                 var id = parseInt(this.txtGiveId.text)

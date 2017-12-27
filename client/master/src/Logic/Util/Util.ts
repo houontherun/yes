@@ -41,7 +41,7 @@ class Util{
     public static backText(id):string{
         var cfg = DataManager.Instance.getJsonData("text")
         if(cfg.BackText[id]){
-            return cfg.UIText[id].NR
+            return cfg.BackText[id].NR
         }else{
             return id
         }

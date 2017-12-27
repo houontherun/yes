@@ -54,6 +54,15 @@ class Main extends eui.UILayer {
         egret.lifecycle.onResume = () => {
             egret.ticker.resume();
         }
+        // if(egret.Capabilities.isMobile){
+        //     if(egret.Capabilities.runtimeType == egret.RuntimeType.WEB){
+        //         this.stage.orientation = egret.OrientationMode.PORTRAIT
+        //     }else{ // native
+                this.stage.orientation = egret.OrientationMode.LANDSCAPE
+        //     }
+        // }else{
+        //     this.stage.orientation = egret.OrientationMode.LANDSCAPE
+        // }
 
         //注入自定义的素材解析器
         let assetAdapter = new AssetAdapter();
@@ -108,10 +117,32 @@ class Main extends eui.UILayer {
         this.isThemeLoadEnd = true;
         this.createScene();
     }
+
+    private showCapabilitiesInfo(){
+        var label:egret.TextField = new egret.TextField();
+        this.addChild(label);
+        label.width = 480;
+        label.x = 0;
+        label.y = 0;
+        label.textColor = 0xff0000;
+        label.size = 25;
+        label.text = 'engineVersion:' + egret.Capabilities.engineVersion +
+            '\n' + 'language:' + egret.Capabilities.language +
+            '\n' + 'os :' + egret.Capabilities.os +
+            '\n' + 'runtimeType:' + egret.Capabilities.runtimeType +
+            '\n' + 'isMobile:' + egret.Capabilities.isMobile + 
+            '\n' + 'renderMode:' + egret.Capabilities.renderMode +
+            '\n' + 'boundingClientWidth:' + egret.Capabilities.boundingClientWidth +
+            '\n' + 'boundingClientHeight:' + egret.Capabilities.boundingClientHeight + 
+            '\n' + 'stageWidth:' + this.stage.stageWidth + 
+            '\n' + 'stageHeight:' + this.stage.stageHeight + 
+            '\n' + 'orientation:' + this.stage.orientation
+    }
     
     private createScene() {
         if (this.isThemeLoadEnd && this.isResourceLoadEnd) {
             UIManager.Instance.LoadUI(UI.login)
+            // this.showCapabilitiesInfo()
         }
     }
 }

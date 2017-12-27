@@ -1,13 +1,12 @@
 // TypeScript file
 
 namespace gameUI{
+    var usrImg = 'touxiang_png'
+    var emptyImg = 'touxiang_empty_png'
     class ddzRoomItemRander extends eui.ItemRenderer{
         public btnTable:eui.Image;
         public txtTableNum:eui.Label;
         public txtStatus:eui.Label;
-        public imgUser1:eui.Image;
-        public imgUser3:eui.Image;
-        public imgUser2:eui.Image;
         public btnEnter3:eui.Image;
         public btnEnter1:eui.Image;
         public btnEnter2:eui.Image;
@@ -36,7 +35,7 @@ namespace gameUI{
 		}
         private sitDown(chair_id:number):void{
             if(this.data.Users[chair_id] != null && this.data.Users[chair_id] != undefined){
-                UIManager.Instance.showNotice('有人坐了，请选其他位置')
+                UIManager.Instance.showNotice(Util.uiText('有人坐了，请选其他位置'))
                 return
             }
             RoomManager.Instance.SitDown(this.data.TableId, chair_id)
@@ -46,14 +45,14 @@ namespace gameUI{
             if(!this.isLoaded || this.data == null)
                 return
             var isReady = true
-            var userImages = [this.imgUser1, this.imgUser2, this.imgUser3]
+            var userImages = [this.btnEnter1, this.btnEnter2, this.btnEnter3]
             for(var i = 0; i <=2; i++){
                 var user = this.data.Users[i]
                 if(user != null && user != undefined){
-                    userImages[i].visible = true
+                    userImages[i].source = usrImg
                 }
                 else{
-                    userImages[i].visible = false
+                    userImages[i].source = emptyImg
                     isReady = false
                 }
             }

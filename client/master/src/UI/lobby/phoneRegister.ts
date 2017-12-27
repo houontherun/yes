@@ -19,10 +19,10 @@ namespace gameUI{
             super.onload();
             this.initText()
 
-            this.lblOk.text = '登录注册'
+            this.lblOk.text = this.text(1101005)//'登录注册'
             this.btnRegister.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(this.txtCode.text.length == 0 || this.txtAccount.text.length == 0 || this.txtPassword.text.length == 0){
-                    UIManager.Instance.showNotice('手机号、密码、验证码不能为空')
+                    UIManager.Instance.showNotice(this.text('手机号、密码、验证码不能为空'))
                     return 
                 }
                 // do sth

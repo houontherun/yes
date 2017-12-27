@@ -6,5 +6,5 @@
 	<e:Label id="txtRecvId" text="10012" x="366.5" y="15" anchorOffsetX="0" width="150" verticalAlign="middle" textAlign="center" fontFamily="SimHei" anchorOffsetY="0" height="34"/>
 	<e:Label id="txtNumber" text="1000" x="516.5" y="17.5" anchorOffsetX="0" width="153" verticalAlign="middle" textAlign="center" fontFamily="SimHei"/>
 	<e:Image id="imgRemark" source="btnQuit_png" x="722" y="13.5" anchorOffsetX="0" width="109" anchorOffsetY="0" height="37"/>
-	<e:Label text="评价" x="726" y="19.5" anchorOffsetX="0" width="105" verticalAlign="middle" textAlign="center" fontFamily="SimHei" size="21" touchEnabled="false"/>
+	<e:Label id="lblRemark" text="评价" x="726" y="19.5" anchorOffsetX="0" width="105" verticalAlign="middle" textAlign="center" fontFamily="SimHei" size="21" touchEnabled="false"/>
 </e:Skin>

@@ -22,7 +22,7 @@ namespace gameUI{
 
             this.txtGameId.text = PlayerManager.Instance.Data.UserId.toString()
             this.txtUsername.text = PlayerManager.Instance.Data.Name
-            this.txtLevel.text = '0' + "级"
+            this.txtLevel.text = '0' + this.text("级") 
         }
         public txtGameId:eui.Label;
         public txtLevel:eui.Label;

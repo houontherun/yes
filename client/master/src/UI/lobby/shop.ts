@@ -55,14 +55,14 @@ namespace gameUI{
             if(this.data instanceof ChargeData){
                 this.txtTitle.text = this.data.num.toString()
                 this.txtNum.text = this.data.rmb.toString() + Util.uiText(1102060)
-                this.txtPresent.text = "额外赠送" + this.data.giveNum + this.data.giveItem.name
-                this.lblHot.text = "限时"
+                this.txtPresent.text = Util.uiText("额外赠送") + this.data.giveNum + this.data.giveItem.name
+                this.lblHot.text = Util.uiText("限时")
                 this.imgItem.source = this.getImg(this.data.item.id)
             }else if(this.data instanceof ShopData){
                 this.txtTitle.text = this.data.item.name
                 this.txtNum.text = this.data.item.price.toString()
                 this.txtPresent.text = ''
-                this.lblHot.text = "热卖"
+                this.lblHot.text = Util.uiText("热卖")
                 this.imgItem.source = this.getImg(this.data.item.id)
             }
         }
@@ -90,6 +90,10 @@ namespace gameUI{
             this.lblCgarge.text = this.text(1102059)
             this.txtTitle.text = this.text(1102058)
         }
+        constructor(uidata:any, data?:any){
+            super(uidata, data);
+
+        }
         public onload():void {
             super.onload();
             this.initText();
@@ -108,28 +112,22 @@ namespace gameUI{
             this.dataList.layout = layout
             layout.requestedColumnCount = 4
 
-            var items = DataManager.Instance.getJsonData("items")
-            this.chargeDatas = []
-            for(var k in items.Recharge){
-                var chargeData = new ChargeData(items.Recharge[k])
-                this.chargeDatas.push(chargeData)
-            }
-            this.shopDatas = []
-            for(var k in items.Shop){
-                var shopData = new ShopData(items.Shop[k])
-                this.shopDatas.push(shopData)
-            }
-
             this.btnCharge.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.loadTab(0)
-                this.loadData(this.chargeDatas)
+                this.loadData(this.getData(0))
             }, this)  
             this.btnBuy.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.loadTab(1)
-                this.loadData(this.shopDatas)
+                this.loadData(this.getData(1))
             }, this)  
-            this.loadTab(0)
-            this.loadData(this.chargeDatas)
+
+            if(this.Data == 'shop'){
+                this.loadTab(1)
+                this.loadData(this.getData(1))
+            }else{
+                this.loadTab(0)
+                this.loadData(this.getData(0))
+            }
         }
 
         public onUnload():void{
@@ -139,6 +137,22 @@ namespace gameUI{
             this.dataList.dataProvider = new eui.ArrayCollection(data)   
             this.listView.horizontalScrollBar = null
             this.listView.verticalScrollBar = null 
+        }
+        private getData(t){            
+            var items = DataManager.Instance.getJsonData("items")
+            var d = []
+            if(t == 1){
+                for(var k in items.Recharge){
+                    var chargeData = new ChargeData(items.Recharge[k])
+                    d.push(chargeData)
+                }
+            }else{
+                for(var k in items.Shop){
+                    var shopData = new ShopData(items.Shop[k])
+                    d.push(shopData)
+                }
+            }
+            return d
         }
         
         private loadTab(index:number):void{
@@ -172,9 +186,6 @@ namespace gameUI{
         public txtTitle:eui.Label;
 
         private currentTabIndex:number = -1
-
-        private chargeDatas = []
-        private shopDatas = []
     }
 
 }
