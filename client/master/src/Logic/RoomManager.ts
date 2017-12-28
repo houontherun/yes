@@ -227,7 +227,18 @@ class RoomManager extends Dispatcher {
     private onEnterRoomRet(data:any):void{
         if(data.ret == 0){
             this.dispatchEvent(constant.event.logic.on_self_enter_room)
+            if(this.onEnterAndAutoSitdownCallback != null && this.enterAndAutoSitdownObj != null){
+                this.AutoSitDown()
+            }
         }
+    }
+
+    private onEnterAndAutoSitdownCallback:Function = null;
+    private enterAndAutoSitdownObj:any = null
+    public EnterRoomAndAutoSitdown(id:number, callback?:Function, thisObj?:any){
+        this.onEnterAndAutoSitdownCallback = callback
+        this.enterAndAutoSitdownObj = thisObj
+        this.EnterRoom(id)
     }
     public queryRoomInfo():void{
         MessageManager.Instance.SendMessage({
@@ -270,6 +281,12 @@ class RoomManager extends Dispatcher {
             }
         }
     }
+
+    public AutoSitDown(){
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_AUTO_SITDOWN,
+        })
+    }
     // 坐下
     public SitDown(tableId:number, chairId:number):void{
         MessageManager.Instance.SendMessage({
@@ -281,6 +298,11 @@ class RoomManager extends Dispatcher {
     private onPlayerSitDown(data:any):void{
         if(data.ret == 0){
             this.dispatchEvent(constant.event.logic.on_self_sit_down, this.currentRoom)
+            if(this.onEnterAndAutoSitdownCallback != null && this.enterAndAutoSitdownObj != null){
+                this.onEnterAndAutoSitdownCallback.call(this.enterAndAutoSitdownObj)
+                this.onEnterAndAutoSitdownCallback = null
+                this.enterAndAutoSitdownObj = null
+            }
         }
     }
     // 起来

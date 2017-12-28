@@ -33,7 +33,11 @@ namespace gameUI{
         private onClick():void {
             // 请求进入房间
             if(PlayerManager.Instance.Data.Gold >= this.data.Limit){
-                RoomManager.Instance.EnterRoom(this.data.RoomId)
+				RoomManager.Instance.EnterRoomAndAutoSitdown(this.data.RoomId, ()=>{
+                    UIManager.Instance.UnloadUI(UI.ddzSelectRoom)
+                    GameManager.Instance.startDDZGame()
+                }, this)
+                // RoomManager.Instance.EnterRoom(this.data.RoomId)
             }else{
                 UIManager.Instance.showNotice(Util.uiText('金币不够'))
             }
