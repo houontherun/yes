@@ -217,10 +217,11 @@ namespace gameUI {
              var img = new eui.Image();
              img.source = RES.getRes("yizunbei_png");
              img.scaleY = img.scaleX = 0.8;
+             let posx = pos.x ;
              if (pos.x < 10) {
-                pos.x = pos.x - 35;
+                posx = posx - 35;
             }
-            img.x = pos.x;
+            img.x = posx;
             img.y = pos.y - 20;
             group.addChild(img);
             this.readyUIArray[chairid] = img;
@@ -309,7 +310,7 @@ namespace gameUI {
                 var img = new eui.Image();
                 img.source = RES.getRes('buchu_png');
                 if (Scorepos.x < 10)
-                    img.x = Scorepos.x - 60;
+                    img.x = Scorepos.x - 76;
                 else
                     img.x = Scorepos.x;
                 img.y = Scorepos.y;
@@ -549,10 +550,11 @@ namespace gameUI {
                 else if (data.land_score == 0) {
                     img.source = RES.getRes("buqiang_png");
                 }
+                let posx  = startpos.x ;
                 if (startpos.x < 10) {
-                    startpos.x = startpos.x - 35;
+                    posx = startpos.x - 75;
                 }
-                img.x = startpos.x;
+                img.x = posx;
                 img.y = startpos.y;
                 group.addChild(img);
                 CardLogic.Timer.Instance.Delay(3.2, () => {
@@ -692,22 +694,20 @@ namespace gameUI {
                 CardLogic.Timer.Instance.Remove(this.cdTimer);
                 this.cdTimer = null;
             }
-            if (group && this.curClockpos != pos) {
+            if (group) {
                 let clockpos = group.getChildByName("Label_pos");
                 this.clockCD.x = clockpos.x - 35;
                 this.clockCD.y = clockpos.y - 60;
-                if (clockpos.x < 10) {
-                   this.clockCD.x =  clockpos.x ;
-                }
                 this.clockCD.visible = true;
-                 var sec = cd - NetworkManager.Instance.ServerTimestamp;
+                var sec = cd - NetworkManager.Instance.ServerTimestamp;
                 if (sec > 0 ) {
                         this.clockCD.SetCd(sec);
                     }
                 group.addChild(this.clockCD);
                 this.curClockpos = pos;
                 this.cdTimer = CardLogic.Timer.Instance.Repeat(1, () => {
-                    var sec = cd - NetworkManager.Instance.ServerTimestamp;
+                    var serversec = NetworkManager.Instance.ServerTimestamp;
+                    var sec = cd - serversec;
                     if (sec > 0 && this.clockCD) {
                         this.clockCD.SetCd(sec);
                     }
@@ -831,7 +831,7 @@ namespace gameUI {
             let posY = Scorepos.y - 10;
             startposX = Scorepos.x;
             if (startposX < 10) {
-                startposX = startposX - 34 * cards.length;
+                startposX = startposX - 10 - 34 * cards.length;
             }
 
             this.PlayGameEffect(array);
@@ -964,9 +964,9 @@ namespace gameUI {
                     textNum = new eui.Label;
                     textNum.fontFamily = "SimHei";
                     textNum.strokeColor = 0x587ABC;   //描边颜色
-                    textNum.stroke = 1;               //描边宽度
+                    textNum.stroke = 2;               //描边宽度
                     textNum.text = "1";
-                    textNum.size = 40;
+                    textNum.size = 42;
                     textNum.textAlign = egret.HorizontalAlign.CENTER;
 
                     if (seat == Card.Seat.Left) {
