@@ -21,7 +21,7 @@
 	<e:Group id="group_Player0" width="263" height="333" anchorOffsetX="0" anchorOffsetY="0" left="2" bottom="1">
 		<e:Image height="28" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="71" y="245" scaleX="1" scaleY="1" horizontalCenter="4.5"/>
 		<e:Label text="小宇宙" anchorOffsetX="0" width="85" anchorOffsetY="0" height="22" size="20" fontFamily="SimHei" textAlign="center" horizontalCenter="3" bottom="72"/>
-		<e:Label text="" x="675" y="-6" name="Label_pos"/>
+		<e:Label text="" x="690" y="2" name="Label_pos"/>
 	</e:Group>
 	<e:Group id="group_handcards" width="1061" height="189" x="255" anchorOffsetX="0" anchorOffsetY="0" y="494">
 	</e:Group>

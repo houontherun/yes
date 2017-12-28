@@ -239,7 +239,7 @@ namespace gameUI {
         private OutCard(data) {
             this.SetBtnsGame(false);
             this.curOutcardPlayerid = data.current_user;
-            this.ClearlastCard();
+            this.clearCurCard();
             this.PlayerOutCard(data.chair_id, data.cards, data.card_count);
             let playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid;
             this.newCurrentCards = data.cards;
@@ -294,18 +294,6 @@ namespace gameUI {
             if (data.chair_id != constant.INVALID) {
                 var chairid = data.chair_id;
                 let group = this.GetGroupChairid(chairid);
-                if (this.cardItemArray && this.cardItemArray[chairid] != null) {
-                    for (let carditem of this.cardItemArray[chairid]) {
-                        group.removeChild(carditem);
-                    }
-                }
-
-                this.cardItemArray[chairid] = []
-
-                if (this.buchuItemArray && this.buchuItemArray[chairid]) {
-                    group.removeChild(this.buchuItemArray[chairid]);
-                }
-                this.buchuItemArray[chairid] = null
 
                 let Scorepos = group.getChildByName("Label_pos");
                 var img = new eui.Image();
@@ -510,21 +498,6 @@ namespace gameUI {
                 this.Text_bnt0.x = 330;
                 this.btn0.x = 315;
             }
-
-
-            //去掉上一局的牌或者不出
-            if (this.buchuItemArray && this.buchuItemArray[playerChairid]) {
-                this.group_Player0.removeChild(this.buchuItemArray[playerChairid]);
-            }
-            this.buchuItemArray[playerChairid] = null
-
-            if (this.cardItemArray && this.cardItemArray[playerChairid] != null) {
-                for (let carditem of this.cardItemArray[playerChairid]) {
-                    this.group_Player0.removeChild(carditem);
-                }
-            }
-
-            this.cardItemArray[playerChairid] = []
 
             if(this.bTrustee)
             {
@@ -805,7 +778,7 @@ namespace gameUI {
 
 
 
-      private ClearlastCard()
+      private clearCurCard()
       {
          var group = this.GetGroupChairid(this.curOutcardPlayerid);
          if(group)
@@ -820,7 +793,7 @@ namespace gameUI {
             if (this.buchuItemArray && this.buchuItemArray[this.curOutcardPlayerid]) {
                 group.removeChild(this.buchuItemArray[this.curOutcardPlayerid]);
             }
-            this.buchuItemArray[this.curOutcardPlayerid] = null
+            this.buchuItemArray[this.curOutcardPlayerid] = []
          }
 
          
