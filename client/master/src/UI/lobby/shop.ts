@@ -86,8 +86,8 @@ namespace gameUI{
 
     export class shop extends gameUI.base {
         private initText(){
-            this.lblbuy.text = this.text(1102061)
-            this.lblCgarge.text = this.text(1102059)
+            this.lblbuy.text = this.text(1102059)
+            this.lblCgarge.text = this.text(1102061)
             this.txtTitle.text = this.text(1102058)
         }
         constructor(uidata:any, data?:any){
