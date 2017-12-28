@@ -21,19 +21,19 @@
 	<e:Group id="group_Player0" width="263" height="333" anchorOffsetX="0" anchorOffsetY="0" left="2" bottom="1">
 		<e:Image height="28" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="71" y="245" scaleX="1" scaleY="1" horizontalCenter="4.5"/>
 		<e:Label text="小宇宙" anchorOffsetX="0" width="85" anchorOffsetY="0" height="22" size="20" fontFamily="SimHei" textAlign="center" horizontalCenter="3" bottom="72"/>
-		<e:Label text="" x="690" y="2" name="Label_pos"/>
+		<e:Label text="" x="683" y="2" name="Label_pos"/>
 	</e:Group>
-	<e:Group id="group_handcards" width="1061" height="189" x="255" anchorOffsetX="0" anchorOffsetY="0" y="494">
+	<e:Group id="group_handcards" width="1091" height="189" x="190" anchorOffsetX="0" anchorOffsetY="0" y="495">
 	</e:Group>
 	<e:Image id="diban" height="56" bottom="8" right="50" left="50" anchorOffsetY="0" scale9Grid="47,3,29,18" source="dibulanbeiban_png"/>
 	<e:Image id="bjban" height="46" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" bottom="13" left="76"/>
-	<e:Image height="46" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" horizontalCenter="0" bottom="13"/>
+	<e:Image height="46" anchorOffsetY="0" scale9Grid="47,3,29,18" width="146" source="beishubeiban_png" horizontalCenter="4" bottom="13"/>
 	<e:Image id="img_jinbin" width="44" height="44" y="690" source="wode-jinbi_png" left="77"/>
-	<e:Image width="44" height="44" x="597" y="692" source="beishu_png"/>
-	<e:Image width="55" height="55" source="yuyin_png" right="236" bottom="10"/>
-	<e:Image width="112" height="54" source="weixinliaotian_png" right="100" bottom="10"/>
+	<e:Image width="44" height="44" x="602" y="692" source="beishu_png"/>
+	<e:Image width="55" height="55" source="yuyin_png" right="211" bottom="10"/>
+	<e:Image width="112" height="54" source="weixinliaotian_png" right="84" bottom="10"/>
 	<e:Label id="txt_PlayerGold" text="1000" anchorOffsetX="0" width="90" anchorOffsetY="0" height="28" size="28" fontFamily="SimHei" textColor="0xe2a92b" left="121" bottom="23"/>
-	<e:Label id="txt_gamedouble" text="1" x="651" anchorOffsetX="0" width="80" anchorOffsetY="0" height="28" size="28" fontFamily="SimHei" textColor="0xe2a92b" bottom="22" textAlign="center"/>
+	<e:Label id="txt_gamedouble" text="1" x="655" anchorOffsetX="0" width="80" anchorOffsetY="0" height="28" size="28" fontFamily="SimHei" textColor="0xe2a92b" bottom="22" textAlign="center"/>
 	<e:Image id="btn_tuoguan" width="69" height="66" right="98" top="25" anchorOffsetX="0" anchorOffsetY="0" source="tuoguan_png"/>
 	<e:Image id="btn_back" width="69" height="66" anchorOffsetX="0" anchorOffsetY="0" left="8" top="25" source="fanhui_png"/>
 	<e:Group id="group_tuoguan" height="277" bottom="0" left="0" right="0" anchorOffsetY="0" visible="false">
@@ -41,13 +41,13 @@
 		<e:Image id="btn3" width="183" height="76" scaleX="0.75" scaleY="0.75" source="btn1_png" horizontalCenter="0" y="111"/>
 		<e:Label id="Text_bnt3" text="取消托管" y="123" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x3B69BF" size="26" textColor="0xFFFFFF" horizontalCenter="0"/>
 	</e:Group>
-	<e:Group id="group_btn" width="630" height="92" anchorOffsetX="0" anchorOffsetY="0" x="399" y="401">
-		<e:Image id="btn2" width="183" height="76" source="btn2_png" scaleX="0.75" scaleY="0.75" x="315" y="18"/>
-		<e:Image id="btn0" width="183" height="76" verticalCenter="0.5" scaleX="0.75" scaleY="0.75" x="480" source="btn1_png"/>
+	<e:Group id="group_btn" width="630" height="92" anchorOffsetX="0" anchorOffsetY="0" x="407" y="401">
+		<e:Image id="btn2" width="183" height="76" source="btn2_png" scaleX="0.75" scaleY="0.75" x="319" y="18"/>
+		<e:Image id="btn0" width="183" height="76" verticalCenter="0.5" scaleX="0.75" scaleY="0.75" x="482" source="btn1_png"/>
 		<e:Image id="btn1" width="175" height="78" verticalCenter="0.5" scaleX="0.75" scaleY="0.75" source="btn2_png" x="87"/>
-		<e:Label id="Text_bnt2" text="准备" x="330" y="27" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x841308" size="31" textColor="0xe5d547"/>
-		<e:Label id="Text_bnt0" text="出牌" x="494" y="27" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x3b69bf" size="31" textColor="0xffffff"/>
-		<e:Label id="Text_bnt1" text="换桌" x="98" y="30" anchorOffsetX="0" width="106" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" textColor="0xe8dd47" stroke="1.5" strokeColor="0x841308" size="31"/>
+		<e:Label id="Text_bnt2" text="准备" x="334" y="27" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x841308" size="31" textColor="0xe5d547"/>
+		<e:Label id="Text_bnt0" text="出牌" x="497" y="27" anchorOffsetX="0" width="109" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" stroke="1.5" strokeColor="0x3b69bf" size="31" textColor="0xffffff"/>
+		<e:Label id="Text_bnt1" text="换桌" x="101" y="30" anchorOffsetX="0" width="106" anchorOffsetY="0" height="32" bold="false" border="false" fontFamily="SimHei" multiline="false" textAlign="center" touchEnabled="false" textColor="0xe8dd47" stroke="1.5" strokeColor="0x841308" size="31"/>
 	</e:Group>
 	<e:Group id="group_backcards" width="140" height="120" y="10" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="-3.5" rotation="359.84">
 		<e:layout>
