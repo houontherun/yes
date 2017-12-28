@@ -2,9 +2,9 @@
 
 var constant = {
     // connect_ip : "192.168.12.3", // 候
-    // connect_ip : "192.168.12.1", // 谭
+    connect_ip : "192.168.12.1", // 谭
     // connect_ip:"fanqinet.tpddns.cn",
-    connect_ip:"47.96.11.32", // 外网测试服
+    // connect_ip:"47.96.11.32", // 外网测试服
     connect_port: 8000,
     msg:{
         //客户端->服务端
@@ -19,6 +19,8 @@ var constant = {
         CS_SAVE_MONEY : 1006,           // 存钱
         CS_WITHDRAW_MONEY : 1007,       // 取钱
         CS_GIVE_GOLD_2_OTHER : 1008,    // 赠送   
+        CS_AUTO_SITDOWN : 1014,			//快速加入
+	    CS_QUERY_ROOM_LIST : 1015,		//查询房间列表
         CS_CHANGE_BANK_PASSWD : 1020,   //修改银行密码
         CS_GET_BANK_RECORD : 1021,      //获取转赠记录
         CS_GET_RANK : 1022,             //获取排行榜

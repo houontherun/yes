@@ -196,11 +196,20 @@ class RoomManager extends Dispatcher {
         MessageManager.Instance.addEventListener(constant.msg.SC_JOIN_CUSTOM_TABLE,  this.onJoinCustomTable, this)  
     }
 
+    public queryRoomList(gameId){
+        MessageManager.Instance.SendMessage({
+            protocol:constant.msg.CS_QUERY_ROOM_LIST,
+            game_id:gameId
+        })
+    }
     private onRoomListRet(data:any):void{
-        this.roomList = []
-        for(var i = 0; i < data.room_list.length; i++){
-            var rd = new RoomData(data.room_list[i])
-            this.roomList.push(rd)
+        if(data.ret == 0){
+            this.roomList = []
+            for(var i = 0; i < data.room_list.length; i++){
+                var rd = new RoomData(data.room_list[i])
+                this.roomList.push(rd)
+            }
+            this.dispatchEvent(constant.event.logic.on_get_room_list)
         }
     }
 

@@ -56,13 +56,15 @@ namespace gameUI{
 
             this.svGame.initScrollLayout(gameUI.ScrollLayout.Horizontal)
             this.svGame.initItemRenderer(ddzSelectRoomItemRander)
-            this.svGame.bindData(RoomManager.Instance.RoomList)
 
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
              
+            RoomManager.Instance.queryRoomList(101)
             RoomManager.Instance.addEventListener(constant.event.logic.on_self_enter_room, this.onEnterRoom, this)
+            RoomManager.Instance.addEventListener(constant.event.logic.on_get_room_list, this.onGetRoomList, this)
+            
         }
         public onUnload():void{
             super.onUnload()
@@ -70,11 +72,15 @@ namespace gameUI{
             UIManager.Instance.Lobby.groupTopMenu.visible = true
 
             RoomManager.Instance.removeEventListener(constant.event.logic.on_self_enter_room, this.onEnterRoom, this)
+            RoomManager.Instance.removeEventListener(constant.event.logic.on_get_room_list, this.onGetRoomList, this)
         }
 
         private onEnterRoom(data):void{
             this.Close()
             UIManager.Instance.LoadUI(UI.ddzRoom)
+        }
+        private onGetRoomList():void{
+            this.svGame.bindData(RoomManager.Instance.RoomList)
         }
 
     }

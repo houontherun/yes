@@ -78,7 +78,7 @@ var gameUI;
             this.lblCredit.text = this.text(1102054);
             this.lblCharm.text = this.text(1102056);
             this.txtRank.text = this.text(1102052);
-            this.txtName.text = this.text("昵称");
+            this.txtName.text = this.text(1102022);
             this.txtNoData.text = this.text("暂无数据");
         };
         rank.prototype.onload = function () {
