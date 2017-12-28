@@ -239,6 +239,7 @@ namespace gameUI {
         private OutCard(data) {
             this.SetBtnsGame(false);
             this.curOutcardPlayerid = data.current_user;
+            this.ClearlastCard();
             this.PlayerOutCard(data.chair_id, data.cards, data.card_count);
             let playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid;
             this.newCurrentCards = data.cards;
@@ -803,6 +804,28 @@ namespace gameUI {
         }
 
 
+
+      private ClearlastCard()
+      {
+         var group = this.GetGroupChairid(this.curOutcardPlayerid);
+         if(group)
+         {
+               if (this.cardItemArray && this.cardItemArray[this.curOutcardPlayerid] != null) {
+                for (let carditem of this.cardItemArray[this.curOutcardPlayerid]) {
+                    group.removeChild(carditem);
+                }
+            }
+            this.cardItemArray[this.curOutcardPlayerid] = []
+
+            if (this.buchuItemArray && this.buchuItemArray[this.curOutcardPlayerid]) {
+                group.removeChild(this.buchuItemArray[this.curOutcardPlayerid]);
+            }
+            this.buchuItemArray[this.curOutcardPlayerid] = null
+         }
+
+         
+      }
+
         public PlayerOutCard(chairid: number, array: any, remainCount: number) {
             var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(array);
 
@@ -814,18 +837,9 @@ namespace gameUI {
             if (startposX < 10) {
                 startposX = startposX - 34 * cards.length;
             }
-            if (this.cardItemArray && this.cardItemArray[this.curOutcardPlayerid] != null) {
-                for (let carditem of this.cardItemArray[this.curOutcardPlayerid]) {
-                    group.removeChild(carditem);
-                }
-            }
-            this.PlayGameEffect(array);
-            this.cardItemArray[this.curOutcardPlayerid] = []
 
-            if (this.buchuItemArray && this.buchuItemArray[this.curOutcardPlayerid]) {
-                group.removeChild(this.buchuItemArray[this.curOutcardPlayerid]);
-            }
-            this.buchuItemArray[this.curOutcardPlayerid] = null
+            this.PlayGameEffect(array);
+
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
             {
                startposX = startposX - 34 * cards.length/2;
@@ -834,6 +848,7 @@ namespace gameUI {
                 let textNum: eui.Label = <eui.Label>group.getChildAt(7);   //显示剩余牌
                 if (textNum) textNum.text = remainCount.toString();
             }
+            this.cardItemArray[chairid] = []
             for (var i = 0; i < cards.length; i++) {
                 var _card = new Card.ui_pokerCardItem();
                 _card.cardData = cards[i];
