@@ -48,7 +48,7 @@ class Main extends eui.UILayer {
         })
 
         egret.lifecycle.onPause = () => {
-            egret.ticker.pause();
+            //egret.ticker.pause();
         }
 
         egret.lifecycle.onResume = () => {

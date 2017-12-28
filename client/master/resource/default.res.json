@@ -33,7 +33,7 @@
 			"name": "face"
 		},
 		{
-			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,score_bg0_png,tuoguan_png,weixinliaotian_png,wode-jinbi_png,yuyin_png,zhunbei_png,zuozi_png,buchu_png,buqiang_png,qiangdizhuzhi_png,dizhumao_png,yizunbei_png,tuoguan_other_png",
+			"keys": "Type_Land_png,Type_trust_png,beijing_png,beishu_png,beishubeiban_png,btn1_png,btn2_png,dibulanbeiban_png,fanhui_png,game_clock_png,score_bg0_png,tuoguan_png,weixinliaotian_png,wode-jinbi_png,yuyin_png,zhunbei_png,zuozi_png,buchu_png,buqiang_png,qiangdizhuzhi_png,dizhumao_png,yizunbei_png,tuoguan_other_png,mingpai_png",
 			"name": "ddzRes"
 		},
 		{
@@ -1494,6 +1494,11 @@
 			"url": "assets/Poker/poke/card_15.png",
 			"type": "image",
 			"name": "card_15_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/mingpai.png",
+			"type": "image",
+			"name": "mingpai_png"
 		}
 	]
 }

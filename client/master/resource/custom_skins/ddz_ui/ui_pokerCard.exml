@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="ui_pokerCard" width="120" height="160" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="img_card" source="bk_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" width="120" x="0" height="162" y="0"/>
+	<e:Image id="img_landlordbig" width="121" height="124" anchorOffsetX="0" anchorOffsetY="0" source="Type_Land_png" scaleX="0.6" scaleY="0.6" touchEnabled="false" x="48" y="1" visible="false"/>
 	<e:Image id="img_index" width="28" height="32" x="4" y="7" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" source="black_6_png"/>
 	<e:Image id="img_suit" width="32" height="36" x="4" y="42.3" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" source="Suit_3_png"/>
 	<e:Image id="img_landlord" width="121" height="124" anchorOffsetX="0" anchorOffsetY="0" source="Type_Land_png" scaleX="0.37" scaleY="0.37" top="0" touchEnabled="false" x="22" visible="false"/>
 	<e:Image id="img_index0" width="28" height="32" x="108.5" y="153" anchorOffsetX="0" anchorOffsetY="0" scaleX="-0.9" scaleY="-0.9" source="black_10_png"/>
 	<e:Image id="img_suit0" width="30" height="36" x="83.5" y="118.3" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="-0.9" source="Suit_3_png"/>
 	<e:Image id="img_figure" width="122" height="120" x="29" y="36" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.62" scaleY="0.62" source="card_15_png" visible="false"/>
+	<e:Image id="img_bright" width="22" height="43" x="18" y="109" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="mingpai_png" visible="false"/>
 </e:Skin>

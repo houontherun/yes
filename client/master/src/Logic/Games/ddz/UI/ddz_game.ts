@@ -47,6 +47,7 @@ namespace gameUI {
         private BrightCardsArray = {};
         private readyUIArray = {};
         private tuoguanUIArray = {};
+        private bBrightcard:boolean = false;  //明牌
 
         public onload(): void {
 
@@ -194,11 +195,16 @@ namespace gameUI {
                 _card.setPos(startposx + 48 * i, 16);
                 this.group_handcards.addChild(_card);
                 this.AddTohardCardsArray(_card);
-
+               if (i == cards.length - 1)
+               {
+                   _card.Setbiglandlord(true);
+                   if( this.bBrightcard)
+                     _card.SetBright(true);
+               }
                 let index: number = backCardsArray.indexOf(cards[i]);
                 if (index > -1) {
                     _card.SetShoot(true);
-
+                 
                 }
             }
         }
@@ -410,7 +416,12 @@ namespace gameUI {
         private Bright(data)
         {
             let chairid = data.chair_id;
-            if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid) return;
+            if(chairid == CardLogic.ddzGameLogic.Instance.playerChairid) 
+            {
+                this.bBrightcard = true;
+                //this.hardCardsArray[this.hardCardsArray.length -1].SetBright(true);
+                return ;
+            }
             this.BrightCardsArray[chairid] = [];
             CardLogic.ddzGameLogic.Instance.AddBrightCards(chairid,data.cards);
             let BrightCards =  CardLogic.ddzGameLogic.Instance.GetBrightCards(chairid);
@@ -688,6 +699,10 @@ namespace gameUI {
                    this.clockCD.x =  clockpos.x ;
                 }
                 this.clockCD.visible = true;
+                 var sec = cd - NetworkManager.Instance.ServerTimestamp;
+                if (sec > 0 ) {
+                        this.clockCD.SetCd(sec);
+                    }
                 group.addChild(this.clockCD);
                 this.curClockpos = pos;
                 this.cdTimer = CardLogic.Timer.Instance.Repeat(1, () => {
@@ -882,6 +897,10 @@ namespace gameUI {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
                     _card.setPos(startposx + 48 * i, 16);
+                    if ((i == cards.length - 1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
+                        _card.Setbiglandlord(true);
+                    if ((i == cards.length - 1) && this.bBrightcard)
+                        _card.SetBright(true);
                     this.group_handcards.addChild(_card);
                     this.AddTohardCardsArray(_card);
                 }
@@ -1227,6 +1246,7 @@ namespace gameUI {
             this.txt_gamedouble.text = "1";
             this.tuoguanUIArray = {};
             this.bTrustee = false;
+            this.bBrightcard = false;
         }
 
     }

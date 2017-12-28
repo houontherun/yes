@@ -11,11 +11,14 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 	private posY:number;
 	private bLandLord:boolean= false;
     private img_landlord:eui.Image;
+	private img_landlordbig:eui.Image;
+	private img_bright:eui.Image;
     private isJoker:boolean = false;
     private imgindex = null;
 	private imgsuit = null;
 	private imgsource = null;
 	private imgfigure = null;
+
 	public constructor() {
 		super("resource/custom_skins/ddz_ui/ui_pokerCard.exml");
 		this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_tap,this);
@@ -181,6 +184,17 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 	{
 	   this.bLandLord = bll;
 	   this.img_landlord.visible = this.bLandLord;
+	}
+
+	public Setbiglandlord(bll : boolean)
+	{
+	   this.bLandLord = bll;
+	   this.img_landlordbig.visible = this.bLandLord;
+	}
+
+	public SetBright(bright : boolean)
+	{
+	   this.img_bright.visible = bright;
 	}
  }
 }
