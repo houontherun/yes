@@ -114,7 +114,7 @@ export class ddzGameLogic extends Dispatcher {
 
    private getindex(index :number,suit:CardColor):number
    {
-       let _index :number= -1;
+        let _index :number= -1;
         for(var i = 0; i < this.HandCards.length; i++){
             if(this.HandCards[i].Index == index && this.HandCards[i].Suit == suit)
              return i;

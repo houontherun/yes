@@ -48,10 +48,9 @@ namespace gameUI {
         private readyUIArray = {};
         private tuoguanUIArray = {};
         private bBrightcard:boolean = false;  //明牌
+        private brightEvent:Function = null;
 
         public onload(): void {
-
-            super.onload();
 
             MessageManager.Instance.addEventListener(constant.msg.SC_USER_READY, this.ReadyRet, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_LAND_SCORE, this.landScore, this);
@@ -420,6 +419,8 @@ namespace gameUI {
             {
                 this.bBrightcard = true;
                 //this.hardCardsArray[this.hardCardsArray.length -1].SetBright(true);
+                if(this.brightEvent)
+                   this.brightEvent();
                 return ;
             }
             this.BrightCardsArray[chairid] = [];
@@ -891,15 +892,15 @@ namespace gameUI {
                     this.removehardCard();
                 }
                 this.group_handcards.removeChildren();
-                let cards = CardLogic.ddzGameLogic.Instance.HandCards;
-                let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 58;
-                for (var i = 0; i < cards.length; i++) {
+                let handcards = CardLogic.ddzGameLogic.Instance.HandCards;
+                let startposx = this.group_handcards.width / 2 - handcards.length*45/2 - 58;
+                for (var i = 0; i < handcards.length; i++) {
                     var _card = new Card.ui_pokerCardItem();
-                    _card.cardData = cards[i];
+                    _card.cardData = handcards[i];
                     _card.setPos(startposx + 48 * i, 16);
-                    if ((i == cards.length - 1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
+                    if ((i == handcards.length - 1) && chairid == CardLogic.ddzGameLogic.Instance.landUser)
                         _card.Setbiglandlord(true);
-                    if ((i == cards.length - 1) && this.bBrightcard)
+                    if ((i == handcards.length - 1) && this.bBrightcard)
                         _card.SetBright(true);
                     this.group_handcards.addChild(_card);
                     this.AddTohardCardsArray(_card);
@@ -1040,11 +1041,27 @@ namespace gameUI {
                 }
                 else {
                     CardLogic.Timer.Instance.Remove(OpenDealTimer);
-                    this.group_btn.removeChild(textNum);
-                    this.group_btn.removeChild(img);
+                    OpenDealTimer = null;
+                    if(this.brightEvent)
+                    {
+                        this.group_btn.removeChild(textNum);
+                        this.group_btn.removeChild(img);
+                    }
+                    
                 }
 
             });
+
+            this.brightEvent = () => {
+                 if(OpenDealTimer)
+                 {
+                      CardLogic.Timer.Instance.Remove(OpenDealTimer);
+                      OpenDealTimer = null;
+                 }
+                 this.group_btn.removeChild(textNum);
+                 this.group_btn.removeChild(img);
+                 this.brightEvent = null;
+            };
         }
 
         protected childrenCreated() {
@@ -1160,12 +1177,17 @@ namespace gameUI {
                     _card.cardData = cards[i];
                     _card.setPos(startposx + 48 * i, 16);
                     this.group_handcards.addChild(_card);
+                     
                     this.AddTohardCardsArray(_card);
                     i++;
                 }
                 else {
                     CardLogic.Timer.Instance.Remove(addcardTimer);
                     this.childrenCreated();
+                    if(this.bBrightcard)
+                    {
+                        this.hardCardsArray[this.hardCardsArray.length -1].SetBright(true);
+                    }
                 }
             })
 

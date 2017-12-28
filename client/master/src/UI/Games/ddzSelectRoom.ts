@@ -35,7 +35,7 @@ namespace gameUI{
             if(PlayerManager.Instance.Data.Gold >= this.data.Limit){
 				RoomManager.Instance.EnterRoomAndAutoSitdown(this.data.RoomId, ()=>{
                     UIManager.Instance.UnloadUI(UI.ddzSelectRoom)
-                    GameManager.Instance.startDDZGame()
+                    //GameManager.Instance.startDDZGame()
                 }, this)
                 // RoomManager.Instance.EnterRoom(this.data.RoomId)
             }else{

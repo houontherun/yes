@@ -17,6 +17,7 @@ namespace gameUI{
         }
         public onUnload():void{
             console.log("unload ui:" + this.uidata.name)
+            this.removeEventListener( eui.UIEvent.COMPLETE, this.onload, this);
         }
 
         public Close():void{
