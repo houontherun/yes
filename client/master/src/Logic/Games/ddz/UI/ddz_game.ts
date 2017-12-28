@@ -239,6 +239,7 @@ namespace gameUI {
         private OutCard(data) {
             this.SetBtnsGame(false);
             this.curOutcardPlayerid = data.current_user;
+            this.clearCurCard();
             this.PlayerOutCard(data.chair_id, data.cards, data.card_count);
             let playerChairid = CardLogic.ddzGameLogic.Instance.playerChairid;
             this.newCurrentCards = data.cards;
@@ -247,8 +248,8 @@ namespace gameUI {
                 this.PlayermeOutCard();
             }
 
-            if (data.current_user != constant.INVALID)
-                this.countdown(data.current_user, data.time);
+            if (this.curOutcardPlayerid != constant.INVALID)
+                this.countdown(this.curOutcardPlayerid, data.time);
 
         }
 
@@ -293,18 +294,6 @@ namespace gameUI {
             if (data.chair_id != constant.INVALID) {
                 var chairid = data.chair_id;
                 let group = this.GetGroupChairid(chairid);
-                if (this.cardItemArray && this.cardItemArray[chairid] != null) {
-                    for (let carditem of this.cardItemArray[chairid]) {
-                        group.removeChild(carditem);
-                    }
-                }
-
-                this.cardItemArray[chairid] = []
-
-                if (this.buchuItemArray && this.buchuItemArray[chairid]) {
-                    group.removeChild(this.buchuItemArray[chairid]);
-                }
-                this.buchuItemArray[chairid] = null
 
                 let Scorepos = group.getChildByName("Label_pos");
                 var img = new eui.Image();
@@ -476,10 +465,10 @@ namespace gameUI {
         private PlayermeOutCard(bFirst: number = 0) {
             this.promptIndex = 0;
             this.SetBtnsGame(true);
-            this.Text_bnt1.text = "不出";
-            this.Text_bnt0.text = "出牌";
-            this.Text_bnt2.text = "提示";
-
+            this.Text_bnt1.text = this.text(1103013);
+            this.Text_bnt0.text = this.text(1103009);
+            this.Text_bnt2.text = this.text("提示");
+             
             this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendSnatchlandLord, this);
             this.btn0.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendUnSnatchlandLord, this);
 
@@ -509,21 +498,6 @@ namespace gameUI {
                 this.Text_bnt0.x = 330;
                 this.btn0.x = 315;
             }
-
-
-            //去掉上一局的牌或者不出
-            if (this.buchuItemArray && this.buchuItemArray[playerChairid]) {
-                this.group_Player0.removeChild(this.buchuItemArray[playerChairid]);
-            }
-            this.buchuItemArray[playerChairid] = null
-
-            if (this.cardItemArray && this.cardItemArray[playerChairid] != null) {
-                for (let carditem of this.cardItemArray[playerChairid]) {
-                    this.group_Player0.removeChild(carditem);
-                }
-            }
-
-            this.cardItemArray[playerChairid] = []
 
             if(this.bTrustee)
             {
@@ -651,9 +625,9 @@ namespace gameUI {
             if (data.current_user != constant.INVALID) {
                 this.countdown(data.current_user, data.time);
                 if (data.current_user == CardLogic.ddzGameLogic.Instance.playerChairid) {
-                    this.Text_bnt2.text = "不抢";
+                    this.Text_bnt2.text = this.text(1103014);
                     this.SetBtnsGame(true);
-                    this.Text_bnt1.text = "抢地主";
+                    this.Text_bnt1.text = this.text(1103016);
                     this.Text_bnt0.visible = false;
 
                     this.btn0.visible = false;
@@ -672,8 +646,8 @@ namespace gameUI {
         private ReadyRet(data) {
             if (data.ret == 0) {
                 this.Text_bnt2.visible = false;
-                this.Text_bnt1.visible = true;
-                this.btn1.visible = true;
+                this.Text_bnt1.visible = false;
+                this.btn1.visible = false;
                 this.btn2.visible = false;
                 this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
             }
@@ -803,6 +777,28 @@ namespace gameUI {
         }
 
 
+
+      private clearCurCard()
+      {
+         var group = this.GetGroupChairid(this.curOutcardPlayerid);
+         if(group)
+         {
+               if (this.cardItemArray && this.cardItemArray[this.curOutcardPlayerid] != null) {
+                for (let carditem of this.cardItemArray[this.curOutcardPlayerid]) {
+                    group.removeChild(carditem);
+                }
+            }
+            this.cardItemArray[this.curOutcardPlayerid] = []
+
+            if (this.buchuItemArray && this.buchuItemArray[this.curOutcardPlayerid]) {
+                group.removeChild(this.buchuItemArray[this.curOutcardPlayerid]);
+            }
+            this.buchuItemArray[this.curOutcardPlayerid] = []
+         }
+
+         
+      }
+
         public PlayerOutCard(chairid: number, array: any, remainCount: number) {
             var cards = CardLogic.ddzGameLogic.Instance.GetPokerCards(array);
 
@@ -814,26 +810,18 @@ namespace gameUI {
             if (startposX < 10) {
                 startposX = startposX - 34 * cards.length;
             }
-            if (this.cardItemArray && this.cardItemArray[chairid] != null) {
-                for (let carditem of this.cardItemArray[chairid]) {
-                    group.removeChild(carditem);
-                }
-            }
-            this.PlayGameEffect(array);
-            this.cardItemArray[chairid] = []
 
-            if (this.buchuItemArray && this.buchuItemArray[chairid]) {
-                group.removeChild(this.buchuItemArray[chairid]);
-            }
-            this.buchuItemArray[chairid] = null
+            this.PlayGameEffect(array);
+
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
             {
                startposX = startposX - 34 * cards.length/2;
             }
             else {
-                let textNum: eui.Label = <eui.Label>group.getChildAt(6);   //显示剩余牌
+                let textNum: eui.Label = <eui.Label>group.getChildAt(7);   //显示剩余牌
                 if (textNum) textNum.text = remainCount.toString();
             }
+            this.cardItemArray[chairid] = []
             for (var i = 0; i < cards.length; i++) {
                 var _card = new Card.ui_pokerCardItem();
                 _card.cardData = cards[i];
@@ -872,7 +860,7 @@ namespace gameUI {
                 }
                 this.group_handcards.removeChildren();
                 let cards = CardLogic.ddzGameLogic.Instance.HandCards;
-                let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 45;
+                let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 55;
                 for (var i = 0; i < cards.length; i++) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = cards[i];
@@ -927,7 +915,7 @@ namespace gameUI {
             if (playernum > 0) {
                 group = <eui.Group>this.getChildAt(playernum + 2);
                 if (group.numChildren == 8) {
-                    textNum = <eui.Label>group.getChildAt(6);
+                    textNum = <eui.Label>group.getChildAt(7);
                     textNum.text = "1";
                 }
                 else {
@@ -935,7 +923,7 @@ namespace gameUI {
 
                     backCard.source = RES.getRes("card_back_png");
                     backCard.scaleX = backCard.scaleY = 0.35;
-                    group.addChildAt(backCard, 5);
+                    group.addChildAt(backCard, 6);
                     textNum = new eui.Label;
                     textNum.fontFamily = "SimHei";
                     textNum.strokeColor = 0x587ABC;   //描边颜色
@@ -957,7 +945,7 @@ namespace gameUI {
                         textNum.y = 260;
                     }
 
-                    group.addChildAt(textNum, 6);
+                    group.addChildAt(textNum, 7);
                 }
 
                 var i: number = 1;
@@ -1182,7 +1170,6 @@ namespace gameUI {
                 }
             }
             
-
             playerNum = 4;
             if (bchangePlayer) {
                 if (this.group_Player0.numChildren > 3)
@@ -1198,8 +1185,8 @@ namespace gameUI {
 
         private restart() {
             this.SetBtnsGame(true);
-            this.Text_bnt1.text = "换桌";
-            this.Text_bnt2.text = "准备";
+            this.Text_bnt1.text = this.text(1103001);
+            this.Text_bnt2.text = this.text(1103002);
             this.Text_bnt0.visible = false;
 
             this.btn0.visible = false;

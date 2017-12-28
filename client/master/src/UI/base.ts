@@ -70,7 +70,7 @@ namespace gameUI{
              mc.scaleX = 1.2;
              mc.scaleY = 1.2;
              mc.gotoAndPlay(1);
-             mc.frameRate = 24*rate;
+             mc.frameRate = mc.frameRate *rate;
              return mc;
         }
 

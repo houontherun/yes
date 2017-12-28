@@ -5,6 +5,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 	private img_index0:eui.Image;
 	private img_suit0:eui.Image;
 	private img_card:eui.Image;
+	private img_figure:eui.Image;
 	private card : PokerCard;
 	private bSelect:boolean = false;
 	private posY:number;
@@ -14,6 +15,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
     private imgindex = null;
 	private imgsuit = null;
 	private imgsource = null;
+	private imgfigure = null;
 	public constructor() {
 		super("resource/custom_skins/ddz_ui/ui_pokerCard.exml");
 		this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_tap,this);
@@ -52,7 +54,9 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		{
             this.imgindex = `joker_${index}_png`;
 			this.imgsource  = "bk_png";
+			
 			this.isJoker = true;
+			this.imgfigure = `card_${index}_png`;
 		}
 		else
 		{
@@ -102,6 +106,11 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 			 this.img_index.height = 158;
 			 this.img_index0.visible  = false;
 			 this.img_suit0.visible = false;
+			 if(this.imgfigure)
+			 {
+				 this.img_figure.visible = true;
+				 this.SetImageUrl(this.img_figure,this.imgfigure );
+			 }
 		 }
 	}
 
@@ -124,7 +133,7 @@ export class ui_pokerCardItem extends gameUI.UIbase implements  eui.UIComponent 
 		   {
 			  this.img_index.scaleX = 0.5;
 			  this.img_index.scaleY = 0.5;
-			  
+			  this.img_figure.visible = false;
 		   }
 		}
 
