@@ -3,9 +3,9 @@
 
 namespace gameUI{   
     export class playerInfo extends gameUI.base {
-        private initText(){
+        public initText(){
             this.txtTitle.text = this.text(1102021)
-            this.lblLevel.text = this.text('等级')
+            this.lblLevel.text = this.text(1102124)
             this.lblUsername.text = this.text(1102022)
             this.lblGameId.text = this.text(1102023)
             this.txtModifyLoginPwd.text = this.text(1102026)
@@ -22,7 +22,7 @@ namespace gameUI{
 
             this.txtGameId.text = PlayerManager.Instance.Data.UserId.toString()
             this.txtUsername.text = PlayerManager.Instance.Data.Name
-            this.txtLevel.text = '0' + this.text("级") 
+            this.txtLevel.text = '0' + this.text(1102125) 
         }
         public txtGameId:eui.Label;
         public txtLevel:eui.Label;

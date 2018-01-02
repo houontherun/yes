@@ -3,11 +3,6 @@ class GameManager extends Dispatcher {
     public static Instance : GameManager = new GameManager();
     constructor() {
         super();
-    }   
-    public Init(){
-        PlayerManager.Instance.Init()
-        RoomManager.Instance.Init()
-        ChatManager.Instance.Init()
     }
 
     public startDDZGame():void{

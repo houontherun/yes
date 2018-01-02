@@ -5,7 +5,7 @@
 
 namespace gameUI{
     export class modifyPwd extends gameUI.base {
-        private initText(){
+        public initText(){
             this.lblAccount.text = this.text(1101001)
             this.lblOldPwd.text = this.text(1101002)
             this.lblNewPwd.text = this.text(1101011)
@@ -22,24 +22,24 @@ namespace gameUI{
             this.initText()
             this.btnModify.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(this.txtAccount.text.trim() == ""){
-                    UIManager.Instance.showNotice(this.text('请输入帐号'))
+                    UIManager.Instance.showNotice(this.text(1102122))
                     return
                 }
                 if(this.txtOldPwd.text.trim() == ""){
-                    UIManager.Instance.showNotice(this.text('请输入原始密码'))
+                    UIManager.Instance.showNotice(this.text(1102123))
                     return
                 }
                 if(this.txtNewPwd.text.trim() == ""){
-                    UIManager.Instance.showNotice(this.text('请输入新密码'))
+                    UIManager.Instance.showNotice(this.text(1101012))
                     return
                 }
                 if(this.txtNewPwd2.text.trim() == ""){
-                    UIManager.Instance.showNotice(this.text('请再次输入新密码'))
+                    UIManager.Instance.showNotice(this.text(1101012))
                     return
                 }
                 LoginManager.Instance.changePlatformPwd(this.txtAccount.text.trim(), this.txtOldPwd.text.trim(), this.txtNewPwd.text.trim(), (data)=>{
                     if(data.ret == 0){
-                        UIManager.Instance.showNotice(this.text('修改成功'))
+                        UIManager.Instance.showNotice(this.text(1102111))
                     }
                 }, this)
             }, this );      

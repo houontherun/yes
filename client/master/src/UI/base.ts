@@ -12,12 +12,20 @@ namespace gameUI{
             this.addEventListener( eui.UIEvent.COMPLETE, this.onload, this);
             this.skinName = uidata.skin;
         }
+        private onLanguageChange(l){
+            this.initText()
+        }
         public onload():void {
             console.log("load ui:" + this.uidata.name)
+            UIManager.Instance.addEventListener(constant.event.logic.on_language_change, this.onLanguageChange, this)
         }
         public onUnload():void{
             console.log("unload ui:" + this.uidata.name)
+            UIManager.Instance.removeEventListener(constant.event.logic.on_language_change, this.onLanguageChange, this)
             this.removeEventListener( eui.UIEvent.COMPLETE, this.onload, this);
+        }
+        public initText(){
+            // init ui language
         }
 
         public Close():void{

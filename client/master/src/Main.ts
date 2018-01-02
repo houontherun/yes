@@ -97,9 +97,8 @@ class Main extends eui.UILayer {
     private onConfigComplete(event: RES.ResourceEvent): void {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
 
-        ResourceManager.Instance.Init()
+        Application.Init();
         UIManager.Instance.Init(this);
-        GameManager.Instance.Init()   
 
         let theme = new eui.Theme("resource/default.thm.json", this.stage);
         theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);

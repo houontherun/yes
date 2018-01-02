@@ -5,13 +5,13 @@
 
 namespace gameUI{
     export class phoneRegister extends gameUI.base {
-        private initText(){
-            this.lblOk.text = this.text('注册登录')
+        public initText(){
+            this.lblOk.text = this.text(1101005)
             this.txtCode.text = this.text(1101014)
             this.lblPassword.text = this.text(1101002)
             this.lblCode.text = this.text(1101013)
             this.lblPhone.text = this.text(1101009)
-            this.txtPassword.text = this.text('请输入密码')
+            this.txtPassword.text = this.text(1102123)
             this.txtAccount.text = this.text(1101010)
             this.lblGetcode.text = this.text(1101015)
         }
@@ -22,7 +22,7 @@ namespace gameUI{
             this.lblOk.text = this.text(1101005)//'登录注册'
             this.btnRegister.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(this.txtCode.text.length == 0 || this.txtAccount.text.length == 0 || this.txtPassword.text.length == 0){
-                    UIManager.Instance.showNotice(this.text('手机号、密码、验证码不能为空'))
+                    UIManager.Instance.showNotice(this.text(1102121))
                     return 
                 }
                 // do sth

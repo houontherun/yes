@@ -52,7 +52,7 @@ namespace gameUI{
     }
 
     export class chat extends gameUI.base {
-        private initText(){
+        public initText(){
             this.txtInput.prompt = this.text(1102029)
             this.lblSend.text = this.text(1102030)
             this.txtTitle.text = this.text(1102028)

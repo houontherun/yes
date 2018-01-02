@@ -23,7 +23,7 @@ namespace gameUI{
         }
     }
     export class create_room extends gameUI.base{
-        private initText(){
+        public initText(){
             this.lblCreate.text = this.text(1102083)
             this.lblCount.text = this.text(1102076)
             this.lblMode.text = this.text(1102078)
@@ -71,7 +71,7 @@ namespace gameUI{
                 if(PlayerManager.Instance.Data.getResourceNumById(costId) >= costNum){
                     RoomManager.Instance.CreateCustomTable(this.ddzSettdata.gameId, room, round, multiple)
                 }else{
-                    UIManager.Instance.showNotice(Util.uiText("道具不足"))
+                    UIManager.Instance.showNotice(Util.uiText(1102118))
                 }
                 
             }, this );

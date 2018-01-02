@@ -55,8 +55,8 @@ namespace gameUI{
             if(this.data instanceof ChargeData){
                 this.txtTitle.text = this.data.num.toString()
                 this.txtNum.text = this.data.rmb.toString() + Util.uiText(1102060)
-                this.txtPresent.text = Util.uiText("额外赠送") + this.data.giveNum + this.data.giveItem.name
-                this.lblHot.text = Util.uiText("限时")
+                this.txtPresent.text = Util.uiText(1102119) + this.data.giveNum + this.data.giveItem.name
+                this.lblHot.text = Util.uiText(1102120)
                 this.imgItem.source = this.getImg(this.data.item.id)
             }else if(this.data instanceof ShopData){
                 this.txtTitle.text = this.data.item.name
@@ -85,7 +85,7 @@ namespace gameUI{
     const unSelectColor = 0x775022
 
     export class shop extends gameUI.base {
-        private initText(){
+        public initText(){
             this.lblbuy.text = this.text(1102059)
             this.lblCgarge.text = this.text(1102061)
             this.txtTitle.text = this.text(1102058)
