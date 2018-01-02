@@ -217,14 +217,11 @@ namespace gameUI {
              var img = new eui.Image();
              img.source = RES.getRes("yizunbei_png");
              img.scaleY = img.scaleX = 0.8;
-             let posx = pos.x ;
-             if (pos.x < 10) {
-                posx = posx - 35;
-            }
-            img.x = posx;
-            img.y = pos.y - 20;
-            group.addChild(img);
-            this.readyUIArray[chairid] = img;
+             let posx = pos.x - 38;
+              img.x = posx;
+              img.y = pos.y - 20;
+              group.addChild(img);
+              this.readyUIArray[chairid] = img;
         }
 
         private UpdatePlayersStatus(e: CardLogic.CardEvent)
@@ -310,9 +307,9 @@ namespace gameUI {
                 var img = new eui.Image();
                 img.source = RES.getRes('buchu_png');
                 if (Scorepos.x < 10)
-                    img.x = Scorepos.x - 76;
+                    img.x = Scorepos.x - 84;
                 else
-                    img.x = Scorepos.x;
+                    img.x = Scorepos.x - 42;
                 img.y = Scorepos.y;
 
                 group.addChild(img);
@@ -503,8 +500,8 @@ namespace gameUI {
                     this.SetBtnsGame(false);
                     this.Text_bnt1.visible = true;
                     this.btn1.visible = true;
-                    this.Text_bnt1.x = 320;
-                    this.btn1.x = 305;
+                    this.Text_bnt1.x = 260;
+                    this.btn1.x = 245;
                     if(this.bTrustee)
                     {
                         this.Sendpasscard();
@@ -515,8 +512,8 @@ namespace gameUI {
                 this.SetBtnsGame(false);
                 this.Text_bnt0.visible = true;
                 this.btn0.visible = true;
-                this.Text_bnt0.x = 320;
-                this.btn0.x = 305;
+                this.Text_bnt0.x = 260;
+                this.btn0.x = 245;
             }
 
             if(this.bTrustee)
@@ -554,7 +551,7 @@ namespace gameUI {
                 if (startpos.x < 10) {
                     posx = startpos.x - 75;
                 }
-                img.x = posx;
+                img.x = posx - 46;
                 img.y = startpos.y;
                 group.addChild(img);
                 CardLogic.Timer.Instance.Delay(3.2, () => {
@@ -607,13 +604,13 @@ namespace gameUI {
             this.Text_bnt0.visible = bvisible;
 
             this.btn0.visible = bvisible;
-            this.btn0.x = 480;
-            this.btn1.x = 87;
-            this.btn2.x = 315;
+            this.btn0.x = 472;
+            this.btn1.x = 75;
+            this.btn2.x = 297;
 
-            this.Text_bnt0.x = 495;
-            this.Text_bnt1.x = 101;
-            this.Text_bnt2.x = 330;
+            this.Text_bnt0.x = 485;
+            this.Text_bnt1.x = 89;
+            this.Text_bnt2.x = 312;
         }
 
 
@@ -650,7 +647,11 @@ namespace gameUI {
                     this.SetBtnsGame(true);
                     this.Text_bnt1.text = this.text(1103016);
                     this.Text_bnt0.visible = false;
-
+                    
+                    this.btn2.x = 300;
+                    this.btn1.x = 78;
+                    this.Text_bnt2.x = 316;
+                    this.Text_bnt1.x = 94;
                     this.btn0.visible = false;
                     this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
                     this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendSnatchlandLord, this);
@@ -696,7 +697,10 @@ namespace gameUI {
             }
             if (group) {
                 let clockpos = group.getChildByName("Label_pos");
-                this.clockCD.x = clockpos.x - 35;
+                if(pos == 0)
+                   this.clockCD.x = clockpos.x - 70;
+                else
+                   this.clockCD.x = clockpos.x - 36;
                 this.clockCD.y = clockpos.y - 60;
                 this.clockCD.visible = true;
                 var sec = cd - NetworkManager.Instance.ServerTimestamp;
@@ -784,7 +788,7 @@ namespace gameUI {
 
 
          //特效
-        private PlayGameEffect(array: any)
+        private PlayGameEffect(array: any,startposX:number)
         {
             var packPokercards =  new Card.ddzPackCardGroup(CardLogic.ddzGameLogic.Instance.GetPokerCards(array));
             if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE || packPokercards.CardType == Card.CardTypes.NUKE_TYPE)
@@ -794,7 +798,7 @@ namespace gameUI {
                    CardLogic.Timer.Instance.Delay(1, () => {
                     this.removeChild(mc);
                 }); });
-
+              mc.x = startposX;
               this.addChild(mc);
             }
         }
@@ -834,7 +838,7 @@ namespace gameUI {
                 startposX = startposX - 10 - 34 * cards.length;
             }
 
-            this.PlayGameEffect(array);
+            this.PlayGameEffect(array,startposX);
 
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
             {
@@ -1013,7 +1017,7 @@ namespace gameUI {
             img.source = RES.getRes("btn2_png");
             img.width = 185 * 0.75;
             img.height = 85 * 0.75;
-            img.x = this.group_btn.width / 2 + 20;
+            img.x = this.group_btn.width / 2 - 30;
             img.y = 14;
             this.group_btn.addChild(img);
             img.touchEnabled = true;
@@ -1029,7 +1033,7 @@ namespace gameUI {
             textNum.textColor = 0x0000AA;   //描边颜色
             textNum.text = "明牌×6";
             textNum.size = 30;
-            textNum.x = this.group_btn.width / 2 + 36;
+            textNum.x = this.group_btn.width / 2 -14;
             textNum.y = img.y + 13.5;
             textNum.textAlign = egret.HorizontalAlign.CENTER;
             textNum.touchEnabled = false;
