@@ -60,14 +60,14 @@ namespace gameUI{
     const unSelectColor = 0x775022
 
     export class rank extends gameUI.base {
-        private initText(){
+        public initText(){
             this.txtTitle.text = this.text(1102015)
             this.lblGold.text = this.text(1102051)
             this.lblCredit.text = this.text(1102054)
             this.lblCharm.text = this.text(1102056)
             this.txtRank.text = this.text(1102052)
             this.txtName.text = this.text(1102022)
-            this.txtNoData.text = this.text("暂无数据")
+            this.txtNoData.text = this.text(1102126)
         }
         public onload():void {
             super.onload();

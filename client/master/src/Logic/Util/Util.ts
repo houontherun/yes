@@ -33,7 +33,7 @@ class Util{
     public static uiText(id):string{
         var cfg = DataManager.Instance.getJsonData("text")
         if(cfg.UIText[id]){
-            return cfg.UIText[id].NR
+            return cfg.UIText[id][UIManager.Instance.Language]
         }else{
             return id
         }

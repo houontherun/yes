@@ -70,7 +70,7 @@ namespace gameUI{
     }
 
     export class ddzRoom extends gameUI.base{   
-        private initText(){
+        public initText(){
             this.lblQuickstart.text = this.text(1102090)
         }     
         public onload():void {

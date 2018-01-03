@@ -38,7 +38,7 @@ namespace gameUI{
 	}
 
 	export class lobby extends gameUI.base{
-		private initText(){
+		public initText(){
 			this.lblBank.text = this.text(1102014)
 			this.lblRank.text = this.text(1102015)
 			this.lblCom.text = this.text(1102016)

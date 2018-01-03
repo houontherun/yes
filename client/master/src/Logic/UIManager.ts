@@ -6,6 +6,18 @@ class UIManager extends Dispatcher {
     constructor() {
         super();
     }   
+    
+    private language:string = "NR"
+    public get Language():string{
+        return this.language
+    }
+    public set Language(l:string){
+        if(l == this.language){
+            return
+        }
+        this.language = l
+        this.dispatchEvent(constant.event.logic.on_language_change, l)
+    }
 
     private stage:eui.UILayer = null;
     private waitUI:gameUI.wait = null;

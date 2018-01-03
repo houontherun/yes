@@ -49,10 +49,10 @@ namespace gameUI{
             if(PlayerManager.Instance.Data.Gold >= num){ 
                 this.txtGiveNum.text = num.toString() 
             }else{
-                UIManager.Instance.showNotice(this.text("金币不够"))
+                UIManager.Instance.showNotice(this.text(1102115))
             }
         } 
-        private initText(){
+        public initText(){
             this.txtTitle.text = this.text(1102014)
             this.txtTabGS.text = this.text(1102031)
             this.txtTabGive.text = this.text(1102036)
@@ -78,7 +78,7 @@ namespace gameUI{
             this.lblRemke.text = this.text(1102050)
             this.lblIn.text = this.text(1102034)
             this.lblOut.text = this.text(1102035)
-            this.lblNoRecords.text = this.text('暂无记录')
+            this.lblNoRecords.text = this.text(1102126)
         }
         public onload():void {
             super.onload();

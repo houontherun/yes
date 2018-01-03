@@ -18,7 +18,7 @@ namespace gameUI{
             this.txtLan.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 var settingUI = UIManager.Instance.GetChild(UI.setting)
                 if(settingUI != null){
-                    settingUI.onSelectLanguage(this.data.text)                    
+                    settingUI.onSelectLanguage(this.data)                    
                 }
             }, this)
             this.updateUI()
@@ -27,7 +27,7 @@ namespace gameUI{
             if(!this.isLoaded || this.data == null){
                 return
             }
-            this.txtLan.text = this.data.text       
+            this.txtLan.text = this.data.name       
         }
 		protected dataChanged():void {
             this.updateUI()  
@@ -35,7 +35,7 @@ namespace gameUI{
     }
 
     export class setting extends gameUI.base {
-        private initText(){
+        public initText(){
             this.txtTitle.text = this.text(1102019)
             this.lblLogout.text = this.text(1102070)
             this.lblQuitGame.text = this.text(1102069)
@@ -53,7 +53,7 @@ namespace gameUI{
 
             
             this.svData.initItemRenderer(settingLanguageItemRander)
-            this.svData.bindData(this.getLanguageData())
+            this.svData.bindData(DataManager.Instance.getLanguageList())
             
             this.imgSelect.addEventListener(egret.TouchEvent.TOUCH_TAP, ()=>{
                 this.svData.visible = !this.svData.visible
@@ -66,19 +66,10 @@ namespace gameUI{
             // this.addChild(slidr)
         }
 
-        private getLanguageData():Array<Object>{
-            var languages:Array<Object> = [
-                {text : "中文"},
-                {text : "英文"},
-                {text : "日文"},
-                {text : "鸟语"},
-                {text : "兽语"},
-            ]
-            return languages
-        }
-        public onSelectLanguage(txt:string){
-            this.txtLang.text = txt;
-            this.svData.visible = false            
+        public onSelectLanguage(data:any){
+            this.txtLang.text = data.name;
+            this.svData.visible = false    
+            UIManager.Instance.Language = data.field        
         }
         public btnClose:eui.Image;
         public svData:gameUI.Scrollview;

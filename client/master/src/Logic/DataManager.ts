@@ -92,6 +92,15 @@ class DataManager extends Dispatcher {
         return null
     }
 
+    public getLanguageList():Array<Object>{
+        var list = []
+        var cfg = DataManager.Instance.getJsonData("text")
+        for(var l in cfg.LangList){
+            list.push(cfg.LangList[l])
+        }
+        return list 
+    }
+
     // public getJson(name, callback:Function, thisObject){
     //     var path = "resource/config/" + name + ".json"
     //     if(this.jsonList[path] == null || this.jsonList[path] == undefined){

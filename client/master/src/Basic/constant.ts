@@ -1,10 +1,10 @@
 // TypeScript file
 
 var constant = {
-    // connect_ip : "192.168.12.3", // 候
+    connect_ip : "192.168.12.3", // 候
     //connect_ip : "192.168.12.1", // 谭
     // connect_ip:"fanqinet.tpddns.cn",
-     connect_ip:"47.96.11.32", // 外网测试服
+    //  connect_ip:"47.96.11.32", // 外网测试服
     connect_port: 8000,
     msg:{
         //客户端->服务端
@@ -160,6 +160,7 @@ var constant = {
             on_connect_close:"on_server_close"
         },
         logic:{
+            on_language_change:"on_language_change",
             on_get_room_list:"on_get_room_list",
             on_player_data_update:"on_player_data_update",
             on_table_info_update:"on_table_info_update",

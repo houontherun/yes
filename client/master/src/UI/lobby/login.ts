@@ -38,14 +38,14 @@ namespace gameUI{
             }
             UIManager.Instance.showNotice(allMsg)
         }
-        private initText(){
+        public initText(){
             this.lblAccount.text = this.text(1101001)
             this.lblPassword.text = this.text(1101002)
             this.btnRegister.text = this.text(1101004)
             this.btnForgetPwd.text = this.text(1101008)
             this.lblLogin.text = this.text(1101003)
-            this.txtAccount.prompt = this.text("请输入用户名")
-            this.txtPassword.prompt = this.text("请输入用密码")
+            this.txtAccount.prompt = this.text(1102122)
+            this.txtPassword.prompt = this.text(1102123)
         }
         public onload():void {
             super.onload();

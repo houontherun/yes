@@ -2,7 +2,7 @@
 
 namespace gameUI{
     export class enter_room extends gameUI.base {
-        private initText(){
+        public initText(){
             this.lblDelete.text = this.text(1102073)
             this.lblReinput.text = this.text(1102072)
             this.lblCreateroom.text = this.text(1102074)

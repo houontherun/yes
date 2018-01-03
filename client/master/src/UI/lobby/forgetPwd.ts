@@ -8,7 +8,7 @@ namespace gameUI{
             this.lblOk.text = this.text(1101016) //'确认修改'
             this.btnRegister.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
                 if(this.txtCode.text.length == 0 || this.txtAccount.text.length == 0 || this.txtPassword.text.length == 0){
-                    UIManager.Instance.showNotice(this.text('手机号、密码、验证码不能为空'))
+                    UIManager.Instance.showNotice(this.text(1102121))
                     return 
                 }
                 // do sth
