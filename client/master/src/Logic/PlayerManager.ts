@@ -173,7 +173,7 @@ class PlayerManager extends Dispatcher {
     }    
     private onModifyBankPwdRet(data:any):void{
         if(data.ret == 0){
-            UIManager.Instance.showNotice(Util.uiText('修改成功'))
+            UIManager.Instance.showNotice(Util.uiText(1102111))
         }
     }
     // 充值
@@ -186,7 +186,7 @@ class PlayerManager extends Dispatcher {
     private onCharge(data:any){
         if(data.ret == 0){
             this.updateData(data)
-            UIManager.Instance.showNotice(Util.uiText('充值成功'))
+            UIManager.Instance.showNotice(Util.uiText(1102109))
         }
     }
     // 购买道具
@@ -199,7 +199,7 @@ class PlayerManager extends Dispatcher {
     private onBuyItem(data){
         if(data.ret == 0){
             this.updateData({gold:data.gold})
-            UIManager.Instance.showNotice(Util.uiText('购买成功'))
+            UIManager.Instance.showNotice(Util.uiText(1102110))
         }
     }
 }

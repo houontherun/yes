@@ -19,6 +19,12 @@ namespace gameUI{
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
+            this.AddClick(this.btnModifyBankPwd, ()=>{
+                
+            }, this)
+            this.AddClick(this.btnModifyLoginPwd, ()=>{
+                UIManager.Instance.LoadUI(UI.modifyPwd)
+            }, this)
 
             this.txtGameId.text = PlayerManager.Instance.Data.UserId.toString()
             this.txtUsername.text = PlayerManager.Instance.Data.Name

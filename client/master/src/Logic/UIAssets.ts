@@ -21,4 +21,5 @@ var UI = {
     "loading":{name:"gameUI.loading", skin:"resource/custom_skins/loadingSkin.exml"}, 
     "wait":{name:"gameUI.wait", skin:"resource/custom_skins/waitSkin.exml"}, 
     "playerInfo":{name:"gameUI.playerInfo", skin:"resource/custom_skins/playerInfoSkin.exml"}, 
+    "notify":{name:"gameUI.notify", skin:"resource/custom_skins/notifySkin.exml"}, 
 }

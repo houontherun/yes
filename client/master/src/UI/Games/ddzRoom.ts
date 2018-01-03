@@ -35,7 +35,7 @@ namespace gameUI{
 		}
         private sitDown(chair_id:number):void{
             if(this.data.Users[chair_id] != null && this.data.Users[chair_id] != undefined){
-                UIManager.Instance.showNotice(Util.uiText('有人坐了，请选其他位置'))
+                UIManager.Instance.showNotice(Util.uiText(1102112))
                 return
             }
             RoomManager.Instance.SitDown(this.data.TableId, chair_id)
@@ -58,9 +58,9 @@ namespace gameUI{
             }
             this.txtTableNum.text = this.data.TableId.toString() + Util.uiText(1102091)
             if(isReady){
-                this.txtStatus.text = Util.uiText('进行中')
+                this.txtStatus.text = Util.uiText(1102113)
             }else{
-                this.txtStatus.text = Util.uiText('等待中')
+                this.txtStatus.text = Util.uiText(1102114)
             }            
         }
 

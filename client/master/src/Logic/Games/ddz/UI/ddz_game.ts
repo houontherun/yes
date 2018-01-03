@@ -484,7 +484,7 @@ namespace gameUI {
             this.SetBtnsGame(true);
             this.Text_bnt1.text = this.text(1103013);
             this.Text_bnt0.text = this.text(1103009);
-            this.Text_bnt2.text = this.text("提示");
+            this.Text_bnt2.text = this.text(1103025);
              
             this.btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendSnatchlandLord, this);
             this.btn0.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendUnSnatchlandLord, this);

@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,touxiang_empty_png,touxiang_empty2_png,touxiang_22_png,zibeijing2_png,text2_json",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,touxiang_empty_png,touxiang_empty2_png,touxiang_22_png,zibeijing2_png,text2_json,notifyTitle_png",
 			"name": "preload"
 		},
 		{
@@ -1499,6 +1499,11 @@
 			"url": "assets/Poker/ddzRes/mingpai.png",
 			"type": "image",
 			"name": "mingpai_png"
+		},
+		{
+			"name": "notifyTitle_png",
+			"type": "image",
+			"url": "assets/notify/notifyTitle.png"
 		}
 	]
 }

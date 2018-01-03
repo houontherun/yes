@@ -20,7 +20,7 @@ namespace gameUI{
 
 		private onload():void {
             this.isLoaded = true
-            this.lblRemark.text = Util.uiText('评价')
+            this.lblRemark.text = Util.uiText(1102116)
             this.updateUI()
 		}
 
@@ -59,10 +59,10 @@ namespace gameUI{
             this.txtTabRecord.text = this.text(1102045)
             this.lblInOUtNum.text = this.text(1102032)
             this.lblBankPwd.text = this.text(1102033)
-            this.txtInNum.prompt = this.text('存入不需要输入密码')
-            this.txtGSBankPwd.prompt = this.text('默认密码123456')
+            this.txtInNum.prompt = this.text(1102127)
+            this.txtGSBankPwd.prompt = this.text(1102128)
             this.lblGiveId.text = this.text(1102037)
-            this.txtBankPwd.prompt = this.text('默认密码123456')
+            this.txtBankPwd.prompt = this.text(1102128)
             this.lblBankPwd2.text = this.text(1102033)
             this.lblGiveNum.text = this.text(1102038)
             this.lblTenW.text = this.text(1102039)
@@ -93,7 +93,7 @@ namespace gameUI{
             }, this)
             this.AddClick(this.imgGiveOK, ()=>{
                 if(this.txtGiveId.text == null || this.txtGiveId.text == "" || this.txtGiveNum.text == null || this.txtGiveNum.text == ""){
-                    UIManager.Instance.showNotice(Util.uiText("请填写ID或金额"))
+                    UIManager.Instance.showNotice(Util.uiText(1102117))
                     return
                 }
                 var id = parseInt(this.txtGiveId.text)

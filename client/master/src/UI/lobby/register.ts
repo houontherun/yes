@@ -12,10 +12,10 @@ namespace gameUI{
             this.txtAccount.prompt = this.text(1101006)
             this.txtPassword.prompt = this.text(1102123)
             this.lblOtherAccount.text = this.text(1101007)
-            this.lblWexin.text = this.text('微信')
-            this.lblQQ.text = this.text("QQ")
-            this.lblPhone.text = this.text("手机")
-            this.lblPlat.text = this.text("平台")
+            this.lblWexin.text = this.text(1102130)
+            this.lblQQ.text = this.text(1102131)
+            this.lblPhone.text = this.text(1102132)
+            this.lblPlat.text = this.text(1102133)
         }
         public onload():void {
             super.onload();

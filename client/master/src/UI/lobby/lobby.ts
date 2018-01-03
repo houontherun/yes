@@ -80,6 +80,7 @@ namespace gameUI{
 			this.AddClick(this.imgMore, ()=>{      
             }, this );
 			this.AddClick(this.imgNotice, ()=>{ 
+				UIManager.Instance.LoadUI(UI.notify)
             }, this );
 			this.AddClick(this.imgActivity, ()=>{         
             }, this );

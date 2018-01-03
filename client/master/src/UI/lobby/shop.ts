@@ -62,7 +62,7 @@ namespace gameUI{
                 this.txtTitle.text = this.data.item.name
                 this.txtNum.text = this.data.item.price.toString()
                 this.txtPresent.text = ''
-                this.lblHot.text = Util.uiText("热卖")
+                this.lblHot.text = Util.uiText(1102134)
                 this.imgItem.source = this.getImg(this.data.item.id)
             }
         }

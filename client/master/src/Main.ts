@@ -28,20 +28,29 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 class Main extends eui.UILayer {
+    private initSize(){
+        this.scaleX = this.scaleY = (1920/1335) < (1080/750) ? (1920/1335) : (1080/750)
+        this.stage.scaleMode = egret.StageScaleMode.SHOW_ALL
+
+        
+
+        // var bw = egret.Capabilities.boundingClientWidth
+        // var bh = egret.Capabilities.boundingClientHeight
+
+        // var sw = this.stage.stageWidth
+        // var sh = this.stage.stageHeight
+        // wid = wid * r
+        // hei = hei * r
+        // this.stage.setContentSize(wid, hei)
+    }
     /**
      * 加载进度界面
      * loading process interface
      */
     protected createChildren(): void {
         super.createChildren();
-        // var scaleX = egret.Capabilities.boundingClientWidth/this.stage.stageWidth
-        // var scaleY = egret.Capabilities.boundingClientHeight/this.stage.stageHeight
         
-        // if(scaleX > 1 && scaleY > 1){
-        //     var scale = scaleX < scaleY ? scaleX : scaleY
-        //     this.scaleX = this.scaleY = scale
-        // }
-        this.scaleX = this.scaleY = 1.438
+        this.initSize()
         
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
@@ -135,7 +144,11 @@ class Main extends eui.UILayer {
             '\n' + 'boundingClientHeight:' + egret.Capabilities.boundingClientHeight + 
             '\n' + 'stageWidth:' + this.stage.stageWidth + 
             '\n' + 'stageHeight:' + this.stage.stageHeight + 
-            '\n' + 'orientation:' + this.stage.orientation
+            '\n' + 'orientation:' + this.stage.orientation +
+            '\n' + 'window.innerWidth:' + window.innerWidth + 
+            '\n' + 'window.innerHeight:' + window.innerHeight + 
+            '\n' + 'body.clientWidth:' + document.body.clientWidth + 
+            '\n' + 'body.clientHeight:' + document.body.clientHeight
     }
     
     private createScene() {

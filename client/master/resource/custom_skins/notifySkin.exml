@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="notifySkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:gameUI="gameUI.*">
+    <e:Image source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
+	<e:Image source="rank_bg6_png" x="361.18" y="142.6"/>
+	<e:Image source="bg_png" x="83.33" y="65.06" anchorOffsetX="0" width="1185.67" anchorOffsetY="0" height="661.67" scale9Grid="23,4,676,511"/>
+	<e:Image source="frame2_png" x="89.81" y="78.04" anchorOffsetX="0" width="1169.68"/>
+	<e:Image source="frame_png" x="67.82" y="25.71" scale9Grid="73,7,713,46" anchorOffsetX="0" width="1212.66"/>
+	<e:Image source="titleBg_png" x="479.32" y="21.76"/>
+	<e:Label id="txtTitle" text="公告" x="534.32" y="41.95" fontFamily="SimHei" size="50" anchorOffsetX="0" width="265.34" textAlign="center" bold="true" stroke="3" strokeColor="0x5B3403" touchEnabled="false"/>
+	<e:Image id="btnClose" source="close_png" x="1229" y="24.54"/>
+	<e:Group id="groupContent" width="1159.09" height="577.28" x="95" y="134.87" anchorOffsetX="0" anchorOffsetY="0"/>
+</e:Skin>

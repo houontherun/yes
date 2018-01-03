@@ -39,7 +39,7 @@ namespace gameUI{
                 }, this)
                 // RoomManager.Instance.EnterRoom(this.data.RoomId)
             }else{
-                UIManager.Instance.showNotice(Util.uiText('金币不够'))
+                UIManager.Instance.showNotice(Util.uiText(1102115))
             }
 		}
 

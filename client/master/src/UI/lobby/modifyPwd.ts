@@ -9,12 +9,12 @@ namespace gameUI{
             this.lblAccount.text = this.text(1101001)
             this.lblOldPwd.text = this.text(1101002)
             this.lblNewPwd.text = this.text(1101011)
-            this.lblNewPwd2.text = this.text('重复密码')
+            this.lblNewPwd2.text = this.text(1102129)
 
-            this.txtAccount.text = this.text('请输入帐号')
-            this.txtOldPwd.text = this.text('请输入密码')
-            this.txtNewPwd.text = this.text(1101012)
-            this.txtNewPwd2.text = this.text(1101012)
+            this.txtAccount.prompt = this.text(1102122)
+            this.txtOldPwd.prompt = this.text(1102123)
+            this.txtNewPwd.prompt = this.text(1101012)
+            this.txtNewPwd2.prompt = this.text(1101012)
             this.lblModify.text = this.text(1101016)
         }
         public onload():void {
@@ -40,6 +40,7 @@ namespace gameUI{
                 LoginManager.Instance.changePlatformPwd(this.txtAccount.text.trim(), this.txtOldPwd.text.trim(), this.txtNewPwd.text.trim(), (data)=>{
                     if(data.ret == 0){
                         UIManager.Instance.showNotice(this.text(1102111))
+                        this.Close()
                     }
                 }, this)
             }, this );      
