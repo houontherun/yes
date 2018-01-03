@@ -22,5 +22,5 @@
 	<e:Image id="btnModifyHead" source="btnbg2_png" x="355.28" y="318.81" fillMode="scale" scale9Grid="60,14,122,56" anchorOffsetX="0" width="151.66" scaleX="0.7" scaleY="0.7" visible="false"/>
 	<e:Label id="txtModifyHead" text="修改" x="358.33" y="322.16" anchorOffsetY="0" height="51.34" anchorOffsetX="0" width="102.66" textAlign="center" verticalAlign="middle" size="30" fontFamily="SimHei" strokeColor="0x6D4307" stroke="2" visible="false"/>
 	<e:Label id="txtUsername" text="一二三四五六七" x="638.99" y="245.67" anchorOffsetX="0" width="191.33" anchorOffsetY="0" height="44.66" textAlign="center" verticalAlign="middle" size="25" fontFamily="SimHei" textColor="0x72450b"/>
-	<e:Image id="imgHead" source="touxiang_png" x="361" y="221"/>	
+	<e:Image id="imgHead" source="touxiang_png" x="361" y="221" anchorOffsetX="0" width="101" anchorOffsetY="0" height="97"/>	
 </e:Skin>

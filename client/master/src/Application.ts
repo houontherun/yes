@@ -7,4 +7,6 @@ class Application {
         RoomManager.Instance.Init()
         ChatManager.Instance.Init()
     }
+
+    public static packageName:string = 'package1'
 }

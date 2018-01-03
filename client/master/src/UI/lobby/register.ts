@@ -67,12 +67,8 @@ namespace gameUI{
                     timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
                         var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
                         var groups = [
-                            "preload",
                             "lobby",
                             "common",
-                            "setting",
-                            "bank",
-                            "rank",
                             "ddz_lobby",
                         ]
                         ResourceManager.Instance.loadGroups(groups, this, ()=>{
