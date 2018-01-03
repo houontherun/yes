@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="settingSkin" width="1335" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:gameUI="gameUI.*" xmlns:w="http://ns.egret.com/wing" xmlns:gameUIControl="gameUIControl.*">
+	<e:Image id="btnClose" source="mask_png" x="0" y="0" anchorOffsetY="0" height="750" width="1335"/>
+	<e:Image source="tipBg_png" x="303.41" y="90"/>
+	<e:Label id="txtTitle" text="提示" x="536.24" y="153.2" fontFamily="SimHei" size="50" anchorOffsetX="0" width="265.34" textAlign="center" bold="true" stroke="3" strokeColor="0x5B3403" touchEnabled="false"/>
+	<e:Image id="btnOK" source="btnbg2_png" x="532.91" y="514.67" fillMode="clip"/>
+	<e:Image id="btnBack" source="btnQuit_png" x="405.27" y="516" visible="false"/>
+	<e:Label id="lblBack" text="返回" x="415.94" y="538.17" fontFamily="SimHei" size="35" anchorOffsetX="0" width="240.01" textAlign="center" stroke="3" strokeColor="0x0A3791" touchEnabled="false" bold="true" visible="false"/>
+	<e:Label id="lbOK" text="确定" x="540.26" y="536.84" fontFamily="SimHei" size="35" anchorOffsetX="0" width="240.01" textAlign="center" stroke="3" strokeColor="0x0A3791" touchEnabled="false" bold="true"/>
+	<e:Image source="tipTextBg_png" x="372.41" y="220"/>
+	<e:Label id="txtContent" text="金币不足" x="417.41" y="249" anchorOffsetX="0" width="505" anchorOffsetY="0" height="204" size="40" fontFamily="SimHei" textColor="0x6d4002" multiline="true"/>	
+</e:Skin>

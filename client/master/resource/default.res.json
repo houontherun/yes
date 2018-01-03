@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,touxiang_empty_png,touxiang_empty2_png,touxiang_22_png,zibeijing2_png,text2_json,notifyTitle_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,description_json,logo_jpg,loading_png,touxiang_empty_png,touxiang_empty2_png,touxiang_22_png,zibeijing2_png,text2_json,notifyTitle_png,notifyTitlebg_png",
 			"name": "preload"
 		},
 		{
@@ -41,7 +41,7 @@
 			"name": "poke"
 		},
 		{
-			"keys": "beiban_png,denglu_png,mima_png,qqdenglu_png,shurukuangbeijing_png,wangjimima_png,weiixn_png,yonghuzhuce_png,zhanghao_png,background_png,chonghzimima_png,fanqizhanghao_png,jiumima_png,shoujidenglu_png,tengxun_png,weiixn2_png,xiabiantiao_png,xinmima_png",
+			"keys": "beiban_png,denglu_png,mima_png,qqdenglu_png,shurukuangbeijing_png,wangjimima_png,weiixn_png,yonghuzhuce_png,zhanghao_png,background_png,chonghzimima_png,fanqizhanghao_png,jiumima_png,shoujidenglu_png,tengxun_png,weiixn2_png,xiabiantiao_png,xinmima_png,tipBg_png,tipTextBg_png",
 			"name": "login"
 		},
 		{
@@ -1501,9 +1501,24 @@
 			"name": "mingpai_png"
 		},
 		{
-			"name": "notifyTitle_png",
+			"url": "assets/notify/notifyTitle.png",
 			"type": "image",
-			"url": "assets/notify/notifyTitle.png"
+			"name": "notifyTitle_png"
+		},
+		{
+			"url": "assets/login/tipBg.png",
+			"type": "image",
+			"name": "tipBg_png"
+		},
+		{
+			"url": "assets/login/tipTextBg.png",
+			"type": "image",
+			"name": "tipTextBg_png"
+		},
+		{
+			"name": "notifyTitlebg_png",
+			"type": "image",
+			"url": "assets/notify/notifyTitlebg.png"
 		}
 	]
 }

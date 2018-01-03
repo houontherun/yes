@@ -8,5 +8,11 @@
 	<e:Image source="titleBg_png" x="479.32" y="21.76"/>
 	<e:Label id="txtTitle" text="公告" x="534.32" y="41.95" fontFamily="SimHei" size="50" anchorOffsetX="0" width="265.34" textAlign="center" bold="true" stroke="3" strokeColor="0x5B3403" touchEnabled="false"/>
 	<e:Image id="btnClose" source="close_png" x="1229" y="24.54"/>
-	<e:Group id="groupContent" width="1159.09" height="577.28" x="95" y="134.87" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image source="notifyTitle_png" x="446.68" y="142.6"/>
+	<e:Image source="rank_bg5_png" x="89.81" y="131.04"/>
+	<e:Image source="notifyTitlebg_png" x="445.06" y="144"/>
+	<e:Label text="暂无数据" x="479.98" y="164" anchorOffsetX="0" width="642.01" verticalAlign="middle" textAlign="center" fontFamily="SimHei"/>
+	<e:Group id="groupContent" width="852" height="480" x="379" y="225" anchorOffsetX="0" anchorOffsetY="0"/>
+	<!--<e:Scroller width="880" height="484" x="366.67" y="220.33" anchorOffsetX="0" anchorOffsetY="0">
+	</e:Scroller>-->
 </e:Skin>

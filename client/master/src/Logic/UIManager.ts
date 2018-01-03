@@ -79,13 +79,15 @@ class UIManager extends Dispatcher {
 
     public showError(errorId){
         if(error_data[errorId] == undefined){
-            alert('没有找到错误描述 error=' + errorId.toString())
+            this.showNotice('没有找到错误描述 error=' + errorId.toString())
             return
         }
-        alert(error_data[errorId].msg)
+        this.showNotice(error_data[errorId].msg)
     }
     public showNotice(msg){
-        alert(msg)
+        this.LoadUI(UI.notice, {
+            content:msg
+        })
     }
 
     public showWait(){

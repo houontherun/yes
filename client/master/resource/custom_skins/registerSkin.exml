@@ -12,7 +12,7 @@
 	<e:Image source="shurukuangbeijing_png" x="374.81" y="357.61"/>
 	<e:EditableText id="txtPassword" width="457.34" height="64" x="395.29" y="361.6" anchorOffsetX="0" anchorOffsetY="0" textColor="0xBCBCBC" verticalAlign="middle" fontFamily="SimHei" prompt="请输入密码，至少6位"/>
 	<e:Image id="btnRegister" source="denglu_png" x="886.14" y="243.29"/>
-	<e:Label id="lblRegister" text="注册" x="905.8" y="315.61" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="81.33" stroke="2" strokeColor="0x999595" touchEnabled="false"/>
+	<e:Label id="lblRegister" text="注册" x="905.8" y="276.61" fontFamily="SimHei" size="40" textAlign="center" anchorOffsetX="0" width="81.33" stroke="2" strokeColor="0x999595" touchEnabled="false" anchorOffsetY="0" height="116" verticalAlign="middle"/>
 	<e:EditableText id="txtAccount" width="457.34" height="64" x="395.96" y="251.61" anchorOffsetX="0" anchorOffsetY="0" textColor="0xbcbcbc" verticalAlign="middle" fontFamily="SimHei" prompt="请输入帐号，至少6位"/>
 	<e:Image source="xiabiantiao_png" x="256.3" y="495"/>
 	<e:Image source="xiabiantiao_png" x="732.96" y="495"/>
