@@ -127,8 +127,8 @@ namespace gameUI{
                     ResourceManager.Instance.loadGroups(groups, this, ()=>{
                         loadingUI.Close()
                         UIManager.Instance.LoadUI(UI.lobby)
-                        if(data.room_id > 0 && data.table_id != constant.INVALID && data.chair_id != constant.INVALID){
-                            GameManager.Instance.startGame(101)
+                        if(data.game_id > 0 && data.room_id > 0 && data.table_id != constant.INVALID && data.chair_id != constant.INVALID){
+                            GameManager.Instance.startGame(data.game_id)
                         }
                     }, (current, total)=>{
                         loadingUI.setProgress(Math.floor(current * 100 / total))

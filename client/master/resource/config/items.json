@@ -2,27 +2,33 @@
     "Shop" : {
         "1" : { 
             "ID" : 1,
-            "Money" : 1002,
+            "Money" : 1001,
             "Laber" : 1,
-            "Item" : 4001
+            "Item" : 1002
         },
         "2" : { 
             "ID" : 2,
-            "Money" : 1002,
+            "Money" : 1001,
             "Laber" : 0,
             "Item" : 4002
         },
         "3" : { 
             "ID" : 3,
-            "Money" : 1002,
+            "Money" : 1001,
             "Laber" : 0,
             "Item" : 4003
         },
         "4" : { 
             "ID" : 4,
-            "Money" : 1002,
+            "Money" : 1001,
             "Laber" : 0,
             "Item" : 4004
+        },
+        "5" : { 
+            "ID" : 5,
+            "Money" : 1001,
+            "Laber" : 0,
+            "Item" : 1002
         }
     },
 
@@ -45,7 +51,7 @@
             "Name1" : "房卡",
             "Description1" : "开房的消耗",
             "OverlayNum" : 99,
-            "GoldPrice" : 100.0,
+            "GoldPrice" : 1000.0,
             "Type" : 100,
             "Para1" : 0,
             "Para2" : 0,
@@ -103,26 +109,31 @@
 
     "Recharge" : {
         "1" : { 
+            "ID" : 1,
             "rmb" : 10,
             "reward" : [1001, 10000],
             "presenter" : [1001, 2000]
         },
         "2" : { 
+            "ID" : 2,
             "rmb" : 20,
             "reward" : [1001, 20000],
             "presenter" : [1001, 4000]
         },
         "3" : { 
+            "ID" : 3,
             "rmb" : 30,
             "reward" : [1001, 30000],
             "presenter" : [1001, 6000]
         },
         "4" : { 
+            "ID" : 4,
             "rmb" : 50,
             "reward" : [1001, 50000],
             "presenter" : [1001, 8000]
         },
         "5" : { 
+            "ID" : 5,
             "rmb" : 100,
             "reward" : [1001, 100000],
             "presenter" : [1001, 10000]
