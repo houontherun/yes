@@ -37,7 +37,7 @@
 			"name": "ddzEffect"
 		},
 		{
-			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,huojian2x_png,qifei_json,qifei_png",
+			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png",
 			"name": "preload"
 		},
 		{
@@ -1155,6 +1155,21 @@
 			"url": "Effect/ddz/qifei.png",
 			"type": "image",
 			"name": "qifei_png"
+		},
+		{
+			"url": "Effect/ddz/huojian2x.png",
+			"type": "image",
+			"name": "huojian2x2_png"
+		},
+		{
+			"url": "Effect/ddz/qifei.json",
+			"type": "json",
+			"name": "qifei2_json"
+		},
+		{
+			"url": "Effect/ddz/qifei.png",
+			"type": "image",
+			"name": "qifei2_png"
 		}
 	]
 }
