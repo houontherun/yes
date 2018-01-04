@@ -33,11 +33,11 @@
 			"name": "data"
 		},
 		{
-			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,shibai_json,zhadan_json,huojian2x_png,qifei_json,qifei_png",
+			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,shibai_json,zhadan_json,huojian2x_png,qifei_json,qifei_png,feiji_png,yan_json,yan_png",
 			"name": "ddzEffect"
 		},
 		{
-			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,huojian2x_png,qifei_json,qifei_png,huojian2x2_png,qifei2_json",
+			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png",
 			"name": "preload"
 		},
 		{
@@ -1170,6 +1170,21 @@
 			"url": "Effect/ddz/qifei.png",
 			"type": "image",
 			"name": "qifei2_png"
+		},
+		{
+			"url": "assets/Poker/ddzRes/feiji.png",
+			"type": "image",
+			"name": "feiji_png"
+		},
+		{
+			"url": "Effect/ddz/yan.json",
+			"type": "json",
+			"name": "yan_json"
+		},
+		{
+			"url": "Effect/ddz/yan.png",
+			"type": "image",
+			"name": "yan_png"
 		}
 	]
 }
