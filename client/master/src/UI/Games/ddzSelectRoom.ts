@@ -34,7 +34,7 @@ namespace gameUI{
             // 请求进入房间
             if(PlayerManager.Instance.Data.Gold >= this.data.Limit){
 				RoomManager.Instance.EnterRoomAndAutoSitdown(this.data.RoomId, ()=>{
-                    UIManager.Instance.UnloadUI(UI.ddzSelectRoom)
+                    // UIManager.Instance.UnloadUI(UI.ddzSelectRoom)
                     //GameManager.Instance.startDDZGame()
                 }, this)
                 // RoomManager.Instance.EnterRoom(this.data.RoomId)
@@ -54,13 +54,12 @@ namespace gameUI{
         public btnClose:eui.Image;
         
         public onload():void {
-            super.onload();
-            UIManager.Instance.Lobby.groupType.visible = false
-            UIManager.Instance.Lobby.groupTopMenu.visible = false            
+            super.onload();       
 
             this.svGame.initScrollLayout(gameUI.ScrollLayout.Horizontal)
             this.svGame.initItemRenderer(ddzSelectRoomItemRander)
 
+            this.btnClose.visible = Application.ChildGameCount > 1
             this.AddClick(this.btnClose, ()=>{
                 this.Close()
             }, this)
@@ -68,19 +67,15 @@ namespace gameUI{
             RoomManager.Instance.queryRoomList(101)
             RoomManager.Instance.addEventListener(constant.event.logic.on_self_enter_room, this.onEnterRoom, this)
             RoomManager.Instance.addEventListener(constant.event.logic.on_get_room_list, this.onGetRoomList, this)
-            
         }
         public onUnload():void{
             super.onUnload()
-            UIManager.Instance.Lobby.groupType.visible = true
-            UIManager.Instance.Lobby.groupTopMenu.visible = true
-
             RoomManager.Instance.removeEventListener(constant.event.logic.on_self_enter_room, this.onEnterRoom, this)
             RoomManager.Instance.removeEventListener(constant.event.logic.on_get_room_list, this.onGetRoomList, this)
         }
 
         private onEnterRoom(data):void{
-            this.Close()
+            // this.Close()
             UIManager.Instance.LoadUI(UI.ddzRoom)
         }
         private onGetRoomList():void{

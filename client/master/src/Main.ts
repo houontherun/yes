@@ -107,7 +107,6 @@ class Main extends eui.UILayer {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
 
         Application.Init();
-        UIManager.Instance.Init(this);
 
         let theme = new eui.Theme("resource/default.thm.json", this.stage);
         theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);
@@ -153,6 +152,8 @@ class Main extends eui.UILayer {
     
     private createScene() {
         if (this.isThemeLoadEnd && this.isResourceLoadEnd) {
+            Application.InitPackageInfo()
+            UIManager.Instance.Init(this)
             UIManager.Instance.LoadUI(UI.login)
             // this.showCapabilitiesInfo()
         }

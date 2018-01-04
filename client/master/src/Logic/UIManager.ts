@@ -7,7 +7,7 @@ class UIManager extends Dispatcher {
         super();
     }   
     
-    private language:string = "NR"
+    private language:string = null
     public get Language():string{
         return this.language
     }
@@ -21,6 +21,8 @@ class UIManager extends Dispatcher {
 
     private stage:eui.UILayer = null;
     private waitUI:gameUI.wait = null;
+    private topView = null
+    private uiList = []
 
     public get Lobby():gameUI.lobby{
         var child = this.GetChild(UI.lobby)
@@ -33,13 +35,14 @@ class UIManager extends Dispatcher {
     
     public Init(stage:eui.UILayer):void{
         this.stage = stage;
+        this.language = Application.Language
     }
 
+    // egret.OrientationMode.LANDSCAPE 横屏
+    // egret.OrientationMode.PORTRAIT  竖屏
     public get Orientation(){
         return this.stage.stage.orientation
     }
-    // egret.OrientationMode.LANDSCAPE 横屏
-    // egret.OrientationMode.PORTRAIT  竖屏
     public set Orientation(o){
         this.stage.stage.orientation = o
     }
@@ -49,9 +52,19 @@ class UIManager extends Dispatcher {
             console.error('not found ui name:' + ui.name)
             return
         }
+        if(this.GetChild(ui) != null){
+            console.error('repeat add ui:' + ui.name)
+            return
+        }
         var cls = egret.getDefinitionByName(ui.name)
         var view = new cls(ui, data)
         this.stage.addChild(view)
+        this.uiList.push(view)
+        if(this.topView != null){
+            this.topView.onDeactive()
+        }
+        this.topView = view
+        this.topView.onActive()
         
         if(onLoaded != null && thisObj != null){            
             if(view.skin == null){
@@ -65,16 +78,32 @@ class UIManager extends Dispatcher {
     }
 
     public UnloadUI(ui:any){
-        var child = <gameUI.base>this.stage.getChildByName(ui.name)
-        if(child != null){
-            child.onUnload()
-            this.stage.removeChild(child);
-            child = null
+        for(var i = this.uiList.length - 1; i >= 0; i--){
+            if(this.uiList[i].name == ui.name){
+                this.uiList[i].onUnload()
+                this.stage.removeChild(this.uiList[i]);
+                if(this.uiList[i] == this.topView){
+                    this.uiList[i].onDeactive()
+                    if(i >= 1){
+                        this.topView = this.uiList[i - 1]
+                        this.topView.onActive()
+                    }else{
+                        this.topView = null
+                    }
+                }
+                this.uiList.splice(i, 1)                
+                break
+            }
         }
     }
 
     public GetChild(ui:any):any{
-        return this.stage.getChildByName(ui.name)
+        for(var i = this.uiList.length - 1; i >= 0; i--){
+            if(this.uiList[i].name == ui.name){
+                return this.uiList[i]
+            }
+        }
+        return null
     }
 
     public showError(errorId){
@@ -103,6 +132,17 @@ class UIManager extends Dispatcher {
     public hideWait(){
         if(this.waitUI != null){
             this.waitUI.visible = false
+        }
+    }
+
+    public loadGameLobby(gameId:number){
+        switch(gameId){
+            case 101:
+                this.LoadUI(UI.ddzSelectRoom)
+                return
+            default:
+                console.log("未实现的子游戏类型")
+                return;
         }
     }
 }

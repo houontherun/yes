@@ -59,12 +59,10 @@ namespace gameUI{
 			super.onload()
 			this.initText()
 
-			var games = DataManager.Instance.getGames()
+			var games = Application.ChildGames
 
 			this.svGame.initScrollLayout(gameUI.ScrollLayout.Horizontal) 
-			this.svGame.initItemRenderer(game_item)
-			this.svGame.bindData(games[1])
-
+			
 			this.AddClick(this.btnPuke, ()=>{
 				this.svGame.bindData(games[1])
 			}, this)
@@ -135,12 +133,31 @@ namespace gameUI{
 			PlayerManager.Instance.addEventListener(constant.event.logic.on_player_data_update, this.updatePlayerInfo, this)
 			this.updatePlayerInfo(PlayerManager.Instance.Data)
 			this.imgBg.source = this.defaultBackground
+
+			if(Application.ChildGameCount == 1){
+				UIManager.Instance.loadGameLobby(Application.LastGameId)
+			}else{
+				this.svGame.initItemRenderer(game_item)
+				this.svGame.bindData(games[1])
+			}
 		}
 		
         public onUnload():void{
             super.onUnload()
 			PlayerManager.Instance.removeEventListener(constant.event.logic.on_player_data_update, this.updatePlayerInfo, this)
         }
+		public onActive():void{
+			if(this.skin != null){
+				this.groupType.visible = true
+            	this.groupTopMenu.visible = true
+			}
+		}
+		public onDeactive():void{
+			if(this.skin != null){
+				this.groupType.visible = false
+            	this.groupTopMenu.visible = false
+			}
+		}
 
 		private updatePlayerInfo(data):void{
 			this.txtUsrId.text = "ID:" + data.UserId.toString()

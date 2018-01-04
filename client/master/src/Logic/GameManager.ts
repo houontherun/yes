@@ -5,6 +5,17 @@ class GameManager extends Dispatcher {
         super();
     }
 
+    public startGame(gameId:number){
+        switch(gameId){
+            case 101:
+                this.startDDZGame()
+                return;
+            default:
+                console.log("未实现的子游戏类型")
+                return;
+        }
+    }
+
     public startDDZGame():void{
         MessageManager.Instance.addEventListener(constant.msg.SC_USER_STAND_UP, this.onStandUp, this);
         

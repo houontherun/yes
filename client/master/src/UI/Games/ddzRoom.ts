@@ -77,8 +77,6 @@ namespace gameUI{
             super.onload();
             this.initText()
             
-            UIManager.Instance.Lobby.groupType.visible = false
-            UIManager.Instance.Lobby.groupTopMenu.visible = false
             UIManager.Instance.Lobby.imgBg.source = 'background2_png'
 
             this.svGame.initScrollLayout(gameUI.ScrollLayout.Horizontal)
@@ -96,6 +94,8 @@ namespace gameUI{
             RoomManager.Instance.addEventListener(constant.event.logic.on_query_room_info, this.onQueryRoomInfo, this)
             this.enterRoomData = null
             RoomManager.Instance.queryRoomInfo()
+            
+            UIManager.Instance.UnloadUI(UI.ddzSelectRoom)
         }
         public onUnload():void{
             super.onUnload()
@@ -108,9 +108,9 @@ namespace gameUI{
             }
             this.enterRoomData = null
 
-            UIManager.Instance.Lobby.groupType.visible = true
-            UIManager.Instance.Lobby.groupTopMenu.visible = true
             UIManager.Instance.Lobby.imgBg.source = UIManager.Instance.Lobby.defaultBackground
+
+            UIManager.Instance.LoadUI(UI.ddzSelectRoom)
         }
         private onQueryRoomInfo(data:EnterRoomData):void{
             this.enterRoomData = data

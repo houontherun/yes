@@ -63,19 +63,6 @@ class DataManager extends Dispatcher {
         super();
     }
 
-    public getGames():any{
-        var jsonData = RES.getRes('hall_json')
-        var games = {
-            1:[],
-            2:[],
-            3:[]
-        }
-        for(var id in jsonData.Game){
-            var game = jsonData.Game[id]
-            games[game.type].push(game)
-        }
-        return games
-    }
     public getJsonData(name:string):any{
         var jsonData = RES.getRes(name + '_json')
         return jsonData

@@ -24,6 +24,12 @@ namespace gameUI{
             UIManager.Instance.removeEventListener(constant.event.logic.on_language_change, this.onLanguageChange, this)
             this.removeEventListener( eui.UIEvent.COMPLETE, this.onload, this);
         }
+        public onActive():void{
+
+        }
+        public onDeactive():void{
+            
+        }
         public initText(){
             // init ui language
         }

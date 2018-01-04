@@ -113,18 +113,22 @@ namespace gameUI{
                 timer.addEventListener(egret.TimerEvent.TIMER, ()=>{
                     var loadingUI = <gameUI.loading>UIManager.Instance.GetChild(UI.loading)
                     var groups = [
-                        "lobby",
                         "common",
-                        "ddz_lobby",
+                        "lobby"
                     ]
+                    for(var type in Application.ChildGames){
+                        var games = Application.ChildGames[type]
+                        for(var i = 0; i < games.length; i++){
+                            if(games[i].ResName.length > 0){
+                                groups.push(games[i].ResName)
+                            }
+                        }
+                    }
                     ResourceManager.Instance.loadGroups(groups, this, ()=>{
                         loadingUI.Close()
                         UIManager.Instance.LoadUI(UI.lobby)
-                        if(data.room_id > 0){
-                            UIManager.Instance.LoadUI(UI.ddzRoom)
-                            if(data.table_id != constant.INVALID && data.chair_id != constant.INVALID){
-                                GameManager.Instance.startDDZGame()
-                            }
+                        if(data.room_id > 0 && data.table_id != constant.INVALID && data.chair_id != constant.INVALID){
+                            GameManager.Instance.startGame(101)
                         }
                     }, (current, total)=>{
                         loadingUI.setProgress(Math.floor(current * 100 / total))
