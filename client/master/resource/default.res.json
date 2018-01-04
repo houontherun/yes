@@ -33,11 +33,11 @@
 			"name": "data"
 		},
 		{
-			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,shibai_json,zhadan_json",
+			"keys": "baozha_png,chuntian_png,hongdeng_png,huode_png,shibai_png,sli_png,zhadan_png,chuntian_json,hongdeng_json,baozha_json,huode_json,sli_json,shibai_json,zhadan_json,huojian2x_png,qifei_json,qifei_png",
 			"name": "ddzEffect"
 		},
 		{
-			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png",
+			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,huojian2x_png,qifei_json,qifei_png",
 			"name": "preload"
 		},
 		{
@@ -1122,24 +1122,39 @@
 			"name": "pukeitem_png"
 		},
 		{
-			"name": "radiobutton_select_disabled_png",
+			"url": "assets/RadioButton/radiobutton_select_disabled.png",
 			"type": "image",
-			"url": "assets/RadioButton/radiobutton_select_disabled.png"
+			"name": "radiobutton_select_disabled_png"
 		},
 		{
-			"name": "radiobutton_select_down_png",
+			"url": "assets/RadioButton/radiobutton_select_down.png",
 			"type": "image",
-			"url": "assets/RadioButton/radiobutton_select_down.png"
+			"name": "radiobutton_select_down_png"
 		},
 		{
-			"name": "radiobutton_select_up_png",
+			"url": "assets/RadioButton/radiobutton_select_up.png",
 			"type": "image",
-			"url": "assets/RadioButton/radiobutton_select_up.png"
+			"name": "radiobutton_select_up_png"
 		},
 		{
-			"name": "radiobutton_unselect_png",
+			"url": "assets/RadioButton/radiobutton_unselect.png",
 			"type": "image",
-			"url": "assets/RadioButton/radiobutton_unselect.png"
+			"name": "radiobutton_unselect_png"
+		},
+		{
+			"url": "Effect/ddz/huojian2x.png",
+			"type": "image",
+			"name": "huojian2x_png"
+		},
+		{
+			"url": "Effect/ddz/qifei.json",
+			"type": "json",
+			"name": "qifei_json"
+		},
+		{
+			"url": "Effect/ddz/qifei.png",
+			"type": "image",
+			"name": "qifei_png"
 		}
 	]
 }

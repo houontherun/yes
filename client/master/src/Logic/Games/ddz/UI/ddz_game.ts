@@ -88,6 +88,7 @@ namespace gameUI {
              this.btn3.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
                  this.SendTurstee(0);
              }, this);
+ 
         }
 
         private onExitDDZGame(){
@@ -799,21 +800,43 @@ namespace gameUI {
 
 
          //特效
-        private PlayGameEffect(array: any,startposX:number)
+        private PlayGameEffect(array: any)
         {
             var packPokercards =  new Card.ddzPackCardGroup(CardLogic.ddzGameLogic.Instance.GetPokerCards(array));
-            if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE || packPokercards.CardType == Card.CardTypes.NUKE_TYPE)
+            if(packPokercards.CardType == Card.CardTypes.BOMB_TYPE)
             {
                let mc : egret.MovieClip;
                mc = this.PlayEffect('zhadan',()=>{
                    CardLogic.Timer.Instance.Delay(1, () => {
                     this.removeChild(mc);
                 }); });
-              mc.x = startposX;
+              mc.x = 200;
               this.addChild(mc);
+            }
+            else if(packPokercards.CardType == Card.CardTypes.NUKE_TYPE )
+            {
+               let mc : egret.MovieClip;
+               mc = this.PlayEffect('qifei');
+               mc.x = 500;
+               this.addChild(mc);
+               var img = new eui.Image();
+               img.x = 600;
+               img.y = 500;
+               img.source = RES.getRes(`huojian2x_png`);
+               var tw = egret.Tween.get( img, { loop:false} );
+               tw.to( {y:-480},400).wait(180).call(()=>{this.removeChild(mc);this.removeChild(img);this.wangzha();},this);
+               this.addChild( img );
             }
         }
 
+    private wangzha(): void
+    {
+        let mc : egret.MovieClip;
+        mc = this.PlayEffect('baozha',()=>{
+             this.removeChild(mc); });
+         mc.x = 300;
+       this.addChild(mc);
+    }
 
 
       private clearCurCard()
@@ -849,7 +872,7 @@ namespace gameUI {
                 startposX = startposX - 10 - 34 * cards.length;
             }
 
-            this.PlayGameEffect(array,500);
+            this.PlayGameEffect(array);
 
             if (chairid == CardLogic.ddzGameLogic.Instance.playerChairid)
             {
@@ -908,7 +931,7 @@ namespace gameUI {
                 }
                 this.group_handcards.removeChildren();
                 let handcards = CardLogic.ddzGameLogic.Instance.HandCards;
-                let startposx = this.group_handcards.width / 2 - handcards.length*45/2 - 68;
+                let startposx = this.group_handcards.width / 2 - handcards.length*45/2 - 75;
                 for (var i = 0; i < handcards.length; i++) {
                     var _card = new Card.ui_pokerCardItem();
                     _card.cardData = handcards[i];
@@ -1187,7 +1210,7 @@ namespace gameUI {
             Card.Util.sortCards(cards);
             this.cardTotalnum = cards.length;
             var i: number = 0;
-            let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 68;
+            let startposx = this.group_handcards.width / 2 - cards.length*45/2 - 75;
             let addcardTimer = CardLogic.Timer.Instance.Repeat(0.18, () => {
                 if (i < this.cardTotalnum) {
                     var _card = new Card.ui_pokerCardItem();
