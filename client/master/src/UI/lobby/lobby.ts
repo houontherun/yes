@@ -155,7 +155,9 @@ namespace gameUI{
 		public onDeactive():void{
 			if(this.skin != null){
 				this.groupType.visible = false
-            	this.groupTopMenu.visible = false
+				if(Application.ChildGameCount > 1){
+					this.groupTopMenu.visible = false
+				}
 			}
 		}
 
