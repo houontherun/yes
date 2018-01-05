@@ -296,7 +296,8 @@ namespace gameUI {
                    });
               }); });
 
-            mc.x = this.width /3;
+            mc.x = this.width /4;
+            mc.y = 50;
             this.addChild(mc);
 
         }
@@ -902,6 +903,12 @@ namespace gameUI {
                 if(remainCount > 0)
                 {
                    if (textNum) textNum.text = remainCount.toString();
+                   if(remainCount<10&&!textNum.cacheAsBitmap)
+                   {
+                       textNum.cacheAsBitmap = true;
+                       textNum.x +=9; 
+                   }
+
                 }
                 else
                 {
@@ -1018,7 +1025,7 @@ namespace gameUI {
                     var backCard = new eui.Image();
 
                     backCard.source = RES.getRes("card_back_png");
-                    backCard.scaleX = backCard.scaleY = 0.35;
+                    backCard.scaleX = backCard.scaleY = 0.3;
                     group.addChildAt(backCard, 5);
                     textNum = new eui.Label;
                     textNum.fontFamily = "SimHei";
@@ -1031,14 +1038,14 @@ namespace gameUI {
                     if (seat == Card.Seat.Left) {
                         backCard.x = 240;
                         backCard.y = 240;
-                        textNum.x = 250;
-                        textNum.y = 260;
+                        textNum.x = 242;
+                        textNum.y = 250;
                     }
                     else {
                         backCard.x = 30;
                         backCard.y = 240;
-                        textNum.x = 42;
-                        textNum.y = 260;
+                        textNum.x = 32;
+                        textNum.y = 250;
                     }
 
                     group.addChildAt(textNum, 6);
