@@ -88,7 +88,8 @@ namespace gameUI {
              this.btn3.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
                  this.SendTurstee(0);
              }, this);
- 
+             
+            
         }
 
         private onExitDDZGame(){
@@ -827,6 +828,24 @@ namespace gameUI {
                tw.to( {y:-480},400).wait(180).call(()=>{this.removeChild(mc);this.removeChild(img);this.wangzha();},this);
                this.addChild( img );
             }
+            else if(packPokercards.CardType == Card.CardTypes.AEROPLANE_TYPE || packPokercards.CardType == Card.CardTypes.AEROPLANEL_TYPE||packPokercards.CardType == Card.CardTypes.AEROPLANES_TYPE)
+            {
+                let mc : egret.MovieClip;
+               mc = this.PlayEffect('yan');
+               mc.x = 1000;
+               mc.y = 350;
+               this.addChild(mc);
+               var img = new eui.Image();
+               img.x = 1000;
+               img.y = 350;
+               img.source = RES.getRes(`feiji_png`);
+               var tw = egret.Tween.get( img, { loop:false} );
+               tw.to( {x:-100},500).wait(280).call(()=>{this.removeChild(img);},this);
+               var tw0 = egret.Tween.get( mc, { loop:false} );
+               tw0.to( {x:-100},500).wait(280).call(()=>{this.removeChild(mc);},this);
+               this.addChild( img );
+            }
+
         }
 
     private wangzha(): void
