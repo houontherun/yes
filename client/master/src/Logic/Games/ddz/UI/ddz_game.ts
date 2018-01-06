@@ -61,6 +61,7 @@ namespace gameUI {
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_GAME_END, this.GameEnd, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_TRUSTEE, this.Trustee, this);
             MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_USER_BRIGHT, this.Bright, this);
+            MessageManager.Instance.addSubEventListener(constant.sub_msg.SUB_S_SPRING, this.Spring, this);
 
             CardLogic.ddzGameLogic.Instance.init();
             CardLogic.CardEventDispatcher.Instance.addEventListener(CardLogic.CardEvent.AddHard, this.AddhardCard, this);
@@ -80,16 +81,17 @@ namespace gameUI {
                 GameManager.Instance.exitDDZGame()
             }, this);
                
-            this.Text_bnt0.visible = false;
-            
-            this.btn0.visible = false;
-            this.Text_bnt3.touchEnabled = false;
-
+            this.Text_bnt1.visible = false;
+            this.Text_bnt0.text = this.text(1106001);
+             this.btn1.visible = false;
+             this.Text_bnt3.touchEnabled = false;
+             this.btn0.x = 93;
+             this.Text_bnt0.x = 106;
              this.btn3.addEventListener(egret.TouchEvent.TOUCH_TAP, () => {
                  this.SendTurstee(0);
              }, this);
              
-            
+           //this.Spring();
         }
 
         private onExitDDZGame(){
@@ -178,6 +180,18 @@ namespace gameUI {
             return group;
         }
 
+
+        private Spring()
+        {
+            let mc : egret.MovieClip;
+            mc = this.PlayEffect('chuntian',()=>{
+                 CardLogic.Timer.Instance.Delay(0.6,()=>{
+                 this.removeChild(mc);}) });
+
+            mc.x = this.width /4;
+            mc.y = 50;
+            this.addChild(mc);
+        }
 
         //插入底牌
         private AddBackCard(backcards) {
@@ -616,7 +630,7 @@ namespace gameUI {
             this.btn2.x = 297;
 
             this.Text_bnt0.x = 485;
-            this.Text_bnt1.x = 86;
+            this.Text_bnt1.x = 84;
             this.Text_bnt2.x = 312;
         }
 
@@ -656,8 +670,8 @@ namespace gameUI {
                     this.cdoffset = 11;
                     this.btn2.x = 297;
                     this.btn1.x = 81;
-                    this.Text_bnt2.x = 313;
-                    this.Text_bnt1.x = 97;
+                    this.Text_bnt2.x = 310;
+                    this.Text_bnt1.x = 94;
                     this.btn0.visible = false;
                     this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
                     this.btn1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendSnatchlandLord, this);
@@ -676,8 +690,10 @@ namespace gameUI {
             if (data.ret == 0) {
                 this.Text_bnt2.visible = false;
                 this.Text_bnt1.visible = false;
+                this.Text_bnt0.visible = false;
                 this.btn1.visible = false;
                 this.btn2.visible = false;
+                this.btn0.visible = false;
                 this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
             }
         }
@@ -1306,11 +1322,12 @@ namespace gameUI {
 
         private restart() {
             this.SetBtnsGame(true);
-            this.Text_bnt1.text = this.text(1103001);
             this.Text_bnt2.text = this.text(1103002);
-            this.Text_bnt0.visible = false;
-
-            this.btn0.visible = false;
+            this.Text_bnt1.visible = false;
+            this.Text_bnt0.text = this.text(1106001);
+            this.btn0.x = 93;
+            this.Text_bnt0.x = 106;
+            this.btn1.visible = false;
             this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.prompt, this);
             this.btn2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
         }

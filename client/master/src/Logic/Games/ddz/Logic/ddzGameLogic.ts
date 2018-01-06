@@ -20,6 +20,8 @@ export class ddzGameLogic extends Dispatcher {
    private allPokerCards = {}
    private tableid:number = -1;
    private BrightCards = {};
+   private CustomTableid :number = -1;
+   private Ownerid:number = -1;
 
    public static get Instance() {
         if(ddzGameLogic.shared == null) {
@@ -73,6 +75,9 @@ export class ddzGameLogic extends Dispatcher {
         this.players = [];
         var pre:UserData = null ;
         this.tableid = data.table_id;
+        this.Ownerid = data.owner_id;
+        this.CustomTableid = data.custom_table_id;
+        
         for(var i = 0; i < data.players.length; i++){
             
             var ud = new UserData(data.players[i])

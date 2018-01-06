@@ -103,7 +103,9 @@ var constant = {
         SUB_S_TRUSTEE:109,               //玩家托管
         SUB_S_STATUS_FREE:110,			//当前桌子空闲状态信息
         SUB_S_STATUS_SCORE:111,		    //当前桌子叫分状态信息
-        SUB_S_STATUS_PLAYING:112		//当前桌子进行中状态信息
+        SUB_S_STATUS_PLAYING:112,		//当前桌子进行中状态信息
+        SUB_S_TIMES:113,               //游戏倍数更新
+        SUB_S_SPRING:114				//春天
     },
     error_code:{
         ERROR_OK : 0,
