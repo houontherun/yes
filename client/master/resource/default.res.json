@@ -37,7 +37,7 @@
 			"name": "ddzEffect"
 		},
 		{
-			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png",
+			"keys": "radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,yan2_json,yan2_png,feiji2_png",
 			"name": "preload"
 		},
 		{
@@ -1185,6 +1185,21 @@
 			"url": "Effect/ddz/yan.png",
 			"type": "image",
 			"name": "yan_png"
+		},
+		{
+			"name": "yan2_json",
+			"type": "json",
+			"url": "Effect/ddz/yan.json"
+		},
+		{
+			"name": "yan2_png",
+			"type": "image",
+			"url": "Effect/ddz/yan.png"
+		},
+		{
+			"name": "feiji2_png",
+			"type": "image",
+			"url": "assets/Poker/ddzRes/feiji.png"
 		}
 	]
 }

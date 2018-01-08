@@ -102,6 +102,11 @@ class Main extends eui.UILayer {
         timer.start()  
 
     }
+    private closeRuntimeLoadingUI(){
+        var json = { current : 10 ,total : 10};
+        var jsonStr = JSON.stringify(json);
+        egret.ExternalInterface.call("customLoadingFlag" ,jsonStr)
+    }
 
     private onConfigComplete(event: RES.ResourceEvent): void {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
@@ -152,6 +157,11 @@ class Main extends eui.UILayer {
     
     private createScene() {
         if (this.isThemeLoadEnd && this.isResourceLoadEnd) {
+            if(egret.Capabilities.runtimeType == egret.RuntimeType.WEB){
+            }else{ // native
+                this.closeRuntimeLoadingUI()
+            }
+            
             Application.InitPackageInfo()
             UIManager.Instance.Init(this)
             UIManager.Instance.LoadUI(UI.login)
