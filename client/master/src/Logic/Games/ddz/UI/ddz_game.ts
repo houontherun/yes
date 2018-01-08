@@ -235,10 +235,10 @@ namespace gameUI {
              img.source = RES.getRes("yizunbei_png");
              img.scaleY = img.scaleX = 0.8;
              let posx = pos.x - 38;
-              img.x = posx;
-              img.y = pos.y - 20;
-              group.addChild(img);
-              this.readyUIArray[chairid] = img;
+             img.x = posx;
+             img.y = pos.y - 20;
+             group.addChild(img);
+             this.readyUIArray[chairid] = img;
         }
 
         private UpdatePlayersStatus(e: CardLogic.CardEvent)
@@ -690,10 +690,9 @@ namespace gameUI {
             if (data.ret == 0) {
                 this.Text_bnt2.visible = false;
                 this.Text_bnt1.visible = false;
-                this.Text_bnt0.visible = false;
+               
                 this.btn1.visible = false;
                 this.btn2.visible = false;
-                this.btn0.visible = false;
                 this.btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.SendReady, this);
             }
         }
@@ -1245,6 +1244,8 @@ namespace gameUI {
             if (this.hardCardsArray.length > 0) {
                 this.removehardCard();
             }
+            this.Text_bnt0.visible = false;
+            this.btn0.visible = false;
             this.removeallready();
             this.OpenDeal();
             var cards: Array<PokerCard> = e.paramObj;
